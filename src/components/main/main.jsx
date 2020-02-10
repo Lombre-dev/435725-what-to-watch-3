@@ -32,20 +32,15 @@ const Main = (props) => {
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
-
-            {/* module1-task3 >>> */}
             <div className="movie-card__poster">
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt={currentMovie.title + `poster`} width="218" height="327" />
             </div>
-
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{currentMovie.title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{currentMovie.genre}</span>
                 <span className="movie-card__year">{currentMovie.year}</span>
               </p>
-              {/* module1-task3 <<< */}
-
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
@@ -310,31 +305,5 @@ const Main = (props) => {
     </>
   );
 };
-
-/* // module2-task1 >>>
-Main.propTypes = {
-  // текущий фильм в заголовке страницы
-  currentMovie: PropTypes.shape({
-    // название фильма
-    title: PropTypes.string.isRequired,
-    // жанр фильма, может быть массивом из нескольких
-    genre: PropTypes.oneOfType([
-      PropTypes.oneOf(Settings.GENRES),
-      PropTypes.arrayOf(PropTypes.oneOf(Settings.GENRES)),
-    ]).isRequired,
-    // год выхода фильма
-    year: PropTypes.number.isRequired,
-    // постер к фильму
-    posterUrl: PropTypes.string
-  }).isRequired
-};
-
-Main.defaultProps = {
-  currentMovie: {
-    // ссылка на no-poster.jpg
-    posterUrl: ``
-  }
-};
-// module2-task1 <<< */
 
 export default Main;
