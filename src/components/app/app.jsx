@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import Main from '../main/main.jsx';
 
 const App = (props) => {
+
+  const {currentMovie, movieList} = props;
+
   return (
-    <Main currentMovie={props.currentMovie} />
+    <Main currentMovie={currentMovie} movieList={movieList} />
   );
 };
 
