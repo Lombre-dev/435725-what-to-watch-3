@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
-import React from "react";
-import {Settings} from "../../settings.js";
+import React from 'react';
+import {Movie, MovieList} from './main-types.js';
 
 const Main = ({currentMovie, movieList}) => {
   return (
@@ -36,9 +35,7 @@ const Main = ({currentMovie, movieList}) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{currentMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{
-                  Array.isArray(currentMovie.genre) ? currentMovie.genre.join(`, `) : currentMovie.genre
-                }</span>
+                <span className="movie-card__genre">{currentMovie.genres.join(`, `)}</span>
                 <span className="movie-card__year">{currentMovie.year}</span>
               </p>
               <div className="movie-card__buttons">
@@ -101,11 +98,9 @@ const Main = ({currentMovie, movieList}) => {
             {
               movieList.map((value, index) => {
                 return (
-                  <article className="small-movie-card catalog__movies-card" key={value.title + index}>
+                  <article className="small-movie-card catalog__movies-card" key={`${value.title}${index}`}>
                     <div className="small-movie-card__image">
-                      <img src={
-                        Array.isArray(value.framesUrl) && value.framesUrl.length > 0 ? value.framesUrl[0] : value.framesUrl
-                      } alt={value.title} width="280" height="175" />
+                      <img src={value.framesUrl[0]} alt={value.title} width="280" height="175" />
                     </div>
                     <h3 className="small-movie-card__title">
                       <a className="small-movie-card__link" href="movie-page.html">{value.title}</a>
@@ -139,35 +134,8 @@ const Main = ({currentMovie, movieList}) => {
 };
 
 Main.propTypes = {
-  // текущий фильм в заголовке страницы
-  currentMovie: PropTypes.shape({
-    // название фильма
-    title: PropTypes.string.isRequired,
-    // жанр фильма, будем считать что может быть несколько
-    genre: PropTypes.oneOfType([
-      PropTypes.oneOf(Settings.GENRES),
-      PropTypes.arrayOf(PropTypes.oneOf(Settings.GENRES)),
-    ]).isRequired,
-    // год выхода фильма
-    year: PropTypes.number.isRequired,
-    // постер к фильму
-    posterUrl: PropTypes.string,
-  }).isRequired,
-
-  // список фильмов для библиотеки
-  movieList: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.oneOfType([
-      PropTypes.oneOf(Settings.GENRES),
-      PropTypes.arrayOf(PropTypes.oneOf(Settings.GENRES)),
-    ]).isRequired,
-    year: PropTypes.number.isRequired,
-    // кадры из фильма, будем считать что тут можеть быть несколько кадров
-    framesUrl: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string),
-    ])
-  })),
+  currentMovie: Movie.isRequired,
+  movieList: MovieList,
 };
 
 Main.defaultProps = {
