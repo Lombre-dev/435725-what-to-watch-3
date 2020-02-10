@@ -2,10 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Settings} from "../../settings.js";
 
-const Main = (props) => {
-
-  const {currentMovie, movieList} = props;
-
+const Main = ({currentMovie, movieList}) => {
   return (
     <>
       <section className="movie-card">
@@ -34,7 +31,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={currentMovie.posterUrl} alt={currentMovie.title + ` poster`} width="218" height="327" />
+              <img src={currentMovie.posterUrl} alt={`${currentMovie.title} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{currentMovie.title}</h2>
