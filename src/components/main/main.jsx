@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-const Main = (props) => {
-
-  const {currentMovie} = props;
-
+const Main = ({currentMovie}) => {
   return (
     <>
       <section className="movie-card">
@@ -33,7 +30,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={currentMovie.title + `poster`} width="218" height="327" />
+              <img src={currentMovie.posterUrl} alt={`${currentMovie.title} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{currentMovie.title}</h2>

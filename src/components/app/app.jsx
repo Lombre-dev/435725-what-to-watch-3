@@ -2,9 +2,9 @@
 import React from 'react';
 import Main from '../main/main.jsx';
 
-const App = (props) => {
+const App = ({currentMovie}) => {
   return (
-    <Main currentMovie={props.currentMovie} />
+    <Main currentMovie={currentMovie} />
   );
 };
 
