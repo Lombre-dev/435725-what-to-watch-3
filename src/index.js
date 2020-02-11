@@ -1,15 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/app.jsx';
+import App from './components/app/app';
+import {CURRENT_MOVIE, MOVIE_LIST} from './mocks/main-data';
 
-export const Settings = {
-  GENRES: [`Comedy`, `Crime`, `Documentary`, `Drama`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thriller`],
-};
-
-const Data = {
-  CURRENT_MOVIE: {
-    title: `The Grand Budapest Hotel`, genre: `Drama`, year: 2014, posterUrl: `img/the-grand-budapest-hotel-poster.jpg`
-  }
-};
-
-ReactDOM.render(<App currentMovie={Data.CURRENT_MOVIE} />, document.getElementById(`root`));
+ReactDOM.render(<App currentMovie={CURRENT_MOVIE} movieList={MOVIE_LIST} />, document.getElementById(`root`));

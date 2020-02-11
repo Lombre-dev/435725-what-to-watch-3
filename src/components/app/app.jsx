@@ -1,11 +1,16 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import Main from '../main/main.jsx';
+import Main from '../main/main';
+import {Movie, MovieList} from '../types';
 
-const App = ({currentMovie}) => {
+const App = ({currentMovie, movieList}) => {
   return (
-    <Main currentMovie={currentMovie} />
+    <Main currentMovie={currentMovie} movieList={movieList} />
   );
+};
+
+App.propTypes = {
+  currentMovie: Movie.isRequired,
+  movieList: MovieList,
 };
 
 export default App;
