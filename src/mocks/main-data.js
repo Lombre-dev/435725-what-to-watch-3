@@ -4,12 +4,6 @@ export const CURRENT_MOVIE = {
 };
 
 export const MOVIE_LIST = [
-  /* {
-    title: `The Grand Budapest Hotel`,
-    genres: [`Drama`], year: 2014,
-    framesUrl: [`img/the-grand-budapest-hotel.jpg`],
-    posterUrl: `img/the-grand-budapest-hotel-poster.jpg`
-  }, */
   {
     title: `Fantastic Beasts: The Crimes of Grindelwal`, genres: [`Drama`], year: 2014,
     framesUrl: [`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`]
