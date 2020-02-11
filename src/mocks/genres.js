@@ -1,5 +1,11 @@
 export const GENRES = [
-  `Comedy`, `Crime`, `Documentary`,
-  `Drama`, `Horror`, `Kids & Family`,
-  `Romance`, `Sci-Fi`, `Thriller`
+  `Comedy`,
+  `Crime`,
+  `Documentary`,
+  `Drama`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thriller`,
 ];

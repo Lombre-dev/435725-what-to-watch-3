@@ -1,6 +1,6 @@
 import React from 'react';
-import {Movie, MovieList} from '../main/main-types.js';
-import Main from '../main/main.jsx';
+import Main from '../main/main';
+import {Movie, MovieList} from '../types';
 
 const App = ({currentMovie, movieList}) => {
   return (

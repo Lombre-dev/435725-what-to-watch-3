@@ -1,5 +1,5 @@
 import React from 'react';
-import {Movie, MovieList} from './main-types.js';
+import {Movie, MovieList} from '../types';
 
 const Main = ({currentMovie, movieList}) => {
   return (
@@ -30,7 +30,7 @@ const Main = ({currentMovie, movieList}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={currentMovie.posterUrl} alt={`${currentMovie.title} poster`} width="218" height="327" />
+              <img src={currentMovie.poster} alt={`${currentMovie.title} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{currentMovie.title}</h2>
@@ -100,7 +100,7 @@ const Main = ({currentMovie, movieList}) => {
                 return (
                   <article className="small-movie-card catalog__movies-card" key={`${value.title}${index}`}>
                     <div className="small-movie-card__image">
-                      <img src={value.framesUrl[0]} alt={value.title} width="280" height="175" />
+                      <img src={value.frames[0]} alt={value.title} width="280" height="175" />
                     </div>
                     <h3 className="small-movie-card__title">
                       <a className="small-movie-card__link" href="movie-page.html">{value.title}</a>
@@ -140,10 +140,9 @@ Main.propTypes = {
 
 Main.defaultProps = {
   currentMovie: {
-    // ссылка на no-poster.jpg
-    posterUrl: ``
+    poster: ``,
   },
-  movieList: []
+  movieList: [],
 };
 
 export default Main;
