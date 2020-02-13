@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import {Movie, MovieList} from '../types';
 
-const Main = ({currentMovie, movieList}) => {
+const Main = ({currentMovie, movieList, onMovieCardTitleClick}) => {
   return (
     <>
       <section className="movie-card">
@@ -103,7 +104,7 @@ const Main = ({currentMovie, movieList}) => {
                       <img src={value.frames[0]} alt={value.title} width="280" height="175" />
                     </div>
                     <h3 className="small-movie-card__title">
-                      <a className="small-movie-card__link" href="movie-page.html">{value.title}</a>
+                      <a className="small-movie-card__link" href="movie-page.html" onClick={onMovieCardTitleClick}>{value.title}</a>
                     </h3>
                   </article>
                 );
@@ -136,12 +137,10 @@ const Main = ({currentMovie, movieList}) => {
 Main.propTypes = {
   currentMovie: Movie.isRequired,
   movieList: MovieList,
+  onMovieCardTitleClick: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {
-  currentMovie: {
-    poster: ``,
-  },
   movieList: [],
 };
 

@@ -4,8 +4,15 @@ import {Movie, MovieList} from '../types';
 
 const App = ({currentMovie, movieList}) => {
   return (
-    <Main currentMovie={currentMovie} movieList={movieList} />
+    <Main
+      currentMovie={currentMovie}
+      movieList={movieList}
+      onMovieCardTitleClick={handleMovieCardTitleClick}
+    />
   );
+};
+
+const handleMovieCardTitleClick = () => {
 };
 
 App.propTypes = {
