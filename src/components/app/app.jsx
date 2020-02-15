@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Main from '../main/main';
-import {Movie, MovieList} from '../types';
+import {Movie} from '../types';
 
-const App = ({currentMovie, movieList}) => {
+const App = ({currentMovie, movies}) => {
   return (
     <Main
       currentMovie={currentMovie}
-      movieList={movieList}
+      movies={movies}
       onMovieCardTitleClick={handleMovieCardTitleClick}
     />
   );
@@ -17,7 +18,7 @@ const handleMovieCardTitleClick = () => {
 
 App.propTypes = {
   currentMovie: Movie.isRequired,
-  movieList: MovieList,
+  movies: PropTypes.arrayOf(Movie),
 };
 
 export default App;

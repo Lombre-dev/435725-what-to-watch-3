@@ -2,13 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
 
-const currentMovie = {
+const CURRENT_MOVIE = {
   title: `The Grand Budapest Hotel`,
   genres: [`Drama`],
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
 };
-const movieList = [
+const MOVIES = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwal`,
     genres: [`Drama`],
@@ -28,7 +28,7 @@ const movieList = [
     frames: [`img/macbeth.jpg`],
   },
 ];
-const handleMovieCardTitleClick = () => {};
+const HANDLE_CLICK = () => {};
 
 describe(`<Main />`, () => {
 
@@ -36,9 +36,9 @@ describe(`<Main />`, () => {
 
     const result = renderer
       .create(<Main
-        currentMovie={currentMovie}
-        movieList={movieList}
-        onMovieCardTitleClick={handleMovieCardTitleClick}
+        currentMovie={CURRENT_MOVIE}
+        movies={MOVIES}
+        onMovieCardTitleClick={HANDLE_CLICK}
       />)
       .toJSON();
 

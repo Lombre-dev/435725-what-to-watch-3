@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {GENRES} from '../mocks/genres';
+import {GENRES} from './consts';
 
 export const Movie = PropTypes.shape({
   title: PropTypes.string.isRequired,
@@ -8,5 +8,3 @@ export const Movie = PropTypes.shape({
   poster: PropTypes.string,
   frames: PropTypes.arrayOf(PropTypes.string),
 });
-
-export const MovieList = PropTypes.arrayOf(Movie);
