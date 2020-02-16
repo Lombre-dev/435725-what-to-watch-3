@@ -98,7 +98,7 @@ const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
 
           <SmallMovieCardList
             movies={movies}
-            onMovieCardTitleClickCallback={onMovieCardTitleClick}
+            onMovieCardTitleClick={onMovieCardTitleClick}
           />
 
           <div className="catalog__more">

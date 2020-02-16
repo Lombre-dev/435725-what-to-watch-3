@@ -13,17 +13,17 @@ export default class SmallMovieCard extends React.PureComponent {
 
   _handleComponentHover() {
 
-    const {movie, onComponentHoverCallback} = this.props;
+    const {movie, onHover} = this.props;
 
-    onComponentHoverCallback({movie});
+    onHover({movie});
   }
 
   _handleTitleClick(e) {
 
-    const {movie, onTitleClickCallback} = this.props;
+    const {movie, onTitleClick} = this.props;
 
     e.preventDefault();
-    onTitleClickCallback({movie});
+    onTitleClick({movie});
   }
 
   render() {
@@ -45,6 +45,6 @@ export default class SmallMovieCard extends React.PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: Movie.isRequired,
-  onTitleClickCallback: PropTypes.func.isRequired,
-  onComponentHoverCallback: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func.isRequired,
+  onHover: PropTypes.func.isRequired,
 };

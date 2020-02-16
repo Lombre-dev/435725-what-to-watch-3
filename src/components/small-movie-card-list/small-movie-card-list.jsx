@@ -24,18 +24,18 @@ export default class SmallMovieCardList extends React.PureComponent {
 
   render() {
 
-    const {movies, onMovieCardTitleClickCallback} = this.props;
+    const {movies, onMovieCardTitleClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
         {
-          movies.map((value, index) => {
+          movies.map((value) => {
             return (
               <SmallMovieCard
-                key={`${value}${index}`}
+                key={value.title}
                 movie={value}
-                onComponentHoverCallback={this._handleMovieHover}
-                onTitleClickCallback={onMovieCardTitleClickCallback}
+                onHover={this._handleMovieHover}
+                onTitleClick={onMovieCardTitleClick}
               />
             );
           })
@@ -47,5 +47,5 @@ export default class SmallMovieCardList extends React.PureComponent {
 
 SmallMovieCardList.propTypes = {
   movies: PropTypes.arrayOf(Movie).isRequired,
-  onMovieCardTitleClickCallback: PropTypes.func.isRequired,
+  onMovieCardTitleClick: PropTypes.func.isRequired,
 };

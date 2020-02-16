@@ -17,8 +17,8 @@ describe(`<SmallMovieCard />`, () => {
     const result = renderer
       .create(<SmallMovieCard
         movie={MOVIE}
-        onComponentHoverCallback={HANDLE_CLICK}
-        onTitleClickCallback={HANDLE_CLICK}
+        onHover={HANDLE_CLICK}
+        onTitleClick={HANDLE_CLICK}
       />)
       .toJSON();
 

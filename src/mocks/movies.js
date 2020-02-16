@@ -113,10 +113,4 @@ export const MOVIES = [
     year: 2014,
     frames: [`img/mindhunter.jpg`],
   },
-  {
-    title: `Midnight Special`,
-    genres: [`Drama`],
-    year: 2014,
-    frames: [`img/midnight-special.jpg`],
-  },
 ];

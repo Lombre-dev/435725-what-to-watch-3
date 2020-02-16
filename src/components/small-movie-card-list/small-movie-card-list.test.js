@@ -31,7 +31,7 @@ describe(`<SmallMovieCardList />`, () => {
     const result = renderer
       .create(<SmallMovieCardList
         movies={MOVIES}
-        onMovieCardTitleClickCallback={HANDLE_CLICK}
+        onMovieCardTitleClick={HANDLE_CLICK}
       />)
       .toJSON();
 

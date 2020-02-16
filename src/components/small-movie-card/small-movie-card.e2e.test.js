@@ -23,8 +23,8 @@ describe(`<SmallMovieCard />`, () => {
 
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
-      onComponentHoverCallback={handleHover}
-      onTitleClickCallback={handleClick}
+      onHover={handleHover}
+      onTitleClick={handleClick}
     />);
 
     result
@@ -41,8 +41,8 @@ describe(`<SmallMovieCard />`, () => {
 
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
-      onComponentHoverCallback={handleHover}
-      onTitleClickCallback={handleClick}
+      onHover={handleHover}
+      onTitleClick={handleClick}
     />);
 
     result
