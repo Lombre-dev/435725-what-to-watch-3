@@ -1,13 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app';
+import SmallMovieCardList from './small-movie-card-list';
 
-const CURRENT_MOVIE = {
-  title: `The Grand Budapest Hotel`,
-  genres: [`Drama`],
-  year: 2014,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-};
 const MOVIES = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwal`,
@@ -28,15 +22,16 @@ const MOVIES = [
     frames: [`img/macbeth.jpg`],
   },
 ];
+const HANDLE_CLICK = () => {};
 
-describe(`<App />`, () => {
+describe(`<SmallMovieCardList />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
-      .create(<App
-        currentMovie={CURRENT_MOVIE}
+      .create(<SmallMovieCardList
         movies={MOVIES}
+        onMovieCardTitleClick={HANDLE_CLICK}
       />)
       .toJSON();
 

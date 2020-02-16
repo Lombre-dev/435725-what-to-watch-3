@@ -1,56 +1,60 @@
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
+import SmallMovieCard from '../small-movie-card/small-movie-card';
 import Main from './main';
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const CURRENT_MOVIE = {
+  title: `The Grand Budapest Hotel`,
+  genres: [`Drama`],
+  year: 2014,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+};
+const MOVIES = [
+  {
+    title: `Fantastic Beasts: The Crimes of Grindelwal`,
+    genres: [`Drama`],
+    year: 2014,
+    frames: [`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`],
+  },
+  {
+    title: `Bohemian Rhapsody`,
+    genres: [`Drama`],
+    year: 2014,
+    frames: [`img/bohemian-rhapsody.jpg`],
+  },
+  {
+    title: `Macbeth`,
+    genres: [`Drama`],
+    year: 2014,
+    frames: [`img/macbeth.jpg`],
+  },
+];
+
 describe(`<Main />`, () => {
 
   it(`movie card title should be clicked`, () => {
 
-    const currentMovie = {
-      title: `The Grand Budapest Hotel`,
-      genres: [`Drama`],
-      year: 2014,
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
-    };
-    const movieList = [
-      {
-        title: `Fantastic Beasts: The Crimes of Grindelwal`,
-        genres: [`Drama`],
-        year: 2014,
-        frames: [`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`],
-      },
-      {
-        title: `Bohemian Rhapsody`,
-        genres: [`Drama`],
-        year: 2014,
-        frames: [`img/bohemian-rhapsody.jpg`],
-      },
-      {
-        title: `Macbeth`,
-        genres: [`Drama`],
-        year: 2014,
-        frames: [`img/macbeth.jpg`],
-      },
-    ];
-    const handleMovieCardTitleClick = jest.fn();
+    const handleClick = jest.fn();
 
-    const result = shallow(<Main
-      currentMovie={currentMovie}
-      movieList={movieList}
-      onMovieCardTitleClick={handleMovieCardTitleClick}
+    const result = mount(<Main
+      currentMovie={CURRENT_MOVIE}
+      movies={MOVIES}
+      onMovieCardTitleClick={handleClick}
     />);
 
     result
-      .find(`.small-movie-card__link`)
+      .find(SmallMovieCard)
       .forEach((value) => {
-        value.simulate(`click`);
+        value
+          .find(`.small-movie-card__link`)
+          .simulate(`click`);
       });
 
-    expect(handleMovieCardTitleClick).toHaveBeenCalledTimes(movieList.length);
+    expect(handleClick).toHaveBeenCalledTimes(MOVIES.length);
   });
 });
