@@ -6,7 +6,7 @@ export const Movie = PropTypes.shape({
   genres: PropTypes.arrayOf(PropTypes.oneOf(GENRES)).isRequired,
   year: PropTypes.number.isRequired,
   poster: PropTypes.string,
-  frames: PropTypes.arrayOf(PropTypes.string),
+  frames: PropTypes.arrayOf(PropTypes.string).isRequired,
   overview: PropTypes.shape({
     rating: PropTypes.shape({
       score: PropTypes.number.isRequired,

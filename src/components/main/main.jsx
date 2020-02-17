@@ -3,7 +3,7 @@ import React from 'react';
 import SmallMovieCardList from '../small-movie-card-list/small-movie-card-list';
 import {Movie} from '../types';
 
-const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
+const Main = ({currentMovie, movies, onMovieListItemClick}) => {
   return (
     <>
       <section className="movie-card">
@@ -98,7 +98,7 @@ const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
 
           <SmallMovieCardList
             movies={movies}
-            onMovieCardTitleClick={onMovieCardTitleClick}
+            onItemClick={onMovieListItemClick}
           />
 
           <div className="catalog__more">
@@ -113,7 +113,7 @@ const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
 Main.propTypes = {
   currentMovie: Movie.isRequired,
   movies: PropTypes.arrayOf(Movie),
-  onMovieCardTitleClick: PropTypes.func.isRequired,
+  onMovieListItemClick: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {

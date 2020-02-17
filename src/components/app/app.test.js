@@ -7,6 +7,7 @@ const CURRENT_MOVIE = {
   genres: [`Drama`],
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  frames: [`img/the-grand-budapest-hotel-poster.jpg`],
 };
 const MOVIES = [
   {

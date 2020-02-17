@@ -11,10 +11,11 @@ export default class SmallMovieCardList extends React.PureComponent {
       target: undefined,
     };
 
-    this._handleMovieHover = this._handleMovieHover.bind(this);
+    this._handleItemHover = this._handleItemHover.bind(this);
+    this._handleItemClick = this._handleItemClick.bind(this);
   }
 
-  _handleMovieHover({movie}) {
+  _handleItemHover({movie}) {
     this.setState(() => {
       return {
         target: movie,
@@ -22,9 +23,16 @@ export default class SmallMovieCardList extends React.PureComponent {
     });
   }
 
+  _handleItemClick({movie}) {
+
+    const {onItemClick} = this.props;
+
+    onItemClick({movie});
+  }
+
   render() {
 
-    const {movies, onMovieCardTitleClick} = this.props;
+    const {movies} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -34,8 +42,8 @@ export default class SmallMovieCardList extends React.PureComponent {
               <SmallMovieCard
                 key={value.title}
                 movie={value}
-                onHover={this._handleMovieHover}
-                onTitleClick={onMovieCardTitleClick}
+                onHover={this._handleItemHover}
+                onClick={this._handleItemClick}
               />
             );
           })
@@ -47,5 +55,5 @@ export default class SmallMovieCardList extends React.PureComponent {
 
 SmallMovieCardList.propTypes = {
   movies: PropTypes.arrayOf(Movie).isRequired,
-  onMovieCardTitleClick: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
 };

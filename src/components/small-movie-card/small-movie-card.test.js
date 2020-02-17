@@ -18,7 +18,7 @@ describe(`<SmallMovieCard />`, () => {
       .create(<SmallMovieCard
         movie={MOVIE}
         onHover={HANDLE_CLICK}
-        onTitleClick={HANDLE_CLICK}
+        onClick={HANDLE_CLICK}
       />)
       .toJSON();
 

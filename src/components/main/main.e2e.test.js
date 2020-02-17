@@ -13,6 +13,7 @@ const CURRENT_MOVIE = {
   genres: [`Drama`],
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  frames: [`img/the-grand-budapest-hotel-poster.jpg`],
 };
 const MOVIES = [
   {
@@ -37,21 +38,21 @@ const MOVIES = [
 
 describe(`<Main />`, () => {
 
-  it(`movie card title should be clicked`, () => {
+  it(`every movie list item should be clicked`, () => {
 
     const handleClick = jest.fn();
 
     const result = mount(<Main
       currentMovie={CURRENT_MOVIE}
       movies={MOVIES}
-      onMovieCardTitleClick={handleClick}
+      onMovieListItemClick={handleClick}
     />);
 
     result
       .find(SmallMovieCard)
       .forEach((value) => {
         value
-          .find(`.small-movie-card__link`)
+          .find(`.small-movie-card`)
           .simulate(`click`);
       });
 

@@ -7,6 +7,7 @@ const CURRENT_MOVIE = {
   genres: [`Drama`],
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  frames: [`img/the-grand-budapest-hotel-poster.jpg`],
 };
 const MOVIES = [
   {
@@ -38,7 +39,7 @@ describe(`<Main />`, () => {
       .create(<Main
         currentMovie={CURRENT_MOVIE}
         movies={MOVIES}
-        onMovieCardTitleClick={HANDLE_CLICK}
+        onMovieListItemClick={HANDLE_CLICK}
       />)
       .toJSON();
 

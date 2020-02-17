@@ -24,7 +24,7 @@ describe(`<SmallMovieCard />`, () => {
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
       onHover={handleHover}
-      onTitleClick={handleClick}
+      onClick={handleClick}
     />);
 
     result
@@ -34,7 +34,7 @@ describe(`<SmallMovieCard />`, () => {
     expect(handleHover).toHaveBeenCalledTimes(1);
   });
 
-  it(`title should be clicked`, () => {
+  it(`component should be clicked`, () => {
 
     const handleHover = jest.fn();
     const handleClick = jest.fn();
@@ -42,11 +42,11 @@ describe(`<SmallMovieCard />`, () => {
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
       onHover={handleHover}
-      onTitleClick={handleClick}
+      onClick={handleClick}
     />);
 
     result
-      .find(`.small-movie-card__link`)
+      .find(`.small-movie-card`)
       .simulate(`click`, {
         preventDefault() {}
       });
