@@ -9,3 +9,11 @@ export const GENRES = [
   `Sci-Fi`,
   `Thriller`,
 ];
+
+export const RATING_LEVELS = [
+  `Very bad`,
+  `Bad`,
+  `Mixed`,
+  `Good`,
+  `Very good`
+];
