@@ -10,10 +10,11 @@ export const GENRES = [
   `Thriller`,
 ];
 
+export const RATING_SCORE_LIMIT = 10;
 export const RATING_LEVELS = [
-  `Very bad`,
   `Bad`,
-  `Mixed`,
+  `Normal`,
   `Good`,
-  `Very good`
+  `Very good`,
+  `Awesome`,
 ];

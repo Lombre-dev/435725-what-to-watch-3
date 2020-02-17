@@ -1,4 +1,3 @@
-import {RATING_LEVELS} from '../components/consts';
 
 export const MOVIES = [
   {
@@ -7,6 +6,23 @@ export const MOVIES = [
     year: 2014,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
     frames: [`img/the-grand-budapest-hotel-poster.jpg`],
+    overview: {
+      rating: {
+        score: 8.9,
+        reviewsCount: 240,
+      },
+      description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      story: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+      director: `Wes Andreson`,
+      starring: [
+        `Bill Murray`,
+        `Edward Norton`,
+        `Jude Law`,
+        `Willem Dafoe`,
+        `Some Actor 1`,
+        `Some Actor 2`,
+      ],
+    },
   },
   {
     title: `Fantastic Beasts: The Crimes of Grindelwal`,
@@ -144,46 +160,27 @@ export const MOVIES = [
 ];
 
 MOVIES.forEach((value, index) => {
-  if (value.title === `The Grand Budapest Hotel`) {
-    value.overview = {
-      rating: {
-        score: 8.9,
-        level: `Very good`,
-        reviewsCount: 240,
-      },
-      description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
-      story: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
-      director: `Wes Andreson`,
-      starring: [
-        `Bill Murray`,
-        `Edward Norton`,
-        `Jude Law`,
-        `Willem Dafoe`,
-        `Some Actor 1`,
-        `Some Actor 2`,
-      ],
-    };
-  } else {
 
-    const score = Math.round(Math.random() * 100) / 10;
-    const scoreLimit = 10;
-    const actors = [];
-    const actorsCount = Math.ceil(Math.random() * 10);
-
-    for (let i = 0; i < actorsCount; i += 1) {
-      actors.push(`Some Actor ${i + 1}`);
-    }
-
-    value.overview = {
-      rating: {
-        score,
-        level: RATING_LEVELS[Math.min(Math.floor(score / scoreLimit * RATING_LEVELS.length), RATING_LEVELS.length - 1)],
-        reviewsCount: Math.round(Math.random() * 100),
-      },
-      description: `Description for ${value.title}`,
-      story: `Story for ${value.title}`,
-      director: `Director ${index + 1}`,
-      starring: actors,
-    };
+  if (value.overview) {
+    return;
   }
+
+  const score = Math.round(Math.random() * 100) / 10;
+  const actors = [];
+  const actorsCount = Math.ceil(Math.random() * 10);
+
+  for (let i = 0; i < actorsCount; i += 1) {
+    actors.push(`Some Actor ${i + 1}`);
+  }
+
+  value.overview = {
+    rating: {
+      score,
+      reviewsCount: Math.round(Math.random() * 100),
+    },
+    description: `Description for ${value.title}`,
+    story: `Story for ${value.title}`,
+    director: `Director ${index + 1}`,
+    starring: actors,
+  };
 });

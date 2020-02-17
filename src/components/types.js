@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {GENRES, RATING_LEVELS} from './consts';
+import {GENRES} from './consts';
 
 export const Movie = PropTypes.shape({
   title: PropTypes.string.isRequired,
@@ -10,7 +10,6 @@ export const Movie = PropTypes.shape({
   overview: PropTypes.shape({
     rating: PropTypes.shape({
       score: PropTypes.number.isRequired,
-      level: PropTypes.oneOf(RATING_LEVELS).isRequired,
       reviewsCount: PropTypes.number.isRequired,
     }).isRequired,
     description: PropTypes.string,

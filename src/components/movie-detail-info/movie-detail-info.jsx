@@ -1,5 +1,6 @@
 import React from 'react';
 import {getNumeralFromDictionary} from '../../utils/numbers';
+import {RATING_LEVELS, RATING_SCORE_LIMIT} from '../consts';
 import {Movie} from '../types';
 
 export default class MovieDetailInfo extends React.PureComponent {
@@ -7,13 +8,7 @@ export default class MovieDetailInfo extends React.PureComponent {
   _getStarring() {
 
     const actorsLimit = 4;
-    const {
-      movie: {
-        overview: {
-          starring,
-        },
-      },
-    } = this.props;
+    const {movie: {overview: {starring}}} = this.props;
 
     const result = starring.slice(0, Math.min(actorsLimit, starring.length)).join(`, `);
 
@@ -22,6 +17,27 @@ export default class MovieDetailInfo extends React.PureComponent {
     }
 
     return result;
+  }
+
+  _getRatingScore() {
+
+    const {movie: {overview: {rating: {score}}}} = this.props;
+
+    return score.toFixed(1).replace(`.`, `,`);
+  }
+
+  _getRatingLevel() {
+
+    const {movie: {overview: {rating: {score}}}} = this.props;
+
+    return RATING_LEVELS[Math.floor(score / RATING_SCORE_LIMIT * (RATING_LEVELS.length - 1))];
+  }
+
+  _getRatindReviewsCount() {
+
+    const {movie: {overview: {rating: {reviewsCount}}}} = this.props;
+
+    return `${reviewsCount} ${getNumeralFromDictionary(reviewsCount, `ratings`)}`;
   }
 
   render() {
@@ -103,12 +119,10 @@ export default class MovieDetailInfo extends React.PureComponent {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">{overview.rating.score.toFixed(1).replace(`.`, `,`)}</div>
+                <div className="movie-rating__score">{this._getRatingScore()}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{overview.rating.level}</span>
-                  <span className="movie-rating__count">{
-                    `${overview.rating.reviewsCount} ${getNumeralFromDictionary(overview.rating.reviewsCount, `ratings`)}`
-                  }</span>
+                  <span className="movie-rating__level">{this._getRatingLevel()}</span>
+                  <span className="movie-rating__count">{this._getRatindReviewsCount()}</span>
                 </p>
               </div>
 
