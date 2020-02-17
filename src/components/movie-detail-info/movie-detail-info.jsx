@@ -1,44 +1,8 @@
 import React from 'react';
-import {getNumeralFromDictionary} from '../../utils/numbers';
-import {RATING_LEVELS, RATING_SCORE_LIMIT} from '../consts';
+import {getActors, getRatingLevel, getRatingReviewsCount, getRatingScore} from '../../utils/movie-utils';
 import {Movie} from '../types';
 
 export default class MovieDetailInfo extends React.PureComponent {
-
-  _getStarring() {
-
-    const actorsLimit = 4;
-    const {movie: {overview: {starring}}} = this.props;
-
-    const result = starring.slice(0, Math.min(actorsLimit, starring.length)).join(`, `);
-
-    if (starring.length > actorsLimit) {
-      return `${result} and other`;
-    }
-
-    return result;
-  }
-
-  _getRatingScore() {
-
-    const {movie: {overview: {rating: {score}}}} = this.props;
-
-    return score.toFixed(1).replace(`.`, `,`);
-  }
-
-  _getRatingLevel() {
-
-    const {movie: {overview: {rating: {score}}}} = this.props;
-
-    return RATING_LEVELS[Math.floor(score / RATING_SCORE_LIMIT * (RATING_LEVELS.length - 1))];
-  }
-
-  _getRatindReviewsCount() {
-
-    const {movie: {overview: {rating: {reviewsCount}}}} = this.props;
-
-    return `${reviewsCount} ${getNumeralFromDictionary(reviewsCount, `ratings`)}`;
-  }
 
   render() {
 
@@ -119,10 +83,10 @@ export default class MovieDetailInfo extends React.PureComponent {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">{this._getRatingScore()}</div>
+                <div className="movie-rating__score">{getRatingScore(overview.rating.score)}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{this._getRatingLevel()}</span>
-                  <span className="movie-rating__count">{this._getRatindReviewsCount()}</span>
+                  <span className="movie-rating__level">{getRatingLevel(overview.rating.score)}</span>
+                  <span className="movie-rating__count">{getRatingReviewsCount(overview.rating.reviewsCount)}</span>
                 </p>
               </div>
 
@@ -130,7 +94,7 @@ export default class MovieDetailInfo extends React.PureComponent {
                 <p>{overview.description}</p>
                 <p>{overview.story}</p>
                 <p className="movie-card__director"><strong>Director: {overview.director}</strong></p>
-                <p className="movie-card__starring"><strong>Starring: {this._getStarring()}</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {getActors(overview.actors)}</strong></p>
               </div>
             </div>
           </div>

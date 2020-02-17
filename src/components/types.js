@@ -15,6 +15,6 @@ export const Movie = PropTypes.shape({
     description: PropTypes.string,
     story: PropTypes.string,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   }),
 });

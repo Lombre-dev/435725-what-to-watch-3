@@ -6,7 +6,6 @@ import MovieDetailInfo from '../movie-detail-info/movie-detail-info';
 import {Movie} from '../types';
 
 export default class App extends React.PureComponent {
-
   constructor(props) {
     super(props);
 

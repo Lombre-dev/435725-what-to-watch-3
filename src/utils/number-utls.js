@@ -5,28 +5,28 @@ const DICTIONARY = {
   },
 };
 
-export const getNumeralOf = {
-  ru: getRuNumeralOf,
-  en: getEnNumeralOf,
+export const getPluralForm = {
+  ru: getPluralFormRu,
+  en: getPluralFormEn,
 };
 
-export function getNumeralFromDictionary(count, key, language = `en`) {
+export function getPluralFormByKey(count, key, language = `en`) {
   if (
-    !getNumeralOf[language] ||
+    !getPluralForm[language] ||
     !DICTIONARY[key] ||
     !DICTIONARY[key][language]
   ) {
-    return `getNumeral for '${key}', '${language}' not found.`;
+    return `getPluralFormByKey for '${key}', '${language}' not found.`;
   }
-  return getNumeralOf[language](count, DICTIONARY.ratings[language]);
+  return getPluralForm[language](count, DICTIONARY.ratings[language]);
 }
 
 
-function getEnNumeralOf(count, numerals) {
+function getPluralFormEn(count, numerals) {
   return numerals[count === 1 ? 0 : 1];
 }
 
-function getRuNumeralOf(count, numerals) {
+function getPluralFormRu(count, numerals) {
 
   let remainder = count % 100;
 

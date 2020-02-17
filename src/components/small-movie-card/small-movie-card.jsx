@@ -3,7 +3,6 @@ import React from 'react';
 import {Movie} from '../types';
 
 export default class SmallMovieCard extends React.PureComponent {
-
   constructor(props) {
     super(props);
 
