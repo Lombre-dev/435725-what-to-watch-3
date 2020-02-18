@@ -1,4 +1,4 @@
-import {getPluralFormOfRatings} from './number-utls';
+import {getPluralForm} from './get-plural-form';
 
 const RATING_SCORE_LIMIT = 10;
 const RATING_LEVELS = [
@@ -19,7 +19,7 @@ export function getRatingLevel(score) {
 }
 
 export function getRatingReviewsCount(reviewsCount) {
-  return `${reviewsCount} ${getPluralFormOfRatings(reviewsCount)}`;
+  return `${reviewsCount} ${getPluralForm(reviewsCount, [`rating`, `ratings`])}`;
 }
 
 export function getActors(actors) {
