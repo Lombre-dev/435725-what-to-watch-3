@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SmallMovieCard from './small-movie-card';
+import MovieDetailInfo from './movie-detail-info';
 
 const MOVIE = {
   title: `The Grand Budapest Hotel`,
@@ -21,17 +21,14 @@ const MOVIE = {
     `Some Actor 5`,
   ],
 };
-const HANDLE_CLICK = () => {};
 
-describe(`<SmallMovieCard />`, () => {
+describe(`<MovieDetailInfo />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
-      .create(<SmallMovieCard
+      .create(<MovieDetailInfo
         movie={MOVIE}
-        onHover={HANDLE_CLICK}
-        onClick={HANDLE_CLICK}
       />)
       .toJSON();
 

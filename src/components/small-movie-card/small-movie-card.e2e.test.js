@@ -8,10 +8,23 @@ Enzyme.configure({
 });
 
 const MOVIE = {
-  title: `Fantastic Beasts: The Crimes of Grindelwal`,
+  title: `The Grand Budapest Hotel`,
   genres: [`Drama`],
   year: 2014,
-  frames: [`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`],
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  frames: [`img/the-grand-budapest-hotel-poster.jpg`],
+  ratingScore: 8.9,
+  ratingReviewsCount: 240,
+  description: `Description`,
+  story: `Story`,
+  director: `Director`,
+  actors: [
+    `Some Actor 1`,
+    `Some Actor 2`,
+    `Some Actor 3`,
+    `Some Actor 4`,
+    `Some Actor 5`,
+  ],
 };
 
 describe(`<SmallMovieCard />`, () => {
@@ -24,7 +37,7 @@ describe(`<SmallMovieCard />`, () => {
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
       onHover={handleHover}
-      onTitleClick={handleClick}
+      onClick={handleClick}
     />);
 
     result
@@ -34,7 +47,7 @@ describe(`<SmallMovieCard />`, () => {
     expect(handleHover).toHaveBeenCalledTimes(1);
   });
 
-  it(`title should be clicked`, () => {
+  it(`component should be clicked`, () => {
 
     const handleHover = jest.fn();
     const handleClick = jest.fn();
@@ -42,11 +55,11 @@ describe(`<SmallMovieCard />`, () => {
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
       onHover={handleHover}
-      onTitleClick={handleClick}
+      onClick={handleClick}
     />);
 
     result
-      .find(`.small-movie-card__link`)
+      .find(`.small-movie-card`)
       .simulate(`click`, {
         preventDefault() {}
       });

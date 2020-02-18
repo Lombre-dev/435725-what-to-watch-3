@@ -3,7 +3,7 @@ import React from 'react';
 import SmallMovieCardList from '../small-movie-card-list/small-movie-card-list';
 import {Movie} from '../types';
 
-const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
+const Main = ({currentMovie, movies, onMovieListItemClick}) => {
   return (
     <>
       <section className="movie-card">
@@ -98,26 +98,13 @@ const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
 
           <SmallMovieCardList
             movies={movies}
-            onMovieCardTitleClick={onMovieCardTitleClick}
+            onItemClick={onMovieListItemClick}
           />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
       </div>
     </>
   );
@@ -126,7 +113,7 @@ const Main = ({currentMovie, movies, onMovieCardTitleClick}) => {
 Main.propTypes = {
   currentMovie: Movie.isRequired,
   movies: PropTypes.arrayOf(Movie),
-  onMovieCardTitleClick: PropTypes.func.isRequired,
+  onMovieListItemClick: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {

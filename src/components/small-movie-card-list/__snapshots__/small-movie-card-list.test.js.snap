@@ -6,15 +6,16 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
       <img
-        alt="Fantastic Beasts: The Crimes of Grindelwal"
+        alt="The Grand Budapest Hotel"
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        src="img/the-grand-budapest-hotel-poster.jpg"
         width="280"
       />
     </div>
@@ -24,14 +25,14 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
-        Fantastic Beasts: The Crimes of Grindelwal
+        The Grand Budapest Hotel
       </a>
     </h3>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -50,7 +51,6 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         Bohemian Rhapsody
       </a>
@@ -58,6 +58,7 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -76,7 +77,6 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         Macbeth
       </a>

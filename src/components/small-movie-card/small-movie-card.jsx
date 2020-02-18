@@ -3,27 +3,26 @@ import React from 'react';
 import {Movie} from '../types';
 
 export default class SmallMovieCard extends React.PureComponent {
-
   constructor(props) {
     super(props);
 
-    this._handleComponentHover = this._handleComponentHover.bind(this);
-    this._handleTitleClick = this._handleTitleClick.bind(this);
+    this._handleHover = this._handleHover.bind(this);
+    this._handleClick = this._handleClick.bind(this);
   }
 
-  _handleComponentHover() {
+  _handleHover() {
 
     const {movie, onHover} = this.props;
 
     onHover({movie});
   }
 
-  _handleTitleClick(e) {
+  _handleClick(e) {
 
-    const {movie, onTitleClick} = this.props;
+    const {movie, onClick} = this.props;
 
     e.preventDefault();
-    onTitleClick({movie});
+    onClick({movie});
   }
 
   render() {
@@ -31,12 +30,16 @@ export default class SmallMovieCard extends React.PureComponent {
     const {movie} = this.props;
 
     return (
-      <article className="small-movie-card catalog__movies-card" onMouseEnter={this._handleComponentHover}>
-        <div className="small-movie-card__image">
+      <article
+        className="small-movie-card catalog__movies-card"
+        onMouseEnter={this._handleHover}
+        onClick={this._handleClick}
+      >
+        <div className="small-movie-card__image" >
           <img src={movie.frames[0]} alt={movie.title} width="280" height="175" />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html" onClick={this._handleTitleClick}>{movie.title}</a>
+          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
         </h3>
       </article>
     );
@@ -45,6 +48,6 @@ export default class SmallMovieCard extends React.PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: Movie.isRequired,
-  onTitleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
 };
