@@ -266,9 +266,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwal"
+              alt="The Grand Budapest Hotel"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/the-grand-budapest-hotel-poster.jpg"
               width="280"
             />
           </div>
@@ -279,7 +279,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Fantastic Beasts: The Crimes of Grindelwal
+              The Grand Budapest Hotel
             </a>
           </h3>
         </article>

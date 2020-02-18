@@ -6,23 +6,19 @@ export const MOVIES = [
     year: 2014,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
     frames: [`img/the-grand-budapest-hotel-poster.jpg`],
-    overview: {
-      rating: {
-        score: 8.9,
-        reviewsCount: 240,
-      },
-      description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
-      story: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
-      director: `Wes Andreson`,
-      actors: [
-        `Bill Murray`,
-        `Edward Norton`,
-        `Jude Law`,
-        `Willem Dafoe`,
-        `Some Actor 1`,
-        `Some Actor 2`,
-      ],
-    },
+    ratingScore: 8.9,
+    ratingReviewsCount: 240,
+    description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+    story: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Wes Andreson`,
+    actors: [
+      `Bill Murray`,
+      `Edward Norton`,
+      `Jude Law`,
+      `Willem Dafoe`,
+      `Some Actor 1`,
+      `Some Actor 2`,
+    ],
   },
   {
     title: `Fantastic Beasts: The Crimes of Grindelwal`,
@@ -161,11 +157,10 @@ export const MOVIES = [
 
 MOVIES.forEach((value, index) => {
 
-  if (value.overview) {
+  if (value.ratingScore) {
     return;
   }
 
-  const score = Math.round(Math.random() * 100) / 10;
   const actors = [];
   const actorsCount = Math.ceil(Math.random() * 10);
 
@@ -173,14 +168,12 @@ MOVIES.forEach((value, index) => {
     actors.push(`Some Actor ${i + 1}`);
   }
 
-  value.overview = {
-    rating: {
-      score,
-      reviewsCount: Math.round(Math.random() * 100),
-    },
+  Object.assign(value, {
+    ratingScore: Math.round(Math.random() * 100) / 10,
+    ratingReviewsCount: Math.round(Math.random() * 100),
     description: `Description for ${value.title}`,
     story: `Story for ${value.title}`,
     director: `Director ${index + 1}`,
     actors,
-  };
+  });
 });

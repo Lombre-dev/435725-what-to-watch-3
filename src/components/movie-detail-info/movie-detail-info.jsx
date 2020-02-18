@@ -7,7 +7,6 @@ export default class MovieDetailInfo extends React.PureComponent {
   render() {
 
     const {movie} = this.props;
-    const {overview} = movie;
 
     return (
       <section className="movie-card movie-card--full">
@@ -83,18 +82,18 @@ export default class MovieDetailInfo extends React.PureComponent {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">{getRatingScore(overview.rating.score)}</div>
+                <div className="movie-rating__score">{getRatingScore(movie.ratingScore)}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{getRatingLevel(overview.rating.score)}</span>
-                  <span className="movie-rating__count">{getRatingReviewsCount(overview.rating.reviewsCount)}</span>
+                  <span className="movie-rating__level">{getRatingLevel(movie.ratingScore)}</span>
+                  <span className="movie-rating__count">{getRatingReviewsCount(movie.ratingReviewsCount)}</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                <p>{overview.description}</p>
-                <p>{overview.story}</p>
-                <p className="movie-card__director"><strong>Director: {overview.director}</strong></p>
-                <p className="movie-card__starring"><strong>Starring: {getActors(overview.actors)}</strong></p>
+                <p>{movie.description}</p>
+                <p>{movie.story}</p>
+                <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {getActors(movie.actors)}</strong></p>
               </div>
             </div>
           </div>
