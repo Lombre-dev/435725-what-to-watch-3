@@ -7,9 +7,6 @@ export default class VideoPlayer extends React.PureComponent {
     super(props);
 
     this._videoRef = React.createRef();
-    this.state = {
-      isActive: false,
-    };
 
     this._handleVideoPlay = this._handleVideoPlay.bind(this);
     this._handleVideoEnd = this._handleVideoEnd.bind(this);
@@ -40,40 +37,28 @@ export default class VideoPlayer extends React.PureComponent {
 
   componentDidUpdate() {
 
-    const {isActive: isActiveProps} = this.props;
-    const {isActive: isActiveState} = this.state;
+    const {isActive} = this.props;
     const video = this._videoRef.current;
 
-    if (isActiveProps) {
-      if (!isActiveState) {
-        video.play();
-      }
+    if (isActive) {
+      video.play();
     } else {
-      if (isActiveState) {
-        video.load();
-        this.setState(() => {
-          return {
-            isActive: false,
-          };
-        });
-      }
+      video.load();
     }
   }
 
   _handleVideoPlay() {
-    this.setState(() => {
-      return {
-        isActive: true,
-      };
-    });
+
+    const {id, onPlay} = this.props;
+
+    onPlay({id});
   }
 
   _handleVideoEnd() {
-    this.setState(() => {
-      return {
-        isActive: false,
-      };
-    });
+
+    const {id, onEnd} = this.props;
+
+    onEnd({id});
   }
 
   render() {
@@ -84,7 +69,10 @@ export default class VideoPlayer extends React.PureComponent {
 }
 
 VideoPlayer.propTypes = {
+  id: PropTypes.number.isRequired,
   isActive: PropTypes.bool.isRequired,
+  onPlay: PropTypes.func.isRequired,
+  onEnd: PropTypes.func.isRequired,
   poster: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   isMuted: PropTypes.bool,

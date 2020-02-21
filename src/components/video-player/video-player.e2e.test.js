@@ -7,54 +7,59 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const POSTER = `img/the-grand-budapest-hotel-poster.jpg`;
-const SRC = `samples/sintel_trailer-480p.mp4`;
+const ID = 0;
+const POSTER = require(`path`).resolve(`img/the-grand-budapest-hotel-poster.jpg`);
+const SRC = require(`path`).resolve(`samples/sintel_trailer-480p.mp4`);
 
 describe(`<VideoPlayer />`, () => {
 
   it(`component should be active`, () => {
 
-    const isActive = true;
-    const object = {
-      isActive: true,
-    };
+    const isActive = false;
+    const handleEvent = jest.fn();
+    const handlePlay = jest.fn();
 
-    // Тут подобная проблема с проигрыванием видио
-    // что-то нагуглил https://stackoverflow.com/questions/51829319/how-to-mock-video-pause-function-using-jest
-    const stub = jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(() => {});
+    jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(handlePlay);
 
     const result = mount(<VideoPlayer
+      id={ID}
       isActive={isActive}
       poster={POSTER}
+      onPlay={handleEvent}
+      onEnd={handleEvent}
       src={SRC}
     />);
 
-    result.instance().componentDidUpdate();
+    result
+      .setProps({
+        isActive: true,
+      });
 
-    expect(result.state()).toMatchObject(object);
-
-    stub.mockRestore();
+    expect(handlePlay).toHaveBeenCalledTimes(1);
   });
 
   it(`component should be inactive`, () => {
 
-    const isActive = false;
-    const object = {
-      isActive: false,
-    };
+    const isActive = true;
+    const handleEvent = jest.fn();
+    const handleLoad = jest.fn();
 
-    const stub = jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(() => {});
+    jest.spyOn(HTMLMediaElement.prototype, `load`).mockImplementation(handleLoad);
 
     const result = mount(<VideoPlayer
+      id={ID}
       isActive={isActive}
       poster={POSTER}
+      onPlay={handleEvent}
+      onEnd={handleEvent}
       src={SRC}
     />);
 
-    result.instance().componentDidUpdate();
+    result
+      .setProps({
+        isActive: false,
+      });
 
-    expect(result.state()).toMatchObject(object);
-
-    stub.mockRestore();
+    expect(handleLoad).toHaveBeenCalledTimes(1);
   });
 });

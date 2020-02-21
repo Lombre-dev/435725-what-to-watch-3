@@ -54,9 +54,10 @@ export default class SmallMovieCardList extends React.PureComponent {
     return (
       <div className="catalog__movies-list">
         {
-          movies.map((value) => {
+          movies.map((value, index) => {
             return (
               <SmallMovieCard
+                id={index}
                 key={value.title}
                 movie={value}
                 isPreviewActive={target === value}

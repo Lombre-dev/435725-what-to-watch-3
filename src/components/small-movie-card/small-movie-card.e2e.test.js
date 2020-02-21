@@ -7,6 +7,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const ID = 0;
 const MOVIE = {
   title: `The Grand Budapest Hotel`,
   genres: [`Drama`],
@@ -38,6 +39,7 @@ describe(`<SmallMovieCard />`, () => {
     const handleClick = jest.fn();
 
     const result = shallow(<SmallMovieCard
+      id={ID}
       movie={MOVIE}
       isPreviewActive={IS_PREVIEW_ACTIVE}
       onHover={handleHover}
@@ -59,6 +61,7 @@ describe(`<SmallMovieCard />`, () => {
     const handleClick = jest.fn();
 
     const result = shallow(<SmallMovieCard
+      id={ID}
       movie={MOVIE}
       isPreviewActive={IS_PREVIEW_ACTIVE}
       onHover={handleHover}
@@ -80,6 +83,7 @@ describe(`<SmallMovieCard />`, () => {
     const handleClick = jest.fn();
 
     const result = shallow(<SmallMovieCard
+      id={ID}
       movie={MOVIE}
       isPreviewActive={IS_PREVIEW_ACTIVE}
       onHover={handleHover}

@@ -36,7 +36,7 @@ export default class SmallMovieCard extends React.PureComponent {
 
   render() {
 
-    const {movie, isPreviewActive} = this.props;
+    const {id, movie, isPreviewActive} = this.props;
 
     return (
       <article
@@ -48,7 +48,10 @@ export default class SmallMovieCard extends React.PureComponent {
         <div className="small-movie-card__image" >
           {/* <img src={movie.frames[0]} alt={movie.title} width="280" height="175" /> */}
           <VideoPlayer
+            id={id}
             isActive={isPreviewActive}
+            onPlay={() => {}}
+            onEnd={() => {}}
             poster={movie.poster}
             src={movie.preview}
           />
@@ -62,6 +65,7 @@ export default class SmallMovieCard extends React.PureComponent {
 }
 
 SmallMovieCard.propTypes = {
+  id: PropTypes.number.isRequired,
   movie: Movie.isRequired,
   isPreviewActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,

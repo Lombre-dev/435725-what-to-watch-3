@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import SmallMovieCard from './small-movie-card';
 
+const ID = 0;
 const MOVIE = {
   title: `The Grand Budapest Hotel`,
   genres: [`Drama`],
@@ -31,6 +32,7 @@ describe(`<SmallMovieCard />`, () => {
 
     const result = renderer
       .create(<SmallMovieCard
+        id={ID}
         movie={MOVIE}
         isPreviewActive={IS_PREVIEW_ACTIVE}
         onHover={HANDLE_EVENT}
