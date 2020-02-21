@@ -9,6 +9,7 @@ const MOVIES = [
     year: 2014,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
     frames: [`img/the-grand-budapest-hotel-poster.jpg`],
+    preview: ``,
     ratingScore: 8.9,
     ratingReviewsCount: 240,
     description: `Description`,
@@ -28,6 +29,7 @@ const MOVIES = [
     year: 2014,
     poster: `img/bohemian-rhapsody.jpg`,
     frames: [`img/bohemian-rhapsody.jpg`],
+    preview: ``,
     ratingScore: 7.5,
     ratingReviewsCount: 100,
     description: `Description`,
@@ -47,6 +49,7 @@ const MOVIES = [
     year: 2014,
     poster: `img/macbeth.jpg`,
     frames: [`img/macbeth.jpg`],
+    preview: ``,
     ratingScore: 6.9,
     ratingReviewsCount: 50,
     description: `Description`,
@@ -73,7 +76,11 @@ describe(`<Main />`, () => {
         currentMovie={CURRENT_MOVIE}
         movies={MOVIES}
         onMovieListItemClick={HANDLE_CLICK}
-      />)
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(result).toMatchSnapshot();

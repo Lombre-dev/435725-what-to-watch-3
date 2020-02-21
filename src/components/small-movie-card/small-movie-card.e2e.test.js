@@ -13,6 +13,7 @@ const MOVIE = {
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
   frames: [`img/the-grand-budapest-hotel-poster.jpg`],
+  preview: ``,
   ratingScore: 8.9,
   ratingReviewsCount: 240,
   description: `Description`,
@@ -26,17 +27,21 @@ const MOVIE = {
     `Some Actor 5`,
   ],
 };
+const IS_PREVIEW_ACTIVE = false;
 
 describe(`<SmallMovieCard />`, () => {
 
   it(`component should be hovered`, () => {
 
     const handleHover = jest.fn();
+    const handleLeave = jest.fn();
     const handleClick = jest.fn();
 
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
+      isPreviewActive={IS_PREVIEW_ACTIVE}
       onHover={handleHover}
+      onLeave={handleLeave}
       onClick={handleClick}
     />);
 
@@ -47,14 +52,38 @@ describe(`<SmallMovieCard />`, () => {
     expect(handleHover).toHaveBeenCalledTimes(1);
   });
 
-  it(`component should be clicked`, () => {
+  it(`component should be leaved`, () => {
 
     const handleHover = jest.fn();
+    const handleLeave = jest.fn();
     const handleClick = jest.fn();
 
     const result = shallow(<SmallMovieCard
       movie={MOVIE}
+      isPreviewActive={IS_PREVIEW_ACTIVE}
       onHover={handleHover}
+      onLeave={handleLeave}
+      onClick={handleClick}
+    />);
+
+    result
+      .find(`.small-movie-card`)
+      .simulate(`mouseLeave`);
+
+    expect(handleLeave).toHaveBeenCalledTimes(1);
+  });
+
+  it(`component should be clicked`, () => {
+
+    const handleHover = jest.fn();
+    const handleLeave = jest.fn();
+    const handleClick = jest.fn();
+
+    const result = shallow(<SmallMovieCard
+      movie={MOVIE}
+      isPreviewActive={IS_PREVIEW_ACTIVE}
+      onHover={handleHover}
+      onLeave={handleLeave}
       onClick={handleClick}
     />);
 

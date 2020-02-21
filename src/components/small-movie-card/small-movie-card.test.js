@@ -8,6 +8,7 @@ const MOVIE = {
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
   frames: [`img/the-grand-budapest-hotel-poster.jpg`],
+  preview: ``,
   ratingScore: 8.9,
   ratingReviewsCount: 240,
   description: `Description`,
@@ -21,7 +22,8 @@ const MOVIE = {
     `Some Actor 5`,
   ],
 };
-const HANDLE_CLICK = () => {};
+const IS_PREVIEW_ACTIVE = false;
+const HANDLE_EVENT = () => {};
 
 describe(`<SmallMovieCard />`, () => {
 
@@ -30,9 +32,15 @@ describe(`<SmallMovieCard />`, () => {
     const result = renderer
       .create(<SmallMovieCard
         movie={MOVIE}
-        onHover={HANDLE_CLICK}
-        onClick={HANDLE_CLICK}
-      />)
+        isPreviewActive={IS_PREVIEW_ACTIVE}
+        onHover={HANDLE_EVENT}
+        onLeave={HANDLE_EVENT}
+        onClick={HANDLE_EVENT}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(result).toMatchSnapshot();

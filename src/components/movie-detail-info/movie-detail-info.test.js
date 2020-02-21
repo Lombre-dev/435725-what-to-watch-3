@@ -8,6 +8,7 @@ const MOVIE = {
   year: 2014,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
   frames: [`img/the-grand-budapest-hotel-poster.jpg`],
+  preview: ``,
   ratingScore: 8.9,
   ratingReviewsCount: 240,
   description: `Description`,
