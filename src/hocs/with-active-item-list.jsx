@@ -1,7 +1,6 @@
 import React from 'react';
-import {SMALL_MOVIE_CARD_PREVIEW_DELAY} from '../components/consts';
 
-export default function withActiveItemList(Component) {
+export default function withActiveItemList(Component, setActiveTimeDelay) {
 
   class WithActiveItemList extends React.PureComponent {
     constructor(props) {
@@ -25,7 +24,7 @@ export default function withActiveItemList(Component) {
         this.setState({
           activeItemId: id,
         });
-      }, SMALL_MOVIE_CARD_PREVIEW_DELAY);
+      }, setActiveTimeDelay);
     }
 
     _handleItemLeave() {
