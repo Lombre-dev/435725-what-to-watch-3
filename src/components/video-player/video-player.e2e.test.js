@@ -13,10 +13,9 @@ const SRC = require(`path`).resolve(`samples/sintel_trailer-480p.mp4`);
 
 describe(`<VideoPlayer />`, () => {
 
-  it(`component should be active`, () => {
+  it(`component should be switched to active mode`, () => {
 
     const isActive = false;
-    const handleEvent = jest.fn();
     const handlePlay = jest.fn();
 
     jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(handlePlay);
@@ -25,8 +24,6 @@ describe(`<VideoPlayer />`, () => {
       id={ID}
       isActive={isActive}
       poster={POSTER}
-      onPlay={handleEvent}
-      onEnd={handleEvent}
       src={SRC}
     />);
 
@@ -38,10 +35,9 @@ describe(`<VideoPlayer />`, () => {
     expect(handlePlay).toHaveBeenCalledTimes(1);
   });
 
-  it(`component should be inactive`, () => {
+  it(`component should be switched to inactive mode`, () => {
 
     const isActive = true;
-    const handleEvent = jest.fn();
     const handleLoad = jest.fn();
 
     jest.spyOn(HTMLMediaElement.prototype, `load`).mockImplementation(handleLoad);
@@ -50,8 +46,6 @@ describe(`<VideoPlayer />`, () => {
       id={ID}
       isActive={isActive}
       poster={POSTER}
-      onPlay={handleEvent}
-      onEnd={handleEvent}
       src={SRC}
     />);
 

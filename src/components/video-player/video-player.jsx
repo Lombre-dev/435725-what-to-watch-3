@@ -7,9 +7,6 @@ export default class VideoPlayer extends React.PureComponent {
     super(props);
 
     this._videoRef = React.createRef();
-
-    this._handleVideoPlay = this._handleVideoPlay.bind(this);
-    this._handleVideoEnd = this._handleVideoEnd.bind(this);
   }
 
   componentDidMount() {
@@ -17,8 +14,6 @@ export default class VideoPlayer extends React.PureComponent {
     const {poster, isMuted, src} = this.props;
     const video = this._videoRef.current;
 
-    video.onplay = this._handleVideoPlay;
-    video.onend = this._handleVideoEnd;
     video.preload = `none`;
     video.poster = poster;
     video.muted = isMuted;
@@ -29,8 +24,6 @@ export default class VideoPlayer extends React.PureComponent {
 
     const video = this._videoRef.current;
 
-    video.onplay = null;
-    video.onend = null;
     video.poster = ``;
     video.src = ``;
   }
@@ -47,20 +40,6 @@ export default class VideoPlayer extends React.PureComponent {
     }
   }
 
-  _handleVideoPlay() {
-
-    const {id, onPlay} = this.props;
-
-    onPlay({id});
-  }
-
-  _handleVideoEnd() {
-
-    const {id, onEnd} = this.props;
-
-    onEnd({id});
-  }
-
   render() {
     return (
       <video ref={this._videoRef} width="280" height="175"></video>
@@ -71,8 +50,6 @@ export default class VideoPlayer extends React.PureComponent {
 VideoPlayer.propTypes = {
   id: PropTypes.number.isRequired,
   isActive: PropTypes.bool.isRequired,
-  onPlay: PropTypes.func.isRequired,
-  onEnd: PropTypes.func.isRequired,
   poster: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   isMuted: PropTypes.bool,

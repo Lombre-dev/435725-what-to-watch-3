@@ -14,24 +14,24 @@ export default class SmallMovieCard extends React.PureComponent {
 
   _handleHover() {
 
-    const {movie, onHover} = this.props;
+    const {id, onHover} = this.props;
 
-    onHover({movie});
+    onHover({id});
   }
 
   _handleLeave() {
 
-    const {movie, onLeave} = this.props;
+    const {id, onLeave} = this.props;
 
-    onLeave({movie});
+    onLeave({id});
   }
 
   _handleClick(e) {
 
-    const {movie, onClick} = this.props;
+    const {id, movie, onClick} = this.props;
 
     e.preventDefault();
-    onClick({movie});
+    onClick({id, movie});
   }
 
   render() {
@@ -50,8 +50,6 @@ export default class SmallMovieCard extends React.PureComponent {
           <VideoPlayer
             id={id}
             isActive={isPreviewActive}
-            onPlay={() => {}}
-            onEnd={() => {}}
             poster={movie.poster}
             src={movie.preview}
           />

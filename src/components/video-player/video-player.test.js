@@ -6,7 +6,6 @@ const ID = 0;
 const IS_ACTIVE = false;
 const POSTER = ``;
 const SRC = ``;
-const HANDLE_EVENT = () => {};
 
 describe(`<VideoPlayer />`, () => {
 
@@ -17,8 +16,6 @@ describe(`<VideoPlayer />`, () => {
         id={ID}
         isActive={IS_ACTIVE}
         poster={POSTER}
-        onPlay={HANDLE_EVENT}
-        onEnd={HANDLE_EVENT}
         src={SRC}
       />, {
         createNodeMock: () => {

@@ -64,7 +64,8 @@ const MOVIES = [
     ],
   },
 ];
-const HANDLE_CLICK = () => {};
+const ACTIVE_ITEM_ID = 0;
+const HANDLE_CALLBACK = () => {};
 
 describe(`<SmallMovieCardList />`, () => {
 
@@ -73,7 +74,10 @@ describe(`<SmallMovieCardList />`, () => {
     const result = renderer
       .create(<SmallMovieCardList
         movies={MOVIES}
-        onItemClick={HANDLE_CLICK}
+        activeItemId={ACTIVE_ITEM_ID}
+        onItemHover={HANDLE_CALLBACK}
+        onItemLeave={HANDLE_CALLBACK}
+        onItemClick={HANDLE_CALLBACK}
       />, {
         createNodeMock: () => {
           return {};
