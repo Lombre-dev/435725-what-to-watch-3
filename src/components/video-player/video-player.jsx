@@ -16,7 +16,9 @@ export default class VideoPlayer extends React.PureComponent {
 
     video.preload = `none`;
     video.poster = poster;
-    video.muted = isMuted;
+    if (isMuted) {
+      video.muted = isMuted;
+    }
     video.src = src;
   }
 
