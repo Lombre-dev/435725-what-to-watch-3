@@ -14,6 +14,10 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
       this._handleItemLeave = this._handleItemLeave.bind(this);
     }
 
+    componentDidUpdate() {
+      clearTimeout(this._timeoutId);
+    }
+
     componentWillUnmount() {
       clearTimeout(this._timeoutId);
     }
@@ -37,22 +41,18 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
     render() {
 
       const {activeItemId} = this.state;
-      // const {onItemClick} = this.props;
 
       return (
         <Component {...this.props}
           activeItemId={activeItemId}
           onItemHover={this._handleItemHover}
           onItemLeave={this._handleItemLeave}
-        // onItemClick={onItemClick}
         />
       );
     }
   }
 
   WithActiveItemList.propTypes = {
-    // думаю нет необходимости в описании этого пропса
-    // onItemClick: PropTypes.func.isRequired,
   };
 
   return WithActiveItemList;

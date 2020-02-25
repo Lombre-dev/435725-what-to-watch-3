@@ -1,5 +1,7 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import Main from './main';
 
 const MOVIES = [
@@ -95,16 +97,24 @@ const MOVIES = [
 const CURRENT_MOVIE = MOVIES[0];
 const HANDLE_CLICK = () => {};
 
+const mockStore = configureStore([]);
+
 describe(`<Main />`, () => {
 
   it(`render should be match markup`, () => {
 
+    const store = mockStore({
+      genreFilterIndex: 0,
+    });
+
     const result = renderer
-      .create(<Main
-        currentMovie={CURRENT_MOVIE}
-        movies={MOVIES}
-        onMovieListItemClick={HANDLE_CLICK}
-      />, {
+      .create(<Provider store={store}>
+        <Main
+          currentMovie={CURRENT_MOVIE}
+          movies={MOVIES}
+          onMovieListItemClick={HANDLE_CLICK}
+        />
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }
