@@ -32,3 +32,10 @@ export function getActors(actors) {
 
   return result;
 }
+
+export function getDuration(minutes) {
+
+  const hours = Math.floor(minutes / 60);
+
+  return `${hours > 0 ? `${hours}h ` : ``}${minutes - hours * 60} m`;
+}

@@ -1,12 +1,43 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {getActors, getRatingLevel, getRatingReviewsCount, getRatingScore} from '../../utils/movie-utils';
+import MovieInfoDetails from '../movie-info-details/movie-info-details';
+import MovieInfoOverview from '../movie-info-overview/movie-info-overview';
+import MovieInfoReviews from '../movie-info-reviews/movie-info-reviews';
+import MovieInfoTabs from '../movie-info-tabs/movie-info-tabs';
 import {Movie} from '../types';
 
-export default class MovieDetailInfo extends React.PureComponent {
+class MovieInfo extends React.PureComponent {
+
+  _renderState() {
+
+    const {movie, activeTab} = this.props;
+
+    switch (activeTab) {
+      case 0:
+        return (
+          <MovieInfoOverview
+            movie={movie}
+          />
+        );
+      case 1:
+        return (
+          <MovieInfoDetails
+            movie={movie}
+          />
+        );
+      case 2:
+        return (
+          <MovieInfoReviews
+            movie={movie}
+          />
+        );
+    }
+    return null;
+  }
 
   render() {
 
-    const {movie} = this.props;
+    const {movie, activeTab, onTabClick} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -65,36 +96,14 @@ export default class MovieDetailInfo extends React.PureComponent {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={movie.poster} alt={`${movie.title} poster`} width="218" height="327" />
             </div>
-
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="movie-rating">
-                <div className="movie-rating__score">{getRatingScore(movie.ratingScore)}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{getRatingLevel(movie.ratingScore)}</span>
-                  <span className="movie-rating__count">{getRatingReviewsCount(movie.ratingReviewsCount)}</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{movie.description}</p>
-                <p>{movie.story}</p>
-                <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
-                <p className="movie-card__starring"><strong>Starring: {getActors(movie.actors)}</strong></p>
-              </div>
+              <MovieInfoTabs
+                currentTab={activeTab}
+                onTabClick={onTabClick}
+              />
+              {
+                this._renderState()
+              }
             </div>
           </div>
         </div>
@@ -103,6 +112,10 @@ export default class MovieDetailInfo extends React.PureComponent {
   }
 }
 
-MovieDetailInfo.propTypes = {
+MovieInfo.propTypes = {
   movie: Movie.isRequired,
+  activeTab: PropTypes.number.isRequired,
+  onTabClick: PropTypes.func.isRequired,
 };
+
+export default MovieInfo;

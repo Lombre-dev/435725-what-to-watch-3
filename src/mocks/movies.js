@@ -12,6 +12,7 @@ export const MOVIES = [
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     story: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Wes Andreson`,
+    duration: 99,
     actors: [
       `Bill Murray`,
       `Edward Norton`,
@@ -20,6 +21,14 @@ export const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
+    reviews: [
+      {
+        author: `Some Reviewer`,
+        score: 8.2,
+        text: `Awesome text for The Grand Budapest Hotel...`,
+        date: 1582590140667,
+      }
+    ]
   },
   {
     title: `Fantastic Beasts: The Crimes of Grindelwal`,
@@ -164,18 +173,39 @@ MOVIES.forEach((value, index) => {
 
   const actors = [];
   const actorsCount = Math.ceil(Math.random() * 10);
+  const reviews = [];
+  const reviewsCount = Math.ceil(Math.random() * 10);
 
   for (let i = 0; i < actorsCount; i += 1) {
     actors.push(`Some Actor ${i + 1}`);
   }
 
+  for (let i = 0; i < reviewsCount; i += 1) {
+    reviews.push({
+      author: `Reviewer ${i}`,
+      score: getRandomScore(),
+      text: `Awesome review text for movie "${value.title}"`,
+      date: getRandomDate(946684800000),
+    });
+  }
+
   Object.assign(value, {
-    ratingScore: Math.round(Math.random() * 100) / 10,
+    ratingScore: getRandomScore(),
     ratingReviewsCount: Math.round(Math.random() * 100),
+    reviews,
     preview: `./samples/sintel_trailer-480p.mp4`,
     description: `Description for ${value.title}`,
     story: `Story for ${value.title}`,
     director: `Director ${index + 1}`,
     actors,
+    duration: 60 + Math.round(Math.random() * 60),
   });
 });
+
+function getRandomScore() {
+  return Math.round(Math.random() * 100) / 10;
+}
+
+function getRandomDate(fromTimestamp = 0) {
+  return new Date(fromTimestamp + Math.floor(Math.random() * (Date.now() - fromTimestamp))).getTime();
+}

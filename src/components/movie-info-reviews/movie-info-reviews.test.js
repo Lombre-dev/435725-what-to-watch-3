@@ -1,8 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SmallMovieCard from './small-movie-card';
+import MovieInfoReviews from './movie-info-reviews';
 
-const ID = 0;
 const MOVIE = {
   title: `The Grand Budapest Hotel`,
   genres: [`Drama`],
@@ -33,26 +32,15 @@ const MOVIE = {
     }
   ]
 };
-const IS_PREVIEW_ACTIVE = false;
-const HANDLE_EVENT = () => {};
 
-describe(`<SmallMovieCard />`, () => {
+describe(`<MovieInfoReviews />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
-      .create(<SmallMovieCard
-        id={ID}
+      .create(<MovieInfoReviews
         movie={MOVIE}
-        isPreviewActive={IS_PREVIEW_ACTIVE}
-        onHover={HANDLE_EVENT}
-        onLeave={HANDLE_EVENT}
-        onClick={HANDLE_EVENT}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      />)
       .toJSON();
 
     expect(result).toMatchSnapshot();

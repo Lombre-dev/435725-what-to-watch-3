@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main';
-import MovieDetailInfo from '../movie-detail-info/movie-detail-info';
+import MovieInfo from '../movie-info';
 import {Movie} from '../types';
 
 export default class App extends React.PureComponent {
@@ -31,7 +31,7 @@ export default class App extends React.PureComponent {
 
     if (detailInfoMovie) {
       return (
-        <MovieDetailInfo
+        <MovieInfo
           movie={detailInfoMovie}
         />
       );
@@ -57,7 +57,7 @@ export default class App extends React.PureComponent {
             this._renderState()
           }</Route>
           <Route exact path="/dev-movie-detail-info">
-            <MovieDetailInfo
+            <MovieInfo
               movie={movies[0]}
             />
           </Route>
