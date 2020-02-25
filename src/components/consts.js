@@ -10,6 +10,9 @@ export const GENRES = [
   `Thriller`,
 ];
 
+export const SMALL_MOVIE_CARD_PREVIEW_DELAY = 1000;
+export const MOVIE_INFO_TABS = [`Overview`, `Details`, `Reviews`];
+
 export const RATING_SCORE_LIMIT = 10;
 export const RATING_LEVELS = [
   `Bad`,

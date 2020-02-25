@@ -4,46 +4,24 @@ import SmallMovieCard from '../small-movie-card/small-movie-card';
 import {Movie} from '../types';
 
 export default class SmallMovieCardList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      target: undefined,
-    };
-
-    this._handleItemHover = this._handleItemHover.bind(this);
-    this._handleItemClick = this._handleItemClick.bind(this);
-  }
-
-  _handleItemHover({movie}) {
-    this.setState(() => {
-      return {
-        target: movie,
-      };
-    });
-  }
-
-  _handleItemClick({movie}) {
-
-    const {onItemClick} = this.props;
-
-    onItemClick({movie});
-  }
 
   render() {
 
-    const {movies} = this.props;
+    const {movies, activeItemId, onItemHover, onItemLeave, onItemClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
         {
-          movies.map((value) => {
+          movies.map((value, index) => {
             return (
               <SmallMovieCard
+                id={index}
                 key={value.title}
                 movie={value}
-                onHover={this._handleItemHover}
-                onClick={this._handleItemClick}
+                isPreviewActive={activeItemId === index}
+                onHover={onItemHover}
+                onLeave={onItemLeave}
+                onClick={onItemClick}
               />
             );
           })
@@ -55,5 +33,8 @@ export default class SmallMovieCardList extends React.PureComponent {
 
 SmallMovieCardList.propTypes = {
   movies: PropTypes.arrayOf(Movie).isRequired,
+  activeItemId: PropTypes.number.isRequired,
+  onItemHover: PropTypes.func.isRequired,
+  onItemLeave: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
 };

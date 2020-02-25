@@ -8,14 +8,13 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="The Grand Budapest Hotel"
+      <video
         height="175"
-        src="img/the-grand-budapest-hotel-poster.jpg"
         width="280"
       />
     </div>
@@ -34,14 +33,13 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Bohemian Rhapsody"
+      <video
         height="175"
-        src="img/bohemian-rhapsody.jpg"
         width="280"
       />
     </div>
@@ -60,14 +58,13 @@ exports[`<SmallMovieCardList /> render should be match markup 1`] = `
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Macbeth"
+      <video
         height="175"
-        src="img/macbeth.jpg"
         width="280"
       />
     </div>

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import SmallMovieCardList from '../small-movie-card-list/small-movie-card-list';
+import SmallMovieCardList from '../small-movie-card-list';
 import {Movie} from '../types';
 
 const Main = ({currentMovie, movies, onMovieListItemClick}) => {
