@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Footer from '../footer/footer';
-import MovieCatalog from '../movie-catalog/movie-catalog';
+import MovieCatalog from '../movie-catalog';
 import {Movie} from '../types';
 
 const Main = ({currentMovie, movies, onMovieListItemClick}) => {

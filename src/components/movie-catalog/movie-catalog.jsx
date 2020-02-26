@@ -14,20 +14,11 @@ class MovieCatalog extends React.PureComponent {
     super(props);
 
     this.state = {
-      moviesLimit: CATALOG_MOVIES_PER_PAGE_LIMIT,
       genreFilterIndex: this.props.genreFilterIndex,
     };
-
-    this._handleShowMoreClick = this._handleShowMoreClick.bind(this);
   }
 
   componentDidUpdate() {
-    if (this.props.genreFilterIndex !== this.state.genreFilterIndex) {
-      this.setState({
-        moviesLimit: CATALOG_MOVIES_PER_PAGE_LIMIT,
-        genreFilterIndex: this.props.genreFilterIndex,
-      });
-    }
   }
 
   _getGenres() {
@@ -58,19 +49,11 @@ class MovieCatalog extends React.PureComponent {
     return genre ? getMoviesByGenre(movies, genre) : movies;
   }
 
-  _handleShowMoreClick() {
-    this.setState((prevState) => {
-      return {
-        moviesLimit: prevState.moviesLimit + CATALOG_MOVIES_PER_PAGE_LIMIT,
-      };
-    });
-  }
-
   render() {
 
-    const {onMovieListItemClick} = this.props;
+    const {onMovieListItemClick, currentPage, onNextPage} = this.props;
     const movies = this._getMovies();
-    const currentMovies = movies.slice(0, this.state.moviesLimit);
+    const currentMovies = movies.slice(0, (currentPage + 1) * CATALOG_MOVIES_PER_PAGE_LIMIT);
 
     return (
       <section className="catalog">
@@ -83,7 +66,7 @@ class MovieCatalog extends React.PureComponent {
           onItemClick={onMovieListItemClick}
         />
         {
-          currentMovies.length < movies.length && <ShowMore onClick={this._handleShowMoreClick} />
+          currentMovies.length < movies.length && <ShowMore onClick={onNextPage} />
         }
       </section>
     );
@@ -94,8 +77,11 @@ class MovieCatalog extends React.PureComponent {
 MovieCatalog.propTypes = {
   movies: PropTypes.arrayOf(Movie),
   onMovieListItemClick: PropTypes.func.isRequired,
-  // TODO: без след. пропcoв ругается линтер
   genreFilterIndex: PropTypes.number,
+  currentPage: PropTypes.number.isRequired,
+  onNextPage: PropTypes.func.isRequired,
+  onToPage: PropTypes.func.isRequired,
+  onPrevPage: PropTypes.func.isRequired,
 };
 
 MovieCatalog.defaultProps = {

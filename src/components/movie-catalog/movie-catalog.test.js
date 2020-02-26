@@ -95,7 +95,8 @@ const MOVIES = [
   },
 ];
 
-const HANDLE_CLICK = () => {};
+const CURRENT_PAGE = 1;
+const HANDLE_EVENT = () => {};
 
 const mockStore = configureStore([]);
 
@@ -111,7 +112,11 @@ describe(`<MovieCatalog />`, () => {
       .create(<Provider store={store}>
         <MovieCatalog
           movies={MOVIES}
-          onMovieListItemClick={HANDLE_CLICK}
+          onMovieListItemClick={HANDLE_EVENT}
+          currentPage={CURRENT_PAGE}
+          onNextPage={HANDLE_EVENT}
+          onToPage={HANDLE_EVENT}
+          onPrevPage={HANDLE_EVENT}
         />
       </Provider>, {
         createNodeMock: () => {

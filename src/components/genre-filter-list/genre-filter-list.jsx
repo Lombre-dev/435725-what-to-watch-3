@@ -49,7 +49,6 @@ class GenreFilterList extends React.PureComponent {
 
 GenreFilterList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // TODO: без след. пропcoв ругается линтер
   currentGenreIndex: PropTypes.number,
   onGenreItemClick: PropTypes.func,
 };
