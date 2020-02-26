@@ -42,7 +42,8 @@ class MovieCatalog extends React.PureComponent {
     const currentMovies = this._getCurrentMovies();
 
     return (
-      <>
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreFilterList
           genres={this._getGenres()}
         />
@@ -53,7 +54,7 @@ class MovieCatalog extends React.PureComponent {
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>
-      </>
+      </section>
     );
   }
 

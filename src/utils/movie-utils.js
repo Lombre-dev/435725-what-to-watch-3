@@ -39,3 +39,7 @@ export function getDuration(minutes) {
 
   return `${hours > 0 ? `${hours}h ` : ``}${minutes - hours * 60} m`;
 }
+
+export function getMoviesByGenre(source, genre, exclude = []) {
+  return source.filter((movie) => movie.genres.includes(genre) && !exclude.includes(movie));
+}

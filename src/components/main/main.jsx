@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Footer from '../footer/footer';
 import MovieCatalog from '../movie-catalog/movie-catalog';
 import {Movie} from '../types';
 
@@ -60,13 +61,11 @@ const Main = ({currentMovie, movies, onMovieListItemClick}) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <MovieCatalog
-            movies={movies}
-            onMovieListItemClick={onMovieListItemClick}
-          />
-        </section>
+        <MovieCatalog
+          movies={movies}
+          onMovieListItemClick={onMovieListItemClick}
+        />
+        <Footer />
       </div>
     </>
   );

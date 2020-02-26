@@ -1,42 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieCatalog /> render should be match markup 1`] = `
+exports[`<MoreLikeThis /> render should be match markup 1`] = `
 <section
-  className="catalog"
+  className="catalog catalog--like-this"
 >
   <h2
-    className="catalog__title visually-hidden"
+    className="catalog__title"
   >
-    Catalog
+    More like this
   </h2>
-  <ul
-    className="catalog__genres-list"
-  >
-    <li
-      className="catalog__genres-item catalog__genres-item--active"
-    >
-      <a
-        className="catalog__genres-link"
-        data-index={0}
-        href="#"
-        onClick={[Function]}
-      >
-        All genres
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-index={1}
-        href="#"
-        onClick={[Function]}
-      >
-        Dramas
-      </a>
-    </li>
-  </ul>
   <div
     className="catalog__movies-list"
   >
@@ -115,16 +87,6 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
         </a>
       </h3>
     </article>
-  </div>
-  <div
-    className="catalog__more"
-  >
-    <button
-      className="catalog__button"
-      type="button"
-    >
-      Show more
-    </button>
   </div>
 </section>
 `;

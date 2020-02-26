@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {getMoviesByGenre} from '../../utils/movie-utils';
+import Footer from '../footer/footer';
 import Main from '../main/main';
+import MoreLikeThis from '../more-like-this/more-like-this';
 import MovieInfo from '../movie-info';
 import {Movie} from '../types';
 
@@ -31,18 +34,29 @@ export default class App extends React.PureComponent {
 
     if (detailInfoMovie) {
       return (
-        <MovieInfo
-          movie={detailInfoMovie}
-        />
+        <>
+          <MovieInfo
+            movie={detailInfoMovie}
+          />
+          <div className="page-content">
+            <MoreLikeThis
+              movies={getMoviesByGenre(movies, detailInfoMovie.genres[0], [detailInfoMovie])}
+              onMovieListItemClick={this._handleMovieListItemClick}
+            />
+            <Footer />
+          </div>
+        </>
       );
     }
 
     return (
-      <Main
-        currentMovie={currentMovie}
-        movies={movies}
-        onMovieListItemClick={this._handleMovieListItemClick}
-      />
+      <>
+        <Main
+          currentMovie={currentMovie}
+          movies={movies}
+          onMovieListItemClick={this._handleMovieListItemClick}
+        />
+      </>
     );
   }
 

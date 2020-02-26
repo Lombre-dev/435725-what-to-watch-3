@@ -27,6 +27,8 @@ export const GENRE_ALIASES = {
   [THRILLER_GENRE]: `Thrillers`,
 };
 
+export const MORE_LIKE_THIS_MOVIES_LIMIT = 4;
+
 export const SMALL_MOVIE_CARD_PREVIEW_DELAY = 1000;
 
 export const MOVIE_INFO_TABS = [
