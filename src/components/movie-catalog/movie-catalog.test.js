@@ -1,14 +1,8 @@
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import {Provider} from 'react-redux';
+import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import SmallMovieCard from '../small-movie-card/small-movie-card';
-import Main from './main';
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import MovieCatalog from './movie-catalog';
 
 const MOVIES = [
   {
@@ -100,36 +94,32 @@ const MOVIES = [
     ]
   },
 ];
-const CURRENT_MOVIE = MOVIES[0];
+
+const HANDLE_CLICK = () => {};
 
 const mockStore = configureStore([]);
 
-describe(`<Main />`, () => {
+describe(`<MovieCatalog />`, () => {
 
-  it(`every movie list item should be clicked`, () => {
-
-    const handleClick = jest.fn();
+  it(`render should be match markup`, () => {
 
     const store = mockStore({
       genreFilterIndex: 0,
     });
 
-    const result = mount(<Provider store={store}>
-      <Main
-        currentMovie={CURRENT_MOVIE}
-        movies={MOVIES}
-        onMovieListItemClick={handleClick}
-      />
-    </Provider>);
+    const result = renderer
+      .create(<Provider store={store}>
+        <MovieCatalog
+          movies={MOVIES}
+          onMovieListItemClick={HANDLE_CLICK}
+        />
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
+      .toJSON();
 
-    result
-      .find(SmallMovieCard)
-      .forEach((value) => {
-        value
-          .find(`.small-movie-card`)
-          .simulate(`click`);
-      });
-
-    expect(handleClick).toHaveBeenCalledTimes(MOVIES.length);
+    expect(result).toMatchSnapshot();
   });
 });

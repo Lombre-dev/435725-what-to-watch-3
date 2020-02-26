@@ -3,7 +3,7 @@ import React from 'react';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
 import {Movie} from '../types';
 
-export default class SmallMovieCardList extends React.PureComponent {
+class SmallMovieCardList extends React.PureComponent {
 
   render() {
 
@@ -38,3 +38,5 @@ SmallMovieCardList.propTypes = {
   onItemLeave: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
 };
+
+export default SmallMovieCardList;
