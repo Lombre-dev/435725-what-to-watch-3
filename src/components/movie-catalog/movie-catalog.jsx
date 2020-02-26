@@ -1,12 +1,34 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {ALL_GENRE, GENRES, GENRE_ALIASES} from '../consts';
+import {getMoviesByGenre} from '../../utils/movie-utils';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES, GENRE_ALIASES} from '../consts';
 import GenreFilterList from '../genre-filter-list/genre-filter-list';
+import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
 import {Movie} from '../types';
 
 class MovieCatalog extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      moviesLimit: CATALOG_MOVIES_PER_PAGE_LIMIT,
+      genreFilterIndex: this.props.genreFilterIndex,
+    };
+
+    this._handleShowMoreClick = this._handleShowMoreClick.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.genreFilterIndex !== this.state.genreFilterIndex) {
+      this.setState({
+        moviesLimit: CATALOG_MOVIES_PER_PAGE_LIMIT,
+        genreFilterIndex: this.props.genreFilterIndex,
+      });
+    }
+  }
 
   _getGenres() {
 
@@ -28,18 +50,27 @@ class MovieCatalog extends React.PureComponent {
     return genres;
   }
 
-  _getCurrentMovies() {
+  _getMovies() {
 
     const {genreFilterIndex, movies} = this.props;
     const genre = GENRES[genreFilterIndex - 1];
 
-    return genre ? movies.filter((movie) => movie.genres.includes(genre)) : movies;
+    return genre ? getMoviesByGenre(movies, genre) : movies;
+  }
+
+  _handleShowMoreClick() {
+    this.setState((prevState) => {
+      return {
+        moviesLimit: prevState.moviesLimit + CATALOG_MOVIES_PER_PAGE_LIMIT,
+      };
+    });
   }
 
   render() {
 
     const {onMovieListItemClick} = this.props;
-    const currentMovies = this._getCurrentMovies();
+    const movies = this._getMovies();
+    const currentMovies = movies.slice(0, this.state.moviesLimit);
 
     return (
       <section className="catalog">
@@ -51,9 +82,9 @@ class MovieCatalog extends React.PureComponent {
           movies={currentMovies}
           onItemClick={onMovieListItemClick}
         />
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        {
+          currentMovies.length < movies.length && <ShowMore onClick={this._handleShowMoreClick} />
+        }
       </section>
     );
   }

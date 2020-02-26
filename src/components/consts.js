@@ -28,6 +28,7 @@ export const GENRE_ALIASES = {
 };
 
 export const MORE_LIKE_THIS_MOVIES_LIMIT = 4;
+export const CATALOG_MOVIES_PER_PAGE_LIMIT = 8;
 
 export const SMALL_MOVIE_CARD_PREVIEW_DELAY = 1000;
 
