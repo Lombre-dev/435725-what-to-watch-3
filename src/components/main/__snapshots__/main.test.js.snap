@@ -158,11 +158,11 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-index={0}
+            data-genre="Drama"
             href="#"
             onClick={[Function]}
           >
-            All genres
+            Drama
           </a>
         </li>
         <li
@@ -170,11 +170,23 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-index={1}
+            data-genre="Comedy"
             href="#"
             onClick={[Function]}
           >
-            Dramas
+            Comedy
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item"
+        >
+          <a
+            className="catalog__genres-link"
+            data-genre="Kids & Family"
+            href="#"
+            onClick={[Function]}
+          >
+            Kids & Family
           </a>
         </li>
       </ul>
@@ -256,6 +268,17 @@ Array [
             </a>
           </h3>
         </article>
+      </div>
+      <div
+        className="catalog__more"
+      >
+        <button
+          className="catalog__button"
+          onClick={[Function]}
+          type="button"
+        >
+          Show more
+        </button>
       </div>
     </section>
     <footer

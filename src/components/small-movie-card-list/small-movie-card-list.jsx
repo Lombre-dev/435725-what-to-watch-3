@@ -7,7 +7,7 @@ class SmallMovieCardList extends React.PureComponent {
 
   render() {
 
-    const {movies, activeItemId, onItemHover, onItemLeave, onItemClick} = this.props;
+    const {movies, activeItemId, onItemHover, onItemLeave} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -21,7 +21,6 @@ class SmallMovieCardList extends React.PureComponent {
                 isPreviewActive={activeItemId === index}
                 onHover={onItemHover}
                 onLeave={onItemLeave}
-                onClick={onItemClick}
               />
             );
           })
@@ -36,7 +35,6 @@ SmallMovieCardList.propTypes = {
   activeItemId: PropTypes.number.isRequired,
   onItemHover: PropTypes.func.isRequired,
   onItemLeave: PropTypes.func.isRequired,
-  onItemClick: PropTypes.func.isRequired,
 };
 
 export default SmallMovieCardList;

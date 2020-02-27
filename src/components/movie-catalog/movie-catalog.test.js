@@ -4,6 +4,9 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import MovieCatalog from './movie-catalog';
 
+
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -94,8 +97,8 @@ const MOVIES = [
     ]
   },
 ];
-
-const CURRENT_PAGE = 1;
+const CATALOG_PAGE = 1;
+const HAS_MORE_MOVIES = true;
 const HANDLE_EVENT = () => {};
 
 const mockStore = configureStore([]);
@@ -105,18 +108,18 @@ describe(`<MovieCatalog />`, () => {
   it(`render should be match markup`, () => {
 
     const store = mockStore({
-      genreFilterIndex: 0,
+      catalogGenres: GENRES,
+      catalogGenre: CURRENT_GENRE,
+      catalogPage: CATALOG_PAGE,
+      catalogMovies: MOVIES,
+      hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });
 
     const result = renderer
       .create(<Provider store={store}>
         <MovieCatalog
-          movies={MOVIES}
           onMovieListItemClick={HANDLE_EVENT}
-          currentPage={CURRENT_PAGE}
-          onNextPage={HANDLE_EVENT}
-          onToPage={HANDLE_EVENT}
-          onPrevPage={HANDLE_EVENT}
+          onShowMore={HANDLE_EVENT}
         />
       </Provider>, {
         createNodeMock: () => {

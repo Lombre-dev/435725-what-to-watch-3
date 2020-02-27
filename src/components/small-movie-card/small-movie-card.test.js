@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SmallMovieCard from './small-movie-card';
+import {SmallMovieCard} from './small-movie-card';
 
 const ID = 0;
 const MOVIE = {

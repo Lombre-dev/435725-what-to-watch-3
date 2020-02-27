@@ -1,7 +1,11 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import MoreLikeThis from './more-like-this';
 
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -92,17 +96,31 @@ const MOVIES = [
     ]
   },
 ];
-const HANDLE_CLICK = () => {};
+const CATALOG_PAGE = 1;
+const HAS_MORE_MOVIES = true;
+
+const mockStore = configureStore([]);
 
 describe(`<MoreLikeThis />`, () => {
 
   it(`render should be match markup`, () => {
 
+    const store = mockStore({
+      currentMovie: null,
+      promoMovie: MOVIES[0],
+      catalogGenres: GENRES,
+      catalogGenre: CURRENT_GENRE,
+      catalogPage: CATALOG_PAGE,
+      catalogMovies: MOVIES,
+      hasMoreCatalogMovies: HAS_MORE_MOVIES,
+    });
+
     const result = renderer
-      .create(<MoreLikeThis
-        movies={MOVIES}
-        onMovieListItemClick={HANDLE_CLICK}
-      />, {
+      .create(<Provider store={store}>
+        <MoreLikeThis
+          movies={MOVIES}
+        />
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }

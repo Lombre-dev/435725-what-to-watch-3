@@ -8,14 +8,13 @@ class MoreLikeThis extends React.PureComponent {
 
   render() {
 
-    const {movies, onMovieListItemClick} = this.props;
+    const {movies} = this.props;
 
     return (
       <section className="catalog catalog--like-this" >
         <h2 className="catalog__title">More like this</h2>
         <SmallMovieCardList
           movies={movies.slice(0, MORE_LIKE_THIS_MOVIES_LIMIT)}
-          onItemClick={onMovieListItemClick}
         />
       </section >
     );
@@ -24,7 +23,6 @@ class MoreLikeThis extends React.PureComponent {
 
 MoreLikeThis.propTypes = {
   movies: PropTypes.arrayOf(Movie).isRequired,
-  onMovieListItemClick: PropTypes.func.isRequired,
 };
 
 export default MoreLikeThis;

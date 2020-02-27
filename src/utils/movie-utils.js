@@ -1,3 +1,4 @@
+import {GENRE_ALIASES} from '../components/consts';
 import {getPluralForm} from './get-plural-form';
 
 const RATING_SCORE_LIMIT = 10;
@@ -42,4 +43,23 @@ export function getDuration(minutes) {
 
 export function getMoviesByGenre(source, genre, exclude = []) {
   return source.filter((movie) => movie.genres.includes(genre) && !exclude.includes(movie));
+}
+
+export function getGenresFromMovies(source) {
+
+  const genres = [];
+
+  source.forEach((movie) => {
+    movie.genres.forEach((genre) => {
+
+      const alias = GENRE_ALIASES[genre] || genre;
+
+      if (genres.includes(alias)) {
+        return;
+      }
+      genres.push(alias);
+    });
+  });
+
+  return genres;
 }

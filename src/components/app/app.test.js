@@ -4,6 +4,8 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import App from './app';
 
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -94,7 +96,8 @@ const MOVIES = [
     ]
   },
 ];
-const CURRENT_MOVIE = MOVIES[0];
+const CATALOG_PAGE = 1;
+const HAS_MORE_MOVIES = true;
 
 const mockStore = configureStore([]);
 
@@ -103,15 +106,18 @@ describe(`<App />`, () => {
   it(`render should be match markup`, () => {
 
     const store = mockStore({
-      genreFilterIndex: 0,
+      currentMovie: null,
+      promoMovie: MOVIES[0],
+      catalogGenres: GENRES,
+      catalogGenre: CURRENT_GENRE,
+      catalogPage: CATALOG_PAGE,
+      catalogMovies: MOVIES,
+      hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });
 
     const result = renderer
       .create(<Provider store={store}>
-        <App
-          currentMovie={CURRENT_MOVIE}
-          movies={MOVIES}
-        />
+        <App />
       </Provider>, {
         createNodeMock: () => {
           return {};

@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
-class GenreFilterList extends React.PureComponent {
+class GenreFilter extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -13,27 +13,27 @@ class GenreFilterList extends React.PureComponent {
 
   _handleItemClick(e) {
 
-    const {onGenreItemClick} = this.props;
-    const index = parseInt(e.currentTarget.dataset.index, 10);
+    const {onSelect} = this.props;
+    const genre = e.currentTarget.dataset.genre;
 
     e.preventDefault();
-    onGenreItemClick(index);
+    onSelect(genre);
   }
 
   render() {
 
-    const {genres, currentGenreIndex} = this.props;
+    const {genres, currentGenre} = this.props;
 
     return (
       <ul className="catalog__genres-list">
         {
-          genres.map((tab, index) => {
+          genres.map((tab) => {
             return (
               <li key={tab}
-                className={`catalog__genres-item${index === currentGenreIndex ? ` catalog__genres-item--active` : ``}`}
+                className={`catalog__genres-item${tab === currentGenre ? ` catalog__genres-item--active` : ``}`}
               >
                 <a
-                  data-index={index}
+                  data-genre={tab}
                   href="#"
                   className="catalog__genres-link"
                   onClick={this._handleItemClick}
@@ -47,25 +47,30 @@ class GenreFilterList extends React.PureComponent {
   }
 }
 
-GenreFilterList.propTypes = {
+GenreFilter.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentGenreIndex: PropTypes.number,
-  onGenreItemClick: PropTypes.func,
+  currentGenre: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
+/*
+TODO: решил проваливать эти пропсы сверху,
+если лучше привязаться к store, то пометь в feedback.
 function mapStateToProps(state) {
   return {
-    currentGenreIndex: state.genreFilterIndex,
+    genres: state.catalogGenres,
+    currentGenre: state.cataloGenre,
   };
 }
+*/
 
 function mapDispatchToProps(dispatch) {
   return {
-    onGenreItemClick: (index) => {
-      dispatch(ActionCreator.applyGenreFilter(index));
+    onSelect: (genre) => {
+      dispatch(ActionCreator.setCatalogGenre(genre));
     }
   };
 }
 
-export {GenreFilterList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreFilterList);
+export {GenreFilter};
+export default connect(null, mapDispatchToProps)(GenreFilter);

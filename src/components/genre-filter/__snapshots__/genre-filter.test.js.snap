@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieCatalog /> render should be match markup 1`] = `
+exports[`<GenreFilter /> render should be match markup 1`] = `
 <ul
   className="catalog__genres-list"
 >
@@ -9,7 +9,7 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
   >
     <a
       className="catalog__genres-link"
-      data-index={0}
+      data-genre="Comedy"
       href="#"
       onClick={[Function]}
     >
@@ -21,7 +21,7 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
   >
     <a
       className="catalog__genres-link"
-      data-index={1}
+      data-genre="Sci-Fi"
       href="#"
       onClick={[Function]}
     >
@@ -33,7 +33,7 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
   >
     <a
       className="catalog__genres-link"
-      data-index={2}
+      data-genre="Horror"
       href="#"
       onClick={[Function]}
     >

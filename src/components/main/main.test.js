@@ -4,6 +4,8 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import Main from './main';
 
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -94,6 +96,8 @@ const MOVIES = [
     ]
   },
 ];
+const CATALOG_PAGE = 1;
+const HAS_MORE_MOVIES = true;
 const CURRENT_MOVIE = MOVIES[0];
 const HANDLE_CLICK = () => {};
 
@@ -104,14 +108,18 @@ describe(`<Main />`, () => {
   it(`render should be match markup`, () => {
 
     const store = mockStore({
-      genreFilterIndex: 0,
+      promoMovie: MOVIES[0],
+      catalogGenres: GENRES,
+      catalogGenre: CURRENT_GENRE,
+      catalogPage: CATALOG_PAGE,
+      catalogMovies: MOVIES,
+      hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });
 
     const result = renderer
       .create(<Provider store={store}>
         <Main
           currentMovie={CURRENT_MOVIE}
-          movies={MOVIES}
           onMovieListItemClick={HANDLE_CLICK}
         />
       </Provider>, {

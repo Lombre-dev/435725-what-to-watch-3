@@ -1,7 +1,7 @@
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import SmallMovieCard from './small-movie-card';
+import {SmallMovieCard} from './small-movie-card';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -48,7 +48,7 @@ describe(`<SmallMovieCard />`, () => {
     const handleLeave = jest.fn();
     const handleClick = jest.fn();
 
-    const result = shallow(<SmallMovieCard
+    const result = mount(<SmallMovieCard
       id={ID}
       movie={MOVIE}
       isPreviewActive={IS_PREVIEW_ACTIVE}
