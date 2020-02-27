@@ -65,7 +65,7 @@ describe(`Reducer`, () => {
       .toEqual(sample);
   });
 
-  it(`should be switch value of currentMovie`, () => {
+  it(`should be increased catalog page, new movies added to movie catalog`, () => {
 
     const sample = Object.assign({}, INITIAL_STATE, {
       catalogPage: 2,
