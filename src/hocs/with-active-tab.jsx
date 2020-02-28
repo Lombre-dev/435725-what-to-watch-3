@@ -1,4 +1,5 @@
 import React from 'react';
+import {Movie} from '../components/types';
 
 export default function withActiveTab(Component) {
 
@@ -22,9 +23,11 @@ export default function withActiveTab(Component) {
     render() {
 
       const {activeTab} = this.state;
+      const {movie} = this.props;
 
       return (
-        <Component {...this.props}
+        <Component
+          movie={movie}
           activeTab={activeTab}
           onTabClick={this._handleTabClick}
         />
@@ -33,6 +36,7 @@ export default function withActiveTab(Component) {
   }
 
   WithActiveTab.propTypes = {
+    movie: Movie.isRequired,
   };
 
   return WithActiveTab;

@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
+import Footer from '../footer/footer';
 import MovieCatalog from '../movie-catalog/movie-catalog';
 import {Movie} from '../types';
 
-const Main = ({currentMovie, movies, onMovieListItemClick}) => {
+const Main = ({promoMovie}) => {
   return (
     <>
       <section className="movie-card">
@@ -32,13 +33,13 @@ const Main = ({currentMovie, movies, onMovieListItemClick}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={currentMovie.poster} alt={`${currentMovie.title} poster`} width="218" height="327" />
+              <img src={promoMovie.poster} alt={`${promoMovie.title} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{currentMovie.title}</h2>
+              <h2 className="movie-card__title">{promoMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{currentMovie.genres.join(`, `)}</span>
-                <span className="movie-card__year">{currentMovie.year}</span>
+                <span className="movie-card__genre">{promoMovie.genres.join(`, `)}</span>
+                <span className="movie-card__year">{promoMovie.year}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
@@ -60,26 +61,26 @@ const Main = ({currentMovie, movies, onMovieListItemClick}) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <MovieCatalog
-            movies={movies}
-            onMovieListItemClick={onMovieListItemClick}
-          />
-        </section>
+        <MovieCatalog />
+        <Footer />
       </div>
     </>
   );
 };
 
 Main.propTypes = {
-  currentMovie: Movie.isRequired,
-  movies: PropTypes.arrayOf(Movie),
-  onMovieListItemClick: PropTypes.func.isRequired,
+  promoMovie: Movie.isRequired,
 };
 
 Main.defaultProps = {
   movies: [],
 };
 
-export default Main;
+function mapStateToProps(state) {
+  return {
+    promoMovie: state.promoMovie,
+  };
+}
+
+export {Main};
+export default connect(mapStateToProps)(Main);

@@ -1,3 +1,4 @@
+import {GENRES, GENRE_LABELS} from '../components/consts';
 import {getPluralForm} from './get-plural-form';
 
 const RATING_SCORE_LIMIT = 10;
@@ -38,4 +39,31 @@ export function getDuration(minutes) {
   const hours = Math.floor(minutes / 60);
 
   return `${hours > 0 ? `${hours}h ` : ``}${minutes - hours * 60} m`;
+}
+
+export function getMoviesByGenre(source, genre, exclude = []) {
+  return source.filter((movie) => movie.genres.includes(genre) && !exclude.includes(movie));
+}
+
+export function getGenreLabels() {
+  return Object.assign({}, GENRE_LABELS);
+}
+
+export function getGenresFromMovies(source) {
+
+  const genres = [];
+
+  source.forEach((movie) => {
+    movie.genres.forEach((genre) => {
+
+      const alias = GENRES.label || genre;
+
+      if (genres.includes(alias)) {
+        return;
+      }
+      genres.push(alias);
+    });
+  });
+
+  return genres;
 }

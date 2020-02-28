@@ -5,21 +5,21 @@ import configureStore from 'redux-mock-store';
 import GenreFilterList from './genre-filter-list';
 
 const GENRES = [`Comedy`, `Sci-Fi`, `Horror`];
-
 const mockStore = configureStore([]);
 
-describe(`<MovieCatalog />`, () => {
+describe(`<GenreFilterList />`, () => {
+
+  const store = mockStore({
+
+  });
 
   it(`render should be match markup`, () => {
-
-    const store = mockStore({
-      genreFilterIndex: 0,
-    });
 
     const result = renderer
       .create(<Provider store={store}>
         <GenreFilterList
           genres={GENRES}
+          currentGenre={GENRES[0]}
         />
       </Provider>)
       .toJSON();

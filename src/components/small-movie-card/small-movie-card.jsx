@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer';
 import {Movie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 
-export default class SmallMovieCard extends React.PureComponent {
+class SmallMovieCard extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -28,10 +30,10 @@ export default class SmallMovieCard extends React.PureComponent {
 
   _handleClick(e) {
 
-    const {id, movie, onClick} = this.props;
+    const {movie, onClick} = this.props;
 
     e.preventDefault();
-    onClick({id, movie});
+    onClick(movie);
   }
 
   render() {
@@ -46,7 +48,6 @@ export default class SmallMovieCard extends React.PureComponent {
         onClick={this._handleClick}
       >
         <div className="small-movie-card__image" >
-          {/* <img src={movie.frames[0]} alt={movie.title} width="280" height="175" /> */}
           <VideoPlayer
             id={id}
             isActive={isPreviewActive}
@@ -70,3 +71,14 @@ SmallMovieCard.propTypes = {
   onHover: PropTypes.func.isRequired,
   onLeave: PropTypes.func.isRequired,
 };
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick: (movie) => {
+      dispatch(ActionCreator.setCurrentMovie(movie));
+    },
+  };
+}
+
+export {SmallMovieCard};
+export default connect(null, mapDispatchToProps)(SmallMovieCard);

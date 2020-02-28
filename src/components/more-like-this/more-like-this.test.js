@@ -1,15 +1,11 @@
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import {Provider} from 'react-redux';
+import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import SmallMovieCard from '../small-movie-card/small-movie-card';
-import Main from './main';
+import MoreLikeThis from './more-like-this';
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -100,36 +96,35 @@ const MOVIES = [
     ]
   },
 ];
-const CURRENT_MOVIE = MOVIES[0];
+const HAS_MORE_MOVIES = true;
 
 const mockStore = configureStore([]);
 
-describe(`<Main />`, () => {
+describe(`<MoreLikeThis />`, () => {
 
-  it(`every movie list item should be clicked`, () => {
-
-    const handleClick = jest.fn();
+  it(`render should be match markup`, () => {
 
     const store = mockStore({
-      genreFilterIndex: 0,
+      currentMovie: null,
+      promoMovie: MOVIES[0],
+      catalogGenres: GENRES,
+      catalogGenre: CURRENT_GENRE,
+      catalogMovies: MOVIES,
+      hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });
 
-    const result = mount(<Provider store={store}>
-      <Main
-        currentMovie={CURRENT_MOVIE}
-        movies={MOVIES}
-        onMovieListItemClick={handleClick}
-      />
-    </Provider>);
+    const result = renderer
+      .create(<Provider store={store}>
+        <MoreLikeThis
+          movies={MOVIES}
+        />
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
+      .toJSON();
 
-    result
-      .find(SmallMovieCard)
-      .forEach((value) => {
-        value
-          .find(`.small-movie-card`)
-          .simulate(`click`);
-      });
-
-    expect(handleClick).toHaveBeenCalledTimes(MOVIES.length);
+    expect(result).toMatchSnapshot();
   });
 });

@@ -2,7 +2,7 @@
 export const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
-    genres: [`Drama`],
+    genres: [`Drama`, `Comedy`, `Kids & Family`],
     year: 2014,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
     frames: [`img/the-grand-budapest-hotel-poster.jpg`],

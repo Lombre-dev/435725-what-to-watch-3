@@ -21,11 +21,14 @@ export const GENRES = [
   THRILLER_GENRE,
 ];
 
-export const GENRE_ALIASES = {
+export const GENRE_LABELS = {
   [COMEDY_GENRE]: `Comedies`,
   [DRAMA_GENRE]: `Dramas`,
   [THRILLER_GENRE]: `Thrillers`,
 };
+
+export const MORE_LIKE_THIS_MOVIES_LIMIT = 4;
+export const CATALOG_MOVIES_PER_PAGE_LIMIT = 8;
 
 export const SMALL_MOVIE_CARD_PREVIEW_DELAY = 1000;
 
@@ -33,13 +36,4 @@ export const MOVIE_INFO_TABS = [
   `Overview`,
   `Details`,
   `Reviews`,
-];
-
-export const RATING_SCORE_LIMIT = 10;
-export const RATING_LEVELS = [
-  `Bad`,
-  `Normal`,
-  `Good`,
-  `Very good`,
-  `Awesome`,
 ];

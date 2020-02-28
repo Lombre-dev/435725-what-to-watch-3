@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import {Movie} from '../components/types';
 
 export default function withActiveItemList(Component, setActiveTimeDelay) {
 
@@ -41,9 +43,11 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
     render() {
 
       const {activeItemId} = this.state;
+      const {movies} = this.props;
 
       return (
-        <Component {...this.props}
+        <Component
+          movies={movies}
           activeItemId={activeItemId}
           onItemHover={this._handleItemHover}
           onItemLeave={this._handleItemLeave}
@@ -53,6 +57,7 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
   }
 
   WithActiveItemList.propTypes = {
+    movies: PropTypes.arrayOf(Movie).isRequired,
   };
 
   return WithActiveItemList;

@@ -1,72 +1,28 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import GenreFilter from '../genre-filter/genre-filter';
 
-class GenreFilterList extends React.PureComponent {
-
-  constructor(props) {
-    super(props);
-
-    this._handleItemClick = this._handleItemClick.bind(this);
-  }
-
-  _handleItemClick(e) {
-
-    const {onGenreItemClick} = this.props;
-    const index = parseInt(e.currentTarget.dataset.index, 10);
-
-    e.preventDefault();
-    onGenreItemClick(index);
-  }
-
-  render() {
-
-    const {genres, currentGenreIndex} = this.props;
-
-    return (
-      <ul className="catalog__genres-list">
-        {
-          genres.map((tab, index) => {
-            return (
-              <li key={tab}
-                className={`catalog__genres-item${index === currentGenreIndex ? ` catalog__genres-item--active` : ``}`}
-              >
-                <a
-                  data-index={index}
-                  href="#"
-                  className="catalog__genres-link"
-                  onClick={this._handleItemClick}
-                >{tab}</a>
-              </li>
-            );
-          })
-        }
-      </ul>
-    );
-  }
+function GenreFilterList({genres, currentGenre}) {
+  return (
+    <ul className="catalog__genres-list">
+      {
+        genres.map((genre) => {
+          return (
+            <li key={genre}
+              className={`catalog__genres-item${genre === currentGenre ? ` catalog__genres-item--active` : ``}`}
+            >
+              <GenreFilter genre={genre} />
+            </li>
+          );
+        })
+      }
+    </ul>
+  );
 }
 
 GenreFilterList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // TODO: без след. пропcoв ругается линтер
-  currentGenreIndex: PropTypes.number,
-  onGenreItemClick: PropTypes.func,
+  currentGenre: PropTypes.string.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    currentGenreIndex: state.genreFilterIndex,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onGenreItemClick: (index) => {
-      dispatch(ActionCreator.applyGenreFilter(index));
-    }
-  };
-}
-
-export {GenreFilterList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreFilterList);
+export default GenreFilterList;

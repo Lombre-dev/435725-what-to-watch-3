@@ -1,48 +1,38 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {getMoviesByGenre} from '../../utils/movie-utils';
+import Footer from '../footer/footer';
 import Main from '../main/main';
+import MoreLikeThis from '../more-like-this/more-like-this';
 import MovieInfo from '../movie-info';
 import {Movie} from '../types';
 
-export default class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      detailInfoMovie: undefined,
-    };
-
-    this._handleMovieListItemClick = this._handleMovieListItemClick.bind(this);
-  }
-
-  _handleMovieListItemClick({movie}) {
-    this.setState(() => {
-      return {
-        detailInfoMovie: movie,
-      };
-    });
-  }
+class App extends React.PureComponent {
 
   _renderState() {
 
-    const {detailInfoMovie} = this.state;
     const {currentMovie, movies} = this.props;
 
-    if (detailInfoMovie) {
+    if (currentMovie) {
       return (
-        <MovieInfo
-          movie={detailInfoMovie}
-        />
+        <>
+          <MovieInfo
+            movie={currentMovie}
+          />
+          <div className="page-content">
+            <MoreLikeThis
+              movies={getMoviesByGenre(movies, currentMovie.genres[0], [currentMovie])}
+            />
+            <Footer />
+          </div>
+        </>
       );
     }
 
     return (
-      <Main
-        currentMovie={currentMovie}
-        movies={movies}
-        onMovieListItemClick={this._handleMovieListItemClick}
-      />
+      <Main />
     );
   }
 
@@ -68,6 +58,16 @@ export default class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  currentMovie: Movie.isRequired,
+  currentMovie: Movie,
   movies: PropTypes.arrayOf(Movie),
 };
+
+function mapStateToProps(state) {
+  return {
+    movies: state.catalogMovies,
+    currentMovie: state.currentMovie,
+  };
+}
+
+export {App};
+export default connect(mapStateToProps)(App);

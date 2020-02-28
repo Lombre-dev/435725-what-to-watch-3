@@ -1,69 +1,47 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {ALL_GENRE, GENRES, GENRE_ALIASES} from '../consts';
+import {ActionCreator} from '../../reducer';
 import GenreFilterList from '../genre-filter-list/genre-filter-list';
+import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
 import {Movie} from '../types';
 
 class MovieCatalog extends React.PureComponent {
 
-  _getGenres() {
-
-    const {movies} = this.props;
-    const genres = [ALL_GENRE];
-
-    movies.forEach((movie) => {
-      movie.genres.forEach((genre) => {
-
-        const alias = GENRE_ALIASES[genre] || genre;
-
-        if (genres.includes(alias)) {
-          return;
-        }
-        genres.push(alias);
-      });
-    });
-
-    return genres;
-  }
-
-  _getCurrentMovies() {
-
-    const {genreFilterIndex, movies} = this.props;
-    const genre = GENRES[genreFilterIndex - 1];
-
-    return genre ? movies.filter((movie) => movie.genres.includes(genre)) : movies;
-  }
-
   render() {
 
-    const {onMovieListItemClick} = this.props;
-    const currentMovies = this._getCurrentMovies();
+    const {
+      genres,
+      currentGenre,
+      movies,
+      hasMoreMovies,
+      onShowMore
+    } = this.props;
 
     return (
-      <>
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreFilterList
-          genres={this._getGenres()}
+          genres={genres}
+          currentGenre={currentGenre}
         />
         <SmallMovieCardList
-          movies={currentMovies}
-          onItemClick={onMovieListItemClick}
+          movies={movies}
         />
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
-      </>
+        {hasMoreMovies && <ShowMore onClick={onShowMore} />}
+      </section>
     );
   }
 
 }
 
 MovieCatalog.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentGenre: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(Movie),
-  onMovieListItemClick: PropTypes.func.isRequired,
-  // TODO: без след. пропcoв ругается линтер
-  genreFilterIndex: PropTypes.number,
+  hasMoreMovies: PropTypes.bool.isRequired,
+  onShowMore: PropTypes.func.isRequired,
 };
 
 MovieCatalog.defaultProps = {
@@ -72,9 +50,20 @@ MovieCatalog.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    genreFilterIndex: state.genreFilterIndex,
+    genres: state.catalogGenres,
+    currentGenre: state.catalogGenre,
+    movies: state.catalogMovies,
+    hasMoreMovies: state.hasMoreCatalogMovies,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onShowMore: () => {
+      dispatch(ActionCreator.getMoreCatalogMovies());
+    },
   };
 }
 
 export {MovieCatalog};
-export default connect(mapStateToProps)(MovieCatalog);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCatalog);

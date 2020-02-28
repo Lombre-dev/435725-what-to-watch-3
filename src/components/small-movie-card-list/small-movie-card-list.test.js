@@ -1,7 +1,11 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import SmallMovieCardList from './small-movie-card-list';
 
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -93,20 +97,33 @@ const MOVIES = [
   },
 ];
 const ACTIVE_ITEM_ID = 0;
-const HANDLE_CALLBACK = () => {};
+const HAS_MORE_MOVIES = true;
+const HANDLE_EVENT = () => {};
+
+const mockStore = configureStore([]);
 
 describe(`<SmallMovieCardList />`, () => {
 
   it(`render should be match markup`, () => {
 
+    const store = mockStore({
+      currentMovie: null,
+      promoMovie: MOVIES[0],
+      catalogGenres: GENRES,
+      catalogGenre: CURRENT_GENRE,
+      catalogMovies: MOVIES,
+      hasMoreCatalogMovies: HAS_MORE_MOVIES,
+    });
+
     const result = renderer
-      .create(<SmallMovieCardList
-        movies={MOVIES}
-        activeItemId={ACTIVE_ITEM_ID}
-        onItemHover={HANDLE_CALLBACK}
-        onItemLeave={HANDLE_CALLBACK}
-        onItemClick={HANDLE_CALLBACK}
-      />, {
+      .create(<Provider store={store}>
+        <SmallMovieCardList
+          movies={MOVIES}
+          activeItemId={ACTIVE_ITEM_ID}
+          onItemHover={HANDLE_EVENT}
+          onItemLeave={HANDLE_EVENT}
+        />
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }
