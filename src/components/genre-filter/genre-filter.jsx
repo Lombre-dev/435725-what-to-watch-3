@@ -2,19 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
+import {getGenreLabels} from '../../utils/movie-utils';
 
 class GenreFilter extends React.PureComponent {
 
   constructor(props) {
     super(props);
 
-    this._handleItemClick = this._handleItemClick.bind(this);
+    this._handleClick = this._handleClick.bind(this);
   }
 
-  _handleItemClick(e) {
+  _handleClick(e) {
 
-    const {onSelect} = this.props;
-    const genre = e.currentTarget.dataset.genre;
+    const {genre, onSelect} = this.props;
 
     e.preventDefault();
     onSelect(genre);
@@ -22,47 +22,23 @@ class GenreFilter extends React.PureComponent {
 
   render() {
 
-    const {genres, currentGenre} = this.props;
+    const {genre} = this.props;
+    const genreLabels = getGenreLabels();
 
     return (
-      <ul className="catalog__genres-list">
-        {
-          genres.map((tab) => {
-            return (
-              <li key={tab}
-                className={`catalog__genres-item${tab === currentGenre ? ` catalog__genres-item--active` : ``}`}
-              >
-                <a
-                  data-genre={tab}
-                  href="#"
-                  className="catalog__genres-link"
-                  onClick={this._handleItemClick}
-                >{tab}</a>
-              </li>
-            );
-          })
-        }
-      </ul>
+      <a
+        href="#"
+        className="catalog__genres-link"
+        onClick={this._handleClick}
+      >{genreLabels[genre] || genre}</a>
     );
   }
 }
 
 GenreFilter.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentGenre: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
-
-/*
-TODO: решил проваливать эти пропсы сверху,
-если лучше привязаться к store, то пометь в feedback.
-function mapStateToProps(state) {
-  return {
-    genres: state.catalogGenres,
-    currentGenre: state.cataloGenre,
-  };
-}
-*/
 
 function mapDispatchToProps(dispatch) {
   return {

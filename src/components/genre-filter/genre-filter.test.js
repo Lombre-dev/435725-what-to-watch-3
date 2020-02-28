@@ -2,8 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {GenreFilter} from './genre-filter';
 
-const GENRES = [`Comedy`, `Sci-Fi`, `Horror`];
-const HANDLE_SELECT = () => {};
+const GENRE = `Comedy`;
+const HANDLE_EVENT = () => {};
 
 describe(`<GenreFilter />`, () => {
 
@@ -11,10 +11,13 @@ describe(`<GenreFilter />`, () => {
 
     const result = renderer
       .create(<GenreFilter
-        genres={GENRES}
-        currentGenre={GENRES[0]}
-        onSelect={HANDLE_SELECT}
-      />)
+        genre={GENRE}
+        onSelect={HANDLE_EVENT}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(result).toMatchSnapshot();

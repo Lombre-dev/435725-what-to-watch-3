@@ -158,11 +158,10 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Drama"
             href="#"
             onClick={[Function]}
           >
-            Drama
+            Dramas
           </a>
         </li>
         <li
@@ -170,11 +169,10 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Comedy"
             href="#"
             onClick={[Function]}
           >
-            Comedy
+            Comedies
           </a>
         </li>
         <li
@@ -182,7 +180,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Kids & Family"
             href="#"
             onClick={[Function]}
           >

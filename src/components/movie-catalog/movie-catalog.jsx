@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
-import GenreFilter from '../genre-filter/genre-filter';
+import GenreFilterList from '../genre-filter-list/genre-filter-list';
 import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
 import {Movie} from '../types';
@@ -22,7 +22,7 @@ class MovieCatalog extends React.PureComponent {
     return (
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <GenreFilter
+        <GenreFilterList
           genres={genres}
           currentGenre={currentGenre}
         />

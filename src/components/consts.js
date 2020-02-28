@@ -21,7 +21,7 @@ export const GENRES = [
   THRILLER_GENRE,
 ];
 
-export const GENRE_ALIASES = {
+export const GENRE_LABELS = {
   [COMEDY_GENRE]: `Comedies`,
   [DRAMA_GENRE]: `Dramas`,
   [THRILLER_GENRE]: `Thrillers`,
@@ -36,13 +36,4 @@ export const MOVIE_INFO_TABS = [
   `Overview`,
   `Details`,
   `Reviews`,
-];
-
-export const RATING_SCORE_LIMIT = 10;
-export const RATING_LEVELS = [
-  `Bad`,
-  `Normal`,
-  `Good`,
-  `Very good`,
-  `Awesome`,
 ];

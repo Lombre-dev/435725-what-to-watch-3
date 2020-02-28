@@ -96,7 +96,6 @@ const MOVIES = [
     ]
   },
 ];
-const CATALOG_PAGE = 1;
 const HAS_MORE_MOVIES = true;
 const CURRENT_MOVIE = MOVIES[0];
 const HANDLE_CLICK = () => {};
@@ -111,7 +110,6 @@ describe(`<Main />`, () => {
       promoMovie: MOVIES[0],
       catalogGenres: GENRES,
       catalogGenre: CURRENT_GENRE,
-      catalogPage: CATALOG_PAGE,
       catalogMovies: MOVIES,
       hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });

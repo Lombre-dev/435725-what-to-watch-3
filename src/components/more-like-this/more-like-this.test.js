@@ -96,7 +96,6 @@ const MOVIES = [
     ]
   },
 ];
-const CATALOG_PAGE = 1;
 const HAS_MORE_MOVIES = true;
 
 const mockStore = configureStore([]);
@@ -110,7 +109,6 @@ describe(`<MoreLikeThis />`, () => {
       promoMovie: MOVIES[0],
       catalogGenres: GENRES,
       catalogGenre: CURRENT_GENRE,
-      catalogPage: CATALOG_PAGE,
       catalogMovies: MOVIES,
       hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });

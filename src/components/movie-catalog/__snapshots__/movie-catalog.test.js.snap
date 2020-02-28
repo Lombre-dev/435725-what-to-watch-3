@@ -17,11 +17,10 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
     >
       <a
         className="catalog__genres-link"
-        data-genre="Drama"
         href="#"
         onClick={[Function]}
       >
-        Drama
+        Dramas
       </a>
     </li>
     <li
@@ -29,11 +28,10 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
     >
       <a
         className="catalog__genres-link"
-        data-genre="Comedy"
         href="#"
         onClick={[Function]}
       >
-        Comedy
+        Comedies
       </a>
     </li>
     <li
@@ -41,7 +39,6 @@ exports[`<MovieCatalog /> render should be match markup 1`] = `
     >
       <a
         className="catalog__genres-link"
-        data-genre="Kids & Family"
         href="#"
         onClick={[Function]}
       >

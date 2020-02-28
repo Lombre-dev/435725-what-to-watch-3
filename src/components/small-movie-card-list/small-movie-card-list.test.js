@@ -96,7 +96,6 @@ const MOVIES = [
     ]
   },
 ];
-const CATALOG_PAGE = 1;
 const ACTIVE_ITEM_ID = 0;
 const HAS_MORE_MOVIES = true;
 const HANDLE_EVENT = () => {};
@@ -112,7 +111,6 @@ describe(`<SmallMovieCardList />`, () => {
       promoMovie: MOVIES[0],
       catalogGenres: GENRES,
       catalogGenre: CURRENT_GENRE,
-      catalogPage: CATALOG_PAGE,
       catalogMovies: MOVIES,
       hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });

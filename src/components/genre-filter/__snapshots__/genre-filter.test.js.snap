@@ -1,44 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<GenreFilter /> render should be match markup 1`] = `
-<ul
-  className="catalog__genres-list"
+<a
+  className="catalog__genres-link"
+  href="#"
+  onClick={[Function]}
 >
-  <li
-    className="catalog__genres-item catalog__genres-item--active"
-  >
-    <a
-      className="catalog__genres-link"
-      data-genre="Comedy"
-      href="#"
-      onClick={[Function]}
-    >
-      Comedy
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      data-genre="Sci-Fi"
-      href="#"
-      onClick={[Function]}
-    >
-      Sci-Fi
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      data-genre="Horror"
-      href="#"
-      onClick={[Function]}
-    >
-      Horror
-    </a>
-  </li>
-</ul>
+  Comedies
+</a>
 `;

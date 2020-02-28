@@ -97,7 +97,6 @@ const MOVIES = [
     ]
   },
 ];
-const CATALOG_PAGE = 1;
 const HAS_MORE_MOVIES = true;
 const HANDLE_EVENT = () => {};
 
@@ -110,7 +109,6 @@ describe(`<MovieCatalog />`, () => {
     const store = mockStore({
       catalogGenres: GENRES,
       catalogGenre: CURRENT_GENRE,
-      catalogPage: CATALOG_PAGE,
       catalogMovies: MOVIES,
       hasMoreCatalogMovies: HAS_MORE_MOVIES,
     });
