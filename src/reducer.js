@@ -34,7 +34,6 @@ function _setCurrentMovie(state, movie) {
 
 function _setCatalogGenre(state, genre) {
 
-
   const {allMovies} = state;
   const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
   const pageMovies = genreMovies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);

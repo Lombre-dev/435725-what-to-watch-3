@@ -12,26 +12,23 @@ const initialState = {
   currentMovie: undefined,
   promoMovie: MOVIES[0],
 
-  allMovies: MOVIES, // вот это мок мне нужен, чтобы поменять набор фильмов при смене жанра
+  allMovies: MOVIES,
   catalogGenres: [ALL_GENRE].concat(getGenresFromMovies(MOVIES)),
   catalogGenre: ALL_GENRE,
   catalogMovies: MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT),
   hasMoreCatalogMovies: MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT,
 };
 
+/* eslint-disable indent */
 const store = createStore(
   reducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
+  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 
-/* eslint-disable indent */
 ReactDOM.render(
   <Provider store={store}>
-    <App
-      currentMovie={MOVIES[0]}
-      movies={MOVIES}
-    />
+    <App />
   </Provider>,
   document.getElementById(`root`)
 );

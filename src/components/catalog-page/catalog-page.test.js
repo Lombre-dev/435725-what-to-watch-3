@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import Main from './main';
+import {CatalogPage} from './catalog-page';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
 const CURRENT_GENRE = GENRES[0];
@@ -102,7 +102,7 @@ const HANDLE_CLICK = () => {};
 
 const mockStore = configureStore([]);
 
-describe(`<Main />`, () => {
+describe(`<CatalogPage />`, () => {
 
   it(`render should be match markup`, () => {
 
@@ -116,7 +116,7 @@ describe(`<Main />`, () => {
 
     const result = renderer
       .create(<Provider store={store}>
-        <Main
+        <CatalogPage
           currentMovie={CURRENT_MOVIE}
           onMovieListItemClick={HANDLE_CLICK}
         />
