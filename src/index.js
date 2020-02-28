@@ -19,14 +19,13 @@ const initialState = {
   hasMoreCatalogMovies: MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT,
 };
 
-/* eslint-disable indent */
 const store = createStore(
   reducer,
+  initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
-  initialState
 );
 
-
+/* eslint-disable indent */
 ReactDOM.render(
   <Provider store={store}>
     <App
