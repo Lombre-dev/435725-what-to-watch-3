@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {setCurrentMovie} from '../../redux/catalog/actions';
 import {Movie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 
@@ -72,10 +72,13 @@ SmallMovieCard.propTypes = {
   onLeave: PropTypes.func.isRequired,
 };
 
+// https://redux.js.org/api/bindactioncreators/
+// bindActionCreators(actionCreators, dispatch)
+
 function mapDispatchToProps(dispatch) {
   return {
     onClick: (movie) => {
-      dispatch(ActionCreator.setCurrentMovie(movie));
+      dispatch(setCurrentMovie(movie));
     },
   };
 }

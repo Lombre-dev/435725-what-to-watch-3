@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {setCatalogGenre} from '../../redux/catalog/actions';
 import {getGenreLabels} from '../../utils/movie-utils';
 
 class GenreFilter extends React.PureComponent {
@@ -43,7 +43,7 @@ GenreFilter.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     onSelect: (genre) => {
-      dispatch(ActionCreator.setCatalogGenre(genre));
+      dispatch(setCatalogGenre(genre));
     }
   };
 }

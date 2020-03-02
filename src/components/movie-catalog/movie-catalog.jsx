@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {getMoreCatalogMovies} from '../../redux/catalog/actions';
 import GenreFilterList from '../genre-filter-list/genre-filter-list';
 import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
@@ -60,7 +60,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onShowMore: () => {
-      dispatch(ActionCreator.getMoreCatalogMovies());
+      dispatch(getMoreCatalogMovies());
     },
   };
 }

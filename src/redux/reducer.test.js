@@ -1,7 +1,7 @@
 import configureStore from 'redux-mock-store';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from './components/consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../components/consts';
+import {getGenresFromMovies} from '../utils/movie-utils';
 import {ActionCreator, ActionType, reducer} from './reducer';
-import {getGenresFromMovies} from './utils/movie-utils';
 
 const MOVIES = [
   {
