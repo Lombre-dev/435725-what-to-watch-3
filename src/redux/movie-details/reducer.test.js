@@ -1,7 +1,5 @@
 import {createStore} from 'redux';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../components/consts';
-import {getGenresFromMovies} from '../../utils/movie-utils';
-import {getMoreCatalogMovies, setCatalogGenre} from './actions';
+import {setCurrentMovie} from './actions';
 import {reducer} from './reducer';
 
 const MOVIES = [
@@ -84,46 +82,23 @@ const MOVIES = [
     ]
   },
 ];
-const PROMO_MOVIE = MOVIES[0];
-const CATALOG_GENRE = ALL_GENRE;
-const CATALOG_GENRES = [ALL_GENRE].concat(getGenresFromMovies(MOVIES));
-const CATALOG_MOVIES = MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
-const HAS_MORE_CATALOG_MOVIES = MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT;
 
 const INITIAL_STATE = {
-  allMovies: CATALOG_MOVIES,
-
-  promoMovie: PROMO_MOVIE,
-  genres: CATALOG_GENRES,
-  currentGenre: CATALOG_GENRE,
-  movies: CATALOG_MOVIES,
-  hasMoreMovies: HAS_MORE_CATALOG_MOVIES,
+  currentMovie: undefined,
+  moviesLikeCurrent: [],
+  allMovies: MOVIES,
 };
 
-describe(`CatalogReducer`, () => {
+describe(`MovieDetailsReducer`, () => {
 
-  it(`should be switch value of currentGenre`, () => {
-
-    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {
-      currentGenre: `Comedy`,
-      movies: [MOVIES[1]],
-      hasMoreMovies: false,
-    });
-
-    store.dispatch(setCatalogGenre(`Comedy`));
-
-    expect(store.getState()).toEqual(sample);
-  });
-
-  it(`should be new movies added to movie catalog`, () => {
+  it(`should be switch value of currentMovie`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      movies: MOVIES.slice(0, 2 * CATALOG_MOVIES_PER_PAGE_LIMIT),
+      currentMovie: MOVIES[0],
     });
 
-    store.dispatch(getMoreCatalogMovies());
+    store.dispatch(setCurrentMovie(MOVIES[0]));
 
     expect(store.getState()).toEqual(sample);
   });
