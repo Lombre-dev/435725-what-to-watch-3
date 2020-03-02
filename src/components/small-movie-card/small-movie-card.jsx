@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {setCurrentMovie} from '../../redux/catalog/actions';
+import {setCurrentMovie} from '../../redux/movie-details/actions';
 import {Movie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 

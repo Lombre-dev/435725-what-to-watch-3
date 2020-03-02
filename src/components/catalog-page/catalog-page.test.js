@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import {CatalogPage} from './catalog-page';
+import CatalogPage from './catalog-page';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
 const CURRENT_GENRE = GENRES[0];
@@ -97,8 +97,6 @@ const MOVIES = [
   },
 ];
 const HAS_MORE_MOVIES = true;
-const CURRENT_MOVIE = MOVIES[0];
-const HANDLE_CLICK = () => {};
 
 const mockStore = configureStore([]);
 
@@ -107,19 +105,22 @@ describe(`<CatalogPage />`, () => {
   it(`render should be match markup`, () => {
 
     const store = mockStore({
-      promoMovie: MOVIES[0],
-      catalogGenres: GENRES,
-      catalogGenre: CURRENT_GENRE,
-      catalogMovies: MOVIES,
-      hasMoreCatalogMovies: HAS_MORE_MOVIES,
+      movieDetails: {
+        currentMovie: undefined,
+        moviesLikeCurrent: [],
+      },
+      catalog: {
+        promoMovie: MOVIES[0],
+        currentGenre: CURRENT_GENRE,
+        genres: GENRES,
+        movies: MOVIES,
+        hasMoreMovies: HAS_MORE_MOVIES,
+      }
     });
 
     const result = renderer
       .create(<Provider store={store}>
-        <CatalogPage
-          currentMovie={CURRENT_MOVIE}
-          onMovieListItemClick={HANDLE_CLICK}
-        />
+        <CatalogPage />
       </Provider>, {
         createNodeMock: () => {
           return {};

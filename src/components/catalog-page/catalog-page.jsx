@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {getPromoMovie} from '../../redux/catalog/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import MovieCatalog from '../movie-catalog/movie-catalog';
@@ -53,16 +54,12 @@ function CatalogPage({promoMovie}) {
 }
 
 CatalogPage.propTypes = {
-  promoMovie: Movie.isRequired,
-};
-
-CatalogPage.defaultProps = {
-  movies: [],
+  promoMovie: Movie,
 };
 
 function mapStateToProps(state) {
   return {
-    promoMovie: state.promoMovie,
+    promoMovie: getPromoMovie(state),
   };
 }
 

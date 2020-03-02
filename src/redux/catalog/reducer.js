@@ -1,20 +1,16 @@
 import {createReducer} from 'redux-act';
 import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../components/consts';
 import {getMoviesByGenre} from '../../utils/movie-utils';
-import {getMoreCatalogMovies, setCatalogGenre, setCurrentMovie} from './actions';
+import {catalogInitalState} from '../initialState';
+import {getMoreCatalogMovies, setCatalogGenre} from './actions';
 
 // TODO: combineReducer(catalogReducer)
 // Чистый код Роберт Мартин
 
 export const reducer = createReducer({
-  [setCurrentMovie]: _setCurrentMovie,
   [setCatalogGenre]: _setCatalogGenre,
   [getMoreCatalogMovies]: _getMoreCatalogMovies,
-});
-
-function _setCurrentMovie(state, movie) {
-  return Object.assign({}, state, {currentMovie: movie});
-}
+}, catalogInitalState);
 
 function _setCatalogGenre(state, genre) {
 
@@ -22,9 +18,9 @@ function _setCatalogGenre(state, genre) {
   const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
   const pageMovies = genreMovies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
   const update = {
-    catalogGenre: genre,
-    catalogMovies: pageMovies,
-    hasMoreCatalogMovies: pageMovies.length < genreMovies.length,
+    currentGenre: genre,
+    movies: pageMovies,
+    hasMoreMovies: pageMovies.length < genreMovies.length,
   };
 
   return Object.assign({}, state, update);
@@ -32,12 +28,12 @@ function _setCatalogGenre(state, genre) {
 
 function _getMoreCatalogMovies(state) {
 
-  const {catalogGenre, catalogMovies, allMovies} = state;
-  const genreMovies = catalogGenre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, catalogGenre);
-  const pageMovies = genreMovies.slice(0, catalogMovies.length + CATALOG_MOVIES_PER_PAGE_LIMIT);
+  const {currentGenre, movies, allMovies} = state;
+  const genreMovies = currentGenre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, currentGenre);
+  const pageMovies = genreMovies.slice(0, movies.length + CATALOG_MOVIES_PER_PAGE_LIMIT);
   const update = {
-    catalogMovies: pageMovies,
-    hasMoreCatalogMovies: pageMovies.length < genreMovies.length,
+    movies: pageMovies,
+    hasMoreMovies: pageMovies.length < genreMovies.length,
   };
 
   return Object.assign({}, state, update);

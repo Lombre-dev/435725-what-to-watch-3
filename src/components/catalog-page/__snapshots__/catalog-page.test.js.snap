@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Main /> render should be match markup 1`] = `
+exports[`<CatalogPage /> render should be match markup 1`] = `
 Array [
   <section
     className="movie-card"

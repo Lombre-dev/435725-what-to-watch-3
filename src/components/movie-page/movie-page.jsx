@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {getMoviesByGenre} from '../../utils/movie-utils';
+import {getCurrentMovie, getMoviesLikeCurrent} from '../../redux/movie-details/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import MoreLikeThis from '../more-like-this/more-like-this';
 import MovieInfo from '../movie-info';
 import {Movie} from '../types';
 
-function MoviePage({currentMovie, movies}) {
+function MoviePage({currentMovie, moviesLikeCurrent}) {
 
   return (
     <>
@@ -50,7 +50,7 @@ function MoviePage({currentMovie, movies}) {
 
       <div className="page-content">
         <MoreLikeThis
-          movies={getMoviesByGenre(movies, currentMovie.genres[0], [currentMovie])}
+          movies={moviesLikeCurrent}
         />
         <Footer />
       </div>
@@ -60,13 +60,13 @@ function MoviePage({currentMovie, movies}) {
 
 MoviePage.propTypes = {
   currentMovie: Movie.isRequired,
-  movies: PropTypes.arrayOf(Movie).isRequired,
+  moviesLikeCurrent: PropTypes.arrayOf(Movie).isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    currentMovie: state.currentMovie,
-    movies: state.allMovies,
+    currentMovie: getCurrentMovie(state),
+    moviesLikeCurrent: getMoviesLikeCurrent(state),
   };
 }
 

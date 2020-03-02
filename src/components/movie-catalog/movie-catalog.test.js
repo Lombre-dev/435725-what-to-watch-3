@@ -107,10 +107,17 @@ describe(`<MovieCatalog />`, () => {
   it(`render should be match markup`, () => {
 
     const store = mockStore({
-      catalogGenres: GENRES,
-      catalogGenre: CURRENT_GENRE,
-      catalogMovies: MOVIES,
-      hasMoreCatalogMovies: HAS_MORE_MOVIES,
+      movieDetails: {
+        currentMovie: undefined,
+        moviesLikeCurrent: [],
+      },
+      catalog: {
+        promoMovie: MOVIES[0],
+        currentGenre: CURRENT_GENRE,
+        genres: GENRES,
+        movies: MOVIES,
+        hasMoreMovies: HAS_MORE_MOVIES,
+      }
     });
 
     const result = renderer

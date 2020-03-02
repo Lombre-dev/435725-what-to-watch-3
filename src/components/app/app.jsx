@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {getCurrentMovie} from '../../redux/movie-details/selectors';
 import CatalogPage from '../catalog-page/catalog-page';
 import MoviePage from '../movie-page/movie-page';
 import {Movie} from '../types';
@@ -46,7 +47,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentMovie: state.currentMovie,
+    currentMovie: getCurrentMovie(state),
   };
 }
 
