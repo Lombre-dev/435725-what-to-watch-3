@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {getPromoMovie} from '../../redux/catalog/selectors';
+import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import MovieCatalog from '../movie-catalog/movie-catalog';
 import {Movie} from '../types';
 
-const Main = ({promoMovie}) => {
+function CatalogPage({promoMovie}) {
   return (
     <>
       <section className="movie-card">
@@ -35,27 +37,10 @@ const Main = ({promoMovie}) => {
             <div className="movie-card__poster">
               <img src={promoMovie.poster} alt={`${promoMovie.title} poster`} width="218" height="327" />
             </div>
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoMovie.title}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoMovie.genres.join(`, `)}</span>
-                <span className="movie-card__year">{promoMovie.year}</span>
-              </p>
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
-              </div>
-            </div>
+            <BigMovieCard
+              movie={promoMovie}
+              isCanReviewed={false}
+            />
           </div>
         </div>
       </section>
@@ -66,21 +51,17 @@ const Main = ({promoMovie}) => {
       </div>
     </>
   );
-};
+}
 
-Main.propTypes = {
-  promoMovie: Movie.isRequired,
-};
-
-Main.defaultProps = {
-  movies: [],
+CatalogPage.propTypes = {
+  promoMovie: Movie,
 };
 
 function mapStateToProps(state) {
   return {
-    promoMovie: state.promoMovie,
+    promoMovie: getPromoMovie(state),
   };
 }
 
-export {Main};
-export default connect(mapStateToProps)(Main);
+export {CatalogPage};
+export default connect(mapStateToProps)(CatalogPage);

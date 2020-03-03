@@ -1,7 +1,6 @@
-import configureStore from 'redux-mock-store';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from './components/consts';
-import {ActionCreator, ActionType, reducer} from './reducer';
-import {getGenresFromMovies} from './utils/movie-utils';
+import {createStore} from 'redux';
+import {setCurrentMovie} from './actions';
+import {reducer} from './reducer';
 
 const MOVIES = [
   {
@@ -83,79 +82,29 @@ const MOVIES = [
     ]
   },
 ];
-const PROMO_MOVIE = MOVIES[0];
-const CATALOG_GENRE = ALL_GENRE;
-const CATALOG_GENRES = [ALL_GENRE].concat(getGenresFromMovies(MOVIES));
-const CATALOG_MOVIES = MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
-const HAS_MORE_CATALOG_MOVIES = MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT;
 
 const INITIAL_STATE = {
-
   currentMovie: undefined,
-
-  promoMovie: PROMO_MOVIE,
-
-  allMovies: CATALOG_MOVIES,
-  catalogGenres: CATALOG_GENRES,
-  catalogGenre: CATALOG_GENRE,
-  catalogMovies: CATALOG_MOVIES,
-  hasMoreCatalogMovies: HAS_MORE_CATALOG_MOVIES,
+  moviesLikeCurrent: [],
+  allMovies: MOVIES,
 };
 
-const mockStore = configureStore([]);
-
-describe(`Reducer`, () => {
-
-  /* TODO: обсудить этот тест
-  it(`should be equal initial state`, () => {
-    expect(reducer(void 0, {}))
-      .toEqual(INITIAL_STORE);
-  });
-  */
-
-  it(`should be switch value of catalogGenre`, () => {
-
-    const store = mockStore(Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {
-      catalogGenre: `Comedy`,
-      catalogMovies: [MOVIES[1]],
-      hasMoreCatalogMovies: false,
-    });
-
-    expect(reducer(store.getState(), {
-      type: ActionType.SET_CATALOG_GENRE,
-      payload: `Comedy`,
-    }))
-      .toEqual(sample);
-  });
+describe(`MovieDetailsReducer`, () => {
 
   it(`should be switch value of currentMovie`, () => {
 
-    const store = mockStore(Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {currentMovie: MOVIES[0]});
-
-    expect(reducer(store.getState(), {
-      type: ActionType.SET_CURRENT_MOVIE,
-      payload: MOVIES[0],
-    }))
-      .toEqual(sample);
-  });
-
-  it(`should be new movies added to movie catalog`, () => {
-
-    const store = mockStore(Object.assign({}, INITIAL_STATE));
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      catalogMovies: MOVIES.slice(0, 2 * CATALOG_MOVIES_PER_PAGE_LIMIT),
+      currentMovie: MOVIES[0],
     });
 
-    expect(reducer(store.getState(), {
-      type: ActionType.GET_MORE_CATALOG_MOVIES,
-      payload: undefined,
-    }))
-      .toEqual(sample);
+    store.dispatch(setCurrentMovie(MOVIES[0]));
+
+    expect(store.getState()).toEqual(sample);
   });
 });
 
+/*
 describe(`ActionCreator`, () => {
 
   it(`calling 'setCurrentMovie' should be equal template`, () => {
@@ -182,3 +131,4 @@ describe(`ActionCreator`, () => {
       });
   });
 });
+*/

@@ -11,14 +11,11 @@ export default class VideoPlayer extends React.PureComponent {
 
   componentDidMount() {
 
-    const {poster, isMuted, src} = this.props;
+    const {poster, src} = this.props;
     const video = this._videoRef.current;
 
     video.preload = `none`;
     video.poster = poster;
-    if (isMuted) {
-      video.muted = isMuted;
-    }
     video.src = src;
   }
 
@@ -32,8 +29,14 @@ export default class VideoPlayer extends React.PureComponent {
 
   componentDidUpdate() {
 
-    const {isActive} = this.props;
+    const {isActive, isMuted} = this.props;
     const video = this._videoRef.current;
+
+    if (isMuted) {
+      video.muted = isMuted;
+    } else {
+      delete video.muted;
+    }
 
     if (isActive) {
       video.play();

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {getMoreCatalogMovies} from '../../redux/catalog/actions';
+import {getCurrentGenre, getGenres, getHasMoreMovies, getMovies} from '../../redux/catalog/selectors';
 import GenreFilterList from '../genre-filter-list/genre-filter-list';
 import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
@@ -50,17 +51,17 @@ MovieCatalog.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    genres: state.catalogGenres,
-    currentGenre: state.catalogGenre,
-    movies: state.catalogMovies,
-    hasMoreMovies: state.hasMoreCatalogMovies,
+    genres: getGenres(state),
+    currentGenre: getCurrentGenre(state),
+    movies: getMovies(state),
+    hasMoreMovies: getHasMoreMovies(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onShowMore: () => {
-      dispatch(ActionCreator.getMoreCatalogMovies());
+      dispatch(getMoreCatalogMovies());
     },
   };
 }
