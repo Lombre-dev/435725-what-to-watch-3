@@ -27,9 +27,11 @@ class PlayerPage extends React.PureComponent {
         };
         element.requestFullscreen();
       }
-    } else if (document.fullscreenElement === element) {
+    } else {
       document.onfullscreenchange = null;
-      document.exitFullscreen();
+      if (document.fullscreenElement === element) {
+        document.exitFullscreen();
+      }
     }
   }
 
@@ -38,9 +40,10 @@ class PlayerPage extends React.PureComponent {
     const element = this._ref.current;
 
     if (document.fullscreenElement === element) {
-      document.onfullscreenchange = null;
       document.exitFullscreen();
     }
+
+    document.onfullscreenchange = null;
   }
 
   render() {
