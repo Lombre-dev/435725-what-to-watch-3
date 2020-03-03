@@ -1,4 +1,4 @@
-import {MOVIES} from '../mocks/movies';
+import MOVIES from '../../mocks/movies';
 
 export const initialState = {
   currentMovie: undefined,

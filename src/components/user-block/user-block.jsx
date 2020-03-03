@@ -10,7 +10,7 @@ function UserBlock({user}) {
         </div>
       }
       {
-        !user && <a className="user-block__link" href="/sign-in">Sign in</a>
+        !user && <a className="user-block__link" href="/login">Sign in</a>
       }
     </div>
   );
