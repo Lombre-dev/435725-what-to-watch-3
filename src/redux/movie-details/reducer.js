@@ -1,14 +1,14 @@
 import {createReducer} from 'redux-act';
 import {getMoviesByGenre} from '../../utils/movie-utils';
-import {movieDetailsInitialState} from '../initialState';
 import {setCurrentMovie} from './actions';
+import {initialState} from './initialState';
 
 // TODO: combineReducer(catalogReducer)
 // Чистый код Роберт Мартин
 
 export const reducer = createReducer({
   [setCurrentMovie]: _setCurrentMovie,
-}, movieDetailsInitialState);
+}, initialState);
 
 function _setCurrentMovie(state, movie) {
 
