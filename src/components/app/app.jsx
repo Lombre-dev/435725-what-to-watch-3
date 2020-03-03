@@ -2,8 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {getCurrentMovie} from '../../redux/movie-details/selectors';
+import {getPlayerMovie} from '../../redux/player/selectors';
 import CatalogPage from '../catalog-page/catalog-page';
 import MoviePage from '../movie-page/movie-page';
+import PlayerPage from '../player-page';
 import {SignInPage} from '../sign-in-page/sign-in-page';
 import {Movie} from '../types';
 
@@ -11,9 +13,15 @@ class App extends React.PureComponent {
 
   _renderState() {
 
-    const {currentMovie} = this.props;
+    const {playerMovie, currentMovie} = this.props;
 
-    if (currentMovie) {
+    if (playerMovie) {
+      return (
+        <PlayerPage
+          movie={playerMovie}
+        />
+      );
+    } else if (currentMovie) {
       return (
         <MoviePage />
       );
@@ -36,8 +44,11 @@ class App extends React.PureComponent {
               movie={movies[0]}
             /> */}
           </Route>
-          <Route exact path="/sign-in">
+          <Route exact path="/login">
             <SignInPage />
+          </Route>
+          <Route exact path="/film">
+            <PlayerPage />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -47,11 +58,13 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   currentMovie: Movie,
+  playerMovie: Movie,
 };
 
 function mapStateToProps(state) {
   return {
     currentMovie: getCurrentMovie(state),
+    playerMovie: getPlayerMovie(state),
   };
 }
 

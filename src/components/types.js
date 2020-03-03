@@ -15,6 +15,7 @@ export const Movie = PropTypes.shape({
   poster: PropTypes.string,
   frames: PropTypes.arrayOf(PropTypes.string).isRequired,
   preview: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   ratingScore: PropTypes.number.isRequired,
   ratingReviewsCount: PropTypes.number.isRequired,
   description: PropTypes.string,
