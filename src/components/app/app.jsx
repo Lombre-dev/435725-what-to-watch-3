@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {getCurrentMovie} from '../../redux/movie-details/selectors';
 import CatalogPage from '../catalog-page/catalog-page';
 import MoviePage from '../movie-page/movie-page';
+import {SignInPage} from '../sign-in-page/sign-in-page';
 import {Movie} from '../types';
 
 class App extends React.PureComponent {
@@ -34,6 +35,9 @@ class App extends React.PureComponent {
             {/* <MovieInfo
               movie={movies[0]}
             /> */}
+          </Route>
+          <Route exact path="/sign-in">
+            <SignInPage />
           </Route>
         </Switch>
       </BrowserRouter>

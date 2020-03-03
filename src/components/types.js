@@ -24,3 +24,8 @@ export const Movie = PropTypes.shape({
   director: PropTypes.string.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
+
+export const User = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+});
