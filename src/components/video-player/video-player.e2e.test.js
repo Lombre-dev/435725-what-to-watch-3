@@ -16,6 +16,7 @@ describe(`<VideoPlayer />`, () => {
   it(`component should be switched to active mode`, () => {
 
     const isActive = false;
+    const isPlaying = true;
     const handlePlay = jest.fn();
 
     jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(handlePlay);
@@ -23,6 +24,7 @@ describe(`<VideoPlayer />`, () => {
     const result = mount(<VideoPlayer
       id={ID}
       isActive={isActive}
+      isPlaying={isPlaying}
       poster={POSTER}
       src={SRC}
     />);
@@ -38,6 +40,7 @@ describe(`<VideoPlayer />`, () => {
   it(`component should be switched to inactive mode`, () => {
 
     const isActive = true;
+    const isPlaying = true;
     const handleLoad = jest.fn();
 
     jest.spyOn(HTMLMediaElement.prototype, `load`).mockImplementation(handleLoad);
@@ -45,6 +48,7 @@ describe(`<VideoPlayer />`, () => {
     const result = mount(<VideoPlayer
       id={ID}
       isActive={isActive}
+      isPlaying={isPlaying}
       poster={POSTER}
       src={SRC}
     />);

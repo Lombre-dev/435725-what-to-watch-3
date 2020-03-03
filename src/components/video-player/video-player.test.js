@@ -4,6 +4,7 @@ import VideoPlayer from './video-player';
 
 const ID = 0;
 const IS_ACTIVE = false;
+const IS_PLAYING = false;
 const POSTER = ``;
 const SRC = ``;
 
@@ -15,6 +16,7 @@ describe(`<VideoPlayer />`, () => {
       .create(<VideoPlayer
         id={ID}
         isActive={IS_ACTIVE}
+        isPlaying={IS_PLAYING}
         poster={POSTER}
         src={SRC}
       />, {

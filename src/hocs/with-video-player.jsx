@@ -9,13 +9,16 @@ export default function withVideoPlayer(Component) {
       super(props);
 
       this.state = {
+        isActive: true,
         isPlaying: false,
         isFullscreen: false,
         time: 0,
+        duration: 0,
       };
 
       this._handlePlay = this._handlePlay.bind(this);
       this._handleFullscreen = this._handleFullscreen.bind(this);
+      this._handleDurationUpdate = this._handleDurationUpdate.bind(this);
       this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
       this._handleEnd = this._handleEnd.bind(this);
     }
@@ -23,8 +26,15 @@ export default function withVideoPlayer(Component) {
     _handlePlay() {
       this.setState((prevState) => {
         return {
+          isActive: true,
           isPlaying: !prevState.isPlaying,
         };
+      });
+    }
+
+    _handleDurationUpdate({duration}) {
+      this.setState({
+        duration,
       });
     }
 
@@ -42,8 +52,9 @@ export default function withVideoPlayer(Component) {
 
     _handleEnd() {
       this.setState({
+        isActive: false,
         isPlaying: false,
-        time: 0,
+        trackTime: 0,
       });
     }
 
@@ -58,22 +69,28 @@ export default function withVideoPlayer(Component) {
     render() {
 
       const {movie} = this.props;
-      const {isPlaying} = this.state;
+      const {isActive, isPlaying, isFullscreen, time, duration} = this.state;
 
       return (
         <Component
+          movieTitle={movie.title}
+          movieTime={time}
+          movieDuration={duration}
           isPlaying={isPlaying}
+          isFullscreen={isFullscreen}
           onPlay={this._handlePlay}
           onFullscreen={this._handleFullscreen}
         >
           <VideoPlayer
             id={0}
-            isActive={isPlaying}
+            isActive={isActive}
+            isPlaying={isPlaying}
             poster={movie.poster}
             src={movie.src}
             width={`100%`}
             height={`100%`}
             onTimeUpdate={this._handleTimeUpdate}
+            onDurationUpdate={this._handleDurationUpdate}
             onEnd={this._handleEnd}
           />
         </Component >

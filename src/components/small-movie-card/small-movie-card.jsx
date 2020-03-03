@@ -51,6 +51,7 @@ class SmallMovieCard extends React.PureComponent {
           <VideoPlayer
             id={id}
             isActive={isPreviewActive}
+            isPlaying={true}
             poster={movie.poster}
             src={movie.preview}
           />

@@ -8,6 +8,7 @@ export default class VideoPlayer extends React.PureComponent {
 
     this._videoRef = React.createRef();
 
+    this._handleDurationUpdate = this._handleDurationUpdate.bind(this);
     this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
     this._handleEnd = this._handleEnd.bind(this);
   }
@@ -17,6 +18,7 @@ export default class VideoPlayer extends React.PureComponent {
     const {poster, src} = this.props;
     const video = this._videoRef.current;
 
+    video.ondurationchange = this._handleDurationUpdate;
     video.ontimeupdate = this._handleTimeUpdate;
     video.onended = this._handleEnd;
     video.preload = `none`;
@@ -28,6 +30,7 @@ export default class VideoPlayer extends React.PureComponent {
 
     const video = this._videoRef.current;
 
+    video.onloadedmetadata = null;
     video.ontimeupdate = null;
     video.onended = null;
     video.poster = ``;
@@ -36,7 +39,7 @@ export default class VideoPlayer extends React.PureComponent {
 
   componentDidUpdate() {
 
-    const {isActive, isMuted} = this.props;
+    const {isActive, isPlaying, isMuted} = this.props;
     const video = this._videoRef.current;
 
     if (isMuted) {
@@ -46,9 +49,23 @@ export default class VideoPlayer extends React.PureComponent {
     }
 
     if (isActive) {
-      video.play();
+      if (isPlaying) {
+        video.play();
+      } else {
+        video.pause();
+      }
     } else {
       video.load();
+    }
+  }
+
+  _handleDurationUpdate() {
+
+    const {onDurationUpdate} = this.props;
+    const video = this._videoRef.current;
+
+    if (onDurationUpdate) {
+      onDurationUpdate({duration: video.duration});
     }
   }
 
@@ -83,11 +100,13 @@ export default class VideoPlayer extends React.PureComponent {
 
 VideoPlayer.propTypes = {
   id: PropTypes.number.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
   poster: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
   src: PropTypes.string.isRequired,
+  onDurationUpdate: PropTypes.func,
   onTimeUpdate: PropTypes.func,
   onEnd: PropTypes.func,
   isMuted: PropTypes.bool,

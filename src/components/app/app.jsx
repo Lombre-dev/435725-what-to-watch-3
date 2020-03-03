@@ -17,9 +17,7 @@ class App extends React.PureComponent {
 
     if (playerMovie) {
       return (
-        <PlayerPage
-          movie={playerMovie}
-        />
+        <PlayerPage />
       );
     } else if (currentMovie) {
       return (

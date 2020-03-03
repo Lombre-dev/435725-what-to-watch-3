@@ -1,16 +1,16 @@
 import {createReducer} from 'redux-act';
-import {clearPlayerMovie, setPlayerMovie} from './actions';
+import {releasePlayerMovie, setPlayerMovie} from './actions';
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
   [setPlayerMovie]: _setPlayerMovie,
-  [clearPlayerMovie]: _clearPlayerMovie,
+  [releasePlayerMovie]: _releasePlayerMovie,
 }, initialState);
 
 function _setPlayerMovie(state, movie) {
   return Object.assign({}, state, {movie});
 }
 
-function _clearPlayerMovie(state) {
+function _releasePlayerMovie(state) {
   return Object.assign({}, state, {movie: undefined});
 }
