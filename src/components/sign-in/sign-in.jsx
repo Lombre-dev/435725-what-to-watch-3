@@ -12,9 +12,6 @@ class SignIn extends React.PureComponent {
 
     const {onSubmit} = this.props;
 
-    // eslint-disable-next-line no-console
-    console.log(e.currentTarget);
-
     e.preventDefault();
     onSubmit(e);
   }

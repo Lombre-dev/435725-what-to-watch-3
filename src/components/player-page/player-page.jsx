@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {releasePlayerMovie} from '../../redux/player/actions';
-import {getTime} from '../../utils/player-utils';
+import {formatTime as getFormatTime} from '../../utils/player-utils';
+import {PlayerState} from '../consts';
 
 class PlayerPage extends React.PureComponent {
 
@@ -52,7 +53,7 @@ class PlayerPage extends React.PureComponent {
       movieTitle,
       movieTime,
       movieDuration,
-      isPlaying,
+      movieState,
       onExit,
       onPlay,
       onFullscreen,
@@ -76,13 +77,13 @@ class PlayerPage extends React.PureComponent {
               <progress className="player__progress" value={progress} max="100"></progress>
               <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">{getTime(movieDuration - movieTime)}</div>
+            <div className="player__time-value">{getFormatTime(movieDuration - movieTime)}</div>
           </div>
 
           <div className="player__controls-row">
             <button type="button" className="player__play" onClick={onPlay}>
               {
-                isPlaying ?
+                movieState === PlayerState.PLAYING ?
                   <>
                     <svg viewBox="0 0 14 21" width="14" height="21">
                       <use xlinkHref="#pause" />
@@ -117,7 +118,7 @@ PlayerPage.propTypes = {
   movieTitle: PropTypes.string,
   movieTime: PropTypes.number,
   movieDuration: PropTypes.number,
-  isPlaying: PropTypes.bool,
+  movieState: PropTypes.oneOf(Object.values(PlayerState)),
   isFullscreen: PropTypes.bool,
   onPlay: PropTypes.func,
   onFullscreen: PropTypes.func,

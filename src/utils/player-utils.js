@@ -1,20 +1,14 @@
-export function getTime(seconds) {
+const SECONDS_PER_HOUR = 3600;
+const SECONDS_PER_MIN = 60;
 
-  let secondsValue = Math.floor(seconds);
+export function formatTime(seconds) {
 
-  const hours = Math.floor(secondsValue / 3600);
-  secondsValue -= hours * 3600;
-  const minutes = Math.floor(secondsValue / 60);
+  let roundedSeconds = Math.floor(seconds);
 
-  return `${hours}:${addLeadingSign(minutes)}:${addLeadingSign(secondsValue)}`;
-}
+  const hours = Math.floor(roundedSeconds / SECONDS_PER_HOUR);
+  roundedSeconds -= hours * SECONDS_PER_HOUR;
+  const minutes = Math.floor(roundedSeconds / SECONDS_PER_MIN);
+  roundedSeconds -= minutes * SECONDS_PER_MIN;
 
-function addLeadingSign(value, sign = `0`, length = 2) {
-
-  let result = value.toString();
-
-  while (result.length < length) {
-    result = sign + result;
-  }
-  return result;
+  return `${hours}:${minutes.toString().padStart(2, `0`)}:${roundedSeconds.toString().padStart(2, `0`)}`;
 }

@@ -99,7 +99,7 @@ const MOVIES = [
     ]
   },
 ];
-const ACTIVE_ITEM_ID = 0;
+const ACTIVE_ITEM_ID = -1;
 const HAS_MORE_MOVIES = true;
 const HANDLE_EVENT = () => {};
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {PlayerState} from '../components/consts';
 import {Movie} from '../components/types';
 import VideoPlayer from '../components/video-player/video-player';
 
@@ -9,11 +10,11 @@ export default function withVideoPlayer(Component) {
       super(props);
 
       this.state = {
-        isActive: true,
-        isPlaying: false,
-        isFullscreen: false,
+        state: PlayerState.PLAYING,
+        mute: true,
         time: 0,
         duration: 0,
+        isFullscreen: false,
       };
 
       this._handlePlay = this._handlePlay.bind(this);
@@ -26,8 +27,7 @@ export default function withVideoPlayer(Component) {
     _handlePlay() {
       this.setState((prevState) => {
         return {
-          isActive: true,
-          isPlaying: !prevState.isPlaying,
+          state: prevState.state !== PlayerState.PLAYING ? PlayerState.PLAYING : PlayerState.PAUSED,
         };
       });
     }
@@ -44,17 +44,10 @@ export default function withVideoPlayer(Component) {
       });
     }
 
-    _handleVideoPause() {
-      this.setState({
-        isPlaying: false,
-      });
-    }
-
     _handleEnd() {
       this.setState({
-        isActive: false,
-        isPlaying: false,
-        trackTime: 0,
+        state: PlayerState.ENDED,
+        time: 0,
       });
     }
 
@@ -69,22 +62,21 @@ export default function withVideoPlayer(Component) {
     render() {
 
       const {movie} = this.props;
-      const {isActive, isPlaying, isFullscreen, time, duration} = this.state;
+      const {state, time, duration, mute, isFullscreen} = this.state;
 
       return (
         <Component
           movieTitle={movie.title}
           movieTime={time}
           movieDuration={duration}
-          isPlaying={isPlaying}
+          movieState={state}
           isFullscreen={isFullscreen}
           onPlay={this._handlePlay}
           onFullscreen={this._handleFullscreen}
         >
           <VideoPlayer
             id={0}
-            isActive={isActive}
-            isPlaying={isPlaying}
+            state={state}
             poster={movie.poster}
             src={movie.src}
             width={`100%`}
@@ -92,6 +84,7 @@ export default function withVideoPlayer(Component) {
             onTimeUpdate={this._handleTimeUpdate}
             onDurationUpdate={this._handleDurationUpdate}
             onEnd={this._handleEnd}
+            isMuted={mute}
           />
         </Component >
       );

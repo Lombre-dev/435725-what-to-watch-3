@@ -7,7 +7,6 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const ID = 0;
 const MOVIE = {
   title: `The Grand Budapest Hotel`,
   genres: [`Drama`],
@@ -39,6 +38,7 @@ const MOVIE = {
     }
   ]
 };
+const ID = 0;
 const IS_PREVIEW_ACTIVE = false;
 
 describe(`<SmallMovieCard />`, () => {

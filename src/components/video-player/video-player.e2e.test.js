@@ -1,6 +1,7 @@
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
+import {PlayerState} from '../consts';
 import VideoPlayer from './video-player';
 
 Enzyme.configure({
@@ -15,23 +16,21 @@ describe(`<VideoPlayer />`, () => {
 
   it(`component should be switched to active mode`, () => {
 
-    const isActive = false;
-    const isPlaying = true;
+    const state = PlayerState.INITED;
     const handlePlay = jest.fn();
 
     jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(handlePlay);
 
     const result = mount(<VideoPlayer
       id={ID}
-      isActive={isActive}
-      isPlaying={isPlaying}
+      state={state}
       poster={POSTER}
       src={SRC}
     />);
 
     result
       .setProps({
-        isActive: true,
+        state: PlayerState.PLAYING,
       });
 
     expect(handlePlay).toHaveBeenCalledTimes(1);
@@ -39,23 +38,21 @@ describe(`<VideoPlayer />`, () => {
 
   it(`component should be switched to inactive mode`, () => {
 
-    const isActive = true;
-    const isPlaying = true;
+    const state = PlayerState.INITED;
     const handleLoad = jest.fn();
 
     jest.spyOn(HTMLMediaElement.prototype, `load`).mockImplementation(handleLoad);
 
     const result = mount(<VideoPlayer
       id={ID}
-      isActive={isActive}
-      isPlaying={isPlaying}
+      state={state}
       poster={POSTER}
       src={SRC}
     />);
 
     result
       .setProps({
-        isActive: false,
+        state: PlayerState.ENDED,
       });
 
     expect(handleLoad).toHaveBeenCalledTimes(1);

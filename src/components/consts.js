@@ -37,3 +37,11 @@ export const MOVIE_INFO_TABS = [
   `Details`,
   `Reviews`,
 ];
+
+export const PlayerState = {
+  INITED: `inited`,
+  LOADING: `loading`,
+  PLAYING: `playing`,
+  PAUSED: `paused`,
+  ENDED: `ended`,
+};

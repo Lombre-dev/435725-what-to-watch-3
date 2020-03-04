@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {PlayerState} from '../consts';
 import VideoPlayer from './video-player';
 
 const ID = 0;
-const IS_ACTIVE = false;
-const IS_PLAYING = false;
+const STATE = PlayerState.INITED;
 const POSTER = ``;
 const SRC = ``;
 
@@ -12,11 +12,12 @@ describe(`<VideoPlayer />`, () => {
 
   it(`render should be match markup`, () => {
 
+    jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(() => {});
+
     const result = renderer
       .create(<VideoPlayer
         id={ID}
-        isActive={IS_ACTIVE}
-        isPlaying={IS_PLAYING}
+        state={STATE}
         poster={POSTER}
         src={SRC}
       />, {
