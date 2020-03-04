@@ -1,4 +1,10 @@
 
+const SAMPLES = [
+  `http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4`,
+  `http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4`,
+  `http://mirrors.standaloneinstaller.com/video-sample/page18-movie-4.mp4`,
+];
+
 export const MOVIES = [
   {
     title: `The Grand Budapest Hotel`,
@@ -194,8 +200,8 @@ MOVIES.forEach((value, index) => {
     ratingScore: getRandomScore(),
     ratingReviewsCount: Math.round(Math.random() * 100),
     reviews,
-    preview: `./samples/sintel_trailer-480p.mp4`,
-    src: `./samples/sintel_trailer-480p.mp4`,
+    preview: getRandomSample(), // `./samples/sintel_trailer-480p.mp4`,
+    src: getRandomSample(), // `./samples/sintel_trailer-480p.mp4`,
     description: `Description for ${value.title}`,
     story: `Story for ${value.title}`,
     director: `Director ${index + 1}`,
@@ -210,4 +216,8 @@ function getRandomScore() {
 
 function getRandomDate(fromTimestamp = 0) {
   return new Date(fromTimestamp + Math.floor(Math.random() * (Date.now() - fromTimestamp))).getTime();
+}
+
+function getRandomSample() {
+  return SAMPLES[Math.floor(Math.random() * SAMPLES.length)];
 }
