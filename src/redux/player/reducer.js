@@ -7,8 +7,12 @@ export const reducer = createReducer({
   [releasePlayerMovie]: _releasePlayerMovie,
 }, initialState);
 
-function _setPlayerMovie(state, movie) {
-  return Object.assign({}, state, {movie});
+function _setPlayerMovie(state, id) {
+
+  const intId = parseInt(id, 10);
+  const {allMovies} = state;
+
+  return Object.assign({}, state, {movie: allMovies.find((value) => value.id === intId)});
 }
 
 function _releasePlayerMovie(state) {

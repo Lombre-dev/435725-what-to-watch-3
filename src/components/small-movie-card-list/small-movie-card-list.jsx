@@ -15,7 +15,6 @@ class SmallMovieCardList extends React.PureComponent {
           movies.map((value, index) => {
             return (
               <SmallMovieCard
-                id={index}
                 key={value.title}
                 movie={value}
                 isPreviewActive={activeItemId === index}

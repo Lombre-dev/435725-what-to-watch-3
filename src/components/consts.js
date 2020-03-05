@@ -9,6 +9,14 @@ const ROMANCE_GENRE = `Romance`;
 const SCI_FI_GENRE = `Sci-Fi`;
 const THRILLER_GENRE = `Thriller`;
 
+export const AppPages = {
+  MAIN: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIES: `/films`,
+  PLAYER: `/player`,
+};
+
 export const GENRES = [
   COMEDY_GENRE,
   CRIME_GENRE,

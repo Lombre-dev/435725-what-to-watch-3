@@ -4,6 +4,7 @@ import {reducer} from './reducer';
 
 const MOVIES = [
   {
+    id: 0,
     title: `movie 1`,
     genres: [`Drama`],
     year: 2014,
@@ -31,6 +32,7 @@ const MOVIES = [
     ]
   },
   {
+    id: 1,
     title: `movie 2`,
     genres: [`Comedy`],
     year: 2014,
@@ -58,6 +60,7 @@ const MOVIES = [
     ]
   },
   {
+    id: 2,
     title: `movie 3`,
     genres: [`Kids & Family`],
     year: 2014,
@@ -101,7 +104,7 @@ describe(`MovieDetailsReducer`, () => {
       currentMovie: MOVIES[0],
     });
 
-    store.dispatch(setCurrentMovie(MOVIES[0]));
+    store.dispatch(setCurrentMovie(MOVIES[0].id));
 
     expect(store.getState()).toEqual(sample);
   });

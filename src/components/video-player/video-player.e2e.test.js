@@ -9,8 +9,8 @@ Enzyme.configure({
 });
 
 const ID = 0;
-const POSTER = require(`path`).resolve(`img/the-grand-budapest-hotel-poster.jpg`);
-const SRC = require(`path`).resolve(`samples/sintel_trailer-480p.mp4`);
+const POSTER = `/img/the-grand-budapest-hotel-poster.jpg`;
+const SRC = `/samples/sintel_trailer-480p.mp4`;
 
 describe(`<VideoPlayer />`, () => {
 

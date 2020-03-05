@@ -1,7 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {PlayerState} from '../components/consts';
 import {Movie} from '../components/types';
 import VideoPlayer from '../components/video-player/video-player';
+import {setPlayerMovie} from '../redux/player/actions';
+import {getPlayerMovie} from '../redux/player/selectors';
 
 export default function withVideoPlayer(Component) {
 
@@ -22,6 +27,13 @@ export default function withVideoPlayer(Component) {
       this._handleDurationUpdate = this._handleDurationUpdate.bind(this);
       this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
       this._handleEnd = this._handleEnd.bind(this);
+    }
+
+    componentDidMount() {
+
+      const {mockSetPlayerMovie, match: {params: {id}}} = this.props;
+
+      mockSetPlayerMovie(id);
     }
 
     _handlePlay() {
@@ -64,6 +76,10 @@ export default function withVideoPlayer(Component) {
       const {movie} = this.props;
       const {state, time, duration, mute, isFullscreen} = this.state;
 
+      if (!movie) {
+        return <></>;
+      }
+
       return (
         <Component
           movieTitle={movie.title}
@@ -92,8 +108,25 @@ export default function withVideoPlayer(Component) {
   }
 
   WithVideoPlayer.propTypes = {
-    movie: Movie.isRequired,
+    movie: Movie,
+    // mock
+    match: PropTypes.object.isRequired,
+    mockSetPlayerMovie: PropTypes.func,
   };
 
-  return WithVideoPlayer;
+  function mapStateToProps(state) {
+    return {
+      movie: getPlayerMovie(state),
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      mockSetPlayerMovie: (id) => {
+        dispatch(setPlayerMovie(id));
+      }
+    };
+  }
+
+  return connect(mapStateToProps, mapDispatchToProps)(withRouter(WithVideoPlayer));
 }

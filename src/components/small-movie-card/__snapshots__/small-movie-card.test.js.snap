@@ -3,7 +3,6 @@
 exports[`<SmallMovieCard /> render should be match markup 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -20,7 +19,8 @@ exports[`<SmallMovieCard /> render should be match markup 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/0"
+      onClick={[Function]}
     >
       The Grand Budapest Hotel
     </a>

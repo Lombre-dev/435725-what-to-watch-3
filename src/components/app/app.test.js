@@ -2,12 +2,13 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import {App} from './app';
+import App from './app';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
 const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
+    id: 0,
     title: `The Grand Budapest Hotel`,
     genres: [`Drama`],
     year: 2014,
@@ -39,6 +40,7 @@ const MOVIES = [
     ]
   },
   {
+    id: 1,
     title: `Bohemian Rhapsody`,
     genres: [`Drama`],
     year: 2014,
@@ -69,6 +71,7 @@ const MOVIES = [
     ]
   },
   {
+    id: 2,
     title: `Macbeth`,
     genres: [`Drama`],
     year: 2014,

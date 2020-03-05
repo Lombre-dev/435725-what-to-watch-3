@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
-import {setPlayerMovie} from '../../redux/player/actions';
+import {Link} from 'react-router-dom';
+import {AppPages} from '../consts';
 import {Movie} from '../types';
 
-function BigMovieCard({movie, isCanReviewed, onPlay}) {
+function BigMovieCard({movie, isCanReviewed}) {
   return (
     <div className="movie-card__desc">
       <h2 className="movie-card__title">{movie.title}</h2>
@@ -14,12 +14,18 @@ function BigMovieCard({movie, isCanReviewed, onPlay}) {
       </p>
 
       <div className="movie-card__buttons">
-        <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlay(movie)}>
+        <Link className="btn btn--play movie-card__button" to={`${AppPages.PLAYER}/${movie.id}`}>
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="#play-s"></use>
           </svg>
           <span>Play</span>
-        </button>
+        </Link>
+        {/* <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlay(movie)}>
+          <svg viewBox="0 0 19 19" width="19" height="19">
+            <use xlinkHref="#play-s"></use>
+          </svg>
+          <span>Play</span>
+        </button> */}
         <button className="btn btn--list movie-card__button" type="button">
           <svg viewBox="0 0 19 20" width="19" height="20">
             <use xlinkHref="#add"></use>
@@ -37,16 +43,6 @@ function BigMovieCard({movie, isCanReviewed, onPlay}) {
 BigMovieCard.propTypes = {
   movie: Movie.isRequired,
   isCanReviewed: PropTypes.bool.isRequired,
-  onPlay: PropTypes.func,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onPlay: (movie) => {
-      dispatch(setPlayerMovie(movie));
-    },
-  };
-}
-
-export {BigMovieCard};
-export default connect(null, mapDispatchToProps)(BigMovieCard);
+export default BigMovieCard;
