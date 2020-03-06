@@ -82,6 +82,7 @@ export default function withVideoPlayer(Component) {
 
       return (
         <Component
+          movieId={movie.id}
           movieTitle={movie.title}
           movieTime={time}
           movieDuration={duration}

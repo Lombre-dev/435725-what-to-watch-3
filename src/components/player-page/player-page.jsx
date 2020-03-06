@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
-import {releasePlayerMovie} from '../../redux/player/actions';
+import {Link} from 'react-router-dom';
 import {formatTime as getFormatTime} from '../../utils/player-utils';
-import {PlayerState} from '../consts';
+import {AppPages, PlayerState} from '../consts';
 
 class PlayerPage extends React.PureComponent {
 
@@ -50,11 +49,11 @@ class PlayerPage extends React.PureComponent {
   render() {
 
     const {
+      movieId,
       movieTitle,
       movieTime,
       movieDuration,
       movieState,
-      onExit,
       onPlay,
       onFullscreen,
       children
@@ -69,7 +68,7 @@ class PlayerPage extends React.PureComponent {
           children
         }
 
-        <button type="button" className="player__exit" onClick={onExit}>Exit</button>
+        <Link className="player__exit" to={`${AppPages.MOVIES}/${movieId}`} style={{textDecoration: `none`}}>Exit</Link>
 
         <div className="player__controls">
           <div className="player__controls-row">
@@ -115,6 +114,7 @@ class PlayerPage extends React.PureComponent {
 
 PlayerPage.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  movieId: PropTypes.number,
   movieTitle: PropTypes.string,
   movieTime: PropTypes.number,
   movieDuration: PropTypes.number,
@@ -122,16 +122,6 @@ PlayerPage.propTypes = {
   isFullscreen: PropTypes.bool,
   onPlay: PropTypes.func,
   onFullscreen: PropTypes.func,
-  onExit: PropTypes.func,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onExit: () => {
-      dispatch(releasePlayerMovie());
-    },
-  };
-}
-
-export {PlayerPage};
-export default connect(null, mapDispatchToProps)(PlayerPage);
+export default PlayerPage;

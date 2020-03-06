@@ -4,12 +4,18 @@ exports[`<PlayerPage /> render should be match markup 1`] = `
 <div
   className="player"
 >
-  <button
+  <a
     className="player__exit"
-    type="button"
+    href="/films/undefined"
+    onClick={[Function]}
+    style={
+      Object {
+        "textDecoration": "none",
+      }
+    }
   >
     Exit
-  </button>
+  </a>
   <div
     className="player__controls"
   >
