@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {setCurrentMovie} from './actions';
+import {setDetailedMovie} from './actions';
 import {reducer} from './reducer';
 
 const MOVIES = [
@@ -90,51 +90,22 @@ const MOVIES = [
 ];
 
 const INITIAL_STATE = {
-  currentMovie: undefined,
+  movie: undefined,
   moviesLikeCurrent: [],
   allMovies: MOVIES,
 };
 
 describe(`MovieDetailsReducer`, () => {
 
-  it(`should be switch value of currentMovie`, () => {
+  it(`should be switch value of movie`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      currentMovie: MOVIES[0],
+      movie: MOVIES[0],
     });
 
-    store.dispatch(setCurrentMovie(MOVIES[0].id));
+    store.dispatch(setDetailedMovie(MOVIES[0].id));
 
     expect(store.getState()).toEqual(sample);
   });
 });
-
-/*
-describe(`ActionCreator`, () => {
-
-  it(`calling 'setCurrentMovie' should be equal template`, () => {
-    expect(ActionCreator.setCurrentMovie(MOVIES[0]))
-      .toEqual({
-        type: ActionType.SET_CURRENT_MOVIE,
-        payload: MOVIES[0],
-      });
-  });
-
-  it(`calling 'setCatalogGenre' should be equal template`, () => {
-    expect(ActionCreator.setCatalogGenre(`Comedy`))
-      .toEqual({
-        type: ActionType.SET_CATALOG_GENRE,
-        payload: `Comedy`,
-      });
-  });
-
-  it(`calling 'getMoreCatalogMovies' should be equal template`, () => {
-    expect(ActionCreator.getMoreCatalogMovies())
-      .toEqual({
-        type: ActionType.GET_MORE_CATALOG_MOVIES,
-        payload: undefined,
-      });
-  });
-});
-*/

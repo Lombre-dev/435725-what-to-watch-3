@@ -4,9 +4,6 @@ import {getMoviesByGenre} from '../../utils/movie-utils';
 import {getMoreCatalogMovies, setCatalogGenre} from './actions';
 import {initialState} from './initialState';
 
-// TODO: combineReducer(catalogReducer)
-// Чистый код Роберт Мартин
-
 export const reducer = createReducer({
   [setCatalogGenre]: _setCatalogGenre,
   [getMoreCatalogMovies]: _getMoreCatalogMovies,

@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {setCurrentMovie} from '../../redux/movie-details/actions';
-import {getCurrentMovie, getMoviesLikeCurrent} from '../../redux/movie-details/selectors';
+import {setDetailedMovie} from '../../redux/movie-details/actions';
+import {getDetailedMovie, getMoviesLikeDetailedMovie} from '../../redux/movie-details/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
@@ -77,15 +77,15 @@ MoviePage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentMovie: getCurrentMovie(state),
-    moviesLikeCurrent: getMoviesLikeCurrent(state),
+    currentMovie: getDetailedMovie(state),
+    moviesLikeCurrent: getMoviesLikeDetailedMovie(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     mockSetCurrentMovie: (id) => {
-      dispatch(setCurrentMovie(id));
+      dispatch(setDetailedMovie(id));
     }
   };
 }

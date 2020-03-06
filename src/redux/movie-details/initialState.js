@@ -1,7 +1,7 @@
 import {MOVIES} from '../../mocks/movies';
 
 export const initialState = {
-  currentMovie: undefined,
+  movie: undefined,
   moviesLikeCurrent: [],
   allMovies: MOVIES,
 };
