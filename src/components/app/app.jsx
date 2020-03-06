@@ -4,7 +4,7 @@ import {AppPages} from '../../consts';
 import CatalogPage from '../catalog-page/catalog-page';
 import MoviePage from '../movie-page/movie-page';
 import PlayerPage from '../player-page';
-import {SignInPage} from '../sign-in-page/sign-in-page';
+import SignInPage from '../sign-in-page/sign-in-page';
 
 function App() {
   return (

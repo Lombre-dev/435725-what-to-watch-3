@@ -3,7 +3,7 @@ import Footer from '../footer/footer';
 import Logo from '../logo/logo';
 import SignIn from '../sign-in/sign-in';
 
-export function SignInPage({}) {
+function SignInPage({}) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -19,3 +19,5 @@ export function SignInPage({}) {
     </div>
   );
 }
+
+export default SignInPage;
