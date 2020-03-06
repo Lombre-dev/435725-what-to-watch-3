@@ -12,25 +12,23 @@ class PlayerPage extends React.PureComponent {
     this._ref = React.createRef();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
 
     const {isFullscreen, onFullscreen} = this.props;
     const element = this._ref.current;
 
-    if (isFullscreen) {
-      if (document.fullscreenElement !== element) {
-        document.onfullscreenchange = () => {
-          if (document.fullscreenElement !== element) {
-            document.onfullscreenchange = null;
-            onFullscreen();
-          }
+    if (prevProps.isFullscreen !== isFullscreen) {
+      if (isFullscreen) {
+        document.onfullscreenchange = () => { // -> addEventListener
+          document.onfullscreenchange = null;
+          onFullscreen();
         };
         element.requestFullscreen();
-      }
-    } else {
-      document.onfullscreenchange = null;
-      if (document.fullscreenElement === element) {
-        document.exitFullscreen();
+      } else {
+        document.onfullscreenchange = null;
+        if (document.fullscreenElement === element) {
+          document.exitFullscreen();
+        }
       }
     }
   }
