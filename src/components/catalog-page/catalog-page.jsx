@@ -3,33 +3,24 @@ import {connect} from 'react-redux';
 import {getPromoMovie} from '../../redux/catalog/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
+import Logo from '../logo/logo';
 import MovieCatalog from '../movie-catalog/movie-catalog';
 import {Movie} from '../types';
+import UserBlock from '../user-block/user-block';
 
 function CatalogPage({promoMovie}) {
   return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <Logo />
+          <UserBlock />
         </header>
 
         <div className="movie-card__wrap">

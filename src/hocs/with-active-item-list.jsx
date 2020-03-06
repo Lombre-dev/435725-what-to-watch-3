@@ -16,10 +16,6 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
       this._handleItemLeave = this._handleItemLeave.bind(this);
     }
 
-    componentDidUpdate() {
-      clearTimeout(this._timeoutId);
-    }
-
     componentWillUnmount() {
       clearTimeout(this._timeoutId);
     }

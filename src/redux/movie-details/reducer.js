@@ -1,18 +1,20 @@
 import {createReducer} from 'redux-act';
 import {getMoviesByGenre} from '../../utils/movie-utils';
-import {movieDetailsInitialState} from '../initialState';
 import {setCurrentMovie} from './actions';
+import {initialState} from './initialState';
 
 // TODO: combineReducer(catalogReducer)
 // Чистый код Роберт Мартин
 
 export const reducer = createReducer({
   [setCurrentMovie]: _setCurrentMovie,
-}, movieDetailsInitialState);
+}, initialState);
 
-function _setCurrentMovie(state, movie) {
+function _setCurrentMovie(state, id) {
 
+  const intId = parseInt(id, 10);
   const {allMovies} = state;
+  const movie = allMovies.find((value) => value.id === intId);
   const update = {
     currentMovie: movie,
     moviesLikeCurrent: movie ? getMoviesByGenre(allMovies, movie.genres[0], [movie]) : [],

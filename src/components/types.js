@@ -9,12 +9,14 @@ export const Review = PropTypes.shape({
 });
 
 export const Movie = PropTypes.shape({
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.oneOf(GENRES)).isRequired,
   year: PropTypes.number.isRequired,
   poster: PropTypes.string,
   frames: PropTypes.arrayOf(PropTypes.string).isRequired,
   preview: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   ratingScore: PropTypes.number.isRequired,
   ratingReviewsCount: PropTypes.number.isRequired,
   description: PropTypes.string,
@@ -23,4 +25,9 @@ export const Movie = PropTypes.shape({
   reviews: PropTypes.arrayOf(Review),
   director: PropTypes.string.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+});
+
+export const User = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
 });

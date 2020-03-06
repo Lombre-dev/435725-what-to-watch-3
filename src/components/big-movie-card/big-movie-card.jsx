@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {AppPages} from '../consts';
 import {Movie} from '../types';
 
 function BigMovieCard({movie, isCanReviewed}) {
@@ -12,19 +14,27 @@ function BigMovieCard({movie, isCanReviewed}) {
       </p>
 
       <div className="movie-card__buttons">
-        <button className="btn btn--play movie-card__button" type="button">
+        <Link className="btn btn--play movie-card__button" to={`${AppPages.PLAYER}/${movie.id}`}>
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="#play-s"></use>
           </svg>
           <span>Play</span>
-        </button>
+        </Link>
+        {/* <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlay(movie)}>
+          <svg viewBox="0 0 19 19" width="19" height="19">
+            <use xlinkHref="#play-s"></use>
+          </svg>
+          <span>Play</span>
+        </button> */}
         <button className="btn btn--list movie-card__button" type="button">
           <svg viewBox="0 0 19 20" width="19" height="20">
             <use xlinkHref="#add"></use>
           </svg>
           <span>My list</span>
         </button>
-        {isCanReviewed && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
+        {
+          isCanReviewed && <a href="add-review.html" className="btn movie-card__button">Add review</a>
+        }
       </div>
     </div>
   );

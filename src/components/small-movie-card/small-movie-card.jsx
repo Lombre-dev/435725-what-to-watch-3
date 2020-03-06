@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
-import {setCurrentMovie} from '../../redux/movie-details/actions';
+import {Link} from 'react-router-dom';
+import {AppPages, PlayerState} from '../consts';
 import {Movie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 
@@ -11,34 +11,25 @@ class SmallMovieCard extends React.PureComponent {
 
     this._handleHover = this._handleHover.bind(this);
     this._handleLeave = this._handleLeave.bind(this);
-    this._handleClick = this._handleClick.bind(this);
   }
 
   _handleHover() {
 
-    const {id, onHover} = this.props;
+    const {movie, onHover} = this.props;
 
-    onHover({id});
+    onHover({id: movie.id});
   }
 
   _handleLeave() {
 
-    const {id, onLeave} = this.props;
+    const {movie, onLeave} = this.props;
 
-    onLeave({id});
-  }
-
-  _handleClick(e) {
-
-    const {movie, onClick} = this.props;
-
-    e.preventDefault();
-    onClick(movie);
+    onLeave({id: movie.id});
   }
 
   render() {
 
-    const {id, movie, isPreviewActive} = this.props;
+    const {movie, isPreviewActive} = this.props;
 
     return (
       <article
@@ -49,14 +40,14 @@ class SmallMovieCard extends React.PureComponent {
       >
         <div className="small-movie-card__image" >
           <VideoPlayer
-            id={id}
-            isActive={isPreviewActive}
+            id={movie.id}
+            state={isPreviewActive ? PlayerState.PLAYING : PlayerState.LOADING}
             poster={movie.poster}
             src={movie.preview}
           />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
+          <Link className="small-movie-card__link" to={`${AppPages.MOVIES}/${movie.id}`}>{movie.title}</Link>
         </h3>
       </article>
     );
@@ -64,10 +55,8 @@ class SmallMovieCard extends React.PureComponent {
 }
 
 SmallMovieCard.propTypes = {
-  id: PropTypes.number.isRequired,
   movie: Movie.isRequired,
   isPreviewActive: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
   onLeave: PropTypes.func.isRequired,
 };
@@ -75,13 +64,4 @@ SmallMovieCard.propTypes = {
 // https://redux.js.org/api/bindactioncreators/
 // bindActionCreators(actionCreators, dispatch)
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onClick: (movie) => {
-      dispatch(setCurrentMovie(movie));
-    },
-  };
-}
-
-export {SmallMovieCard};
-export default connect(null, mapDispatchToProps)(SmallMovieCard);
+export default SmallMovieCard;

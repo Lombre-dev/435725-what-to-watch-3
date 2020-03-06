@@ -1,8 +1,8 @@
 import {createReducer} from 'redux-act';
 import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../components/consts';
 import {getMoviesByGenre} from '../../utils/movie-utils';
-import {catalogInitalState} from '../initialState';
 import {getMoreCatalogMovies, setCatalogGenre} from './actions';
+import {initialState} from './initialState';
 
 // TODO: combineReducer(catalogReducer)
 // Чистый код Роберт Мартин
@@ -10,7 +10,7 @@ import {getMoreCatalogMovies, setCatalogGenre} from './actions';
 export const reducer = createReducer({
   [setCatalogGenre]: _setCatalogGenre,
   [getMoreCatalogMovies]: _getMoreCatalogMovies,
-}, catalogInitalState);
+}, initialState);
 
 function _setCatalogGenre(state, genre) {
 
