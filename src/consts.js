@@ -29,7 +29,7 @@ export const GENRES = [
   THRILLER_GENRE,
 ];
 
-export const GENRE_LABELS = {
+export const GenreLabels = {
   [COMEDY_GENRE]: `Comedies`,
   [DRAMA_GENRE]: `Dramas`,
   [THRILLER_GENRE]: `Thrillers`,
@@ -52,4 +52,11 @@ export const PlayerState = {
   PLAYING: `playing`,
   PAUSED: `paused`,
   ENDED: `ended`,
+};
+
+export const SERVER_URL = `https://htmlacademy-react-3.appspot.com/wtw`;
+export const SERVER_RESPONSE_TIMEOUT = 5000;
+export const SERVER_USE_COOKIES = true;
+export const ServerErrors = {
+  UNAUTHORIZED: 401,
 };

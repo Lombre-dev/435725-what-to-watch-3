@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {MORE_LIKE_THIS_MOVIES_LIMIT} from '../consts';
+import {MORE_LIKE_THIS_MOVIES_LIMIT} from '../../consts';
 import SmallMovieCardList from '../small-movie-card-list';
 import {Movie} from '../types';
 

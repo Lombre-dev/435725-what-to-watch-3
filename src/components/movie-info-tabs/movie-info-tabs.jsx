@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {MOVIE_INFO_TABS} from '../consts';
+import {MOVIE_INFO_TABS} from '../../consts';
 
 class MovieInfoTabs extends React.PureComponent {
 

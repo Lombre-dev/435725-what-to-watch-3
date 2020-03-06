@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {PlayerState} from '../components/consts';
 import {Movie} from '../components/types';
 import VideoPlayer from '../components/video-player/video-player';
+import {PlayerState} from '../consts';
 import {setPlayerMovie} from '../redux/player/actions';
 import {getPlayerMovie} from '../redux/player/selectors';
 

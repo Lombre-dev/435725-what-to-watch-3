@@ -1,5 +1,5 @@
 
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../components/consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
 import {MOVIES} from '../../mocks/movies';
 import {getGenresFromMovies} from '../../utils/movie-utils';
 

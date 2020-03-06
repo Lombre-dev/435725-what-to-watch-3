@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {PlayerState} from '../consts';
+import {PlayerState} from '../../consts';
 
 export default class VideoPlayer extends React.PureComponent {
 

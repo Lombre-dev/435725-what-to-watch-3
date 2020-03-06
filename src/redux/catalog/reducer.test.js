@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../components/consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
 import {getGenresFromMovies} from '../../utils/movie-utils';
 import {getMoreCatalogMovies, setCatalogGenre} from './actions';
 import {reducer} from './reducer';

@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+import {createAPI} from './api';
 import App from './components/app/app';
-import {store} from './redux/createStore';
+import {createStore} from './redux/createStore';
 
-/* eslint-disable indent */
+function onUnauthorizedUserAction() {
+  // redirect to authorization screen
+}
+
+const api = createAPI(onUnauthorizedUserAction);
+const store = createStore(api);
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById(`root`)
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById(`root`)
 );

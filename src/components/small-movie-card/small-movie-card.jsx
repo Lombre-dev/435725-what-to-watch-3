@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages, PlayerState} from '../consts';
+import {AppPages, PlayerState} from '../../consts';
 import {Movie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 

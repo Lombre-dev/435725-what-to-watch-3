@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages} from '../consts';
+import {AppPages} from '../../consts';
 import {Movie} from '../types';
 
 function BigMovieCard({movie, isCanReviewed}) {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {GENRES} from './consts';
+import {GENRES} from '../consts';
 
 export const Review = PropTypes.shape({
   author: PropTypes.string.isRequired,

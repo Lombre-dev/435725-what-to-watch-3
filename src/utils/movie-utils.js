@@ -1,4 +1,4 @@
-import {GENRES, GENRE_LABELS} from '../components/consts';
+import {GenreLabels, GENRES} from '../consts';
 import {getPluralForm} from './get-plural-form';
 
 const RATING_SCORE_LIMIT = 10;
@@ -46,7 +46,7 @@ export function getMoviesByGenre(source, genre, exclude = []) {
 }
 
 export function getGenreLabels() {
-  return Object.assign({}, GENRE_LABELS);
+  return Object.assign({}, GenreLabels);
 }
 
 export function getGenresFromMovies(source) {

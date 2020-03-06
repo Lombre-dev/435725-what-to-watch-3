@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {AppPages} from '../../consts';
 import CatalogPage from '../catalog-page/catalog-page';
-import {AppPages} from '../consts';
 import MoviePage from '../movie-page/movie-page';
 import PlayerPage from '../player-page';
 import {SignInPage} from '../sign-in-page/sign-in-page';

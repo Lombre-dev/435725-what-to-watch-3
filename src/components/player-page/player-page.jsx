@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {AppPages, PlayerState} from '../../consts';
 import {formatTime as getFormatTime} from '../../utils/player-utils';
-import {AppPages, PlayerState} from '../consts';
 
 class PlayerPage extends React.PureComponent {
 
