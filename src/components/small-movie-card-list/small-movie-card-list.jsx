@@ -12,12 +12,12 @@ class SmallMovieCardList extends React.PureComponent {
     return (
       <div className="catalog__movies-list">
         {
-          movies.map((value, index) => {
+          movies.map((movie) => {
             return (
               <SmallMovieCard
-                key={value.title}
-                movie={value}
-                isPreviewActive={activeItemId === index}
+                key={movie.title}
+                movie={movie}
+                isPreviewActive={activeItemId === movie.id}
                 onHover={onItemHover}
                 onLeave={onItemLeave}
               />

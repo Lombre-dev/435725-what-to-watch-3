@@ -3,6 +3,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {AppPages, PlayerState} from '../../consts';
 import {formatTime as getFormatTime} from '../../utils/player-utils';
+import {Movie} from '../types';
+import VideoPlayer from '../video-player/video-player';
 
 class PlayerPage extends React.PureComponent {
 
@@ -47,14 +49,16 @@ class PlayerPage extends React.PureComponent {
   render() {
 
     const {
-      movieId,
-      movieTitle,
+      movie,
+      movieState,
       movieTime,
       movieDuration,
-      movieState,
       onPlay,
+      onTimeUpdate,
+      onDurationUpdate,
+      onEnd,
       onFullscreen,
-      children
+      isMuted,
     } = this.props;
 
     const progress = movieDuration > 0 ? (movieTime / movieDuration) * 100 : 0;
@@ -62,11 +66,20 @@ class PlayerPage extends React.PureComponent {
     return (
       <div className="player" ref={this._ref}>
 
-        {
-          children
-        }
+        <VideoPlayer
+          id={movie.id}
+          state={movieState}
+          poster={movie.poster}
+          src={movie.src}
+          width={`100%`}
+          height={`100%`}
+          onTimeUpdate={onTimeUpdate}
+          onDurationUpdate={onDurationUpdate}
+          onEnd={onEnd}
+          isMuted={isMuted}
+        />
 
-        <Link className="player__exit" to={`${AppPages.MOVIES}/${movieId}`} style={{textDecoration: `none`}}>Exit</Link>
+        <Link className="player__exit" to={`${AppPages.MOVIES}/${movie.id}`} style={{textDecoration: `none`}}>Exit</Link>
 
         <div className="player__controls">
           <div className="player__controls-row">
@@ -95,7 +108,7 @@ class PlayerPage extends React.PureComponent {
                   </>
               }
             </button>
-            <div className="player__name">{movieTitle}</div>
+            <div className="player__name">{movie.title}</div>
 
             <button type="button" className="player__full-screen" onClick={onFullscreen}>
               <svg viewBox="0 0 27 27" width="27" height="27">
@@ -111,14 +124,16 @@ class PlayerPage extends React.PureComponent {
 }
 
 PlayerPage.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  movieId: PropTypes.number,
-  movieTitle: PropTypes.string,
+  movie: Movie,
+  movieState: PropTypes.oneOf(Object.values(PlayerState)),
   movieTime: PropTypes.number,
   movieDuration: PropTypes.number,
-  movieState: PropTypes.oneOf(Object.values(PlayerState)),
   isFullscreen: PropTypes.bool,
+  isMuted: PropTypes.bool,
   onPlay: PropTypes.func,
+  onTimeUpdate: PropTypes.func,
+  onDurationUpdate: PropTypes.func,
+  onEnd: PropTypes.func,
   onFullscreen: PropTypes.func,
 };
 

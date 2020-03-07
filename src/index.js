@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createAPI} from './api';
 import App from './components/app/app';
+import {AppPages} from './consts';
 import {Operations as CatalogOperations} from './redux/catalog/operations';
 import {createStore} from './redux/createStore';
 
 function onUnauthorizedUserAction() {
   // redirect to authorization screen
+  document.location.href = `${AppPages.LOGIN}`;
 }
 
 const api = createAPI(onUnauthorizedUserAction);
 const store = createStore(api);
 
-// store.dispatch(CatalogOperations.getCatalog());
+store.dispatch(CatalogOperations.getCatalog());
 store.dispatch(CatalogOperations.getPromoMovie());
 
 ReactDOM.render(

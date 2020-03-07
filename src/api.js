@@ -16,9 +16,12 @@ export function createAPI(onUnauthorizedUserAction) {
 
     const {response} = error;
 
-    if (response.status === ServerErrors.UNAUTHORIZED) {
-      onUnauthorizedUserAction();
-      throw error;
+    switch (response.status) {
+      case ServerErrors.UNAUTHORIZED:
+        onUnauthorizedUserAction();
+        break;
+      case ServerErrors.NOT_FOUND:
+        break;
     }
     throw error;
   };

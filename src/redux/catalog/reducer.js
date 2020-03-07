@@ -1,9 +1,9 @@
 import {createReducer} from 'redux-act';
 import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
-import {getMoviesByGenre} from '../../utils/movie-utils';
+import {getGenresFromMovies, getMoviesByGenre} from '../../utils/movie-utils';
 import {getMoreCatalogMovies, setCatalogGenre, setCatalogMovies, setPromoMovie} from './actions';
-import {formatMovie} from './adapters';
 import {initialState} from './initialState';
+import {formatMovie} from './mappers';
 
 export const reducer = createReducer({
   [setCatalogMovies]: _setCatalogMovies,
@@ -14,16 +14,18 @@ export const reducer = createReducer({
 
 function _setCatalogMovies(state, movies) {
 
-  console.log(movies);
+  const formattedMovies = movies.map((movie) => formatMovie(movie));
 
-  return Object.assign({}, state, {allMovies: movies});
+  return Object.assign({}, state, {
+    allMovies: formattedMovies,
+    genres: [ALL_GENRE].concat(getGenresFromMovies(formattedMovies)),
+    movies: formattedMovies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT),
+    hasMoreMovies: formattedMovies.length > CATALOG_MOVIES_PER_PAGE_LIMIT,
+  });
 }
 
 function _setPromoMovie(state, movie) {
-
-  formatMovie(movie);
-
-  return Object.assign({}, state, {promoMovie: movie});
+  return Object.assign({}, state, {promoMovie: formatMovie(movie)});
 }
 
 function _setCatalogGenre(state, genre) {

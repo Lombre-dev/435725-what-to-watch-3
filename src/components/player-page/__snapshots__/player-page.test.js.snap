@@ -4,9 +4,13 @@ exports[`<PlayerPage /> render should be match markup 1`] = `
 <div
   className="player"
 >
+  <video
+    height="100%"
+    width="100%"
+  />
   <a
     className="player__exit"
-    href="/films/undefined"
+    href="/films/0"
     onClick={[Function]}
     style={
       Object {
@@ -69,7 +73,9 @@ exports[`<PlayerPage /> render should be match markup 1`] = `
       </button>
       <div
         className="player__name"
-      />
+      >
+        The Grand Budapest Hotel
+      </div>
       <button
         className="player__full-screen"
         type="button"

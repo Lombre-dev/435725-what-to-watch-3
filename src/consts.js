@@ -58,5 +58,6 @@ export const SERVER_URL = `https://htmlacademy-react-3.appspot.com/wtw`;
 export const SERVER_RESPONSE_TIMEOUT = 5000;
 export const SERVER_USE_COOKIES = true;
 export const ServerErrors = {
+  NOT_FOUND: 404,
   UNAUTHORIZED: 401,
 };

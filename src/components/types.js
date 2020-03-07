@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import {GENRES} from '../consts';
 
 export const Review = PropTypes.shape({
   author: PropTypes.string.isRequired,
@@ -11,7 +10,7 @@ export const Review = PropTypes.shape({
 export const Movie = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.oneOf(GENRES)).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired, // PropTypes.arrayOf(PropTypes.oneOf(GENRES)).isRequired,
   year: PropTypes.number.isRequired,
   poster: PropTypes.string,
   frames: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -25,6 +24,8 @@ export const Movie = PropTypes.shape({
   reviews: PropTypes.arrayOf(Review),
   director: PropTypes.string.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  backgroundImage: PropTypes.string,
+  backgroundColor: PropTypes.string,
 });
 
 export const User = PropTypes.shape({

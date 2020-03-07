@@ -25,7 +25,7 @@ class MoviePage extends React.PureComponent {
 
     const {currentMovie, moviesLikeCurrent} = this.props;
 
-    if (!currentMovie) {
+    if (Boolean(currentMovie) === false) {
       return <></>;
     }
 
@@ -34,7 +34,7 @@ class MoviePage extends React.PureComponent {
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+              <img src={currentMovie.backgroundImage} alt={currentMovie.title} />
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
