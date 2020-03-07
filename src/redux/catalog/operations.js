@@ -5,14 +5,14 @@ const Operations = {
   // в state isLoading для отображения прогресса
   getCatalog: () => (dispatch, getState, api) => {
     return api.get(`/films`)
-      .then((respone) => {
-        dispatch(setCatalogMovies(respone.data));
+      .then((response) => {
+        dispatch(setCatalogMovies(response.data));
       });
   },
   getPromoMovie: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
-      .then((respone) => {
-        dispatch(setPromoMovie(respone.data));
+      .then((response) => {
+        dispatch(setPromoMovie(response.data));
       });
   }
 };

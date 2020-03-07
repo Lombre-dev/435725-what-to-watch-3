@@ -27,8 +27,3 @@ export const Movie = PropTypes.shape({
   backgroundImage: PropTypes.string,
   backgroundColor: PropTypes.string,
 });
-
-export const User = PropTypes.shape({
-  name: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-});

@@ -61,3 +61,8 @@ export const ServerErrors = {
   NOT_FOUND: 404,
   UNAUTHORIZED: 401,
 };
+
+export const AuthorizationStatus = {
+  NO_AUTH: `unauthorized`,
+  AUTH: `authorized`,
+};
