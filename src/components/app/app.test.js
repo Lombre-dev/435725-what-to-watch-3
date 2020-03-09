@@ -2,6 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import {AuthorizationStatus} from '../../consts';
 import App from './app';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
@@ -121,6 +122,14 @@ describe(`<App />`, () => {
         genres: GENRES,
         movies: MOVIES,
         hasMoreMovies: HAS_MORE_MOVIES,
+      },
+      user: {
+        id: -1,
+        name: undefined,
+        email: undefined,
+        avatar: undefined,
+        authError: undefined,
+        authStatus: AuthorizationStatus.NO_AUTH,
       }
     });
 
