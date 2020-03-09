@@ -14,3 +14,6 @@ public/bundle.js.map
 # Вспомогательные файлы
 *.log*
 node_modules/
+
+# other
+TODO

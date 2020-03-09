@@ -3,6 +3,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import {AuthorizationStatus} from '../../consts';
 import CatalogPage from './catalog-page';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
@@ -122,6 +123,14 @@ describe(`<CatalogPage />`, () => {
         genres: GENRES,
         movies: MOVIES,
         hasMoreMovies: HAS_MORE_MOVIES,
+      },
+      user: {
+        id: -1,
+        name: undefined,
+        email: undefined,
+        avatar: undefined,
+        authError: undefined,
+        authStatus: AuthorizationStatus.NO_AUTH,
       }
     });
 

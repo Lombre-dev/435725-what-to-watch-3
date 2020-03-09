@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {PlayerState} from '../components/consts';
 import {Movie} from '../components/types';
-import VideoPlayer from '../components/video-player/video-player';
+import {PlayerState} from '../consts';
 import {setPlayerMovie} from '../redux/player/actions';
 import {getPlayerMovie} from '../redux/player/selectors';
 
@@ -16,9 +15,9 @@ export default function withVideoPlayer(Component) {
 
       this.state = {
         state: PlayerState.PLAYING,
-        mute: true,
         time: 0,
         duration: 0,
+        isMute: true,
         isFullscreen: false,
       };
 
@@ -74,7 +73,7 @@ export default function withVideoPlayer(Component) {
     render() {
 
       const {movie} = this.props;
-      const {state, time, duration, mute, isFullscreen} = this.state;
+      const {state, time, duration, isMute, isFullscreen} = this.state;
 
       if (!movie) {
         return <></>;
@@ -82,28 +81,18 @@ export default function withVideoPlayer(Component) {
 
       return (
         <Component
-          movieId={movie.id}
-          movieTitle={movie.title}
+          movie={movie}
+          movieState={state}
           movieTime={time}
           movieDuration={duration}
-          movieState={state}
           isFullscreen={isFullscreen}
+          isMuted={isMute}
           onPlay={this._handlePlay}
+          onTimeUpdate={this._handleTimeUpdate}
+          onDurationUpdate={this._handleDurationUpdate}
+          onEnd={this._handleEnd}
           onFullscreen={this._handleFullscreen}
-        >
-          <VideoPlayer
-            id={0}
-            state={state}
-            poster={movie.poster}
-            src={movie.src}
-            width={`100%`}
-            height={`100%`}
-            onTimeUpdate={this._handleTimeUpdate}
-            onDurationUpdate={this._handleDurationUpdate}
-            onEnd={this._handleEnd}
-            isMuted={mute}
-          />
-        </Component >
+        />
       );
     }
   }

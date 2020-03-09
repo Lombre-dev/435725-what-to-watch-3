@@ -1,8 +1,13 @@
-import {createStore} from 'redux';
+import {applyMiddleware, compose, createStore as reduxCreateStore} from 'redux';
+import thunk from 'redux-thunk';
 import reducer from './reducer';
 
-/* eslint-disable indent */
-export const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
-);
+export function createStore(api) {
+  return reduxCreateStore(
+      reducer,
+      compose(
+          applyMiddleware(thunk.withExtraArgument(api)),
+          window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+      )
+  );
+}

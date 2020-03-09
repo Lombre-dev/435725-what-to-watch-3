@@ -8,6 +8,7 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
     constructor(props) {
       super(props);
 
+      this._timeoutId = undefined;
       this.state = {
         activeItemId: -1,
       };
@@ -30,7 +31,7 @@ export default function withActiveItemList(Component, setActiveTimeDelay) {
     }
 
     _handleItemLeave() {
-      clearTimeout(this.timeoutId);
+      clearTimeout(this._timeoutId);
       this.setState({
         activeItemId: -1,
       });

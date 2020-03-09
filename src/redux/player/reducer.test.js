@@ -1,11 +1,10 @@
 import {createStore} from 'redux';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
-import {getGenresFromMovies} from '../../utils/movie-utils';
-import {getMoreCatalogMovies, setCatalogGenre} from './actions';
+import {setPlayerMovie} from './actions';
 import {reducer} from './reducer';
 
 const MOVIES = [
   {
+    id: 0,
     title: `movie 1`,
     genres: [`Drama`],
     year: 2014,
@@ -33,6 +32,7 @@ const MOVIES = [
     ]
   },
   {
+    id: 1,
     title: `movie 2`,
     genres: [`Comedy`],
     year: 2014,
@@ -60,6 +60,7 @@ const MOVIES = [
     ]
   },
   {
+    id: 2,
     title: `movie 3`,
     genres: [`Kids & Family`],
     year: 2014,
@@ -87,46 +88,22 @@ const MOVIES = [
     ]
   },
 ];
-const PROMO_MOVIE = MOVIES[0];
-const CATALOG_GENRE = ALL_GENRE;
-const CATALOG_GENRES = [ALL_GENRE].concat(getGenresFromMovies(MOVIES));
-const CATALOG_MOVIES = MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
-const HAS_MORE_CATALOG_MOVIES = MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT;
 
 const INITIAL_STATE = {
-  allMovies: CATALOG_MOVIES,
-
-  promoMovie: PROMO_MOVIE,
-  genres: CATALOG_GENRES,
-  currentGenre: CATALOG_GENRE,
-  movies: CATALOG_MOVIES,
-  hasMoreMovies: HAS_MORE_CATALOG_MOVIES,
+  movie: undefined,
+  allMovies: MOVIES,
 };
 
-describe(`CatalogReducer`, () => {
+describe(`PlayerReducer`, () => {
 
-  it(`should be switch value of currentGenre`, () => {
-
-    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {
-      currentGenre: `Comedy`,
-      movies: [MOVIES[1]],
-      hasMoreMovies: false,
-    });
-
-    store.dispatch(setCatalogGenre(`Comedy`));
-
-    expect(store.getState()).toEqual(sample);
-  });
-
-  it(`should be new movies added to movie catalog`, () => {
+  it(`should be switch value of movie`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      movies: MOVIES.slice(0, 2 * CATALOG_MOVIES_PER_PAGE_LIMIT),
+      movie: MOVIES[0],
     });
 
-    store.dispatch(getMoreCatalogMovies());
+    store.dispatch(setPlayerMovie(MOVIES[0].id));
 
     expect(store.getState()).toEqual(sample);
   });

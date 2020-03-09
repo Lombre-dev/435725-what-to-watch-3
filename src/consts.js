@@ -29,7 +29,7 @@ export const GENRES = [
   THRILLER_GENRE,
 ];
 
-export const GENRE_LABELS = {
+export const GenreLabels = {
   [COMEDY_GENRE]: `Comedies`,
   [DRAMA_GENRE]: `Dramas`,
   [THRILLER_GENRE]: `Thrillers`,
@@ -52,4 +52,28 @@ export const PlayerState = {
   PLAYING: `playing`,
   PAUSED: `paused`,
   ENDED: `ended`,
+};
+
+export const SERVER_URL = `https://htmlacademy-react-3.appspot.com/wtw`;
+export const SERVER_RESPONSE_TIMEOUT = 5000;
+export const SERVER_USE_COOKIES = true;
+export const ServerErrors = {
+  NOT_FOUND: 404,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+};
+
+export const AuthorizationErrorCode = {
+  INCORRECT_LOGIN: 1,
+  AUTHORIZATION_FAIL: 2,
+};
+
+export const AuthorizationErrorMessage = {
+  [AuthorizationErrorCode.INCORRECT_LOGIN]: `Please enter a valid email address`,
+  [AuthorizationErrorCode.AUTHORIZATION_FAIL]: `We can’t recognize this email and password combination. Please try again.`,
+};
+
+export const AuthorizationStatus = {
+  NO_AUTH: `unauthorized`,
+  AUTH: `authorized`,
 };

@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {setCurrentMovie} from '../../redux/movie-details/actions';
-import {getCurrentMovie, getMoviesLikeCurrent} from '../../redux/movie-details/selectors';
+import {setDetailedMovie} from '../../redux/movie-details/actions';
+import {getDetailedMovie, getMoviesLikeDetailedMovie} from '../../redux/movie-details/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
@@ -25,7 +25,7 @@ class MoviePage extends React.PureComponent {
 
     const {currentMovie, moviesLikeCurrent} = this.props;
 
-    if (!currentMovie) {
+    if (Boolean(currentMovie) === false) {
       return <></>;
     }
 
@@ -34,7 +34,7 @@ class MoviePage extends React.PureComponent {
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+              <img src={currentMovie.backgroundImage} alt={currentMovie.title} />
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
@@ -77,15 +77,15 @@ MoviePage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentMovie: getCurrentMovie(state),
-    moviesLikeCurrent: getMoviesLikeCurrent(state),
+    currentMovie: getDetailedMovie(state),
+    moviesLikeCurrent: getMoviesLikeDetailedMovie(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     mockSetCurrentMovie: (id) => {
-      dispatch(setCurrentMovie(id));
+      dispatch(setDetailedMovie(id));
     }
   };
 }

@@ -1,23 +1,39 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {User} from '../types';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {AppPages, AuthorizationStatus} from '../../consts';
+import {getUserAuthStatus, getUserAvatar, getUserName} from '../../redux/user/selectors';
 
-function UserBlock({user}) {
+function UserBlock({status, name, avatar}) {
   return (
     <div className="user-block">
       {
-        user && <div className="user-block__avatar">
-          <img src={user.avatar} alt={user.name} width="63" height="63" />
+        status === AuthorizationStatus.AUTH && <div className="user-block__avatar">
+          <img src={avatar} alt={name} width="63" height="63" />
         </div>
       }
       {
-        !user && <a className="user-block__link" href="/login">Sign in</a>
+        status === AuthorizationStatus.NO_AUTH &&
+        <Link className="user-block__link" to={AppPages.LOGIN}>Sign in</Link>
       }
     </div>
   );
 }
 
 UserBlock.propTypes = {
-  user: User,
+  status: PropTypes.oneOf(Object.values(AuthorizationStatus)),
+  name: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
-export default UserBlock;
+function mapStateToProps(state) {
+  return {
+    status: getUserAuthStatus(state),
+    name: getUserName(state),
+    avatar: getUserAvatar(state),
+  };
+}
+
+export {UserBlock};
+export default connect(mapStateToProps)(UserBlock);

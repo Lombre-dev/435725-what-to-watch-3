@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {AuthorizationErrorCode, AuthorizationErrorMessage} from '../../consts';
 
 class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this._emailRef = React.createRef();
+    this._passwordRef = React.createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
   }
@@ -11,21 +15,25 @@ class SignIn extends React.PureComponent {
   _handleSubmit(e) {
 
     const {onSubmit} = this.props;
+    const email = this._emailRef.current.value;
+    const password = this._passwordRef.current.value;
 
     e.preventDefault();
-    onSubmit(e);
+    onSubmit({email, password});
+
+    this._passwordRef.current.value = ``;
   }
 
   render() {
 
-    const {email, password, authMessage} = this.props;
+    const {email, password, authError} = this.props;
 
     return (
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={this._handleSubmit}>
           {
-            authMessage && <div className="sign-in__message">
-              <p>{authMessage}</p>
+            authError && <div className="sign-in__message">
+              <p>{AuthorizationErrorMessage[authError]}</p>
             </div>
           }
           <div className="sign-in__fields">
@@ -37,6 +45,7 @@ class SignIn extends React.PureComponent {
                 name="user-email"
                 id="user-email"
                 defaultValue={email}
+                ref={this._emailRef}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email"></label>
             </div>
@@ -48,6 +57,7 @@ class SignIn extends React.PureComponent {
                 name="user-password"
                 id="user-password"
                 defaultValue={password}
+                ref={this._passwordRef}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">{password}</label>
             </div>
@@ -64,8 +74,13 @@ class SignIn extends React.PureComponent {
 SignIn.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
-  authMessage: PropTypes.string,
+  authError: PropTypes.oneOf(Object.values(AuthorizationErrorCode)),
   onSubmit: PropTypes.func.isRequired,
+};
+
+SignIn.defaultProps = {
+  email: `test@test.com`,
+  password: `1`,
 };
 
 export default SignIn;
