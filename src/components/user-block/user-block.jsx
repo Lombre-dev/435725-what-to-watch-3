@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppPages, AuthorizationStatus} from '../../consts';
-import {getUserAuthorizationStatus, getUserAvatar, getUserName} from '../../redux/user/selectors';
+import {getUserAuthStatus, getUserAvatar, getUserName} from '../../redux/user/selectors';
 
 function UserBlock({status, name, avatar}) {
   return (
@@ -29,10 +29,11 @@ UserBlock.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    status: getUserAuthorizationStatus(state),
+    status: getUserAuthStatus(state),
     name: getUserName(state),
     avatar: getUserAvatar(state),
   };
 }
 
+export {UserBlock};
 export default connect(mapStateToProps)(UserBlock);

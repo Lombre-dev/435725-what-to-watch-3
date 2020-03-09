@@ -20,8 +20,6 @@ export function createAPI(onUnauthorizedUserAction) {
       case ServerErrors.UNAUTHORIZED:
         onUnauthorizedUserAction();
         break;
-      case ServerErrors.NOT_FOUND:
-        break;
     }
     throw error;
   };

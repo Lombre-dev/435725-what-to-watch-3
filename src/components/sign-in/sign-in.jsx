@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {AuthorizationErrorCode, AuthorizationErrorMessage} from '../../consts';
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -19,18 +20,20 @@ class SignIn extends React.PureComponent {
 
     e.preventDefault();
     onSubmit({email, password});
+
+    this._passwordRef.current.value = ``;
   }
 
   render() {
 
-    const {email, password, authMessage} = this.props;
+    const {email, password, authError} = this.props;
 
     return (
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={this._handleSubmit}>
           {
-            authMessage && <div className="sign-in__message">
-              <p>{authMessage}</p>
+            authError && <div className="sign-in__message">
+              <p>{AuthorizationErrorMessage[authError]}</p>
             </div>
           }
           <div className="sign-in__fields">
@@ -71,7 +74,7 @@ class SignIn extends React.PureComponent {
 SignIn.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
-  authMessage: PropTypes.string,
+  authError: PropTypes.oneOf(Object.values(AuthorizationErrorCode)),
   onSubmit: PropTypes.func.isRequired,
 };
 

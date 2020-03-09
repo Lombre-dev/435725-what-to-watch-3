@@ -5,5 +5,6 @@ export const initialState = {
   name: undefined,
   email: undefined,
   avatar: undefined,
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authError: undefined,
+  authStatus: AuthorizationStatus.NO_AUTH,
 };
