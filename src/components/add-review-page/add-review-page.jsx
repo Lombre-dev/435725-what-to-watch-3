@@ -80,6 +80,7 @@ AddReviewPage.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     onSubmit: ({ratingScore, message}) => {
+      // eslint-disable-next-line no-console
       console.log(dispatch, ratingScore, message);
       // dispatch(ReviewOperations.some({ratingScore, message}));
     }
