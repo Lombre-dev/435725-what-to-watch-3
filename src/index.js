@@ -19,9 +19,4 @@ store.dispatch(CatalogOperations.getCatalog());
 store.dispatch(CatalogOperations.getPromoMovie());
 store.dispatch(UserOperations.checkAuthorization());
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById(`root`)
-);
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById(`root`));
