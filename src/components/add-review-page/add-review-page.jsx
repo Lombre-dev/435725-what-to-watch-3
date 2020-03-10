@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages, REVIEW_COMMENT_MAX_LENGTH} from '../../consts';
+import {AppPages, REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../../consts';
 import Logo from '../logo/logo';
 import ReviewRating from '../review-rating/review-rating';
 import {Movie} from '../types';
@@ -79,6 +79,7 @@ class AddReviewPage extends React.PureComponent {
                 name="review-text"
                 id="review-text"
                 placeholder="Review text"
+                minLength={REVIEW_COMMENT_MIN_LENGTH}
                 maxLength={REVIEW_COMMENT_MAX_LENGTH}
                 onChange={this._handleCommentChange}
               ></textarea>

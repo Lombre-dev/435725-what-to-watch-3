@@ -68,7 +68,7 @@ function withSubmitMovieReview(Component) {
           isSubmitEnabled={
             rating !== -1 &&
             comment.length >= REVIEW_COMMENT_MIN_LENGTH &&
-            comment.length < REVIEW_COMMENT_MAX_LENGTH
+            comment.length <= REVIEW_COMMENT_MAX_LENGTH
           }
           onSubmit={this._handleSubmit}
         />
