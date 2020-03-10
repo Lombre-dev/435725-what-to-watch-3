@@ -5,7 +5,6 @@ import {createAPI} from './api';
 import App from './components/app/app';
 import {Operations as CatalogOperations} from './redux/catalog/operations';
 import {createStore} from './redux/createStore';
-import {Operations as UserOperations} from './redux/user/operations';
 
 function onUnauthorizedUserAction() {
   // redirect to authorization screen
@@ -18,7 +17,7 @@ const store = createStore(api);
 Promise.all([
   store.dispatch(CatalogOperations.getCatalog()),
   store.dispatch(CatalogOperations.getPromoMovie()),
-  store.dispatch(UserOperations.checkAuthorization()),
+  // store.dispatch(UserOperations.checkAuthorization()),
 ]).then(() => {
   ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById(`root`));
 });
