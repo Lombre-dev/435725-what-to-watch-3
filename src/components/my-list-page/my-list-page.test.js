@@ -1,12 +1,8 @@
 import React from 'react';
-import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
-import {AuthorizationStatus} from '../../consts';
-import App from './app';
+import {MyListPage} from './my-list-page';
 
-const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
-const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     id: 0,
@@ -103,40 +99,19 @@ const MOVIES = [
     ]
   },
 ];
-const HAS_MORE_MOVIES = true;
+const HANDLE_EVENT = () => {};
 
-const mockStore = configureStore([]);
-
-describe(`<App />`, () => {
+describe(`<MyListPage />`, () => {
 
   it(`render should be match markup`, () => {
 
-    const store = mockStore({
-      movieDetails: {
-        movie: undefined,
-        moviesLike: [],
-      },
-      catalog: {
-        promoMovie: MOVIES[0],
-        currentGenre: CURRENT_GENRE,
-        genres: GENRES,
-        movies: MOVIES,
-        hasMoreMovies: HAS_MORE_MOVIES,
-      },
-      user: {
-        id: -1,
-        name: undefined,
-        email: undefined,
-        avatar: undefined,
-        authError: undefined,
-        authStatus: AuthorizationStatus.NO_AUTH,
-      }
-    });
-
     const result = renderer
-      .create(<Provider store={store}>
-        <App />
-      </Provider>, {
+      .create(<BrowserRouter>
+        <MyListPage
+          movies={MOVIES}
+          updateFavoriteMovies={HANDLE_EVENT}
+        />
+      </BrowserRouter>, {
         createNodeMock: () => {
           return {};
         }

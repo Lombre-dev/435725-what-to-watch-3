@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserBlock /> render should be match markup 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    href="/mylist"
+    onClick={[Function]}
+  >
+    <div
+      className="user-block__avatar"
+    >
+      <img
+        alt="Test"
+        height="63"
+        src="Avatar.jpg"
+        width="63"
+      />
+    </div>
+  </a>
+</div>
+`;
