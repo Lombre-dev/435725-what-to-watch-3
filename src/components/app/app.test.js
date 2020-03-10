@@ -113,8 +113,8 @@ describe(`<App />`, () => {
 
     const store = mockStore({
       movieDetails: {
-        currentMovie: undefined,
-        moviesLikeCurrent: [],
+        movie: undefined,
+        moviesLike: [],
       },
       catalog: {
         promoMovie: MOVIES[0],
