@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {AppPages} from '../../consts';
+import {AppPages, AuthorizationStatus} from '../../consts';
+import {getUserAuthStatus} from '../../redux/user/selectors';
 import {Movie} from '../types';
 
 function BigMovieCard({movie, isCanReviewed}) {
@@ -27,7 +29,8 @@ function BigMovieCard({movie, isCanReviewed}) {
           <span>My list</span>
         </button>
         {
-          isCanReviewed && <a href="add-review.html" className="btn movie-card__button">Add review</a>
+          isCanReviewed &&
+          <Link className="btn movie-card__button" to={`${AppPages.MOVIES}/${movie.id}/review`}>Add review</Link>
         }
       </div>
     </div>
@@ -39,4 +42,11 @@ BigMovieCard.propTypes = {
   isCanReviewed: PropTypes.bool.isRequired,
 };
 
-export default BigMovieCard;
+function mapStateToProps(state) {
+  return {
+    isCanReviewed: getUserAuthStatus(state) === AuthorizationStatus.AUTH,
+  };
+}
+
+export {BigMovieCard};
+export default connect(mapStateToProps)(BigMovieCard);

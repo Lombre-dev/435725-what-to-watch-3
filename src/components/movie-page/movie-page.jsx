@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {setDetailedMovie} from '../../redux/movie-details/actions';
+import {Operations} from '../../redux/movie-details/operations';
 import {getDetailedMovie, getMoviesLikeDetailedMovie} from '../../redux/movie-details/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
@@ -16,16 +15,26 @@ class MoviePage extends React.PureComponent {
 
   componentDidMount() {
 
-    const {mockSetCurrentMovie, match: {params: {id}}} = this.props;
+    const {setMovie, match: {params: {id}}} = this.props;
 
-    mockSetCurrentMovie(id);
+    setMovie(id);
+  }
+
+  componentDidUpdate(prevProps) {
+
+    const {match: {params: {id: currentId}}, setMovie} = this.props;
+    const {match: {params: {id: prevId}}} = prevProps;
+
+    if (currentId !== prevId) {
+      setMovie(currentId);
+    }
   }
 
   render() {
 
-    const {currentMovie, moviesLikeCurrent} = this.props;
+    const {movie, moviesLikeCurrent} = this.props;
 
-    if (Boolean(currentMovie) === false) {
+    if (Boolean(movie) === false) {
       return <></>;
     }
 
@@ -34,7 +43,7 @@ class MoviePage extends React.PureComponent {
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src={currentMovie.backgroundImage} alt={currentMovie.title} />
+              <img src={movie.backgroundImage} alt={movie.title} />
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
@@ -46,13 +55,13 @@ class MoviePage extends React.PureComponent {
 
             <div className="movie-card__wrap">
               <BigMovieCard
-                movie={currentMovie}
+                movie={movie}
                 isCanReviewed={true}
               />
             </div>
           </div>
           <MovieInfo
-            movie={currentMovie}
+            movie={movie}
           />
         </section>
 
@@ -69,26 +78,26 @@ class MoviePage extends React.PureComponent {
 
 MoviePage.propTypes = {
   match: PropTypes.object.isRequired,
-  currentMovie: Movie,
+  movie: Movie,
   moviesLikeCurrent: PropTypes.arrayOf(Movie),
-  // mock
-  mockSetCurrentMovie: PropTypes.func,
+
+  setMovie: PropTypes.func,
 };
 
 function mapStateToProps(state) {
   return {
-    currentMovie: getDetailedMovie(state),
+    movie: getDetailedMovie(state),
     moviesLikeCurrent: getMoviesLikeDetailedMovie(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    mockSetCurrentMovie: (id) => {
-      dispatch(setDetailedMovie(id));
+    setMovie: (id) => {
+      dispatch(Operations.setDetailedMovie(id));
     }
   };
 }
 
 export {MoviePage};
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MoviePage));
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Movie} from '../components/types';
 import {PlayerState} from '../consts';
-import {setPlayerMovie} from '../redux/player/actions';
 import {getPlayerMovie} from '../redux/player/selectors';
+import {Operations} from '../redux/reviews/operations';
 
 export default function withVideoPlayer(Component) {
 
@@ -30,9 +30,9 @@ export default function withVideoPlayer(Component) {
 
     componentDidMount() {
 
-      const {mockSetPlayerMovie, match: {params: {id}}} = this.props;
+      const {setMovie, match: {params: {id}}} = this.props;
 
-      mockSetPlayerMovie(id);
+      setMovie(id);
     }
 
     _handlePlay() {
@@ -75,7 +75,7 @@ export default function withVideoPlayer(Component) {
       const {movie} = this.props;
       const {state, time, duration, isMute, isFullscreen} = this.state;
 
-      if (!movie) {
+      if (Boolean(movie) === false) {
         return <></>;
       }
 
@@ -98,10 +98,10 @@ export default function withVideoPlayer(Component) {
   }
 
   WithVideoPlayer.propTypes = {
-    movie: Movie,
-    // mock
     match: PropTypes.object.isRequired,
-    mockSetPlayerMovie: PropTypes.func,
+    movie: Movie,
+
+    setMovie: PropTypes.func,
   };
 
   function mapStateToProps(state) {
@@ -112,8 +112,8 @@ export default function withVideoPlayer(Component) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      mockSetPlayerMovie: (id) => {
-        dispatch(setPlayerMovie(id));
+      setMovie: (id) => {
+        dispatch(Operations.setPlayerMovie(id));
       }
     };
   }

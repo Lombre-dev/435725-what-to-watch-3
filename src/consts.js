@@ -77,3 +77,7 @@ export const AuthorizationStatus = {
   NO_AUTH: `unauthorized`,
   AUTH: `authorized`,
 };
+
+export const REVIEW_RATING_STARS_LIMIT = 5;
+export const REVIEW_COMMENT_MIN_LENGTH = 50;
+export const REVIEW_COMMENT_MAX_LENGTH = 400;

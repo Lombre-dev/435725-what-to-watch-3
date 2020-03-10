@@ -91,7 +91,6 @@ const MOVIES = [
 
 const INITIAL_STATE = {
   movie: undefined,
-  allMovies: MOVIES,
 };
 
 describe(`PlayerReducer`, () => {
@@ -103,7 +102,7 @@ describe(`PlayerReducer`, () => {
       movie: MOVIES[0],
     });
 
-    store.dispatch(setPlayerMovie(MOVIES[0].id));
+    store.dispatch(setPlayerMovie(MOVIES[0]));
 
     expect(store.getState()).toEqual(sample);
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieInfoReviews from './movie-info-reviews';
+import {MovieInfoReviews} from './movie-info-reviews';
 
 const MOVIE = {
   id: 0,
@@ -34,6 +34,7 @@ const MOVIE = {
     }
   ]
 };
+const HANDLE_EVENT = () => {};
 
 describe(`<MovieInfoReviews />`, () => {
 
@@ -42,6 +43,7 @@ describe(`<MovieInfoReviews />`, () => {
     const result = renderer
       .create(<MovieInfoReviews
         movie={MOVIE}
+        getReviews={HANDLE_EVENT}
       />)
       .toJSON();
 

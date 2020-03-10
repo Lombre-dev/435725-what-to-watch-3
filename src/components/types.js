@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const Review = PropTypes.shape({
+  id: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
@@ -21,7 +22,7 @@ export const Movie = PropTypes.shape({
   description: PropTypes.string,
   story: PropTypes.string,
   duration: PropTypes.number.isRequired,
-  reviews: PropTypes.arrayOf(Review),
+  // reviews: PropTypes.arrayOf(Review),
   director: PropTypes.string.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   backgroundImage: PropTypes.string,
