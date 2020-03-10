@@ -1,5 +1,6 @@
 import {AuthorizationErrorCode} from '../../consts';
-import {setUserAuthError, setUserData} from './actions';
+import {formatMovies} from '../catalog/mappers';
+import {setFavoriteMovies, setUserAuthError, setUserData} from './actions';
 
 const Operations = {
   checkAuthorization: () => (dispatch, getState, api) => {
@@ -25,7 +26,20 @@ const Operations = {
         }
         dispatch(setUserAuthError(errorCode));
       });
-  }
+  },
+  getFavoriteMovies: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(setFavoriteMovies(formatMovies(response.data)));
+      });
+  },
+  updateFavoriteMovie: (movieId, isFavorite) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${movieId}/${isFavorite ? 1 : 0}`)
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(`updateFavoriteMovie`, movieId, isFavorite, response);
+      });
+  },
 };
 
 export {Operations};

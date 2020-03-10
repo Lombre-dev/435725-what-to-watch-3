@@ -15,8 +15,10 @@ function onUnauthorizedUserAction() {
 const api = createAPI(onUnauthorizedUserAction);
 const store = createStore(api);
 
-store.dispatch(CatalogOperations.getCatalog());
-store.dispatch(CatalogOperations.getPromoMovie());
-store.dispatch(UserOperations.checkAuthorization());
-
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById(`root`));
+Promise.all([
+  store.dispatch(CatalogOperations.getCatalog()),
+  store.dispatch(CatalogOperations.getPromoMovie()),
+  store.dispatch(UserOperations.checkAuthorization()),
+]).then(() => {
+  ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById(`root`));
+});

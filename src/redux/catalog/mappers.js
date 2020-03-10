@@ -14,8 +14,13 @@ function formatMovie(source) {
     duration: source.run_time,
     backgroundImage: source.background_image,
     backgroundColor: source.background_color,
+    isFavorite: source.is_favorite,
     reviews: [],
   });
 }
 
-export {formatMovie};
+function formatMovies(source) {
+  return source.map((item) => formatMovie(item));
+}
+
+export {formatMovie, formatMovies};

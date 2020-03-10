@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Movie} from '../components/types';
 import {PlayerState} from '../consts';
+import {Operations} from '../redux/player/operations';
 import {getPlayerMovie} from '../redux/player/selectors';
-import {Operations} from '../redux/reviews/operations';
 
 export default function withVideoPlayer(Component) {
 

@@ -9,9 +9,12 @@ function UserBlock({status, name, avatar}) {
   return (
     <div className="user-block">
       {
-        status === AuthorizationStatus.AUTH && <div className="user-block__avatar">
-          <img src={avatar} alt={name} width="63" height="63" />
-        </div>
+        status === AuthorizationStatus.AUTH &&
+        <Link to={`${AppPages.MY_LIST}`}>
+          <div className="user-block__avatar">
+            <img src={avatar} alt={name} width="63" height="63" />
+          </div>
+        </Link>
       }
       {
         status === AuthorizationStatus.NO_AUTH &&

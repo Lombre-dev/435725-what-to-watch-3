@@ -27,4 +27,5 @@ export const Movie = PropTypes.shape({
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   backgroundImage: PropTypes.string,
   backgroundColor: PropTypes.string,
+  isFavorite: PropTypes.bool,
 });

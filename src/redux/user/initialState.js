@@ -7,4 +7,5 @@ export const initialState = {
   avatar: undefined,
   authError: undefined,
   authStatus: AuthorizationStatus.NO_AUTH,
+  favoriteMovies: [],
 };
