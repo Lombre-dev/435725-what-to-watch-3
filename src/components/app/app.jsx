@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {AppPages} from '../../consts';
-import {AddReviewPage} from '../add-review-page/add-review-page';
+import AddReviewPage from '../add-review-page';
 import CatalogPage from '../catalog-page/catalog-page';
 import MoviePage from '../movie-page/movie-page';
 import PlayerPage from '../player-page';
