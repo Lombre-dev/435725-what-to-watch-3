@@ -81,3 +81,9 @@ export const AuthorizationStatus = {
 export const REVIEW_RATING_STARS_LIMIT = 5;
 export const REVIEW_COMMENT_MIN_LENGTH = 50;
 export const REVIEW_COMMENT_MAX_LENGTH = 400;
+
+export const LoadingDataStatus = {
+  LOADING: `loading`,
+  READY: `ready`,
+  ERROR: `error`,
+};

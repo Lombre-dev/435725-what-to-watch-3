@@ -1,23 +1,41 @@
 import {createReducer} from 'redux-act';
-import {AuthorizationStatus} from '../../consts';
-import {clearUserAuthError, setUserAuthError, setUserData} from './actions';
+import {clearUserAuthError, clearUserData, clearUserFavoriteMovies, setUserAuthError, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
 import {initialState} from './initialState';
-import {formatUser} from './mappers';
 
 export const reducer = createReducer({
-  [setUserData]: _setUserData,
-  [setUserAuthError]: _setUserAuthError,
+  [clearUserData]: _clearData,
+  [setUserData]: _setData,
+  [setUserAuthError]: _setAuthError,
+  [setUserAuthRequired]: _setAuthRequired,
   [clearUserAuthError]: _clearUserAuthError,
+  [clearUserFavoriteMovies]: _clearFavoriteMovies,
+  [setUserFavoriteMovies]: _setFavoriteMovies,
 }, initialState);
 
-function _setUserData(state, user) {
-  return Object.assign({}, state, formatUser(user), {authStatus: AuthorizationStatus.AUTH});
+function _clearData(state) {
+  return Object.assign({}, state, initialState);
 }
 
-function _setUserAuthError(state, errorCode) {
+function _setData(state, user) {
+  return Object.assign({}, state, user);
+}
+
+function _setAuthRequired(state, authRequired) {
+  return Object.assign({}, state, {authRequired});
+}
+
+function _setAuthError(state, errorCode) {
   return Object.assign({}, state, {authError: errorCode});
 }
 
 function _clearUserAuthError(state) {
   return Object.assign({}, state, {authError: undefined});
+}
+
+function _clearFavoriteMovies(state) {
+  return Object.assign({}, state, {favoriteMovies: initialState.favoriteMovies});
+}
+
+function _setFavoriteMovies(state, movies) {
+  return Object.assign({}, state, {favoriteMovies: movies});
 }

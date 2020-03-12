@@ -13,11 +13,7 @@ describe(`<GenreFilter />`, () => {
       .create(<GenreFilter
         genre={GENRE}
         onSelect={HANDLE_EVENT}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      />)
       .toJSON();
 
     expect(result).toMatchSnapshot();

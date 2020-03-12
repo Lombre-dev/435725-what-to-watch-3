@@ -5,8 +5,6 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import MoreLikeThis from './more-like-this';
 
-const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
-const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     id: 0,
@@ -103,7 +101,6 @@ const MOVIES = [
     ]
   },
 ];
-const HAS_MORE_MOVIES = true;
 
 const mockStore = configureStore([]);
 
@@ -111,14 +108,7 @@ describe(`<MoreLikeThis />`, () => {
 
   it(`render should be match markup`, () => {
 
-    const store = mockStore({
-      currentMovie: null,
-      promoMovie: MOVIES[0],
-      catalogGenres: GENRES,
-      catalogGenre: CURRENT_GENRE,
-      catalogMovies: MOVIES,
-      hasMoreCatalogMovies: HAS_MORE_MOVIES,
-    });
+    const store = mockStore({});
 
     const result = renderer
       .create(<Provider store={store}>

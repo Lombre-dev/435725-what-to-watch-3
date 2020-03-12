@@ -3,6 +3,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import MovieCatalog from './movie-catalog';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
@@ -106,20 +107,23 @@ const MOVIES = [
 const HAS_MORE_MOVIES = true;
 const HANDLE_EVENT = () => {};
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([thunk]);
 
 describe(`<MovieCatalog />`, () => {
 
   it(`render should be match markup`, () => {
 
     const store = mockStore({
+      app: {
+        movie: MOVIES,
+      },
       movieDetails: {
-        currentMovie: undefined,
-        moviesLikeCurrent: [],
+        movie: undefined,
+        moviesLike: [],
       },
       catalog: {
         promoMovie: MOVIES[0],
-        currentGenre: CURRENT_GENRE,
+        genre: CURRENT_GENRE,
         genres: GENRES,
         movies: MOVIES,
         hasMoreMovies: HAS_MORE_MOVIES,

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {ServerErrors, SERVER_RESPONSE_TIMEOUT, SERVER_URL, SERVER_USE_COOKIES} from './consts';
+import {SERVER_RESPONSE_TIMEOUT, SERVER_URL, SERVER_USE_COOKIES} from './consts';
 
-export function createAPI(onUnauthorizedUserAction) {
+export function createAPI() {
   const api = axios.create({
     baseURL: SERVER_URL,
     timeout: SERVER_RESPONSE_TIMEOUT,
@@ -13,14 +13,6 @@ export function createAPI(onUnauthorizedUserAction) {
   };
 
   const onFail = (error) => {
-
-    const {response} = error;
-
-    switch (response.status) {
-      case ServerErrors.UNAUTHORIZED:
-        onUnauthorizedUserAction();
-        break;
-    }
     throw error;
   };
 

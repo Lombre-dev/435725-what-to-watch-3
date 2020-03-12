@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/movie-details/operations';
-import {getDetailedMovie, getMoviesLikeDetailedMovie} from '../../redux/movie-details/selectors';
+import {getDetailedMovie, getDetailedMovieLikeCurrent, getDetailedMovieStatus} from '../../redux/movie-details/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
+import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import Logo from '../logo/logo';
 import MoreLikeThis from '../more-like-this/more-like-this';
 import MovieInfo from '../movie-info';
@@ -15,27 +18,27 @@ class MoviePage extends React.PureComponent {
 
   componentDidMount() {
 
-    const {setMovie, match: {params: {id}}} = this.props;
+    const {init, match: {params: {id}}} = this.props;
 
-    setMovie(id);
+    init(id);
   }
 
   componentDidUpdate(prevProps) {
 
-    const {match: {params: {id: currentId}}, setMovie} = this.props;
+    const {match: {params: {id: currentId}}, init} = this.props;
     const {match: {params: {id: prevId}}} = prevProps;
 
     if (currentId !== prevId) {
-      setMovie(currentId);
+      init(currentId);
     }
   }
 
   render() {
 
-    const {movie, moviesLikeCurrent} = this.props;
+    const {status, movie, moviesLikeCurrent} = this.props;
 
-    if (Boolean(movie) === false) {
-      return <></>;
+    if (status !== LoadingDataStatus.READY) {
+      return <LoadingDataBlock status={status} />;
     }
 
     return (
@@ -56,7 +59,6 @@ class MoviePage extends React.PureComponent {
             <div className="movie-card__wrap">
               <BigMovieCard
                 movie={movie}
-                isCanReviewed={true}
               />
             </div>
           </div>
@@ -78,26 +80,28 @@ class MoviePage extends React.PureComponent {
 
 MoviePage.propTypes = {
   match: PropTypes.object.isRequired,
+  status: PropTypes.oneOf(Object.values(LoadingDataStatus)),
   movie: Movie,
   moviesLikeCurrent: PropTypes.arrayOf(Movie),
 
-  setMovie: PropTypes.func,
+  init: PropTypes.func,
 };
 
 function mapStateToProps(state) {
   return {
+    status: getDetailedMovieStatus(state),
     movie: getDetailedMovie(state),
-    moviesLikeCurrent: getMoviesLikeDetailedMovie(state),
+    moviesLikeCurrent: getDetailedMovieLikeCurrent(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setMovie: (id) => {
-      dispatch(Operations.setDetailedMovie(id));
+    init: (movieId) => {
+      dispatch(Operations.init(movieId));
     }
   };
 }
 
 export {MoviePage};
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MoviePage));

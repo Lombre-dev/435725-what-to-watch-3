@@ -1,2 +1,4 @@
+
 export const getDetailedMovie = (state) => state.movieDetails.movie;
-export const getMoviesLikeDetailedMovie = (state) => state.movieDetails.moviesLike;
+export const getDetailedMovieStatus = (state) => state.movieDetails.status;
+export const getDetailedMovieLikeCurrent = (state) => state.movieDetails.moviesLike;

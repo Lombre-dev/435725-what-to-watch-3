@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {AppPages, AuthorizationStatus} from '../../consts';
+import {AppPages} from '../../consts';
 import {Operations} from '../../redux/user/operations';
-import {getUserAuthStatus} from '../../redux/user/selectors';
 import {Movie} from '../types';
 
 class BigMovieCard extends React.PureComponent {
@@ -23,7 +22,7 @@ class BigMovieCard extends React.PureComponent {
 
   render() {
 
-    const {movie, isCanReviewed} = this.props;
+    const {movie} = this.props;
 
     return (
       <div className="movie-card__desc">
@@ -46,10 +45,7 @@ class BigMovieCard extends React.PureComponent {
             </svg>
             <span>My list</span>
           </button>
-          {
-            isCanReviewed &&
-            <Link className="btn movie-card__button" to={`${AppPages.MOVIES}/${movie.id}/review`}>Add review</Link>
-          }
+          <Link className="btn movie-card__button" to={`${AppPages.MOVIES}/${movie.id}/review`}>Add review</Link>
         </div>
       </div>
     );
@@ -58,15 +54,8 @@ class BigMovieCard extends React.PureComponent {
 
 BigMovieCard.propTypes = {
   movie: Movie.isRequired,
-  isCanReviewed: PropTypes.bool.isRequired,
   updateFavoriteStatus: PropTypes.func,
 };
-
-function mapStateToProps(state) {
-  return {
-    isCanReviewed: getUserAuthStatus(state) === AuthorizationStatus.AUTH,
-  };
-}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -77,4 +66,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export {BigMovieCard};
-export default connect(mapStateToProps, mapDispatchToProps)(BigMovieCard);
+export default connect(null, mapDispatchToProps)(BigMovieCard);

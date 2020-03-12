@@ -28,6 +28,7 @@ describe(`<SignInPage />`, () => {
       .create(<Provider store={store}>
         <BrowserRouter>
           <SignInPage
+            init={HANDLE_EVENT}
             onSubmit={HANDLE_EVENT}
           />
         </BrowserRouter>

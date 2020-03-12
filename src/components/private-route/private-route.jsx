@@ -6,7 +6,6 @@ import {AppPages, AuthorizationStatus} from '../../consts';
 import {getUserAuthStatus} from '../../redux/user/selectors';
 
 function PrivateRoute({exact, path, render, authStatus}) {
-
   return (
     <Route
       exact={exact}

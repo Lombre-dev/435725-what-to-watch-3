@@ -3,7 +3,8 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus} from '../../consts';
+import thunk from 'redux-thunk';
+import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
 import {MoviePage} from './movie-page';
 
 const MATCH = {params: {id: 0}};
@@ -41,7 +42,8 @@ const MOVIE = {
   ]
 };
 const MOVIES_LIKE_CURRENT = [];
-const mockStore = configureStore([]);
+const LOADING_DATA_STATUS = LoadingDataStatus.READY;
+const mockStore = configureStore([thunk]);
 
 describe(`<MoviePage />`, () => {
 
@@ -58,9 +60,10 @@ describe(`<MoviePage />`, () => {
         <BrowserRouter>
           <MoviePage
             match={MATCH}
+            statis={LOADING_DATA_STATUS}
             movie={MOVIE}
             moviesLikeCurrent={MOVIES_LIKE_CURRENT}
-            setMovie={HANDLE_EVENT}
+            init={HANDLE_EVENT}
           />
         </BrowserRouter>
       </Provider>)

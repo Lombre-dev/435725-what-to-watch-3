@@ -1,4 +1,3 @@
-import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 import {Operations} from './operations';
 
@@ -34,43 +33,20 @@ const MOVIES = [{
     }
   ]
 }];
-const GET_STATE = () => {
-  return {
-    app: {
-      movies: MOVIES,
-    },
-    catalog: {
-      promoMovie: undefined,
-    },
-    detailedMove: {
-      movie: undefined,
-    },
-  };
-};
 
-describe(`CatalogOperations`, () => {
-  it(`should be a correct call getCatalog`, () => {
+describe(`AppOperations`, () => {
+  it(`should be a correct call setPlayerMovie`, () => {
 
     const api = createAPI();
     const dispatch = jest.fn();
 
-    Operations.getCatalog()(dispatch, GET_STATE, api);
+    Operations.setPlayerMovie(0)(dispatch, () => {
+      return {
+        app: {
+          movies: MOVIES,
+        }
+      };
+    }, api);
     expect(dispatch).toHaveBeenCalledTimes(1);
-  });
-
-  it(`should be a correct API getPromoMovie`, () => {
-
-    const api = createAPI();
-    const dispatch = jest.fn();
-    const apiMock = new MockAdapter(api);
-
-    Operations.getPromoMovie()(dispatch, GET_STATE, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-      });
-
-    apiMock
-      .onGet(`/films/promo`)
-      .reply(200, []);
   });
 });

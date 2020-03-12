@@ -1,11 +1,11 @@
-import {getAllMovies} from '../catalog/selectors';
+import {getAppMovies} from '../app/selectors';
 import {setReviewMovie, setReviews} from './actions';
 import {formatReviews} from './mappers';
 
 const Operations = {
   setReviewMovie: (movieId) => (dispatch, getState, _api) => {
 
-    const allMovies = getAllMovies(getState());
+    const allMovies = getAppMovies(getState());
     const intMovieId = parseInt(movieId, 10);
 
     dispatch(setReviewMovie(allMovies.find((movie) => movie.id === intMovieId)));

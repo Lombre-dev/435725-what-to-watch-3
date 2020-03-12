@@ -100,7 +100,6 @@ export default function withVideoPlayer(Component) {
   WithVideoPlayer.propTypes = {
     match: PropTypes.object.isRequired,
     movie: Movie,
-
     setMovie: PropTypes.func,
   };
 
