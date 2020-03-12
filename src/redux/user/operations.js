@@ -1,43 +1,86 @@
-import {AuthorizationErrorCode} from '../../consts';
-import {formatMovies} from '../catalog/mappers';
-import {setFavoriteMovies, setUserAuthError, setUserData} from './actions';
+import {AuthorizationErrorCode, AuthorizationStatus, ServerErrors} from '../../consts';
+import {setAppMovies} from '../app/actions';
+import {formatMovies} from '../app/mappers';
+import {getAppMovies} from '../app/selectors';
+import {setCatalogPromoMovie} from '../catalog/actions';
+import {getCatalogPromoMovie} from '../catalog/selectors';
+import {setDetailedMovie} from '../movie-details/actions';
+import {getDetailedMovie} from '../movie-details/selectors';
+import {clearUserData, clearUserFavoriteMovies, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
+import {formatUser} from './mappers';
 
 const Operations = {
   checkAuthorization: () => (dispatch, getState, api) => {
+
+    dispatch(clearUserData());
+
     return api.get(`/login`)
       .then((response) => {
-        dispatch(setUserData(response.data));
+        dispatch(setUserData(Object.assign(
+            formatUser(response.data),
+            {authStatus: AuthorizationStatus.AUTH}
+        )));
+      })
+      .catch(() => {
+        dispatch(setUserData(
+            {authStatus: AuthorizationStatus.NO_AUTH}
+        ));
       });
   },
+
   login: ({email, password}) => (dispatch, getState, api) => {
+
+    dispatch(clearUserData());
+
     return api.post(`/login`, {email, password})
       .then((response) => {
-        dispatch(setUserData(response.data));
-      }).catch((error) => {
-
-        let errorCode;
-
-        // {error: "child "email" fails because ["email" must be a valid email]"}
-        if (error.response.data.error.indexOf(`["email" must be a valid email]`) !== -1) {
-          errorCode = AuthorizationErrorCode.INCORRECT_LOGIN;
-        // {error: "child "email" fails because ["email" is required]"}
-        } else if (error.response.data.error.indexOf(`["email" is required]`) !== -1) {
-          errorCode = AuthorizationErrorCode.AUTHORIZATION_FAIL;
-        }
-        dispatch(setUserAuthError(errorCode));
+        dispatch(setUserData(Object.assign(
+            formatUser(response.data),
+            {authStatus: AuthorizationStatus.AUTH}
+        )));
+      }).catch(() => {
+        dispatch(setUserData(
+            {authError: AuthorizationErrorCode.AUTHORIZATION_FAIL}
+        ));
       });
   },
+
   getFavoriteMovies: () => (dispatch, getState, api) => {
+
+    dispatch(clearUserFavoriteMovies());
+
     return api.get(`/favorite`)
       .then((response) => {
-        dispatch(setFavoriteMovies(formatMovies(response.data)));
+        dispatch(setUserFavoriteMovies(formatMovies(response.data)));
       });
   },
+
   updateFavoriteMovie: (movieId, isFavorite) => (dispatch, getState, api) => {
     return api.post(`/favorite/${movieId}/${isFavorite ? 1 : 0}`)
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log(`updateFavoriteMovie`, movieId, isFavorite, response);
+      .then(() => {
+
+        const state = getState();
+        const allMovies = getAppMovies(state);
+        const promoMovie = getCatalogPromoMovie(state);
+        const detailedMovie = getDetailedMovie(state);
+
+        const appMovie = getAppMovies(state).find((movie) => movie.id === movieId);
+
+        appMovie.isFavorite = isFavorite;
+        dispatch(setAppMovies(allMovies));
+
+        if (promoMovie && promoMovie.id === appMovie.id) {
+          dispatch(setCatalogPromoMovie(appMovie));
+        }
+
+        if (detailedMovie && detailedMovie.id === movieId) {
+          dispatch(setDetailedMovie(appMovie));
+        }
+
+      }).catch((error) => {
+        if (error.response.status === ServerErrors.UNAUTHORIZED) {
+          dispatch(setUserAuthRequired(true));
+        }
       });
   },
 };

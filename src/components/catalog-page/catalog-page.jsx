@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getPromoMovie} from '../../redux/catalog/selectors';
+import {getCatalogPromoMovie} from '../../redux/catalog/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
@@ -32,7 +32,6 @@ function CatalogPage({promoMovie}) {
             </div>
             <BigMovieCard
               movie={promoMovie}
-              isCanReviewed={false}
             />
           </div>
         </div>
@@ -51,7 +50,7 @@ CatalogPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    promoMovie: getPromoMovie(state),
+    promoMovie: getCatalogPromoMovie(state),
   };
 }
 

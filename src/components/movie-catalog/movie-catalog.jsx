@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {getMoreCatalogMovies} from '../../redux/catalog/actions';
-import {getCurrentGenre, getGenres, getHasMoreMovies, getMovies} from '../../redux/catalog/selectors';
+import {getCatalogMoreMovies} from '../../redux/catalog/actions';
+import {Operations} from '../../redux/catalog/operations';
+import {getCatalogGenre, getCatalogGenres, getCatalogHasMoreMovies, getCatalogMovies} from '../../redux/catalog/selectors';
 import GenreFilterList from '../genre-filter-list/genre-filter-list';
 import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
@@ -10,11 +11,18 @@ import {Movie} from '../types';
 
 class MovieCatalog extends React.PureComponent {
 
+  componentDidMount() {
+
+    const {init} = this.props;
+
+    init();
+  }
+
   render() {
 
     const {
       genres,
-      currentGenre,
+      genre,
       movies,
       hasMoreMovies,
       onShowMore
@@ -24,13 +32,15 @@ class MovieCatalog extends React.PureComponent {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreFilterList
+          genre={genre}
           genres={genres}
-          currentGenre={currentGenre}
         />
         <SmallMovieCardList
           movies={movies}
         />
-        {hasMoreMovies && <ShowMore onClick={onShowMore} />}
+        {
+          hasMoreMovies && <ShowMore onClick={onShowMore} />
+        }
       </section>
     );
   }
@@ -39,10 +49,11 @@ class MovieCatalog extends React.PureComponent {
 
 MovieCatalog.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentGenre: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(Movie),
   hasMoreMovies: PropTypes.bool.isRequired,
   onShowMore: PropTypes.func.isRequired,
+  init: PropTypes.func,
 };
 
 MovieCatalog.defaultProps = {
@@ -51,17 +62,21 @@ MovieCatalog.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    genres: getGenres(state),
-    currentGenre: getCurrentGenre(state),
-    movies: getMovies(state),
-    hasMoreMovies: getHasMoreMovies(state),
+    genres: getCatalogGenres(state),
+    genre: getCatalogGenre(state),
+    movies: getCatalogMovies(state),
+    hasMoreMovies: getCatalogHasMoreMovies(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    init: () => {
+      dispatch(Operations.getCatalog());
+    },
+
     onShowMore: () => {
-      dispatch(getMoreCatalogMovies());
+      dispatch(getCatalogMoreMovies());
     },
   };
 }

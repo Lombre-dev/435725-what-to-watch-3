@@ -10,7 +10,7 @@ function UserBlock({status, name, avatar}) {
     <div className="user-block">
       {
         status === AuthorizationStatus.AUTH &&
-        <Link to={`${AppPages.MY_LIST}`}>
+        <Link to={AppPages.MY_LIST}>
           <div className="user-block__avatar">
             <img src={avatar} alt={name} width="63" height="63" />
           </div>

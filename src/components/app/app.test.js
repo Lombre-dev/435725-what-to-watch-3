@@ -2,8 +2,9 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus} from '../../consts';
-import App from './app';
+import thunk from 'redux-thunk';
+import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
+import {App} from './app';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
 const CURRENT_GENRE = GENRES[0];
@@ -104,21 +105,26 @@ const MOVIES = [
   },
 ];
 const HAS_MORE_MOVIES = true;
+const LOADING_DATA_STATUS = LoadingDataStatus.READY;
+const HANDLE_EVENT = () => {};
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([thunk]);
 
 describe(`<App />`, () => {
 
   it(`render should be match markup`, () => {
 
     const store = mockStore({
+      app: {
+        status: LOADING_DATA_STATUS,
+      },
       movieDetails: {
         movie: undefined,
         moviesLike: [],
       },
       catalog: {
         promoMovie: MOVIES[0],
-        currentGenre: CURRENT_GENRE,
+        genre: CURRENT_GENRE,
         genres: GENRES,
         movies: MOVIES,
         hasMoreMovies: HAS_MORE_MOVIES,
@@ -135,7 +141,10 @@ describe(`<App />`, () => {
 
     const result = renderer
       .create(<Provider store={store}>
-        <App />
+        <App
+          status={LOADING_DATA_STATUS}
+          init={HANDLE_EVENT}
+        />
       </Provider>, {
         createNodeMock: () => {
           return {};

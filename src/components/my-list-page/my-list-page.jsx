@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {getFavoriteMovies} from '../../redux/catalog/selectors';
 import {Operations} from '../../redux/user/operations';
+import {getUserFavoriteMovies} from '../../redux/user/selectors';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
 import SmallMovieCardList from '../small-movie-card-list';
@@ -48,7 +48,7 @@ MyListPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    movies: getFavoriteMovies(state),
+    movies: getUserFavoriteMovies(state),
   };
 }
 

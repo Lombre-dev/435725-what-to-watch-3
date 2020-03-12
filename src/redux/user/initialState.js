@@ -5,6 +5,7 @@ export const initialState = {
   name: undefined,
   email: undefined,
   avatar: undefined,
+  authRequired: false,
   authError: undefined,
   authStatus: AuthorizationStatus.NO_AUTH,
   favoriteMovies: [],

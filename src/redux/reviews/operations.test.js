@@ -38,39 +38,51 @@ const GET_STATE = () => {
   return {
     app: {
       movies: MOVIES,
-    },
-    catalog: {
-      promoMovie: undefined,
-    },
-    detailedMove: {
-      movie: undefined,
-    },
+    }
   };
 };
 
-describe(`CatalogOperations`, () => {
-  it(`should be a correct call getCatalog`, () => {
+describe(`ReviewsOperations`, () => {
+  it(`should be a correct call setReviewMovie`, () => {
 
     const api = createAPI();
     const dispatch = jest.fn();
 
-    Operations.getCatalog()(dispatch, GET_STATE, api);
+    Operations.setReviewMovie(0)(dispatch, GET_STATE, api);
     expect(dispatch).toHaveBeenCalledTimes(1);
   });
 
-  it(`should be a correct API getPromoMovie`, () => {
+  it(`should be a correct call getReviews`, () => {
 
     const api = createAPI();
     const dispatch = jest.fn();
     const apiMock = new MockAdapter(api);
 
-    Operations.getPromoMovie()(dispatch, GET_STATE, api)
+    Operations.getReviews(0)(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
       });
 
     apiMock
-      .onGet(`/films/promo`)
+      .onGet(`/comments/0`)
+      .reply(200, []);
+  });
+
+  it(`should be a correct call addReview`, () => {
+
+    const api = createAPI();
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+    const rating = 5;
+    const comment = `Test`;
+
+    Operations.getReviews(0, rating, comment)(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+      });
+
+    apiMock
+      .onPost(`/comments/0`, {rating, comment})
       .reply(200, []);
   });
 });

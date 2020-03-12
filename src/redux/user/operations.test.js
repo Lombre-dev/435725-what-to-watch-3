@@ -48,29 +48,70 @@ const GET_STATE = () => {
   };
 };
 
-describe(`CatalogOperations`, () => {
-  it(`should be a correct call getCatalog`, () => {
-
-    const api = createAPI();
-    const dispatch = jest.fn();
-
-    Operations.getCatalog()(dispatch, GET_STATE, api);
-    expect(dispatch).toHaveBeenCalledTimes(1);
-  });
-
-  it(`should be a correct API getPromoMovie`, () => {
+describe(`UserOperations`, () => {
+  it(`should be a correct call checkAuthorization`, () => {
 
     const api = createAPI();
     const dispatch = jest.fn();
     const apiMock = new MockAdapter(api);
 
-    Operations.getPromoMovie()(dispatch, GET_STATE, api)
+    Operations.checkAuthorization()(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      });
+
+    apiMock
+      .onGet(`/login`)
+      .reply(200, []);
+  });
+
+  it(`should be a correct call login`, () => {
+
+    const api = createAPI();
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+    const email = `test@test.com`;
+    const password = ``;
+
+    Operations.login({email, password})(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
       });
 
     apiMock
-      .onGet(`/films/promo`)
+      .onPost(`login`, {email, password})
+      .reply(200, []);
+  });
+
+  it(`should be a correct call getFavoriteMovies`, () => {
+
+    const api = createAPI();
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+
+    Operations.getFavoriteMovies()(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      });
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, []);
+  });
+
+  it(`should be a correct call updateFavorite`, () => {
+
+    const api = createAPI();
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+
+    Operations.updateFavoriteMovie(0, true)(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+      });
+
+    apiMock
+      .onPost(`/favorite/1`)
       .reply(200, []);
   });
 });

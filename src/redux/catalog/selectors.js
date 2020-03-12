@@ -1,10 +1,5 @@
-export const getPromoMovie = (state) => state.catalog.promoMovie;
-export const getGenres = (state) => state.catalog.genres;
-export const getCurrentGenre = (state) => state.catalog.currentGenre;
-export const getMovies = (state) => state.catalog.movies;
-export const getHasMoreMovies = (state) => state.catalog.hasMoreMovies;
-
-export const getAllMovies = (state) => state.catalog.allMovies;
-export const getFavoriteMovies = (state) => {
-  return state.catalog.allMovies.filter((movie) => movie.isFavorite);
-};
+export const getCatalogPromoMovie = (state) => state.catalog.promoMovie;
+export const getCatalogGenres = (state) => state.catalog.genres;
+export const getCatalogGenre = (state) => state.catalog.genre;
+export const getCatalogMovies = (state) => state.catalog.movies;
+export const getCatalogHasMoreMovies = (state) => state.catalog.hasMoreMovies;

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {Movie} from '../components/types';
 import {REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../consts';
 import {Operations} from '../redux/reviews/operations';
@@ -100,7 +101,7 @@ function withSubmitMovieReview(Component) {
     };
   }
 
-  return connect(mapStateTopProps, mapDispatchToProps)(WithSubmitMovieReview);
+  return connect(mapStateTopProps, mapDispatchToProps)(withRouter(WithSubmitMovieReview));
 }
 
 export default withSubmitMovieReview;

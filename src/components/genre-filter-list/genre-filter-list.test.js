@@ -19,7 +19,7 @@ describe(`<GenreFilterList />`, () => {
       .create(<Provider store={store}>
         <GenreFilterList
           genres={GENRES}
-          currentGenre={GENRES[0]}
+          genre={GENRES[0]}
         />
       </Provider>)
       .toJSON();

@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
 import {getGenresFromMovies} from '../../utils/movie-utils';
-import {getMoreCatalogMovies, setCatalogGenre} from './actions';
+import {getCatalogMoreMovies, setCatalogGenre} from './actions';
 import {reducer} from './reducer';
 
 const MOVIES = [
@@ -98,7 +98,7 @@ const INITIAL_STATE = {
 
   promoMovie: PROMO_MOVIE,
   genres: CATALOG_GENRES,
-  currentGenre: CATALOG_GENRE,
+  genre: CATALOG_GENRE,
   movies: CATALOG_MOVIES,
   hasMoreMovies: HAS_MORE_CATALOG_MOVIES,
 };
@@ -109,7 +109,7 @@ describe(`CatalogReducer`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      currentGenre: `Comedy`,
+      genre: `Comedy`,
       movies: [MOVIES[1]],
       hasMoreMovies: false,
     });
@@ -126,7 +126,7 @@ describe(`CatalogReducer`, () => {
       movies: MOVIES.slice(0, 2 * CATALOG_MOVIES_PER_PAGE_LIMIT),
     });
 
-    store.dispatch(getMoreCatalogMovies());
+    store.dispatch(getCatalogMoreMovies());
 
     expect(store.getState()).toEqual(sample);
   });
