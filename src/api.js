@@ -1,11 +1,11 @@
 import axios from 'axios';
-import {SERVER_RESPONSE_TIMEOUT, SERVER_URL, SERVER_USE_COOKIES} from './consts';
+import {ServerConfig} from './consts';
 
 export function createAPI() {
   const api = axios.create({
-    baseURL: SERVER_URL,
-    timeout: SERVER_RESPONSE_TIMEOUT,
-    withCredentials: SERVER_USE_COOKIES,
+    baseURL: ServerConfig.URL,
+    timeout: ServerConfig.RESPONSE_TIMEOUT,
+    withCredentials: ServerConfig.USE_COOKIES,
   });
 
   const onSuccess = (response) => {

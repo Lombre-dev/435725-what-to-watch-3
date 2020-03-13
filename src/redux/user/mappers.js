@@ -1,8 +1,8 @@
-import {SERVER_URL} from '../../consts';
+import {ServerConfig} from '../../consts';
 
 function formatUser(source) {
   return Object.assign({}, source, {
-    avatar: `${SERVER_URL}${source.avatar_url.substring(4)}`,
+    avatar: `${ServerConfig.URL}${source.avatar_url.substring(4)}`,
   });
 }
 

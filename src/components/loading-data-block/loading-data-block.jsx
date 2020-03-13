@@ -8,7 +8,6 @@ function LoadingDataBlock({status}) {
       {
         fontSize: `30px`,
         fontWeight: `bold`,
-        display: `block`,
         color: `#dfcf77`,
         width: `100%`,
         height: `100%`,
