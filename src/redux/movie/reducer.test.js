@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {setDetailedMovie, setMoviesLikeDetailedMovie} from './actions';
+import {setDetailedMovieMoviesLike, setDetailedMovieValue} from './actions';
 import {reducer} from './reducer';
 
 const MOVIES = [
@@ -103,7 +103,7 @@ describe(`MovieDetailsReducer`, () => {
       movie: MOVIES[0],
     });
 
-    store.dispatch(setDetailedMovie(MOVIES[0]));
+    store.dispatch(setDetailedMovieValue(MOVIES[0]));
 
     expect(store.getState()).toEqual(sample);
   });
@@ -115,7 +115,7 @@ describe(`MovieDetailsReducer`, () => {
       moviesLike: [MOVIES[0]],
     });
 
-    store.dispatch(setMoviesLikeDetailedMovie([MOVIES[0]]));
+    store.dispatch(setDetailedMovieMoviesLike([MOVIES[0]]));
 
     expect(store.getState()).toEqual(sample);
   });

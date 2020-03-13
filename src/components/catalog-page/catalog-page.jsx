@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getCatalogPromoMovie} from '../../redux/catalog/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
+import Catalog from '../catalog/catalog';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
-import MovieCatalog from '../movie-catalog/movie-catalog';
 import {Movie} from '../types';
 import UserBlock from '../user-block/user-block';
 
@@ -37,7 +37,7 @@ function CatalogPage({promoMovie}) {
         </div>
       </section>
       <div className="page-content">
-        <MovieCatalog />
+        <Catalog />
         <Footer />
       </div>
     </>

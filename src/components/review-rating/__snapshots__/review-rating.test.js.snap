@@ -10,6 +10,7 @@ exports[`<ReviewRating /> render should be match markup 1`] = `
     <input
       className="rating__input"
       defaultChecked={false}
+      disabled={false}
       id="star-0"
       name="rating"
       onChange={[Function]}
@@ -26,6 +27,7 @@ exports[`<ReviewRating /> render should be match markup 1`] = `
     <input
       className="rating__input"
       defaultChecked={false}
+      disabled={false}
       id="star-1"
       name="rating"
       onChange={[Function]}
@@ -42,6 +44,7 @@ exports[`<ReviewRating /> render should be match markup 1`] = `
     <input
       className="rating__input"
       defaultChecked={false}
+      disabled={false}
       id="star-2"
       name="rating"
       onChange={[Function]}
@@ -58,6 +61,7 @@ exports[`<ReviewRating /> render should be match markup 1`] = `
     <input
       className="rating__input"
       defaultChecked={false}
+      disabled={false}
       id="star-3"
       name="rating"
       onChange={[Function]}
@@ -74,6 +78,7 @@ exports[`<ReviewRating /> render should be match markup 1`] = `
     <input
       className="rating__input"
       defaultChecked={false}
+      disabled={false}
       id="star-4"
       name="rating"
       onChange={[Function]}

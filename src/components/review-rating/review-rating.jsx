@@ -19,7 +19,7 @@ class ReviewRating extends React.PureComponent {
 
   render() {
 
-    const {value, limit} = this.props;
+    const {isEnabled, value, limit} = this.props;
     const items = new Array(limit).fill(``);
 
     return (
@@ -41,6 +41,7 @@ class ReviewRating extends React.PureComponent {
                     value={itemValue}
                     onChange={this._handleChange}
                     defaultChecked={itemValue === value}
+                    disabled={!isEnabled}
                   />
                   <label className="rating__label" htmlFor={id}>Rating {itemValue}</label>
                 </React.Fragment>
@@ -54,6 +55,7 @@ class ReviewRating extends React.PureComponent {
 }
 
 ReviewRating.propTypes = {
+  isEnabled: PropTypes.bool.isRequired,
   value: PropTypes.number,
   limit: PropTypes.number,
   onValueChange: PropTypes.func,

@@ -4,6 +4,7 @@ import ReviewRating from './review-rating';
 
 const VALUE = 0;
 const LIMIT = 5;
+const IS_ENABLED = true;
 const HANDLE_EVENT = () => {};
 
 describe(`<ReviewRating />`, () => {
@@ -14,6 +15,7 @@ describe(`<ReviewRating />`, () => {
       .create(<ReviewRating
         value={VALUE}
         limit={LIMIT}
+        isEnabled={IS_ENABLED}
         onValueChange={HANDLE_EVENT}
       />)
       .toJSON();

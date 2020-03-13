@@ -33,7 +33,7 @@ class AddReviewPage extends React.PureComponent {
 
   render() {
 
-    const {movie, ratingValue, onRatingChange, isSubmitEnabled} = this.props;
+    const {movie, ratingValue, commentValue, onRatingChange, isFieldsEnabled, isSubmitEnabled} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -69,6 +69,7 @@ class AddReviewPage extends React.PureComponent {
         <div className="add-review">
           <form className="add-review__form" onSubmit={this._handleSubmit}>
             <ReviewRating
+              isEnabled={isFieldsEnabled}
               value={ratingValue}
               onValueChange={onRatingChange}
             />
@@ -82,6 +83,8 @@ class AddReviewPage extends React.PureComponent {
                 minLength={REVIEW_COMMENT_MIN_LENGTH}
                 maxLength={REVIEW_COMMENT_MAX_LENGTH}
                 onChange={this._handleCommentChange}
+                disabled={!isFieldsEnabled}
+                defaultValue={commentValue}
               ></textarea>
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit" disabled={!isSubmitEnabled}>Post</button>
@@ -99,8 +102,10 @@ class AddReviewPage extends React.PureComponent {
 AddReviewPage.propTypes = {
   movie: Movie.isRequired,
   ratingValue: PropTypes.number,
+  commentValue: PropTypes.string,
   onRatingChange: PropTypes.func,
   onCommentChange: PropTypes.func,
+  isFieldsEnabled: PropTypes.bool,
   isSubmitEnabled: PropTypes.bool,
   onSubmit: PropTypes.func,
 };

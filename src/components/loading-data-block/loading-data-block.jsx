@@ -4,7 +4,18 @@ import {LoadingDataStatus} from '../../consts';
 
 function LoadingDataBlock({status}) {
   return (
-    <p>{status}</p>
+    <div style={
+      {
+        fontSize: `30px`,
+        fontWeight: `bold`,
+        display: `block`,
+        color: `#dfcf77`,
+        width: `100%`,
+        height: `100%`,
+      }
+    }>
+      {status}
+    </div>
   );
 }
 

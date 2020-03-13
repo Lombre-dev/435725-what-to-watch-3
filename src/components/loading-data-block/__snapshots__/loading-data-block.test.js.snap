@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieInfoReviews /> render should be match markup 1`] = `
+exports[`<LoadingDataBlock /> render should be match markup 1`] = `
 <div
   style={
     Object {
@@ -12,5 +12,7 @@ exports[`<MovieInfoReviews /> render should be match markup 1`] = `
       "width": "100%",
     }
   }
-/>
+>
+  loading
+</div>
 `;

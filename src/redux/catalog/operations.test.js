@@ -42,7 +42,7 @@ const GET_STATE = () => {
     catalog: {
       promoMovie: undefined,
     },
-    detailedMove: {
+    movie: {
       movie: undefined,
     },
   };
@@ -64,13 +64,13 @@ describe(`CatalogOperations`, () => {
     const dispatch = jest.fn();
     const apiMock = new MockAdapter(api);
 
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, []);
+
     Operations.getPromoMovie()(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
       });
-
-    apiMock
-      .onGet(`/films/promo`)
-      .reply(200, []);
   });
 });

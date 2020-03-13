@@ -6,8 +6,6 @@ import configureStore from 'redux-mock-store';
 import {AuthorizationStatus} from '../../consts';
 import AddReviewPage from './add-review-page';
 
-const RATING_VALUE = 0;
-const IS_SUBMIT_ENABLED = false;
 const MOVIE = {
   id: 0,
   title: `The Grand Budapest Hotel`,
@@ -40,6 +38,9 @@ const MOVIE = {
     }
   ]
 };
+const RATING_VALUE = 0;
+const IS_SUBMIT_ENABLED = false;
+const IS_FIELDS_ENABLED = false;
 const HANDLE_EVENT = () => {};
 const mockStore = configureStore([]);
 
@@ -61,6 +62,7 @@ describe(`<AddReviewPage />`, () => {
             ratingValue={RATING_VALUE}
             onRatingChange={HANDLE_EVENT}
             onCommentChange={HANDLE_EVENT}
+            isFieldsEnabled={IS_FIELDS_ENABLED}
             isSubmitEnabled={IS_SUBMIT_ENABLED}
             onSubmit={HANDLE_EVENT}
           />
