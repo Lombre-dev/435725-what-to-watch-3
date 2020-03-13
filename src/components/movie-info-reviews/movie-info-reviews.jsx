@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {setReviews} from '../../redux/reviews/actions';
-import {Operations} from '../../redux/reviews/operations';
-import {getMovieReviews} from '../../redux/reviews/selectors';
+import {LoadingDataStatus} from '../../consts';
+import {Operations} from '../../redux/movie/operations';
+import {getDetailedMovieReviews, getDetailedMovieStatus} from '../../redux/movie/selectors';
 import {getRatingScore} from '../../utils/movie-utils';
+import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import {Movie, Review} from '../types';
 
 class MovieInfoReviews extends React.PureComponent {
@@ -21,17 +22,17 @@ class MovieInfoReviews extends React.PureComponent {
     const {movie: prevMovie} = prevProps;
     const {movie, getReviews} = this.props;
 
-    if (movie !== prevMovie) {
+    if (movie.id !== prevMovie.id) {
       getReviews(movie.id);
     }
   }
 
   render() {
 
-    const {reviews} = this.props;
+    const {status, reviews} = this.props;
 
-    if (Boolean(reviews) === false) {
-      return <></>;
+    if (status !== LoadingDataStatus.READY) {
+      return <LoadingDataBlock status={status} />;
     }
 
     return (
@@ -67,6 +68,7 @@ class MovieInfoReviews extends React.PureComponent {
 }
 
 MovieInfoReviews.propTypes = {
+  status: PropTypes.oneOf(Object.values(LoadingDataStatus)),
   movie: Movie.isRequired,
   reviews: PropTypes.arrayOf(Review),
   getReviews: PropTypes.func,
@@ -74,14 +76,14 @@ MovieInfoReviews.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    reviews: getMovieReviews(state),
+    status: getDetailedMovieStatus(state),
+    reviews: getDetailedMovieReviews(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getReviews: (movieId) => {
-      dispatch(setReviews([]));
       dispatch(Operations.getReviews(movieId));
     },
   };

@@ -3,8 +3,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {LoadingDataStatus} from '../../consts';
-import {Operations} from '../../redux/movie-details/operations';
-import {getDetailedMovie, getDetailedMovieLikeCurrent, getDetailedMovieStatus} from '../../redux/movie-details/selectors';
+import {Operations} from '../../redux/movie/operations';
+import {getDetailedMovie, getDetailedMovieLikeCurrent, getDetailedMovieStatus} from '../../redux/movie/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
@@ -37,7 +37,7 @@ class MoviePage extends React.PureComponent {
 
     const {status, movie, moviesLikeCurrent} = this.props;
 
-    if (status !== LoadingDataStatus.READY) {
+    if (status !== LoadingDataStatus.READY && !movie) {
       return <LoadingDataBlock status={status} />;
     }
 

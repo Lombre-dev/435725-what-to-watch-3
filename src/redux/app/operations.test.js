@@ -6,16 +6,16 @@ describe(`AppOperations`, () => {
   it(`should be a correct call init`, () => {
 
     const api = createAPI();
-    const dispatch = jest.fn();
+    const dispatch = jest.fn(() => {});
     const apiMock = new MockAdapter(api);
+
+    apiMock
+      .onGet(`/films`)
+      .reply(200, []);
 
     Operations.init()(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
       });
-
-    apiMock
-      .onGet(`/films`)
-      .reply(200, []);
   });
 });

@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
 import {Movie} from '../components/types';
-import {PlayerState} from '../consts';
-import {Operations} from '../redux/player/operations';
-import {getPlayerMovie} from '../redux/player/selectors';
+import {LoadingDataStatus, PlayerState} from '../consts';
+import {Operations} from '../redux/movie/operations';
+import {getDetailedMovie, getDetailedMovieStatus} from '../redux/movie/selectors';
 
 export default function withVideoPlayer(Component) {
 
@@ -30,9 +31,9 @@ export default function withVideoPlayer(Component) {
 
     componentDidMount() {
 
-      const {setMovie, match: {params: {id}}} = this.props;
+      const {init, match: {params: {id}}} = this.props;
 
-      setMovie(id);
+      init(id);
     }
 
     _handlePlay() {
@@ -72,12 +73,14 @@ export default function withVideoPlayer(Component) {
 
     render() {
 
+      const {status} = this.props;
+
+      if (status !== LoadingDataStatus.READY) {
+        return <LoadingDataBlock status={status} />;
+      }
+
       const {movie} = this.props;
       const {state, time, duration, isMute, isFullscreen} = this.state;
-
-      if (Boolean(movie) === false) {
-        return <></>;
-      }
 
       return (
         <Component
@@ -100,19 +103,22 @@ export default function withVideoPlayer(Component) {
   WithVideoPlayer.propTypes = {
     match: PropTypes.object.isRequired,
     movie: Movie,
-    setMovie: PropTypes.func,
+    status: PropTypes.oneOf(Object.values(LoadingDataStatus)),
+
+    init: PropTypes.func,
   };
 
   function mapStateToProps(state) {
     return {
-      movie: getPlayerMovie(state),
+      status: getDetailedMovieStatus(state),
+      movie: getDetailedMovie(state),
     };
   }
 
   function mapDispatchToProps(dispatch) {
     return {
-      setMovie: (id) => {
-        dispatch(Operations.setPlayerMovie(id));
+      init: (id) => {
+        dispatch(Operations.init(id));
       }
     };
   }

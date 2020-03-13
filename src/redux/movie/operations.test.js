@@ -42,14 +42,20 @@ const GET_STATE = () => {
   };
 };
 
-describe(`ReviewsOperations`, () => {
-  it(`should be a correct call setReviewMovie`, () => {
+describe(`MovieDetailsOperations`, () => {
+  it(`should be a correct call init`, () => {
 
     const api = createAPI();
-    const dispatch = jest.fn();
+    const dispatch = jest.fn(() => {});
 
-    Operations.setReviewMovie(0)(dispatch, GET_STATE, api);
-    expect(dispatch).toHaveBeenCalledTimes(1);
+    Operations.init(0)(dispatch, () => {
+      return {
+        app: {
+          movies: MOVIES,
+        }
+      };
+    }, api);
+    expect(dispatch).toHaveBeenCalledTimes(4);
   });
 
   it(`should be a correct call getReviews`, () => {
@@ -58,14 +64,14 @@ describe(`ReviewsOperations`, () => {
     const dispatch = jest.fn();
     const apiMock = new MockAdapter(api);
 
-    Operations.getReviews(0)(dispatch, GET_STATE, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-      });
-
     apiMock
       .onGet(`/comments/0`)
       .reply(200, []);
+
+    Operations.getReviews(0)(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(3);
+      });
   });
 
   it(`should be a correct call addReview`, () => {
@@ -76,13 +82,13 @@ describe(`ReviewsOperations`, () => {
     const rating = 5;
     const comment = `Test`;
 
-    Operations.getReviews(0, rating, comment)(dispatch, GET_STATE, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-      });
-
     apiMock
       .onPost(`/comments/0`, {rating, comment})
       .reply(200, []);
+
+    Operations.getReviews(0, rating, comment)(dispatch, GET_STATE, api)
+    .then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(2);
+    });
   });
 });

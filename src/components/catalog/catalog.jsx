@@ -9,7 +9,7 @@ import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
 import {Movie} from '../types';
 
-class MovieCatalog extends React.PureComponent {
+class Catalog extends React.PureComponent {
 
   componentDidMount() {
 
@@ -47,7 +47,7 @@ class MovieCatalog extends React.PureComponent {
 
 }
 
-MovieCatalog.propTypes = {
+Catalog.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   genre: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(Movie),
@@ -56,7 +56,7 @@ MovieCatalog.propTypes = {
   init: PropTypes.func,
 };
 
-MovieCatalog.defaultProps = {
+Catalog.defaultProps = {
   movies: [],
 };
 
@@ -81,5 +81,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export {MovieCatalog};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCatalog);
+export {Catalog};
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

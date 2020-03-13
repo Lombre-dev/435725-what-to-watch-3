@@ -42,7 +42,7 @@ const GET_STATE = () => {
     catalog: {
       promoMovie: undefined,
     },
-    detailedMove: {
+    movie: {
       movie: undefined,
     },
   };
@@ -52,66 +52,66 @@ describe(`UserOperations`, () => {
   it(`should be a correct call checkAuthorization`, () => {
 
     const api = createAPI();
-    const dispatch = jest.fn();
+    const dispatch = jest.fn(() => {});
     const apiMock = new MockAdapter(api);
+
+    apiMock
+      .onGet(`/login`)
+      .reply(200, []);
 
     Operations.checkAuthorization()(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       });
-
-    apiMock
-      .onGet(`/login`)
-      .reply(200, []);
   });
 
   it(`should be a correct call login`, () => {
 
     const api = createAPI();
-    const dispatch = jest.fn();
+    const dispatch = jest.fn(() => {});
     const apiMock = new MockAdapter(api);
     const email = `test@test.com`;
     const password = ``;
 
-    Operations.login({email, password})(dispatch, GET_STATE, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-      });
-
     apiMock
       .onPost(`login`, {email, password})
       .reply(200, []);
+
+    Operations.login({email, password})(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      });
   });
 
   it(`should be a correct call getFavoriteMovies`, () => {
 
     const api = createAPI();
-    const dispatch = jest.fn();
+    const dispatch = jest.fn(() => {});
     const apiMock = new MockAdapter(api);
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, []);
 
     Operations.getFavoriteMovies()(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       });
-
-    apiMock
-      .onGet(`/favorite`)
-      .reply(200, []);
   });
 
   it(`should be a correct call updateFavorite`, () => {
 
     const api = createAPI();
-    const dispatch = jest.fn();
+    const dispatch = jest.fn(() => {});
     const apiMock = new MockAdapter(api);
+
+    apiMock
+      .onPost(`/favorite/1`)
+      .reply(200, []);
 
     Operations.updateFavoriteMovie(0, true)(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
       });
-
-    apiMock
-      .onPost(`/favorite/1`)
-      .reply(200, []);
   });
 });

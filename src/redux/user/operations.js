@@ -4,8 +4,8 @@ import {formatMovies} from '../app/mappers';
 import {getAppMovies} from '../app/selectors';
 import {setCatalogPromoMovie} from '../catalog/actions';
 import {getCatalogPromoMovie} from '../catalog/selectors';
-import {setDetailedMovie} from '../movie-details/actions';
-import {getDetailedMovie} from '../movie-details/selectors';
+import {setDetailedMovieValue} from '../movie/actions';
+import {getDetailedMovie} from '../movie/selectors';
 import {clearUserData, clearUserFavoriteMovies, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
 import {formatUser} from './mappers';
 
@@ -63,18 +63,19 @@ const Operations = {
         const allMovies = getAppMovies(state);
         const promoMovie = getCatalogPromoMovie(state);
         const detailedMovie = getDetailedMovie(state);
-
         const appMovie = getAppMovies(state).find((movie) => movie.id === movieId);
 
         appMovie.isFavorite = isFavorite;
         dispatch(setAppMovies(allMovies));
 
+        const movie = Object.assign({}, appMovie);
+
         if (promoMovie && promoMovie.id === appMovie.id) {
-          dispatch(setCatalogPromoMovie(appMovie));
+          dispatch(setCatalogPromoMovie(movie));
         }
 
         if (detailedMovie && detailedMovie.id === movieId) {
-          dispatch(setDetailedMovie(appMovie));
+          dispatch(setDetailedMovieValue(movie));
         }
 
       }).catch((error) => {
