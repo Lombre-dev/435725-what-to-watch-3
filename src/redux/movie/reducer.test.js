@@ -22,14 +22,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     id: 1,
@@ -50,14 +42,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     id: 2,
@@ -78,14 +62,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
 ];
 

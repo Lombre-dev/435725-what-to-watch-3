@@ -15,7 +15,6 @@ function formatMovie(source) {
     backgroundImage: source.background_image,
     backgroundColor: source.background_color,
     isFavorite: source.is_favorite,
-    reviews: [],
   });
 }
 

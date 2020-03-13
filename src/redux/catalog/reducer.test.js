@@ -1,10 +1,10 @@
 import {createStore} from 'redux';
 import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
 import {getGenresFromMovies} from '../../utils/movie-utils';
-import {getCatalogMoreMovies, setCatalogGenre} from './actions';
+import {getCatalogMoreMovies, setCatalogGenre, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {reducer} from './reducer';
 
-const MOVIES = [
+const ALL_MOVIES = [
   {
     title: `movie 1`,
     genres: [`Drama`],
@@ -23,14 +23,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     title: `movie 2`,
@@ -50,14 +42,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     title: `movie 3`,
@@ -77,40 +61,45 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
 ];
-const PROMO_MOVIE = MOVIES[0];
-const CATALOG_GENRE = ALL_GENRE;
-const CATALOG_GENRES = [ALL_GENRE].concat(getGenresFromMovies(MOVIES));
-const CATALOG_MOVIES = MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
-const HAS_MORE_CATALOG_MOVIES = MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT;
+const PROMO_MOVIE = ALL_MOVIES[0];
+const GENRE = ALL_GENRE;
+const GENRES = [ALL_GENRE].concat(getGenresFromMovies(ALL_MOVIES));
+const MOVIES = ALL_MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
+const HAS_MORE_MOVIES = ALL_MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT;
 
 const INITIAL_STATE = {
-  allMovies: CATALOG_MOVIES,
+  allMovies: ALL_MOVIES,
 
   promoMovie: PROMO_MOVIE,
-  genres: CATALOG_GENRES,
-  genre: CATALOG_GENRE,
-  movies: CATALOG_MOVIES,
-  hasMoreMovies: HAS_MORE_CATALOG_MOVIES,
+  genres: GENRES,
+  genre: GENRE,
+  movies: MOVIES,
+  hasMoreMovies: HAS_MORE_MOVIES,
 };
 
 describe(`CatalogReducer`, () => {
 
-  it(`should be switch value of currentGenre`, () => {
+
+  it(`should be switch value of movies`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      movies: ALL_MOVIES,
+    });
+
+    store.dispatch(setCatalogMovies(ALL_MOVIES));
+
+    expect(store.getState()).toEqual(sample);
+  });
+
+  it(`should be switch value of genre`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
       genre: `Comedy`,
-      movies: [MOVIES[1]],
+      movies: [ALL_MOVIES[1]],
       hasMoreMovies: false,
     });
 
@@ -119,11 +108,23 @@ describe(`CatalogReducer`, () => {
     expect(store.getState()).toEqual(sample);
   });
 
+  it(`should be switch value of promoMovie`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      promoMovie: ALL_MOVIES[0],
+    });
+
+    store.dispatch(setCatalogPromoMovie(ALL_MOVIES[0]));
+
+    expect(store.getState()).toEqual(sample);
+  });
+
   it(`should be new movies added to movie catalog`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      movies: MOVIES.slice(0, 2 * CATALOG_MOVIES_PER_PAGE_LIMIT),
+      movies: ALL_MOVIES.slice(0, 2 * CATALOG_MOVIES_PER_PAGE_LIMIT),
     });
 
     store.dispatch(getCatalogMoreMovies());

@@ -5,13 +5,13 @@ import {getCatalogMoreMovies, setCatalogGenre, setCatalogMovies, setCatalogPromo
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
-  [setCatalogMovies]: _setCatalogMovies,
+  [setCatalogMovies]: _setMovies,
   [setCatalogPromoMovie]: _setPromoMovie,
-  [setCatalogGenre]: _setCatalogGenre,
-  [getCatalogMoreMovies]: _getMoreCatalogMovies,
+  [setCatalogGenre]: _setGenre,
+  [getCatalogMoreMovies]: _getMoreMovies,
 }, initialState);
 
-function _setCatalogMovies(state, movies) {
+function _setMovies(state, movies) {
   return Object.assign({}, state, {
     allMovies: movies,
     genres: [ALL_GENRE].concat(getGenresFromMovies(movies)),
@@ -24,7 +24,7 @@ function _setPromoMovie(state, movie) {
   return Object.assign({}, state, {promoMovie: movie});
 }
 
-function _setCatalogGenre(state, genre) {
+function _setGenre(state, genre) {
 
   const {allMovies} = state;
   const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
@@ -38,7 +38,7 @@ function _setCatalogGenre(state, genre) {
   return Object.assign({}, state, update);
 }
 
-function _getMoreCatalogMovies(state) {
+function _getMoreMovies(state) {
 
   const {genre, movies, allMovies} = state;
   const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
