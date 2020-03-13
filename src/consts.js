@@ -54,9 +54,11 @@ export const PlayerState = {
   ENDED: `ended`,
 };
 
-export const SERVER_URL = `https://htmlacademy-react-3.appspot.com/wtw`;
-export const SERVER_RESPONSE_TIMEOUT = 5000;
-export const SERVER_USE_COOKIES = true;
+export const ServerConfig = {
+  URL: `https://htmlacademy-react-3.appspot.com/wtw`,
+  RESPONSE_TIMEOUT: 5000,
+  USE_COOKIES: true,
+};
 export const ServerErrors = {
   NOT_FOUND: 404,
   BAD_REQUEST: 400,

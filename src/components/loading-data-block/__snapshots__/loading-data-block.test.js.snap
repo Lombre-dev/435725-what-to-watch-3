@@ -5,7 +5,6 @@ exports[`<LoadingDataBlock /> render should be match markup 1`] = `
   style={
     Object {
       "color": "#dfcf77",
-      "display": "block",
       "fontSize": "30px",
       "fontWeight": "bold",
       "height": "100%",

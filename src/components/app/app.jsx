@@ -10,6 +10,7 @@ import CatalogPage from '../catalog-page/catalog-page';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import MoviePage from '../movie-page/movie-page';
 import MyListPage from '../my-list-page/my-list-page';
+import NotFoundPage from '../not-found-page/not-found-page';
 import PlayerPage from '../player-page';
 import PrivateRoute from '../private-route/private-route';
 import ProtectedRoute from '../protected-route/protected-route';
@@ -41,6 +42,7 @@ class App extends React.PureComponent {
           <PrivateRoute exact path={`${AppPages.MOVIES}/:id/review`} render={() => <AddReviewPage />} />
           <ProtectedRoute exact path={`${AppPages.MOVIES}/:id`} render={() => <MoviePage />} />
           <Route exact path={`${AppPages.PLAYER}/:id`} component={PlayerPage} />
+          <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter >
     );
