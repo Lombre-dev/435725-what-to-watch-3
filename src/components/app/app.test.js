@@ -1,8 +1,10 @@
+import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import {createAPI} from '../../api';
 import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
 import {App} from './app';
 
@@ -32,14 +34,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text ...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     id: 1,
@@ -63,14 +57,6 @@ const MOVIES = [
       `Some Actor 4`,
       `Some Actor 5`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     id: 2,
@@ -94,31 +80,25 @@ const MOVIES = [
       `Some Actor 4`,
       `Some Actor 5`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text...`,
-        date: 1582590140667,
-      }
-    ]
   },
 ];
 const HAS_MORE_MOVIES = true;
 const LOADING_DATA_STATUS = LoadingDataStatus.READY;
 const HANDLE_EVENT = () => {};
 
-const mockStore = configureStore([thunk]);
-
 describe(`<App />`, () => {
 
   it(`render should be match markup`, () => {
 
+    const api = createAPI();
+    const apiMock = new MockAdapter(api);
+    const mockStore = configureStore([thunk.withExtraArgument(api)]);
     const store = mockStore({
       app: {
+        movies: MOVIES,
         status: LOADING_DATA_STATUS,
       },
-      movieDetails: {
+      movie: {
         movie: undefined,
         moviesLike: [],
       },
@@ -143,7 +123,7 @@ describe(`<App />`, () => {
       .create(<Provider store={store}>
         <App
           status={LOADING_DATA_STATUS}
-          init={HANDLE_EVENT}
+          onMount={HANDLE_EVENT}
         />
       </Provider>, {
         createNodeMock: () => {
@@ -151,6 +131,10 @@ describe(`<App />`, () => {
         }
       })
       .toJSON();
+
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, MOVIES[0]);
 
     expect(result).toMatchSnapshot();
   });

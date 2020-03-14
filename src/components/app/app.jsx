@@ -20,9 +20,9 @@ class App extends React.PureComponent {
 
   componentDidMount() {
 
-    const {init} = this.props;
+    const {onMount} = this.props;
 
-    init();
+    onMount();
   }
 
   render() {
@@ -51,7 +51,7 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   status: PropTypes.oneOf(Object.values(LoadingDataStatus)),
-  init: PropTypes.func,
+  onMount: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -62,7 +62,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    init: () => {
+    onMount: () => {
       dispatch(Operations.init());
     },
   };

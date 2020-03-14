@@ -2,7 +2,7 @@
 export const initialState = {
   status: undefined,
   movie: undefined,
-  moviesLike: [],
+  relatedMovies: [],
   reviews: [],
   redirectTo: undefined,
 };

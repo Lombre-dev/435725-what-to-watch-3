@@ -21,13 +21,15 @@ class PlayerPage extends React.PureComponent {
 
     if (prevProps.isFullscreen !== isFullscreen) {
       if (isFullscreen) {
-        document.onfullscreenchange = () => { // -> addEventListener
-          document.onfullscreenchange = null;
-          onFullscreen();
-        };
         element.requestFullscreen();
+        element.onfullscreenchange = () => {
+          document.onfullscreenchange = null;
+          if (document.fullscreenElement !== element) {
+            onFullscreen();
+          }
+        };
       } else {
-        document.onfullscreenchange = null;
+        element.onfullscreenchange = null;
         if (document.fullscreenElement === element) {
           document.exitFullscreen();
         }

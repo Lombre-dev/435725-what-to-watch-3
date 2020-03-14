@@ -29,14 +29,6 @@ const MOVIE = {
     `Some Actor 1`,
     `Some Actor 2`,
   ],
-  reviews: [
-    {
-      author: `Some Reviewer`,
-      score: 8.2,
-      text: `Awesome text ...`,
-      date: 1582590140667,
-    }
-  ]
 };
 const RATING_VALUE = 0;
 const IS_SUBMIT_ENABLED = false;

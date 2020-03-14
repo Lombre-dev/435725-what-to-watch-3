@@ -1,3 +1,4 @@
+export const getCatalogStatus = (state) => state.catalog.status;
 export const getCatalogPromoMovie = (state) => state.catalog.promoMovie;
 export const getCatalogGenres = (state) => state.catalog.genres;
 export const getCatalogGenre = (state) => state.catalog.genre;

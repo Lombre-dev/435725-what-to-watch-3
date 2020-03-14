@@ -1,26 +1,26 @@
 import {createReducer} from 'redux-act';
 import {LoadingDataStatus} from '../../consts';
-import {formatMovies} from '../app/mappers';
 import {setAppLoadingError, setAppLoadingStart, setAppMovies} from './actions';
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
   [setAppLoadingStart]: _setLoadingStart,
-  [setAppMovies]: _setMovies,
   [setAppLoadingError]: _setLoadingError,
+
+  [setAppMovies]: _setMovies,
 }, initialState);
+
+function _setMovies(state, movies) {
+  return Object.assign({}, state, {
+    status: LoadingDataStatus.READY,
+    movies,
+  });
+}
 
 function _setLoadingStart(state) {
   return Object.assign({}, state, {
     status: LoadingDataStatus.LOADING,
     movies: [],
-  });
-}
-
-function _setMovies(state, movies) {
-  return Object.assign({}, state, {
-    status: LoadingDataStatus.READY,
-    movies: formatMovies(movies),
   });
 }
 

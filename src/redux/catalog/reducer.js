@@ -1,20 +1,24 @@
 import {createReducer} from 'redux-act';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_LIMIT, LoadingDataStatus} from '../../consts';
 import {getGenresFromMovies, getMoviesByGenre} from '../../utils/movie-utils';
-import {getCatalogMoreMovies, setCatalogGenre, setCatalogMovies, setCatalogPromoMovie} from './actions';
+import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
-  [setCatalogMovies]: _setCatalogMovies,
+  [setCatalogLoadingStart]: _setLoadingStart,
+  [setCatalogLoadingComplete]: _setLoadingComplete,
+  [setCatalogLoadingError]: _setLoadingError,
+
+  [setCatalogMovies]: _setMovies,
   [setCatalogPromoMovie]: _setPromoMovie,
-  [setCatalogGenre]: _setCatalogGenre,
-  [getCatalogMoreMovies]: _getMoreCatalogMovies,
+  [setCatalogGenre]: _setGenre,
+  [getCatalogMoreMovies]: _getMoreMovies,
 }, initialState);
 
-function _setCatalogMovies(state, movies) {
+function _setMovies(state, movies) {
   return Object.assign({}, state, {
     allMovies: movies,
-    genres: [ALL_GENRE].concat(getGenresFromMovies(movies)),
+    genres: [ALL_GENRE].concat(getGenresFromMovies(movies)).slice(0, GENRES_LIMIT),
     movies: movies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT),
     hasMoreMovies: movies.length > CATALOG_MOVIES_PER_PAGE_LIMIT,
   });
@@ -24,7 +28,7 @@ function _setPromoMovie(state, movie) {
   return Object.assign({}, state, {promoMovie: movie});
 }
 
-function _setCatalogGenre(state, genre) {
+function _setGenre(state, genre) {
 
   const {allMovies} = state;
   const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
@@ -38,7 +42,7 @@ function _setCatalogGenre(state, genre) {
   return Object.assign({}, state, update);
 }
 
-function _getMoreCatalogMovies(state) {
+function _getMoreMovies(state) {
 
   const {genre, movies, allMovies} = state;
   const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
@@ -49,4 +53,16 @@ function _getMoreCatalogMovies(state) {
   };
 
   return Object.assign({}, state, update);
+}
+
+function _setLoadingStart(state) {
+  return Object.assign({}, state, {status: LoadingDataStatus.LOADING});
+}
+
+function _setLoadingComplete(state) {
+  return Object.assign({}, state, {status: LoadingDataStatus.READY});
+}
+
+function _setLoadingError(state) {
+  return Object.assign({}, state, {status: LoadingDataStatus.ERROR});
 }

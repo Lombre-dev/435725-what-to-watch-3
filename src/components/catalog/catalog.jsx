@@ -13,9 +13,9 @@ class Catalog extends React.PureComponent {
 
   componentDidMount() {
 
-    const {init} = this.props;
+    const {onMount} = this.props;
 
-    init();
+    onMount();
   }
 
   render() {
@@ -53,7 +53,8 @@ Catalog.propTypes = {
   movies: PropTypes.arrayOf(Movie),
   hasMoreMovies: PropTypes.bool.isRequired,
   onShowMore: PropTypes.func.isRequired,
-  init: PropTypes.func,
+
+  onMount: PropTypes.func,
 };
 
 Catalog.defaultProps = {
@@ -71,10 +72,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    init: () => {
+    onMount: () => {
       dispatch(Operations.getCatalog());
     },
-
     onShowMore: () => {
       dispatch(getCatalogMoreMovies());
     },

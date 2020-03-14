@@ -5,7 +5,7 @@ export const setDetailedMovieLoadingComplete = createAction(`SET_DETAILED_MOVIE_
 export const setDetailedMovieLoadingError = createAction(`SET_DETAILED_MOVIE_LOADING_ERROR`);
 
 export const setDetailedMovieValue = createAction(`SET_DETAILED_MOVIE_VALUE`);
-export const setDetailedMovieMoviesLike = createAction(`SET_DETAILED_MOVIE_MOVIES_LIKE`);
+export const setDetailedMovieRelatedMovies = createAction(`SET_DETAILED_MOVIE_RELATED_MOVIES`);
 
 export const addDetailedMovieReview = createAction(`ADD_DETAILED_MOVIE_REVIEW`);
 export const setDetailedMovieReviews = createAction(`SET_DETAILED_MOVIE_REVIEWS`);

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import {LoadingDataStatus} from '../../consts';
+import {setDetailedMovieRedirectTo} from '../../redux/movie/actions';
 import {Operations} from '../../redux/movie/operations';
-import {getDetailedMovie, getDetailedMovieLikeCurrent, getDetailedMovieStatus} from '../../redux/movie/selectors';
+import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieRelatedMovies, getDetailedMovieStatus} from '../../redux/movie/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
 import Footer from '../footer/footer';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
@@ -18,24 +19,35 @@ class MoviePage extends React.PureComponent {
 
   componentDidMount() {
 
-    const {init, match: {params: {id}}} = this.props;
+    const {updateMovie, match: {params: {id}}} = this.props;
 
-    init(id);
+    updateMovie(id);
   }
 
   componentDidUpdate(prevProps) {
 
-    const {match: {params: {id: currentId}}, init} = this.props;
+    const {match: {params: {id: currentId}}, updateMovie} = this.props;
     const {match: {params: {id: prevId}}} = prevProps;
 
     if (currentId !== prevId) {
-      init(currentId);
+      updateMovie(currentId);
     }
+  }
+
+  componentWillUnmount() {
+
+    const {resetRedirect} = this.props;
+
+    resetRedirect();
   }
 
   render() {
 
-    const {status, movie, moviesLikeCurrent} = this.props;
+    const {redirectTo, status, movie, relatedMovies} = this.props;
+
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />;
+    }
 
     if (status !== LoadingDataStatus.READY && !movie) {
       return <LoadingDataBlock status={status} />;
@@ -69,7 +81,7 @@ class MoviePage extends React.PureComponent {
 
         <div className="page-content">
           <MoreLikeThis
-            movies={moviesLikeCurrent}
+            movies={relatedMovies}
           />
           <Footer />
         </div>
@@ -81,25 +93,31 @@ class MoviePage extends React.PureComponent {
 MoviePage.propTypes = {
   match: PropTypes.object.isRequired,
   status: PropTypes.oneOf(Object.values(LoadingDataStatus)),
+  redirectTo: PropTypes.string,
   movie: Movie,
-  moviesLikeCurrent: PropTypes.arrayOf(Movie),
+  relatedMovies: PropTypes.arrayOf(Movie),
 
-  init: PropTypes.func,
+  updateMovie: PropTypes.func,
+  resetRedirect: PropTypes.func,
 };
 
 function mapStateToProps(state) {
   return {
     status: getDetailedMovieStatus(state),
+    redirectTo: getDetailedMovieRedirectTo(state),
     movie: getDetailedMovie(state),
-    moviesLikeCurrent: getDetailedMovieLikeCurrent(state),
+    relatedMovies: getDetailedMovieRelatedMovies(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    init: (movieId) => {
+    updateMovie: (movieId) => {
       dispatch(Operations.init(movieId));
-    }
+    },
+    resetRedirect: () => {
+      dispatch(setDetailedMovieRedirectTo(undefined));
+    },
   };
 }
 

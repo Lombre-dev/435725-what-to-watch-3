@@ -1,5 +1,6 @@
 import {createStore} from 'redux';
-import {setDetailedMovieMoviesLike, setDetailedMovieValue} from './actions';
+import {AppPages, LoadingDataStatus} from '../../consts';
+import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetailedMovieLoadingStart, setDetailedMovieRedirectTo, setDetailedMovieRelatedMovies, setDetailedMovieReviews, setDetailedMovieValue} from './actions';
 import {reducer} from './reducer';
 
 const MOVIES = [
@@ -22,14 +23,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     id: 1,
@@ -50,14 +43,6 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
   {
     id: 2,
@@ -78,20 +63,23 @@ const MOVIES = [
       `Some Actor 1`,
       `Some Actor 2`,
     ],
-    reviews: [
-      {
-        author: `Some Reviewer`,
-        score: 8.2,
-        text: `Awesome text for The Grand Budapest Hotel...`,
-        date: 1582590140667,
-      }
-    ]
   },
 ];
+const REVEIWS = [{
+  id: 1,
+  author: `PropTypes.string.isRequired`,
+  score: 5.5,
+  text: `PropTypes.string.isRequired`,
+  date: `PropTypes.number.isRequired`,
+}];
+const REDIRECT_TO = `${AppPages.MAIN}`;
 
 const INITIAL_STATE = {
+  status: undefined,
   movie: undefined,
-  moviesLike: [],
+  relatedMovies: [],
+  reviews: [],
+  redirectTo: undefined,
 };
 
 describe(`MovieDetailsReducer`, () => {
@@ -108,14 +96,74 @@ describe(`MovieDetailsReducer`, () => {
     expect(store.getState()).toEqual(sample);
   });
 
-  it(`should be switch value of moviesLike`, () => {
+  it(`should be switch value of relatedMovies`, () => {
 
     const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
     const sample = Object.assign({}, INITIAL_STATE, {
-      moviesLike: [MOVIES[0]],
+      relatedMovies: [MOVIES[0]],
     });
 
-    store.dispatch(setDetailedMovieMoviesLike([MOVIES[0]]));
+    store.dispatch(setDetailedMovieRelatedMovies([MOVIES[0]]));
+
+    expect(store.getState()).toEqual(sample);
+  });
+
+  it(`should be switch value of reviews`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      reviews: REVEIWS,
+    });
+
+    store.dispatch(setDetailedMovieReviews(REVEIWS));
+
+    expect(store.getState()).toEqual(sample);
+  });
+
+  it(`should be switch value of redirectTo`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      redirectTo: REDIRECT_TO,
+    });
+
+    store.dispatch(setDetailedMovieRedirectTo(REDIRECT_TO));
+
+    expect(store.getState()).toEqual(sample);
+  });
+
+  it(`should be switch value of status to loading`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      status: LoadingDataStatus.LOADING,
+    });
+
+    store.dispatch(setDetailedMovieLoadingStart());
+
+    expect(store.getState()).toEqual(sample);
+  });
+
+  it(`should be switch value of status to ready`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      status: LoadingDataStatus.READY,
+    });
+
+    store.dispatch(setDetailedMovieLoadingComplete());
+
+    expect(store.getState()).toEqual(sample);
+  });
+
+  it(`should be switch value of status to error`, () => {
+
+    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
+    const sample = Object.assign({}, INITIAL_STATE, {
+      status: LoadingDataStatus.ERROR,
+    });
+
+    store.dispatch(setDetailedMovieLoadingError());
 
     expect(store.getState()).toEqual(sample);
   });

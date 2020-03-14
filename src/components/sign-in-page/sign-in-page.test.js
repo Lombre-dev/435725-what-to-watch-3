@@ -29,6 +29,7 @@ describe(`<SignInPage />`, () => {
         <BrowserRouter>
           <SignInPage
             init={HANDLE_EVENT}
+            onMount={HANDLE_EVENT}
             onSubmit={HANDLE_EVENT}
           />
         </BrowserRouter>

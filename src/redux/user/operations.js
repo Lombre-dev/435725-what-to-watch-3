@@ -6,7 +6,7 @@ import {setCatalogPromoMovie} from '../catalog/actions';
 import {getCatalogPromoMovie} from '../catalog/selectors';
 import {setDetailedMovieValue} from '../movie/actions';
 import {getDetailedMovie} from '../movie/selectors';
-import {clearUserData, clearUserFavoriteMovies, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
+import {clearUserData, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
 import {formatUser} from './mappers';
 
 const Operations = {
@@ -47,7 +47,7 @@ const Operations = {
 
   getFavoriteMovies: () => (dispatch, getState, api) => {
 
-    dispatch(clearUserFavoriteMovies());
+    dispatch(setUserFavoriteMovies([]));
 
     return api.get(`/favorite`)
       .then((response) => {

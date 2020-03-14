@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-act';
-import {clearUserAuthError, clearUserData, clearUserFavoriteMovies, setUserAuthError, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
+import {clearUserData, setUserAuthError, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
@@ -7,8 +7,6 @@ export const reducer = createReducer({
   [setUserData]: _setData,
   [setUserAuthError]: _setAuthError,
   [setUserAuthRequired]: _setAuthRequired,
-  [clearUserAuthError]: _clearUserAuthError,
-  [clearUserFavoriteMovies]: _clearFavoriteMovies,
   [setUserFavoriteMovies]: _setFavoriteMovies,
 }, initialState);
 
@@ -26,14 +24,6 @@ function _setAuthRequired(state, authRequired) {
 
 function _setAuthError(state, errorCode) {
   return Object.assign({}, state, {authError: errorCode});
-}
-
-function _clearUserAuthError(state) {
-  return Object.assign({}, state, {authError: undefined});
-}
-
-function _clearFavoriteMovies(state) {
-  return Object.assign({}, state, {favoriteMovies: initialState.favoriteMovies});
 }
 
 function _setFavoriteMovies(state, movies) {

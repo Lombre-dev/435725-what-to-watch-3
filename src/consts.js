@@ -28,6 +28,7 @@ export const GENRES = [
   SCI_FI_GENRE,
   THRILLER_GENRE,
 ];
+export const GENRES_LIMIT = 9;
 
 export const GenreLabels = {
   [COMEDY_GENRE]: `Comedies`,

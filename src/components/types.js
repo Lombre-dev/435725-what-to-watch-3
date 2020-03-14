@@ -22,7 +22,6 @@ export const Movie = PropTypes.shape({
   description: PropTypes.string,
   story: PropTypes.string,
   duration: PropTypes.number.isRequired,
-  // reviews: PropTypes.arrayOf(Review),
   director: PropTypes.string.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   backgroundImage: PropTypes.string,
