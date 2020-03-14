@@ -33,7 +33,7 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
-const MOVIES_LIKE_CURRENT = [];
+const RELATED_MOVIES = [];
 const LOADING_DATA_STATUS = LoadingDataStatus.READY;
 const mockStore = configureStore([thunk]);
 
@@ -54,8 +54,9 @@ describe(`<MoviePage />`, () => {
             match={MATCH}
             statis={LOADING_DATA_STATUS}
             movie={MOVIE}
-            moviesLikeCurrent={MOVIES_LIKE_CURRENT}
-            init={HANDLE_EVENT}
+            relatedMovies={RELATED_MOVIES}
+            onMount={HANDLE_EVENT}
+            destroy={HANDLE_EVENT}
           />
         </BrowserRouter>
       </Provider>)

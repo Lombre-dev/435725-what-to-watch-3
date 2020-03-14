@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
 import {Movie} from '../components/types';
 import {LoadingDataStatus, PlayerState} from '../consts';
+import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
-import {getDetailedMovie, getDetailedMovieStatus} from '../redux/movie/selectors';
+import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
 
 export default function withVideoPlayer(Component) {
 
@@ -31,9 +32,16 @@ export default function withVideoPlayer(Component) {
 
     componentDidMount() {
 
-      const {init, match: {params: {id}}} = this.props;
+      const {onMount, match: {params: {id}}} = this.props;
 
-      init(id);
+      onMount(id);
+    }
+
+    componentWillUnmount() {
+
+      const {onUnmount} = this.props;
+
+      onUnmount();
     }
 
     _handlePlay() {
@@ -73,14 +81,16 @@ export default function withVideoPlayer(Component) {
 
     render() {
 
-      const {status} = this.props;
+      const {state, time, duration, isMute, isFullscreen} = this.state;
+      const {status, redirectTo, movie} = this.props;
+
+      if (redirectTo) {
+        return <Redirect to={redirectTo} />;
+      }
 
       if (status !== LoadingDataStatus.READY) {
         return <LoadingDataBlock status={status} />;
       }
-
-      const {movie} = this.props;
-      const {state, time, duration, isMute, isFullscreen} = this.state;
 
       return (
         <Component
@@ -104,22 +114,28 @@ export default function withVideoPlayer(Component) {
     match: PropTypes.object.isRequired,
     movie: Movie,
     status: PropTypes.oneOf(Object.values(LoadingDataStatus)),
+    redirectTo: PropTypes.string,
 
-    init: PropTypes.func,
+    onMount: PropTypes.func,
+    onUnmount: PropTypes.func,
   };
 
   function mapStateToProps(state) {
     return {
       status: getDetailedMovieStatus(state),
+      redirectTo: getDetailedMovieRedirectTo(state),
       movie: getDetailedMovie(state),
     };
   }
 
   function mapDispatchToProps(dispatch) {
     return {
-      init: (id) => {
+      onMount: (id) => {
         dispatch(Operations.init(id));
-      }
+      },
+      onUnmount: () => {
+        dispatch(setDetailedMovieRedirectTo(undefined));
+      },
     };
   }
 

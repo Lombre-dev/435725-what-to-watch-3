@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {AppPages, AuthorizationErrorCode, AuthorizationStatus} from '../../consts';
-import {clearUserAuthError, setUserAuthRequired} from '../../redux/user/actions';
+import {setUserAuthRequired} from '../../redux/user/actions';
 import {Operations as UserOperations} from '../../redux/user/operations';
 import {getUserAuthError, getUserAuthStatus} from '../../redux/user/selectors';
 import Footer from '../footer/footer';
@@ -15,9 +15,9 @@ class SignInPage extends React.PureComponent {
 
   componentDidMount() {
 
-    const {init} = this.props;
+    const {onMount} = this.props;
 
-    init();
+    onMount();
   }
 
   render() {
@@ -49,7 +49,7 @@ SignInPage.propTypes = {
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)),
   authError: PropTypes.oneOf(Object.values(AuthorizationErrorCode)),
 
-  init: PropTypes.func,
+  onMount: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -61,11 +61,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    init: () => {
+    onMount: () => {
       dispatch(setUserAuthRequired(false));
     },
     onSubmit: ({email, password}) => {
-      dispatch(clearUserAuthError());
       dispatch(UserOperations.login({email, password}));
     }
   };

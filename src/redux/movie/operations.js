@@ -1,7 +1,7 @@
 import {AppPages} from '../../consts';
 import {getMoviesByGenre} from '../../utils/movie-utils';
 import {getAppMovies} from '../app/selectors';
-import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetailedMovieLoadingStart, setDetailedMovieMoviesLike, setDetailedMovieRedirectTo, setDetailedMovieReviews, setDetailedMovieValue} from './actions';
+import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetailedMovieLoadingStart, setDetailedMovieRedirectTo, setDetailedMovieRelatedMovies, setDetailedMovieReviews, setDetailedMovieValue} from './actions';
 import {formatReviews} from './mappers';
 
 const Operations = {
@@ -12,9 +12,14 @@ const Operations = {
     const movie = allMovies.find((value) => value.id === intMovieId);
 
     dispatch(setDetailedMovieLoadingStart());
-    dispatch(setDetailedMovieValue(movie));
-    dispatch(setDetailedMovieMoviesLike(movie ? getMoviesByGenre(allMovies, movie.genres[0], [movie]) : []));
-    dispatch(setDetailedMovieLoadingComplete());
+
+    if (movie) {
+      dispatch(setDetailedMovieValue(movie));
+      dispatch(setDetailedMovieRelatedMovies(movie ? getMoviesByGenre(allMovies, movie.genres[0], [movie]) : []));
+      dispatch(setDetailedMovieLoadingComplete());
+    } else {
+      dispatch(setDetailedMovieRedirectTo(AppPages.MAIN));
+    }
   },
 
   getReviews: (movieId) => (dispatch, getState, api) => {

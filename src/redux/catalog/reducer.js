@@ -1,10 +1,14 @@
 import {createReducer} from 'redux-act';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, LoadingDataStatus} from '../../consts';
 import {getGenresFromMovies, getMoviesByGenre} from '../../utils/movie-utils';
-import {getCatalogMoreMovies, setCatalogGenre, setCatalogMovies, setCatalogPromoMovie} from './actions';
+import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
+  [setCatalogLoadingStart]: _setLoadingStart,
+  [setCatalogLoadingComplete]: _setLoadingComplete,
+  [setCatalogLoadingError]: _setLoadingError,
+
   [setCatalogMovies]: _setMovies,
   [setCatalogPromoMovie]: _setPromoMovie,
   [setCatalogGenre]: _setGenre,
@@ -49,4 +53,16 @@ function _getMoreMovies(state) {
   };
 
   return Object.assign({}, state, update);
+}
+
+function _setLoadingStart(state) {
+  return Object.assign({}, state, {status: LoadingDataStatus.LOADING});
+}
+
+function _setLoadingComplete(state) {
+  return Object.assign({}, state, {status: LoadingDataStatus.READY});
+}
+
+function _setLoadingError(state) {
+  return Object.assign({}, state, {status: LoadingDataStatus.ERROR});
 }

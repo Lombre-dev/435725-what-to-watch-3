@@ -94,7 +94,7 @@ describe(`<App />`, () => {
       app: {
         status: LOADING_DATA_STATUS,
       },
-      movieDetails: {
+      movie: {
         movie: undefined,
         moviesLike: [],
       },
@@ -119,7 +119,7 @@ describe(`<App />`, () => {
       .create(<Provider store={store}>
         <App
           status={LOADING_DATA_STATUS}
-          init={HANDLE_EVENT}
+          onMount={HANDLE_EVENT}
         />
       </Provider>, {
         createNodeMock: () => {

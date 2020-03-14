@@ -86,6 +86,7 @@ describe(`<MyListPage />`, () => {
         <MyListPage
           movies={MOVIES}
           updateFavoriteMovies={HANDLE_EVENT}
+          onMount={HANDLE_EVENT}
         />
       </BrowserRouter>, {
         createNodeMock: () => {

@@ -44,7 +44,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onSelect: (genre) => {
       dispatch(setCatalogGenre(genre));
-    }
+    },
   };
 }
 

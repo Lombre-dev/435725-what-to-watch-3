@@ -27,16 +27,16 @@ function withSubmitMovieReview(Component) {
 
     componentDidMount() {
 
-      const {init, match: {params: {id}}} = this.props;
+      const {onMount, match: {params: {id}}} = this.props;
 
-      init(id);
+      onMount(id);
     }
 
     componentWillUnmount() {
 
-      const {destroy} = this.props;
+      const {onUnmount} = this.props;
 
-      destroy();
+      onUnmount();
     }
 
     _handleRatingChange(value) {
@@ -53,28 +53,24 @@ function withSubmitMovieReview(Component) {
 
     _handleSubmit() {
 
-      const {onSubmit, movie} = this.props;
       const {rating, comment} = this.state;
+      const {onSubmit, movie} = this.props;
 
       onSubmit(movie.id, rating, comment);
     }
 
     render() {
 
-      const {redirectTo} = this.props;
+      const {rating, comment} = this.state;
+      const {redirectTo, status, movie} = this.props;
 
       if (redirectTo) {
         return <Redirect to={redirectTo} />;
       }
 
-      const {status} = this.props;
-
       if (status !== LoadingDataStatus.READY) {
         return <LoadingDataBlock status={status} />;
       }
-
-      const {movie} = this.props;
-      const {rating, comment} = this.state;
 
       return (
         <Component
@@ -104,8 +100,8 @@ function withSubmitMovieReview(Component) {
     isEnabled: PropTypes.bool,
     onSubmit: PropTypes.func,
 
-    init: PropTypes.func,
-    destroy: PropTypes.func,
+    onMount: PropTypes.func,
+    onUnmount: PropTypes.func,
 
     comment: PropTypes.string,
   };
@@ -124,15 +120,15 @@ function withSubmitMovieReview(Component) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      init: (movieId) => {
+      onMount: (movieId) => {
         dispatch(Operations.init(movieId));
       },
       onSubmit: (movieId, rating, comment) => {
         dispatch(Operations.addReview(movieId, rating, comment));
       },
-      destroy: () => {
+      onUnmount: () => {
         dispatch(setDetailedMovieRedirectTo(undefined));
-      }
+      },
     };
   }
 

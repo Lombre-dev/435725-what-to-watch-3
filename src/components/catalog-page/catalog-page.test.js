@@ -82,6 +82,7 @@ const MOVIES = [
   },
 ];
 const HAS_MORE_MOVIES = true;
+const HANDLE_EVENT = () => {};
 
 const mockStore = configureStore([thunk]);
 
@@ -119,6 +120,7 @@ describe(`<CatalogPage />`, () => {
         <BrowserRouter>
           <CatalogPage
             promoMovie={MOVIES[0]}
+            onMount={HANDLE_EVENT}
           />
         </BrowserRouter>
       </Provider>, {

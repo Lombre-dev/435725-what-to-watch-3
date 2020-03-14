@@ -13,9 +13,9 @@ class MyListPage extends React.PureComponent {
 
   componentDidMount() {
 
-    const {updateFavoriteMovies} = this.props;
+    const {onMount} = this.props;
 
-    updateFavoriteMovies();
+    onMount();
   }
 
   render() {
@@ -43,7 +43,8 @@ class MyListPage extends React.PureComponent {
 
 MyListPage.propTypes = {
   movies: PropTypes.arrayOf(Movie),
-  updateFavoriteMovies: PropTypes.func,
+
+  onMount: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -54,7 +55,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateFavoriteMovies: () => {
+    onMount: () => {
       dispatch(Operations.getFavoriteMovies());
     },
   };

@@ -2,6 +2,8 @@
 import {ALL_GENRE} from '../../consts';
 
 export const initialState = {
+  status: undefined,
+
   allMovies: [],
 
   promoMovie: undefined,
