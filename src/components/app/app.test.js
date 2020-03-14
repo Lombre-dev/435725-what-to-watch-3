@@ -1,8 +1,10 @@
+import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import {createAPI} from '../../api';
 import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
 import {App} from './app';
 
@@ -81,17 +83,19 @@ const MOVIES = [
   },
 ];
 const HAS_MORE_MOVIES = true;
-const LOADING_DATA_STATUS = LoadingDataStatus.LOADING;
+const LOADING_DATA_STATUS = LoadingDataStatus.READY;
 const HANDLE_EVENT = () => {};
-
-const mockStore = configureStore([thunk]);
 
 describe(`<App />`, () => {
 
   it(`render should be match markup`, () => {
 
+    const api = createAPI();
+    const apiMock = new MockAdapter(api);
+    const mockStore = configureStore([thunk.withExtraArgument(api)]);
     const store = mockStore({
       app: {
+        movies: MOVIES,
         status: LOADING_DATA_STATUS,
       },
       movie: {
@@ -127,6 +131,10 @@ describe(`<App />`, () => {
         }
       })
       .toJSON();
+
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, MOVIES[0]);
 
     expect(result).toMatchSnapshot();
   });

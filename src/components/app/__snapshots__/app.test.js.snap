@@ -11,7 +11,5 @@ exports[`<App /> render should be match markup 1`] = `
       "width": "100%",
     }
   }
->
-  loading
-</div>
+/>
 `;

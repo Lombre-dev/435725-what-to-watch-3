@@ -19,26 +19,26 @@ class MoviePage extends React.PureComponent {
 
   componentDidMount() {
 
-    const {onMount, match: {params: {id}}} = this.props;
+    const {updateMovie, match: {params: {id}}} = this.props;
 
-    onMount(id);
+    updateMovie(id);
   }
 
   componentDidUpdate(prevProps) {
 
-    const {match: {params: {id: currentId}}, onMount} = this.props;
+    const {match: {params: {id: currentId}}, updateMovie} = this.props;
     const {match: {params: {id: prevId}}} = prevProps;
 
     if (currentId !== prevId) {
-      onMount(currentId);
+      updateMovie(currentId);
     }
   }
 
   componentWillUnmount() {
 
-    const {onUnmount} = this.props;
+    const {resetRedirect} = this.props;
 
-    onUnmount();
+    resetRedirect();
   }
 
   render() {
@@ -97,8 +97,8 @@ MoviePage.propTypes = {
   movie: Movie,
   relatedMovies: PropTypes.arrayOf(Movie),
 
-  onMount: PropTypes.func,
-  onUnmount: PropTypes.func,
+  updateMovie: PropTypes.func,
+  resetRedirect: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -112,10 +112,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onMount: (movieId) => {
+    updateMovie: (movieId) => {
       dispatch(Operations.init(movieId));
     },
-    onUnmount: () => {
+    resetRedirect: () => {
       dispatch(setDetailedMovieRedirectTo(undefined));
     },
   };

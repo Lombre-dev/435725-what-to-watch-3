@@ -36,19 +36,18 @@ class SmallMovieCard extends React.PureComponent {
         className="small-movie-card catalog__movies-card"
         onMouseEnter={this._handleHover}
         onMouseLeave={this._handleLeave}
-        onClick={this._handleClick}
       >
-        <div className="small-movie-card__image" >
-          <VideoPlayer
-            id={movie.id}
-            state={isPreviewActive ? PlayerState.PLAYING : PlayerState.LOADING}
-            poster={movie.poster}
-            src={movie.preview}
-          />
-        </div>
-        <h3 className="small-movie-card__title">
-          <Link className="small-movie-card__link" to={`${AppPages.MOVIES}/${movie.id}`}>{movie.title}</Link>
-        </h3>
+        <Link className="small-movie-card__link" to={`${AppPages.MOVIES}/${movie.id}`}>
+          <div className="small-movie-card__image" >
+            <VideoPlayer
+              id={movie.id}
+              state={isPreviewActive ? PlayerState.PLAYING : PlayerState.LOADING}
+              poster={movie.poster}
+              src={movie.preview}
+            />
+          </div>
+          <h3 className="small-movie-card__title">{movie.title}</h3>
+        </Link>
       </article>
     );
   }
