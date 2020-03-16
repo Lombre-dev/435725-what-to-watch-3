@@ -60,7 +60,4 @@ SmallMovieCard.propTypes = {
   onLeave: PropTypes.func.isRequired,
 };
 
-// https://redux.js.org/api/bindactioncreators/
-// bindActionCreators(actionCreators, dispatch)
-
 export default SmallMovieCard;

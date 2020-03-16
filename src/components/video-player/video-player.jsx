@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {PlayerState} from '../../consts';
 
-export default class VideoPlayer extends React.PureComponent {
+class VideoPlayer extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -131,3 +131,5 @@ VideoPlayer.defaultProps = {
   height: `175`,
   isMuted: true,
 };
+
+export default VideoPlayer;
