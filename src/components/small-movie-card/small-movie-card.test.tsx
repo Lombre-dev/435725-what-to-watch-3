@@ -28,7 +28,10 @@ const MOVIE = {
   ],
 };
 const IS_PREVIEW_ACTIVE = false;
-const HANDLE_EVENT = function () {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 
 describe(`<SmallMovieCard />`, () => {
 

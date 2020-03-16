@@ -5,7 +5,10 @@ import ReviewRating from './review-rating';
 const VALUE = 0;
 const LIMIT = 5;
 const IS_ENABLED = true;
-const HANDLE_EVENT = function () {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 
 describe(`<ReviewRating />`, () => {
 

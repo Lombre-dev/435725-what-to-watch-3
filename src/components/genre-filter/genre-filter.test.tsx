@@ -3,7 +3,10 @@ import * as renderer from 'react-test-renderer';
 import {GenreFilter} from './genre-filter';
 
 const GENRE = `Comedy`;
-const HANDLE_EVENT = function () {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 
 describe(`<GenreFilter />`, () => {
 

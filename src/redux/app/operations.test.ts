@@ -13,7 +13,7 @@ describe(`AppOperations`, () => {
       .onGet(`/films`)
       .reply(200, []);
 
-    Operations.init()(dispatch, () => {}, api)
+    Operations.init()(dispatch, null, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
       });

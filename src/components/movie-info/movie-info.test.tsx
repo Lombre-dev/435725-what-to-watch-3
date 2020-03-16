@@ -28,7 +28,10 @@ const MOVIE = {
 };
 
 const ACTIVE_TAB = 0;
-const HANDLE_CLICK = () => {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 
 describe(`<MovieDetailInfo />`, () => {
 
@@ -38,7 +41,7 @@ describe(`<MovieDetailInfo />`, () => {
       .create(<MovieInfo
         movie={MOVIE}
         activeTab={ACTIVE_TAB}
-        onTabClick={HANDLE_CLICK}
+        onTabClick={HANDLE_EVENT}
       />)
       .toJSON();
 

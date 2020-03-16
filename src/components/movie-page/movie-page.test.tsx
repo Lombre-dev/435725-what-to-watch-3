@@ -8,7 +8,10 @@ import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
 import {MoviePage} from './movie-page';
 
 const MATCH = {params: {id: `0`}};
-const HANDLE_EVENT = function () {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 const MOVIE = {
   id: 0,
   title: `The Grand Budapest Hotel`,

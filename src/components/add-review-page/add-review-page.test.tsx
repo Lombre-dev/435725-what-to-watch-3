@@ -33,7 +33,10 @@ const MOVIE = {
 const RATING_VALUE = 0;
 const IS_SUBMIT_ENABLED = false;
 const IS_FIELDS_ENABLED = false;
-const HANDLE_EVENT = function () {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 const mockStore = configureStore([]);
 
 describe(`<AddReviewPage />`, () => {

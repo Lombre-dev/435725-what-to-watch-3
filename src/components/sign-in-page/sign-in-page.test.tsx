@@ -7,7 +7,10 @@ import {AuthorizationStatus} from '../../consts';
 import {SignInPage} from './sign-in-page';
 
 const mockStore = configureStore([]);
-const HANDLE_EVENT = function () {};
+const HANDLE_EVENT = () => {
+  // eslint-disable-next-line no-console
+  console.log(`handleTestEvent`);
+};
 
 describe(`<SignInPage />`, () => {
 
