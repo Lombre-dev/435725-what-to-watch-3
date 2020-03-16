@@ -7,7 +7,7 @@ import {AuthorizationStatus} from '../../consts';
 import SignIn from './sign-in';
 
 const mockStore = configureStore([]);
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 
 describe(`<SignIn />`, () => {
 

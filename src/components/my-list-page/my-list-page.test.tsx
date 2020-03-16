@@ -75,7 +75,7 @@ const MOVIES = [
     ],
   },
 ];
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 
 describe(`<MyListPage />`, () => {
 

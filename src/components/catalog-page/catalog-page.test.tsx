@@ -82,7 +82,7 @@ const MOVIES = [
   },
 ];
 const HAS_MORE_MOVIES = true;
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 
 const mockStore = configureStore([thunk]);
 

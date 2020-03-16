@@ -28,7 +28,7 @@ const MOVIE = {
   ],
 };
 const IS_PREVIEW_ACTIVE = false;
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 
 describe(`<SmallMovieCard />`, () => {
 

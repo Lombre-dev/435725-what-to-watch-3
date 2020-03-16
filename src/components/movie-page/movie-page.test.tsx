@@ -8,7 +8,7 @@ import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
 import {MoviePage} from './movie-page';
 
 const MATCH = {params: {id: `0`}};
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 const MOVIE = {
   id: 0,
   title: `The Grand Budapest Hotel`,

@@ -33,7 +33,7 @@ const MOVIE = {
 const RATING_VALUE = 0;
 const IS_SUBMIT_ENABLED = false;
 const IS_FIELDS_ENABLED = false;
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 const mockStore = configureStore([]);
 
 describe(`<AddReviewPage />`, () => {

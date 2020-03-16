@@ -27,7 +27,7 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 
 describe(`<BigMovieCard />`, () => {
 

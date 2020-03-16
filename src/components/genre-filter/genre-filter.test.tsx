@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {GenreFilter} from './genre-filter';
 
 const GENRE = `Comedy`;
-const HANDLE_EVENT = () => {};
+const HANDLE_EVENT = function () {};
 
 describe(`<GenreFilter />`, () => {
 
