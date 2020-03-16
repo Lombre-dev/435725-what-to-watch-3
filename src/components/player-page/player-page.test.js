@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import { PlayerState } from '../../consts';
+import {PlayerState} from '../../consts';
 import PlayerPage from './player-page';
 
 const MOVIE = {

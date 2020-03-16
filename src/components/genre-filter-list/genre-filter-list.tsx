@@ -2,8 +2,8 @@ import * as React from 'react';
 import GenreFilter from '../genre-filter/genre-filter';
 
 type TGenreFilterListProps = {
-  genres: string[],
-  genre: string,
+  genres: string[];
+  genre: string;
 };
 
 function GenreFilterList(props: TGenreFilterListProps) {

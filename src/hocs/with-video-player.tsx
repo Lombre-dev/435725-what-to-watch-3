@@ -2,30 +2,29 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
 import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
-import {Movie} from '../components/types';
 import {LoadingDataStatus, PlayerState} from '../consts';
 import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
 
-export default function withVideoPlayer(Component: any) {
+export default function withVideoPlayer(Component) {
 
   type TWithVideoPlayerProps = {
-    match: TMatchParamsWithId,
-    movie?: Movie,
-    status: LoadingDataStatus,
-    redirectTo?: string,
+    match: TMatchParamsWithId;
+    movie?: TMovie;
+    status: LoadingDataStatus;
+    redirectTo?: string;
 
-    onMount?: Function,
-    onUnmount?: Function,
+    onMount?: Function;
+    onUnmount?: Function;
   }
 
   type TWithVideoPlayerState = {
-    state: PlayerState,
-    time: number,
-    duration: number,
-    isMute: boolean,
-    isFullscreen: boolean,
+    state: PlayerState;
+    time: number;
+    duration: number;
+    isMute: boolean;
+    isFullscreen: boolean;
   }
 
   class WithVideoPlayer extends React.PureComponent<TWithVideoPlayerProps, TWithVideoPlayerState> {
@@ -127,7 +126,7 @@ export default function withVideoPlayer(Component: any) {
     }
   }
 
-  function mapStateToProps(state: Object) {
+  function mapStateToProps(state: Record<string, any>) {
     return {
       status: getDetailedMovieStatus(state),
       redirectTo: getDetailedMovieRedirectTo(state),

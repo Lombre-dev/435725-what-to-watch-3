@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Route} from 'react-router-dom';
+import {AppPages, AuthorizationStatus} from '../../consts';
 import {getUserAuthStatus} from '../../redux/user/selectors';
 
 type TPrivateRouteProps = {
-  exact: boolean,
-  path: string,
-  render: Function,
-  authStatus?: AuthorizationStatus,
+  exact: boolean;
+  path: string;
+  render: Function;
+  authStatus?: AuthorizationStatus;
 };
 
 function PrivateRoute(props: TPrivateRouteProps) {
@@ -26,7 +27,7 @@ function PrivateRoute(props: TPrivateRouteProps) {
   );
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     authStatus: getUserAuthStatus(state),
   };

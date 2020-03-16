@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/catalog/operations';
 import {getCatalogPromoMovie, getCatalogStatus} from '../../redux/catalog/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
@@ -10,10 +11,10 @@ import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 
 type TCatalogPageProps = {
-  status?: LoadingDataStatus,
-  promoMovie?: TMovie,
+  status?: LoadingDataStatus;
+  promoMovie?: TMovie;
 
-  onMount?: Function,
+  onMount?: Function;
 };
 
 class CatalogPage extends React.PureComponent<TCatalogPageProps> {
@@ -64,7 +65,7 @@ class CatalogPage extends React.PureComponent<TCatalogPageProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     status: getCatalogStatus(state),
     promoMovie: getCatalogPromoMovie(state),

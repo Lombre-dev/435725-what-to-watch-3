@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
+import {AppPages, PlayerState} from '../../consts';
 import VideoPlayer from '../video-player/video-player';
 
 type TSmallMovieCardProps = {
-  movie: TMovie,
-  isPreviewActive: boolean,
-  onHover: Function,
-  onLeave: Function,
+  movie: TMovie;
+  isPreviewActive: boolean;
+  onHover: Function;
+  onLeave: Function;
 };
 
 class SmallMovieCard extends React.PureComponent<TSmallMovieCardProps> {

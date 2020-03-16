@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
+import {AppPages} from '../../consts';
 
 type TLogoProps = {
-  isLight?: boolean,
+  isLight?: boolean;
 };
 
 function Logo(props: TLogoProps) {

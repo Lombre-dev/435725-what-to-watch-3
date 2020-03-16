@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {AppPages} from '../../consts';
 import {Operations} from '../../redux/user/operations';
 
 type TBigMovieCardProps = {
-  movie: TMovie,
-  updateFavoriteStatus: Function,
+  movie: TMovie;
+  updateFavoriteStatus: Function;
 };
 
 class BigMovieCard extends React.PureComponent<TBigMovieCardProps> {

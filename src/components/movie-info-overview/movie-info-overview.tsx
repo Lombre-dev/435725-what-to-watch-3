@@ -2,7 +2,7 @@ import * as React from 'react';
 import {getActors, getRatingLevel, getRatingReviewsCount, getRatingScore} from '../../utils/movie-utils';
 
 type TMovieInfoOverviewProps = {
-  movie: TMovie,
+  movie: TMovie;
 };
 
 function MovieInfoOverview(props: TMovieInfoOverviewProps) {

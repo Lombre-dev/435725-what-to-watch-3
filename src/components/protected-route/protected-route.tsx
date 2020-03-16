@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Route} from 'react-router-dom';
+import {AppPages} from '../../consts';
 import {getUserAuthRequired} from '../../redux/user/selectors';
 
 type TProtectedRouteProps = {
-  exact: boolean,
-  path: string,
-  render: Function,
-  authRequired?: boolean,
+  exact: boolean;
+  path: string;
+  render: Function;
+  authRequired?: boolean;
 };
 
 function ProtectedRoute(props: TProtectedRouteProps) {
@@ -26,7 +27,7 @@ function ProtectedRoute(props: TProtectedRouteProps) {
   );
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     authRequired: getUserAuthRequired(state),
   };

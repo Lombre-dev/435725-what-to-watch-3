@@ -5,9 +5,9 @@ import MovieInfoReviews from '../movie-info-reviews/movie-info-reviews';
 import MovieInfoTabs from '../movie-info-tabs/movie-info-tabs';
 
 type TMovieInfoProps = {
-  movie: TMovie,
-  activeTab: number,
-  onTabClick: Function,
+  movie: TMovie;
+  activeTab: number;
+  onTabClick: Function;
 };
 
 class MovieInfo extends React.PureComponent<TMovieInfoProps> {

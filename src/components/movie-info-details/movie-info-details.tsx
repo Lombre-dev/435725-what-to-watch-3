@@ -2,7 +2,7 @@ import * as React from 'react';
 import {getDuration} from '../../utils/movie-utils';
 
 type TMovieInfoDetailsProps = {
-  movie: TMovie,
+  movie: TMovie;
 };
 
 function MovieInfoDetails(props: TMovieInfoDetailsProps) {

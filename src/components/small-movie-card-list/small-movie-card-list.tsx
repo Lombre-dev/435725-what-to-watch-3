@@ -2,10 +2,10 @@ import * as React from 'react';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
 
 type TSmallMovieCardListProps = {
-  movies: TMovie[],
-  activeItemId: number,
-  onItemHover: Function,
-  onItemLeave: Function,
+  movies: TMovie[];
+  activeItemId: number;
+  onItemHover: Function;
+  onItemLeave: Function;
 };
 
 function SmallMovieCardList(props: TSmallMovieCardListProps) {

@@ -1,4 +1,4 @@
-function formatMovie(source) {
+function formatMovie(source: any): TMovie {
   return Object.assign({}, source, {
     title: source.name,
     genres: [source.genre],
@@ -18,7 +18,7 @@ function formatMovie(source) {
   });
 }
 
-function formatMovies(source) {
+function formatMovies(source: any[]): TMovie[] {
   return source.map((item) => formatMovie(item));
 }
 

@@ -1,7 +1,8 @@
 import * as React from 'react';
+import {LoadingDataStatus} from '../../consts';
 
 type TLoadingDataBlockProps = {
-  status?: LoadingDataStatus,
+  status?: LoadingDataStatus;
 };
 
 function LoadingDataBlock(props: TLoadingDataBlockProps) {
@@ -15,7 +16,7 @@ function LoadingDataBlock(props: TLoadingDataBlockProps) {
         height: `100%`,
       }
     }>
-      {status}
+      {props.status}
     </div>
   );
 }

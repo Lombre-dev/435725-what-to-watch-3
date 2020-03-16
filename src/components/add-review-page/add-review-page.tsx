@@ -1,18 +1,19 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
+import {AppPages, REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../../consts';
 import Logo from '../logo/logo';
 import ReviewRating from '../review-rating/review-rating';
 import UserBlock from '../user-block/user-block';
 
 type TAddReviewPageProps = {
-  movie: TMovie,
-  ratingValue?: number,
-  commentValue?: string,
-  onRatingChange?: Function,
-  onCommentChange?: Function,
-  isFieldsEnabled?: boolean,
-  isSubmitEnabled?: boolean,
-  onSubmit?: Function,
+  movie: TMovie;
+  ratingValue?: number;
+  commentValue?: string;
+  onRatingChange?: Function;
+  onCommentChange?: Function;
+  isFieldsEnabled?: boolean;
+  isSubmitEnabled?: boolean;
+  onSubmit?: Function;
 }
 
 class AddReviewPage extends React.PureComponent<TAddReviewPageProps> {

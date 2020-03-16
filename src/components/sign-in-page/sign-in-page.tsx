@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {AppPages, AuthorizationErrorCode, AuthorizationStatus} from '../../consts';
 import {setUserAuthRequired} from '../../redux/user/actions';
 import {Operations as UserOperations} from '../../redux/user/operations';
 import {getUserAuthError, getUserAuthStatus} from '../../redux/user/selectors';
@@ -9,11 +10,11 @@ import Logo from '../logo/logo';
 import SignIn from '../sign-in/sign-in';
 
 type TSignInPageProps = {
-  onSubmit?: Function,
-  authStatus?: AuthorizationStatus,
-  authError?: AuthorizationErrorCode,
+  onSubmit?: Function;
+  authStatus?: AuthorizationStatus;
+  authError?: AuthorizationErrorCode;
 
-  onMount?: Function,
+  onMount?: Function;
 };
 
 class SignInPage extends React.PureComponent<TSignInPageProps> {
@@ -49,7 +50,7 @@ class SignInPage extends React.PureComponent<TSignInPageProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     authStatus: getUserAuthStatus(state),
     authError: getUserAuthError(state),

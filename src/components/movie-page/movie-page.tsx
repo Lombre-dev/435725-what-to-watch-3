@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
+import {LoadingDataStatus} from '../../consts';
 import {setDetailedMovieRedirectTo} from '../../redux/movie/actions';
 import {Operations} from '../../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieRelatedMovies, getDetailedMovieStatus} from '../../redux/movie/selectors';
@@ -13,14 +14,14 @@ import MovieInfo from '../movie-info';
 import UserBlock from '../user-block/user-block';
 
 type TMoviePageProps = {
-  match: TMatchParamsWithId,
-  status?: LoadingDataStatus,
-  redirectTo?: string,
-  movie?: TMovie,
-  relatedMovies?: TMovie[],
+  match: TMatchParamsWithId;
+  status?: LoadingDataStatus;
+  redirectTo?: string;
+  movie?: TMovie;
+  relatedMovies?: TMovie[];
 
-  updateMovie?: Function,
-  resetRedirect?: Function,
+  updateMovie?: Function;
+  resetRedirect?: Function;
 };
 
 class MoviePage extends React.PureComponent<TMoviePageProps> {
@@ -98,7 +99,7 @@ class MoviePage extends React.PureComponent<TMoviePageProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, object>) {
   return {
     status: getDetailedMovieStatus(state),
     redirectTo: getDetailedMovieRedirectTo(state),
@@ -107,9 +108,9 @@ function mapStateToProps(state: Object) {
   };
 }
 
-function mapDispatchToProps(dispatch: Object) {
+function mapDispatchToProps(dispatch: Function) {
   return {
-    updateMovie: (movieId) => {
+    updateMovie: (movieId: string) => {
       dispatch(Operations.init(movieId));
     },
     resetRedirect: () => {

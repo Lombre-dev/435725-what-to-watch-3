@@ -8,13 +8,13 @@ import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
 
 type TCatalogProps = {
-  genres: string[],
-  genre: string,
-  movies: TMovie[],
-  hasMoreMovies: boolean,
-  onShowMore?: (event: MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  genres: string[];
+  genre: string;
+  movies: TMovie[];
+  hasMoreMovies: boolean;
+  onShowMore?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 
-  onMount?: Function,
+  onMount?: Function;
 };
 
 class Catalog extends React.PureComponent<TCatalogProps> {
@@ -58,7 +58,7 @@ class Catalog extends React.PureComponent<TCatalogProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     genres: getCatalogGenres(state),
     genre: getCatalogGenre(state),

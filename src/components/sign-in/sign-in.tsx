@@ -1,10 +1,11 @@
 import * as React from 'react';
+import {AuthorizationErrorCode, AuthorizationErrorMessage} from '../../consts';
 
 type TSignInProps = {
-  email?: string,
-  password?: string,
-  authError?: AuthorizationErrorCode,
-  onSubmit: Function
+  email?: string;
+  password?: string;
+  authError?: AuthorizationErrorCode;
+  onSubmit: Function;
 };
 
 class SignIn extends React.PureComponent<TSignInProps> {

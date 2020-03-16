@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 type TShowMoreProps = {
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 function ShowMore(props: TShowMoreProps) {

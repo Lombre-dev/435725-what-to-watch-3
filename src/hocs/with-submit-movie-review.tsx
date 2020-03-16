@@ -3,22 +3,23 @@ import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
 import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
 import {Movie} from '../components/types';
+import {LoadingDataStatus, REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../consts';
 import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
 
 type TWithSubmitMovieReviewProps = {
-  match: TMatchParamsWithId,
-  status: LoadingDataStatus,
-  redirectTo?: string,
-  movie?: Movie,
-  isEnabled?: boolean,
-  onSubmit?: Function,
+  match: TMatchParamsWithId;
+  status: LoadingDataStatus;
+  redirectTo?: string;
+  movie?: Movie;
+  isEnabled?: boolean;
+  onSubmit?: Function;
 
-  onMount?: Function,
-  onUnmount?: Function,
+  onMount?: Function;
+  onUnmount?: Function;
 
-  comment?: string,
+  comment?: string;
 }
 
 type TWithSubmitMovieReviewState = {
@@ -86,7 +87,7 @@ function withSubmitMovieReview(Component: any) {
         return <Redirect to={redirectTo} />;
       }
 
-      if (status !== 'ready') {
+      if (status !== `ready`) {
         return <LoadingDataBlock status={status} />;
       }
 
@@ -97,9 +98,9 @@ function withSubmitMovieReview(Component: any) {
           commentValue={comment}
           onRatingChange={this._handleRatingChange}
           onCommentChange={this._handleCommentChange}
-          isFieldsEnabled={status === 'ready'}
+          isFieldsEnabled={status === `ready`}
           isSubmitEnabled={
-            status === 'ready' &&
+            status === `ready` &&
             rating !== -1 &&
             comment.length >= REVIEW_COMMENT_MIN_LENGTH &&
             comment.length <= REVIEW_COMMENT_MAX_LENGTH

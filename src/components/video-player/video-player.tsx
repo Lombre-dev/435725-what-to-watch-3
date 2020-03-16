@@ -1,16 +1,17 @@
 import * as React from 'react';
+import {PlayerState} from '../../consts';
 
 type TVideoPlayerProps = {
-  id: number,
-  state: PlayerState,
-  poster: string,
-  width?: string,
-  height?: string,
-  src: string,
-  onDurationUpdate?: Function,
-  onTimeUpdate?: Function,
-  onEnd?: Function,
-  isMuted?: boolean,
+  id: number;
+  state: PlayerState;
+  poster: string;
+  width?: string;
+  height?: string;
+  src: string;
+  onDurationUpdate?: Function;
+  onTimeUpdate?: Function;
+  onEnd?: Function;
+  isMuted?: boolean;
 };
 
 class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {

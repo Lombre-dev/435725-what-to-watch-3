@@ -1,10 +1,11 @@
 import * as React from 'react';
+import {REVIEW_RATING_STARS_LIMIT} from '../../consts';
 
 type TReviewRatingProps = {
-  isEnabled: boolean,
-  value?: number,
-  limit?: number,
-  onValueChange?: Function,
+  isEnabled: boolean;
+  value?: number;
+  limit?: number;
+  onValueChange?: Function;
 };
 
 class ReviewRating extends React.PureComponent<TReviewRatingProps> {

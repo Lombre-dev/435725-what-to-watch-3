@@ -5,7 +5,7 @@ import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetail
 import {formatReviews} from './mappers';
 
 const Operations = {
-  init: (movieId) => (dispatch, getState, _api) => {
+  init: (movieId: string) => (dispatch, getState, _api) => {
 
     const intMovieId = parseInt(movieId, 10);
     const allMovies = getAppMovies(getState());

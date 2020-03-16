@@ -1,4 +1,4 @@
-function formatReview(source) {
+function formatReview(source: any): TReview {
   return Object.assign({}, source, {
     author: source.user.name,
     score: source.rating,
@@ -7,7 +7,7 @@ function formatReview(source) {
   });
 }
 
-function formatReviews(source) {
+function formatReviews(source: any[]): TReview[] {
   return source.map((value) => formatReview(value));
 }
 

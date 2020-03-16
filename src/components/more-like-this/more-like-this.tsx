@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {MORE_LIKE_THIS_MOVIES_LIMIT} from '../../consts';
 import SmallMovieCardList from '../small-movie-card-list';
 
 type TMoreLikeThisProps = {
-  movies: TMovie[],
+  movies: TMovie[];
 };
 
 function MoreLikeThis(props: TMoreLikeThisProps) {

@@ -5,7 +5,7 @@ import {getGenreLabels} from '../../utils/movie-utils';
 
 type TGenreFilterProps = {
   genre: string;
-  onSelect: Function,
+  onSelect: Function;
 };
 
 class GenreFilter extends React.PureComponent<TGenreFilterProps> {

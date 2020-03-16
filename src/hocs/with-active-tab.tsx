@@ -8,7 +8,7 @@ type TWithActiveTabState = {
   activeTab: number;
 }
 
-function withActiveTab(Component: any) {
+function withActiveTab(Component) {
 
   class WithActiveTab extends React.PureComponent<TWithActiveTabProps, TWithActiveTabState> {
     public constructor(props: TWithActiveTabProps) {

@@ -8,8 +8,8 @@ import SmallMovieCardList from '../small-movie-card-list';
 import {UserBlock} from '../user-block/user-block';
 
 type TMyListPageProps = {
-  movies?: TMovie[],
-  onMount?: Function,
+  movies?: TMovie[];
+  onMount?: Function;
 };
 
 class MyListPage extends React.PureComponent<TMyListPageProps> {
@@ -44,7 +44,7 @@ class MyListPage extends React.PureComponent<TMyListPageProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     movies: getUserFavoriteMovies(state),
   };

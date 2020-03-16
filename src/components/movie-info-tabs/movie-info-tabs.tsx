@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {MOVIE_INFO_TABS} from '../../consts';
 
 type TMovieInfoTabsProps = {
-  currentTab: number,
-  onTabClick: Function,
+  currentTab: number;
+  onTabClick: Function;
 };
 
 class MovieInfoTabs extends React.PureComponent<TMovieInfoTabsProps> {

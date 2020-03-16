@@ -1,20 +1,21 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
+import {AppPages, PlayerState} from '../../consts';
 import {formatTime} from '../../utils/player-utils';
 import VideoPlayer from '../video-player/video-player';
 
 type TPlayerPageProps = {
-  movie?: TMovie,
-  movieState?: PlayerState,
-  movieTime?: number,
-  movieDuration?: number,
-  isFullscreen?: boolean,
-  isMuted?: boolean,
-  onPlay?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-  onTimeUpdate?: Function,
-  onDurationUpdate?: Function,
-  onEnd?: Function,
-  onFullscreen?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  movie?: TMovie;
+  movieState?: PlayerState;
+  movieTime?: number;
+  movieDuration?: number;
+  isFullscreen?: boolean;
+  isMuted?: boolean;
+  onPlay?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onTimeUpdate?: Function;
+  onDurationUpdate?: Function;
+  onEnd?: Function;
+  onFullscreen?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 class PlayerPage extends React.PureComponent<TPlayerPageProps> {

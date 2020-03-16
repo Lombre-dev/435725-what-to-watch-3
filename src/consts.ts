@@ -1,4 +1,4 @@
-const ALL_GENRE = `All genres`;
+export const ALL_GENRE = `All genres`;
 const COMEDY_GENRE = `Comedy`;
 const CRIME_GENRE = `Crime`;
 const DOCUMENTARY_GENRE = `Documentary`;
@@ -9,15 +9,15 @@ const ROMANCE_GENRE = `Romance`;
 const SCI_FI_GENRE = `Sci-Fi`;
 const THRILLER_GENRE = `Thriller`;
 
-const AppPages = {
-  MAIN: `/`,
-  LOGIN: `/login`,
-  MY_LIST: `/mylist`,
-  MOVIES: `/films`,
-  PLAYER: `/player`,
+export enum AppPages {
+  MAIN = `/`,
+  LOGIN = `/login`,
+  MY_LIST = `/mylist`,
+  MOVIES = `/films`,
+  PLAYER = `/player`,
 };
 
-const GENRES = [
+export const GENRES = [
   COMEDY_GENRE,
   CRIME_GENRE,
   DOCUMENTARY_GENRE,
@@ -28,26 +28,26 @@ const GENRES = [
   SCI_FI_GENRE,
   THRILLER_GENRE,
 ];
-const GENRES_CATALOG_LIMIT = 9;
+export const GENRES_CATALOG_LIMIT = 9;
 
-const GenreLabels = {
+export const GenreLabels = {
   [COMEDY_GENRE]: `Comedies`,
   [DRAMA_GENRE]: `Dramas`,
   [THRILLER_GENRE]: `Thrillers`,
 };
 
-const MORE_LIKE_THIS_MOVIES_LIMIT = 4;
-const CATALOG_MOVIES_PER_PAGE_LIMIT = 8;
+export const MORE_LIKE_THIS_MOVIES_LIMIT = 4;
+export const CATALOG_MOVIES_PER_PAGE_LIMIT = 8;
 
-const SMALL_MOVIE_CARD_PREVIEW_DELAY = 1000;
+export const SMALL_MOVIE_CARD_PREVIEW_DELAY = 1000;
 
-const MOVIE_INFO_TABS = [
+export const MOVIE_INFO_TABS = [
   `Overview`,
   `Details`,
   `Reviews`,
 ];
 
-enum PlayerState {
+export enum PlayerState {
   INITED = `inited`,
   LOADING = `loading`,
   PLAYING = `playing`,
@@ -55,37 +55,37 @@ enum PlayerState {
   ENDED = `ended`,
 };
 
-const ServerConfig = {
+export const ServerConfig = {
   URL: `https://htmlacademy-react-3.appspot.com/wtw`,
   RESPONSE_TIMEOUT: 5000,
   USE_COOKIES: true,
 };
-enum ServerErrors {
+export enum ServerErrors {
   NOT_FOUND = 404,
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
 };
 
-enum AuthorizationErrorCode {
+export enum AuthorizationErrorCode {
   INCORRECT_LOGIN = 1,
   AUTHORIZATION_FAIL = 2,
 };
 
-const AuthorizationErrorMessage = {
+export const AuthorizationErrorMessage = {
   [AuthorizationErrorCode.INCORRECT_LOGIN]: `Please enter a valid email address`,
   [AuthorizationErrorCode.AUTHORIZATION_FAIL]: `We can’t recognize this email and password combination. Please try again.`,
 };
 
-enum AuthorizationStatus {
+export enum AuthorizationStatus {
   NO_AUTH = `unauthorized`,
   AUTH = `authorized`,
 };
 
-const REVIEW_RATING_STARS_LIMIT = 5;
-const REVIEW_COMMENT_MIN_LENGTH = 50;
-const REVIEW_COMMENT_MAX_LENGTH = 400;
+export const REVIEW_RATING_STARS_LIMIT = 5;
+export const REVIEW_COMMENT_MIN_LENGTH = 50;
+export const REVIEW_COMMENT_MAX_LENGTH = 400;
 
-enum LoadingDataStatus {
+export enum LoadingDataStatus {
   LOADING = `loading`,
   READY = `ready`,
   ERROR = `error`,

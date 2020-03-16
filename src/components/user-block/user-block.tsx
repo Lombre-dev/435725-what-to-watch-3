@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {AppPages, AuthorizationStatus} from '../../consts';
 import {getUserAuthStatus, getUserAvatar, getUserName} from '../../redux/user/selectors';
 
 type TUserBlockProps = {
-  status?: AuthorizationStatus,
-  name?: string,
-  avatar?: string,
+  status?: AuthorizationStatus;
+  name?: string;
+  avatar?: string;
 };
 
 function UserBlock(props: TUserBlockProps) {
@@ -28,7 +29,7 @@ function UserBlock(props: TUserBlockProps) {
   );
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     status: getUserAuthStatus(state),
     name: getUserName(state),

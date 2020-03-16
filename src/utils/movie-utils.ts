@@ -1,4 +1,4 @@
-import {GenreLabels, GENRES} from '../consts';
+import {GenreLabels} from '../consts';
 import {getPluralForm} from './get-plural-form';
 
 const RATING_SCORE_LIMIT = 10;
@@ -56,7 +56,7 @@ export function getGenresFromMovies(source) {
   source.forEach((movie) => {
     movie.genres.forEach((genre) => {
 
-      const alias = GENRES.label || genre;
+      const alias = GenreLabels[genre] || genre;
 
       if (genres.includes(alias)) {
         return;

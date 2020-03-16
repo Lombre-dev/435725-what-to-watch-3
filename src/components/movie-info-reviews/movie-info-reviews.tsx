@@ -1,15 +1,16 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/movie/operations';
 import {getDetailedMovieReviews, getDetailedMovieStatus} from '../../redux/movie/selectors';
 import {getRatingScore} from '../../utils/movie-utils';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
 
 type TMovieInfoReviewsProps = {
-  status?: LoadingDataStatus,
-  movie: TMovie,
-  reviews?: TReview[],
-  getReviews?: Function,
+  status?: LoadingDataStatus;
+  movie: TMovie;
+  reviews?: TReview[];
+  getReviews?: Function;
 };
 
 class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
@@ -71,7 +72,7 @@ class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     status: getDetailedMovieStatus(state),
     reviews: getDetailedMovieReviews(state),

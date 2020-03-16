@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {AppPages, LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/app/operations';
 import {getAppStatus} from '../../redux/app/selectors';
 import AddReviewPage from '../add-review-page';
@@ -15,8 +16,8 @@ import ProtectedRoute from '../protected-route/protected-route';
 import SignInPage from '../sign-in-page/sign-in-page';
 
 type TAppProps = {
-  status?: LoadingDataStatus,
-  onMount?: Function,
+  status?: LoadingDataStatus;
+  onMount?: Function;
 };
 
 class App extends React.PureComponent<TAppProps> {
@@ -52,7 +53,7 @@ class App extends React.PureComponent<TAppProps> {
   }
 }
 
-function mapStateToProps(state: Object) {
+function mapStateToProps(state: Record<string, any>) {
   return {
     status: getAppStatus(state),
   };
