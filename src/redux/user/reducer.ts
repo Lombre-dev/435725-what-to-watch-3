@@ -3,11 +3,11 @@ import {clearUserData, setUserAuthError, setUserAuthRequired, setUserData, setUs
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
-  [clearUserData]: _clearData,
-  [setUserData]: _setData,
-  [setUserAuthError]: _setAuthError,
-  [setUserAuthRequired]: _setAuthRequired,
-  [setUserFavoriteMovies]: _setFavoriteMovies,
+  [clearUserData.toString()]: _clearData,
+  [setUserData.toString()]: _setData,
+  [setUserAuthError.toString()]: _setAuthError,
+  [setUserAuthRequired.toString()]: _setAuthRequired,
+  [setUserFavoriteMovies.toString()]: _setFavoriteMovies,
 }, initialState);
 
 function _clearData(state) {

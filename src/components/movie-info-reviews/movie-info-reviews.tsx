@@ -5,6 +5,7 @@ import {Operations} from '../../redux/movie/operations';
 import {getDetailedMovieReviews, getDetailedMovieStatus} from '../../redux/movie/selectors';
 import {getRatingScore} from '../../utils/movie-utils';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
+import {TMovie, TReview} from '../types';
 
 type TMovieInfoReviewsProps = {
   status?: LoadingDataStatus;

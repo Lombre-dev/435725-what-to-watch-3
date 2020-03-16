@@ -1,3 +1,4 @@
+import {TMovie} from '../../components/types';
 import {LoadingDataStatus} from '../../consts';
 
 export const getCatalogStatus: (state) => LoadingDataStatus = (state) => state.catalog.status;

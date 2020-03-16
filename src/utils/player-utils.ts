@@ -1,7 +1,7 @@
 const SECONDS_PER_HOUR = 3600;
 const SECONDS_PER_MIN = 60;
 
-export function formatTime(seconds) {
+export function formatTime(seconds: number): string {
 
   let roundedSeconds = Math.floor(seconds);
 

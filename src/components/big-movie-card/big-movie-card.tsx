@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppPages} from '../../consts';
 import {Operations} from '../../redux/user/operations';
+import {TMovie} from '../types';
 
 type TBigMovieCardProps = {
   movie: TMovie;

@@ -11,6 +11,7 @@ import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import Logo from '../logo/logo';
 import MoreLikeThis from '../more-like-this/more-like-this';
 import MovieInfo from '../movie-info';
+import {TMatchParamsWithId, TMovie} from '../types';
 import UserBlock from '../user-block/user-block';
 
 type TMoviePageProps = {

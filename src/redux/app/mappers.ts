@@ -1,3 +1,5 @@
+import {TMovie} from '../../components/types';
+
 function formatMovie(source: any): TMovie {
   return Object.assign({}, source, {
     title: source.name,

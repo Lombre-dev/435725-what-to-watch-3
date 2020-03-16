@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {AppPages, REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../../consts';
 import Logo from '../logo/logo';
 import ReviewRating from '../review-rating/review-rating';
+import {TMovie} from '../types';
 import UserBlock from '../user-block/user-block';
 
 type TAddReviewPageProps = {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {getDuration} from '../../utils/movie-utils';
+import {TMovie} from '../types';
 
 type TMovieInfoDetailsProps = {
   movie: TMovie;

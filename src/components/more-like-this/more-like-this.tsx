@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {MORE_LIKE_THIS_MOVIES_LIMIT} from '../../consts';
 import SmallMovieCardList from '../small-movie-card-list';
+import {TMovie} from '../types';
 
 type TMoreLikeThisProps = {
   movies: TMovie[];

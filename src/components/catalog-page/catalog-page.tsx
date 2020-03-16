@@ -8,6 +8,7 @@ import Catalog from '../catalog/catalog';
 import Footer from '../footer/footer';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import Logo from '../logo/logo';
+import {TMovie} from '../types';
 import UserBlock from '../user-block/user-block';
 
 type TCatalogPageProps = {

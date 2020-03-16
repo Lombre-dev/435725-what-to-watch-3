@@ -1,24 +1,24 @@
 import {createReducer} from 'redux-act';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_LIMIT, LoadingDataStatus} from '../../consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_CATALOG_LIMIT, LoadingDataStatus} from '../../consts';
 import {getGenresFromMovies, getMoviesByGenre} from '../../utils/movie-utils';
 import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
-  [setCatalogLoadingStart]: _setLoadingStart,
-  [setCatalogLoadingComplete]: _setLoadingComplete,
-  [setCatalogLoadingError]: _setLoadingError,
+  [setCatalogLoadingStart.toString()]: _setLoadingStart,
+  [setCatalogLoadingComplete.toString()]: _setLoadingComplete,
+  [setCatalogLoadingError.toString()]: _setLoadingError,
 
-  [setCatalogMovies]: _setMovies,
-  [setCatalogPromoMovie]: _setPromoMovie,
-  [setCatalogGenre]: _setGenre,
-  [getCatalogMoreMovies]: _getMoreMovies,
+  [setCatalogMovies.toString()]: _setMovies,
+  [setCatalogPromoMovie.toString()]: _setPromoMovie,
+  [setCatalogGenre.toString()]: _setGenre,
+  [getCatalogMoreMovies.toString()]: _getMoreMovies,
 }, initialState);
 
 function _setMovies(state, movies) {
   return Object.assign({}, state, {
     allMovies: movies,
-    genres: [ALL_GENRE].concat(getGenresFromMovies(movies)).slice(0, GENRES_LIMIT),
+    genres: [ALL_GENRE].concat(getGenresFromMovies(movies)).slice(0, GENRES_CATALOG_LIMIT),
     movies: movies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT),
     hasMoreMovies: movies.length > CATALOG_MOVIES_PER_PAGE_LIMIT,
   });

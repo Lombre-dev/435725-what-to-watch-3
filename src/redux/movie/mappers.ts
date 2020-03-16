@@ -1,3 +1,5 @@
+import {TReview} from '../../components/types';
+
 function formatReview(source: any): TReview {
   return Object.assign({}, source, {
     author: source.user.name,

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {TMovie} from '../components/types';
 
 type TWithActiveItemListState = {
   activeItemId: number;

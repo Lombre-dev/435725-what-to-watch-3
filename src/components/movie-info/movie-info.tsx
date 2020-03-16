@@ -3,6 +3,7 @@ import MovieInfoDetails from '../movie-info-details/movie-info-details';
 import MovieInfoOverview from '../movie-info-overview/movie-info-overview';
 import MovieInfoReviews from '../movie-info-reviews/movie-info-reviews';
 import MovieInfoTabs from '../movie-info-tabs/movie-info-tabs';
+import {TMovie} from '../types';
 
 type TMovieInfoProps = {
   movie: TMovie;

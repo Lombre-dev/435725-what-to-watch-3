@@ -6,6 +6,7 @@ import {getCatalogGenre, getCatalogGenres, getCatalogHasMoreMovies, getCatalogMo
 import GenreFilterList from '../genre-filter-list/genre-filter-list';
 import ShowMore from '../show-more/show-more';
 import SmallMovieCardList from '../small-movie-card-list';
+import {TMovie} from '../types';
 
 type TCatalogProps = {
   genres: string[];

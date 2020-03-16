@@ -1,4 +1,6 @@
-type TReview = {
+import {AuthorizationStatus} from '../consts'
+
+export type TReview = {
   id: number,
   author: string,
   score: number,
@@ -6,7 +8,7 @@ type TReview = {
   date: number,
 }
 
-type TMovie = {
+export type TMovie = {
   id: number,
   title: string,
   genres: string[],
@@ -27,7 +29,18 @@ type TMovie = {
   isFavorite?: boolean,
 }
 
-type TMatchParamsWithId = {
+export type TUser = {
+  id?: number,
+  name?: string,
+  email?: string,
+  avatar?: string,
+  authRequired?: boolean,
+  authError?: number,
+  authStatus?: AuthorizationStatus,
+  favoriteMovies?: [],
+}
+
+export type TMatchParamsWithId = {
   params: {
     id: string;
   }

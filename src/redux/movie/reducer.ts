@@ -4,14 +4,14 @@ import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetail
 import {initialState} from './initialState';
 
 export const reducer = createReducer({
-  [setDetailedMovieLoadingStart]: _setLoadingStart,
-  [setDetailedMovieLoadingComplete]: _setLoadingComplete,
-  [setDetailedMovieLoadingError]: _setLoadingError,
+  [setDetailedMovieLoadingStart.toString()]: _setLoadingStart,
+  [setDetailedMovieLoadingComplete.toString()]: _setLoadingComplete,
+  [setDetailedMovieLoadingError.toString()]: _setLoadingError,
 
-  [setDetailedMovieValue]: _setMovie,
-  [setDetailedMovieRelatedMovies]: _setRelatedMovies,
-  [setDetailedMovieRedirectTo]: _setRedirectTo,
-  [setDetailedMovieReviews]: _setReviews,
+  [setDetailedMovieValue.toString()]: _setMovie,
+  [setDetailedMovieRelatedMovies.toString()]: _setRelatedMovies,
+  [setDetailedMovieRedirectTo.toString()]: _setRedirectTo,
+  [setDetailedMovieReviews.toString()]: _setReviews,
 }, initialState);
 
 function _setMovie(state, movie) {

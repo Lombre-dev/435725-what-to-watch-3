@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {AppPages, PlayerState} from '../../consts';
 import {formatTime} from '../../utils/player-utils';
+import {TMovie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 
 type TPlayerPageProps = {

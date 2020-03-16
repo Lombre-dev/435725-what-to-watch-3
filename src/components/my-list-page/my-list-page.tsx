@@ -5,6 +5,7 @@ import {getUserFavoriteMovies} from '../../redux/user/selectors';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
 import SmallMovieCardList from '../small-movie-card-list';
+import {TMovie} from '../types';
 import {UserBlock} from '../user-block/user-block';
 
 type TMyListPageProps = {

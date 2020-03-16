@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
+import {TMovie} from '../types';
 
 type TSmallMovieCardListProps = {
   movies: TMovie[];

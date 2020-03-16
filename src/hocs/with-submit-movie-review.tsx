@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
 import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
-import {Movie} from '../components/types';
+import {TMatchParamsWithId, TMovie} from '../components/types';
 import {LoadingDataStatus, REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../consts';
 import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
@@ -12,7 +12,7 @@ type TWithSubmitMovieReviewProps = {
   match: TMatchParamsWithId;
   status: LoadingDataStatus;
   redirectTo?: string;
-  movie?: Movie;
+  movie?: TMovie;
   isEnabled?: boolean;
   onSubmit?: Function;
 
