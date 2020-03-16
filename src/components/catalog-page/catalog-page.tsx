@@ -20,14 +20,14 @@ type TCatalogPageProps = {
 
 class CatalogPage extends React.PureComponent<TCatalogPageProps> {
 
-  componentDidMount() {
+  public componentDidMount() {
 
     const {onMount} = this.props;
 
     onMount();
   }
 
-  render() {
+  public render() {
 
     const {status, promoMovie} = this.props;
 
