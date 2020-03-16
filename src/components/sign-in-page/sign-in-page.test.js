@@ -1,10 +1,10 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import * as React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus} from '../../consts';
-import {SignInPage} from './sign-in-page';
+import { AuthorizationStatus } from '../../consts';
+import { SignInPage } from './sign-in-page';
 
 const mockStore = configureStore([]);
 const HANDLE_EVENT = () => {};

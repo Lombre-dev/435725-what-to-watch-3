@@ -1,0 +1,71 @@
+import * as React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {setUserAuthRequired} from '../../redux/user/actions';
+import {Operations as UserOperations} from '../../redux/user/operations';
+import {getUserAuthError, getUserAuthStatus} from '../../redux/user/selectors';
+import Footer from '../footer/footer';
+import Logo from '../logo/logo';
+import SignIn from '../sign-in/sign-in';
+
+type TSignInPageProps = {
+  onSubmit?: Function,
+  authStatus?: AuthorizationStatus,
+  authError?: AuthorizationErrorCode,
+
+  onMount?: Function,
+};
+
+class SignInPage extends React.PureComponent<TSignInPageProps> {
+
+  public componentDidMount() {
+
+    const {onMount} = this.props;
+
+    onMount();
+  }
+
+  public render() {
+
+    const {authStatus, authError, onSubmit} = this.props;
+
+    if (authStatus === AuthorizationStatus.AUTH) {
+      return <Redirect to={AppPages.MAIN} />;
+    }
+
+    return (
+      <div className="user-page">
+        <header className="page-header user-page__head">
+          <Logo />
+          <h1 className="page-title user-page__title">Sign in</h1>
+        </header>
+        <SignIn
+          onSubmit={onSubmit}
+          authError={authError}
+        />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state: Object) {
+  return {
+    authStatus: getUserAuthStatus(state),
+    authError: getUserAuthError(state),
+  };
+}
+
+function mapDispatchToProps(dispatch: Function) {
+  return {
+    onMount: () => {
+      dispatch(setUserAuthRequired(false));
+    },
+    onSubmit: ({email, password}) => {
+      dispatch(UserOperations.login({email, password}));
+    }
+  };
+}
+
+export {SignInPage};
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
