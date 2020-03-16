@@ -55,8 +55,8 @@ describe(`<MoviePage />`, () => {
             statis={LOADING_DATA_STATUS}
             movie={MOVIE}
             relatedMovies={RELATED_MOVIES}
-            onMount={HANDLE_EVENT}
-            destroy={HANDLE_EVENT}
+            updateMovie={HANDLE_EVENT}
+            resetRedirect={HANDLE_EVENT}
           />
         </BrowserRouter>
       </Provider>)
