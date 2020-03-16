@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import MoreLikeThis from './more-like-this';
+import thunk from 'redux-thunk';
+import Catalog from './catalog';
 
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     id: 0,
@@ -77,21 +80,35 @@ const MOVIES = [
     ],
   },
 ];
+const HAS_MORE_MOVIES = true;
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([thunk]);
 
-describe(`<MoreLikeThis />`, () => {
+describe(`<Catalog />`, () => {
 
   it(`render should be match markup`, () => {
 
-    const store = mockStore({});
+    const store = mockStore({
+      app: {
+        movie: MOVIES,
+      },
+      movieDetails: {
+        movie: undefined,
+        moviesLike: [],
+      },
+      catalog: {
+        promoMovie: MOVIES[0],
+        genre: CURRENT_GENRE,
+        genres: GENRES,
+        movies: MOVIES,
+        hasMoreMovies: HAS_MORE_MOVIES,
+      }
+    });
 
     const result = renderer
       .create(<Provider store={store}>
         <BrowserRouter>
-          <MoreLikeThis
-            movies={MOVIES}
-          />
+          <Catalog />
         </BrowserRouter>
       </Provider>, {
         createNodeMock: () => {

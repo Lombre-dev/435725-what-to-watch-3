@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import SmallMovieCardList from './small-movie-card-list';
+import thunk from 'redux-thunk';
+import {AuthorizationStatus} from '../../consts';
+import {CatalogPage} from './catalog-page';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
 const CURRENT_GENRE = GENRES[0];
@@ -79,33 +81,46 @@ const MOVIES = [
     ],
   },
 ];
-const ACTIVE_ITEM_ID = -1;
 const HAS_MORE_MOVIES = true;
 const HANDLE_EVENT = () => {};
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([thunk]);
 
-describe(`<SmallMovieCardList />`, () => {
+describe(`<CatalogPage />`, () => {
 
   it(`render should be match markup`, () => {
 
     const store = mockStore({
-      currentMovie: null,
-      promoMovie: MOVIES[0],
-      catalogGenres: GENRES,
-      catalogGenre: CURRENT_GENRE,
-      catalogMovies: MOVIES,
-      hasMoreCatalogMovies: HAS_MORE_MOVIES,
+      app: {
+        movies: MOVIES,
+      },
+      movieDetails: {
+        currentMovie: undefined,
+        moviesLikeCurrent: [],
+      },
+      catalog: {
+        promoMovie: MOVIES[0],
+        genre: CURRENT_GENRE,
+        genres: GENRES,
+        movies: MOVIES,
+        hasMoreMovies: HAS_MORE_MOVIES,
+      },
+      user: {
+        id: -1,
+        name: undefined,
+        email: undefined,
+        avatar: undefined,
+        authError: undefined,
+        authStatus: AuthorizationStatus.NO_AUTH,
+      }
     });
 
     const result = renderer
       .create(<Provider store={store}>
         <BrowserRouter>
-          <SmallMovieCardList
-            movies={MOVIES}
-            activeItemId={ACTIVE_ITEM_ID}
-            onItemHover={HANDLE_EVENT}
-            onItemLeave={HANDLE_EVENT}
+          <CatalogPage
+            promoMovie={MOVIES[0]}
+            onMount={HANDLE_EVENT}
           />
         </BrowserRouter>
       </Provider>, {

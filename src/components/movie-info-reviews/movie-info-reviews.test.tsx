@@ -1,6 +1,6 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
-import MovieInfoOverview from './movie-info-overview';
+import * as renderer from 'react-test-renderer';
+import {MovieInfoReviews} from './movie-info-reviews';
 
 const MOVIE = {
   id: 0,
@@ -26,14 +26,16 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
+const HANDLE_EVENT = () => {};
 
-describe(`<MovieInfoOverview />`, () => {
+describe(`<MovieInfoReviews />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
-      .create(<MovieInfoOverview
+      .create(<MovieInfoReviews
         movie={MOVIE}
+        getReviews={HANDLE_EVENT}
       />)
       .toJSON();
 

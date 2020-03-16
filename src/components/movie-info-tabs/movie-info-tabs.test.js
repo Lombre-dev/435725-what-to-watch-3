@@ -1,5 +1,5 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import MovieInfoTabs from './movie-info-tabs';
 
 const CURRENT_TAB = 0;

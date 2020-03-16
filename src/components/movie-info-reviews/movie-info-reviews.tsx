@@ -73,14 +73,14 @@ class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
   }
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     status: getDetailedMovieStatus(state),
     reviews: getDetailedMovieReviews(state),
   };
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
     getReviews: (movieId: string) => {
       dispatch(Operations.getReviews(movieId));

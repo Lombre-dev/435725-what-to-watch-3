@@ -53,7 +53,7 @@ class App extends React.PureComponent<TAppProps> {
   }
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state: object) {
   return {
     status: getAppStatus(state),
   };

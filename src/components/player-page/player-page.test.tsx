@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
-import {BigMovieCard} from './big-movie-card';
+import * as renderer from 'react-test-renderer';
+import {PlayerState} from '../../consts';
+import PlayerPage from './player-page';
 
 const MOVIE = {
   id: 0,
@@ -27,21 +28,23 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
-const IS_CAN_REVIEWED = false;
-const HANDLE_EVENT = () => {};
+const MOVIE_STATE = PlayerState.INITED;
 
-describe(`<BigMovieCard />`, () => {
+describe(`<PlayerPage />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
       .create(<BrowserRouter>
-        <BigMovieCard
+        <PlayerPage
           movie={MOVIE}
-          isCanReviewed={IS_CAN_REVIEWED}
-          updateFavoriteStatus={HANDLE_EVENT}
+          movieState={MOVIE_STATE}
         />
-      </BrowserRouter>)
+      </BrowserRouter>, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(result).toMatchSnapshot();

@@ -27,7 +27,7 @@ function PrivateRoute(props: TPrivateRouteProps) {
   );
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     authStatus: getUserAuthStatus(state),
   };

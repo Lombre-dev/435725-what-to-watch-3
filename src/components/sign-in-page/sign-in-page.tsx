@@ -50,14 +50,14 @@ class SignInPage extends React.PureComponent<TSignInPageProps> {
   }
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     authStatus: getUserAuthStatus(state),
     authError: getUserAuthError(state),
   };
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
     onMount: () => {
       dispatch(setUserAuthRequired(false));

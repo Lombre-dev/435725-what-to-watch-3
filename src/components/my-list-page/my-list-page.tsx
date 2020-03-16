@@ -45,13 +45,13 @@ class MyListPage extends React.PureComponent<TMyListPageProps> {
   }
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     movies: getUserFavoriteMovies(state),
   };
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
     onMount: () => {
       dispatch(Operations.getFavoriteMovies());

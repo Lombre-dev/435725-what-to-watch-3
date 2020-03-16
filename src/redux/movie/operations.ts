@@ -22,7 +22,7 @@ const Operations = {
     }
   },
 
-  getReviews: (movieId) => (dispatch, getState, api) => {
+  getReviews: (movieId: string) => (dispatch, getState, api) => {
 
     dispatch(setDetailedMovieLoadingStart());
 
@@ -36,7 +36,7 @@ const Operations = {
       });
   },
 
-  addReview: (movieId, rating, comment) => (dispatch, getState, api) => {
+  addReview: (movieId: string, rating: number, comment: string) => (dispatch, getState, api) => {
 
     dispatch(setDetailedMovieLoadingStart());
 

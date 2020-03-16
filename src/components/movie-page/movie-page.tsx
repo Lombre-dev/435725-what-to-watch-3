@@ -34,13 +34,12 @@ class MoviePage extends React.PureComponent<TMoviePageProps> {
     updateMovie(match.params.id);
   }
 
-  public componentDidUpdate(prevProps) {
+  public componentDidUpdate(prevProps: TMoviePageProps) {
 
-    const {match: {params: {id: currentId}}, updateMovie} = this.props;
-    const {match: {params: {id: prevId}}} = prevProps;
+    const {updateMovie} = this.props;
 
-    if (currentId !== prevId) {
-      updateMovie(currentId);
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      updateMovie(this.props.match.params.id);
     }
   }
 

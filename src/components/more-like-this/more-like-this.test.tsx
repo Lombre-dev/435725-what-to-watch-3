@@ -1,14 +1,10 @@
 import * as React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import {AuthorizationStatus} from '../../consts';
-import {CatalogPage} from './catalog-page';
+import MoreLikeThis from './more-like-this';
 
-const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
-const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     id: 0,
@@ -81,46 +77,20 @@ const MOVIES = [
     ],
   },
 ];
-const HAS_MORE_MOVIES = true;
-const HANDLE_EVENT = () => {};
 
-const mockStore = configureStore([thunk]);
+const mockStore = configureStore([]);
 
-describe(`<CatalogPage />`, () => {
+describe(`<MoreLikeThis />`, () => {
 
   it(`render should be match markup`, () => {
 
-    const store = mockStore({
-      app: {
-        movies: MOVIES,
-      },
-      movieDetails: {
-        currentMovie: undefined,
-        moviesLikeCurrent: [],
-      },
-      catalog: {
-        promoMovie: MOVIES[0],
-        genre: CURRENT_GENRE,
-        genres: GENRES,
-        movies: MOVIES,
-        hasMoreMovies: HAS_MORE_MOVIES,
-      },
-      user: {
-        id: -1,
-        name: undefined,
-        email: undefined,
-        avatar: undefined,
-        authError: undefined,
-        authStatus: AuthorizationStatus.NO_AUTH,
-      }
-    });
+    const store = mockStore({});
 
     const result = renderer
       .create(<Provider store={store}>
         <BrowserRouter>
-          <CatalogPage
-            promoMovie={MOVIES[0]}
-            onMount={HANDLE_EVENT}
+          <MoreLikeThis
+            movies={MOVIES}
           />
         </BrowserRouter>
       </Provider>, {

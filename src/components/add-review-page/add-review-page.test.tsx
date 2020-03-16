@@ -1,14 +1,11 @@
 import * as React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
-import {MoviePage} from './movie-page';
+import {AuthorizationStatus} from '../../consts';
+import AddReviewPage from './add-review-page';
 
-const MATCH = {params: {id: 0}};
-const HANDLE_EVENT = () => {};
 const MOVIE = {
   id: 0,
   title: `The Grand Budapest Hotel`,
@@ -33,30 +30,33 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
-const RELATED_MOVIES = [];
-const LOADING_DATA_STATUS = LoadingDataStatus.READY;
-const mockStore = configureStore([thunk]);
+const RATING_VALUE = 0;
+const IS_SUBMIT_ENABLED = false;
+const IS_FIELDS_ENABLED = false;
+const HANDLE_EVENT = () => {};
+const mockStore = configureStore([]);
 
-describe(`<MoviePage />`, () => {
+describe(`<AddReviewPage />`, () => {
 
   it(`render should be match markup`, () => {
 
     const store = mockStore({
       user: {
-        authState: AuthorizationStatus.AUTH,
+        authStatus: AuthorizationStatus.AUTH,
       },
     });
 
     const result = renderer
       .create(<Provider store={store}>
         <BrowserRouter>
-          <MoviePage
-            match={MATCH}
-            statis={LOADING_DATA_STATUS}
+          <AddReviewPage
             movie={MOVIE}
-            relatedMovies={RELATED_MOVIES}
-            updateMovie={HANDLE_EVENT}
-            resetRedirect={HANDLE_EVENT}
+            ratingValue={RATING_VALUE}
+            onRatingChange={HANDLE_EVENT}
+            onCommentChange={HANDLE_EVENT}
+            isFieldsEnabled={IS_FIELDS_ENABLED}
+            isSubmitEnabled={IS_SUBMIT_ENABLED}
+            onSubmit={HANDLE_EVENT}
           />
         </BrowserRouter>
       </Provider>)

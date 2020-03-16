@@ -9,7 +9,7 @@ type TWithActiveItemListProps = {
   movies: TMovie[];
 }
 
-function withActiveItemList(Component: any, activationDelay: number) {
+function withActiveItemList(Component, activationDelay: number) {
 
   class WithActiveItemList extends React.PureComponent<TWithActiveItemListProps, TWithActiveItemListState> {
 

@@ -1,10 +1,10 @@
-import {createStore} from 'redux';
-import {LoadingDataStatus} from '../../consts';
-import {setAppLoadingError, setAppLoadingStart, setAppMovies} from './actions';
-import {reducer} from './reducer';
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../api';
+import {Operations} from './operations';
 
 const MOVIES = [
   {
+    id: 0,
     title: `movie 1`,
     genres: [`Drama`],
     year: 2014,
@@ -24,6 +24,7 @@ const MOVIES = [
     ],
   },
   {
+    id: 1,
     title: `movie 2`,
     genres: [`Comedy`],
     year: 2014,
@@ -43,6 +44,7 @@ const MOVIES = [
     ],
   },
   {
+    id: 2,
     title: `movie 3`,
     genres: [`Kids & Family`],
     year: 2014,
@@ -62,48 +64,43 @@ const MOVIES = [
     ],
   },
 ];
-
-const INITIAL_STATE = {
-  status: undefined,
-  movies: [],
+const GET_STATE = () => {
+  return {
+    app: {
+      movies: MOVIES,
+    },
+    catalog: {
+      promoMovie: undefined,
+    },
+    movie: {
+      movie: undefined,
+    },
+  };
 };
 
-describe(`AppReducer`, () => {
+describe(`CatalogOperations`, () => {
+  it(`should be a correct call getCatalog`, () => {
 
-  it(`should be switch value of status to loading`, () => {
+    const api = createAPI();
+    const dispatch = jest.fn();
 
-    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {
-      status: LoadingDataStatus.LOADING,
-    });
-
-    store.dispatch(setAppLoadingStart());
-
-    expect(store.getState()).toEqual(sample);
+    Operations.getCatalog()(dispatch, GET_STATE, api);
+    expect(dispatch).toHaveBeenCalledTimes(1);
   });
 
-  it(`should be switch value of movies`, () => {
+  it(`should be a correct API getPromoMovie`, () => {
 
-    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {
-      status: LoadingDataStatus.READY,
-      movies: MOVIES,
-    });
+    const api = createAPI();
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
 
-    store.dispatch(setAppMovies(MOVIES));
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, []);
 
-    expect(store.getState()).toEqual(sample);
-  });
-
-  it(`should be switch value of status to error`, () => {
-
-    const store = createStore(reducer, Object.assign({}, INITIAL_STATE));
-    const sample = Object.assign({}, INITIAL_STATE, {
-      status: LoadingDataStatus.ERROR,
-    });
-
-    store.dispatch(setAppLoadingError());
-
-    expect(store.getState()).toEqual(sample);
+    Operations.getPromoMovie()(dispatch, GET_STATE, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+      });
   });
 });

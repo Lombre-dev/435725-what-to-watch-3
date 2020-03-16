@@ -70,7 +70,7 @@ const REVEIWS = [{
   author: `PropTypes.string.isRequired`,
   score: 5.5,
   text: `PropTypes.string.isRequired`,
-  date: `PropTypes.number.isRequired`,
+  date: 456456456,
 }];
 const REDIRECT_TO = `${AppPages.MAIN}`;
 

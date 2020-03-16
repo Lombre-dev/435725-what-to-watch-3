@@ -1,5 +1,5 @@
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import * as React from 'react';
 import {PlayerState} from '../../consts';
 import VideoPlayer from './video-player';
@@ -21,7 +21,7 @@ describe(`<VideoPlayer />`, () => {
 
     jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(handlePlay);
 
-    const result = mount(<VideoPlayer
+    const result = Enzyme.mount(<VideoPlayer
       id={ID}
       state={state}
       poster={POSTER}
@@ -43,7 +43,7 @@ describe(`<VideoPlayer />`, () => {
 
     jest.spyOn(HTMLMediaElement.prototype, `load`).mockImplementation(handleLoad);
 
-    const result = mount(<VideoPlayer
+    const result = Enzyme.mount(<VideoPlayer
       id={ID}
       state={state}
       poster={POSTER}

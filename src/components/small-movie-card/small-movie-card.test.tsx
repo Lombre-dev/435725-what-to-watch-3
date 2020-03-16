@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
-import {PlayerState} from '../../consts';
-import PlayerPage from './player-page';
+import * as renderer from 'react-test-renderer';
+import SmallMovieCard from './small-movie-card';
 
 const MOVIE = {
   id: 0,
@@ -28,17 +27,20 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
-const MOVIE_STATE = PlayerState.INITED;
+const IS_PREVIEW_ACTIVE = false;
+const HANDLE_EVENT = () => {};
 
-describe(`<PlayerPage />`, () => {
+describe(`<SmallMovieCard />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
       .create(<BrowserRouter>
-        <PlayerPage
+        <SmallMovieCard
           movie={MOVIE}
-          movieState={MOVIE_STATE}
+          isPreviewActive={IS_PREVIEW_ACTIVE}
+          onHover={HANDLE_EVENT}
+          onLeave={HANDLE_EVENT}
         />
       </BrowserRouter>, {
         createNodeMock: () => {

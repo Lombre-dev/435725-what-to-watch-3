@@ -1,5 +1,5 @@
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import SmallMovieCard from './small-movie-card';
@@ -41,7 +41,7 @@ describe(`<SmallMovieCard />`, () => {
     const handleHover = jest.fn();
     const handleLeave = jest.fn();
 
-    const result = mount(<BrowserRouter>
+    const result = Enzyme.mount(<BrowserRouter>
       <SmallMovieCard
         movie={MOVIE}
         isPreviewActive={IS_PREVIEW_ACTIVE}
@@ -62,7 +62,7 @@ describe(`<SmallMovieCard />`, () => {
     const handleHover = jest.fn();
     const handleLeave = jest.fn();
 
-    const result = mount(<BrowserRouter>
+    const result = Enzyme.mount(<BrowserRouter>
       <SmallMovieCard
         movie={MOVIE}
         isPreviewActive={IS_PREVIEW_ACTIVE}
@@ -77,27 +77,4 @@ describe(`<SmallMovieCard />`, () => {
 
     expect(handleLeave).toHaveBeenCalledTimes(1);
   });
-
-  /*
-  it(`component should be clicked`, () => {
-
-    const handleHover = jest.fn();
-    const handleLeave = jest.fn();
-
-    const result = shallow(<SmallMovieCard
-      movie={MOVIE}
-      isPreviewActive={IS_PREVIEW_ACTIVE}
-      onHover={handleHover}
-      onLeave={handleLeave}
-    />);
-
-    result
-      .find(`.small-movie-card`)
-      .simulate(`click`, {
-        preventDefault() {}
-      });
-
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
-  */
 });

@@ -27,7 +27,7 @@ function ProtectedRoute(props: TProtectedRouteProps) {
   );
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     authRequired: getUserAuthRequired(state),
   };

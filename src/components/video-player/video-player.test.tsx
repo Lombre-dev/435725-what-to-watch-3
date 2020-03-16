@@ -1,5 +1,5 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import {PlayerState} from '../../consts';
 import VideoPlayer from './video-player';
 
@@ -12,7 +12,7 @@ describe(`<VideoPlayer />`, () => {
 
   it(`render should be match markup`, () => {
 
-    jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(() => {});
+    jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(async () => {});
 
     const result = renderer
       .create(<VideoPlayer

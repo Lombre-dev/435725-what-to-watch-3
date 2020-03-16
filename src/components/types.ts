@@ -22,7 +22,7 @@ export type TMovie = {
   description?: string,
   story?: string,
   duration: number,
-  director: number,
+  director: string,
   actors: string[],
   backgroundImage?: string,
   backgroundColor?: string,

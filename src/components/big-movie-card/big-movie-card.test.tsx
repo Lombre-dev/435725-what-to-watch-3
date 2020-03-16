@@ -1,6 +1,7 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
-import {MovieInfoReviews} from './movie-info-reviews';
+import {BrowserRouter} from 'react-router-dom';
+import * as renderer from 'react-test-renderer';
+import {BigMovieCard} from './big-movie-card';
 
 const MOVIE = {
   id: 0,
@@ -28,15 +29,17 @@ const MOVIE = {
 };
 const HANDLE_EVENT = () => {};
 
-describe(`<MovieInfoReviews />`, () => {
+describe(`<BigMovieCard />`, () => {
 
   it(`render should be match markup`, () => {
 
     const result = renderer
-      .create(<MovieInfoReviews
-        movie={MOVIE}
-        getReviews={HANDLE_EVENT}
-      />)
+      .create(<BrowserRouter>
+        <BigMovieCard
+          movie={MOVIE}
+          updateFavoriteStatus={HANDLE_EVENT}
+        />
+      </BrowserRouter>)
       .toJSON();
 
     expect(result).toMatchSnapshot();

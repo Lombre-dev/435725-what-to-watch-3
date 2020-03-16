@@ -28,7 +28,7 @@ type TWithSubmitMovieReviewState = {
 }
 
 
-function withSubmitMovieReview(Component: any) {
+function withSubmitMovieReview(Component) {
 
   class WithSubmitMovieReview extends React.PureComponent<TWithSubmitMovieReviewProps, TWithSubmitMovieReviewState> {
     public constructor(props: TWithSubmitMovieReviewProps) {
@@ -124,7 +124,7 @@ function withSubmitMovieReview(Component: any) {
     };
   }
 
-  function mapDispatchToProps(dispatch: Function) {
+  function mapDispatchToProps(dispatch) {
     return {
       onMount: (movieId: string) => {
         dispatch(Operations.init(movieId));

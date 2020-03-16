@@ -66,14 +66,14 @@ class CatalogPage extends React.PureComponent<TCatalogPageProps> {
   }
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     status: getCatalogStatus(state),
     promoMovie: getCatalogPromoMovie(state),
   };
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
     onMount: () => {
       dispatch(Operations.init());

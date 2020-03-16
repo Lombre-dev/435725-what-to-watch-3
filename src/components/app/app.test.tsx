@@ -1,8 +1,15 @@
+import MockAdapter from 'axios-mock-adapter';
 import * as React from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
-import {MyListPage} from './my-list-page';
+import {Provider} from 'react-redux';
+import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import {createAPI} from '../../api';
+import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
+import {App} from './app';
 
+const GENRES = [`Drama`, `Comedy`, `Kids & Family`];
+const CURRENT_GENRE = GENRES[0];
 const MOVIES = [
   {
     id: 0,
@@ -75,25 +82,59 @@ const MOVIES = [
     ],
   },
 ];
+const HAS_MORE_MOVIES = true;
+const LOADING_DATA_STATUS = LoadingDataStatus.READY;
 const HANDLE_EVENT = () => {};
 
-describe(`<MyListPage />`, () => {
+describe(`<App />`, () => {
 
   it(`render should be match markup`, () => {
 
+    const api = createAPI();
+    const apiMock = new MockAdapter(api);
+    const mockStore = configureStore([thunk.withExtraArgument(api)]);
+    const store = mockStore({
+      app: {
+        movies: MOVIES,
+        status: LOADING_DATA_STATUS,
+      },
+      movie: {
+        movie: undefined,
+        moviesLike: [],
+      },
+      catalog: {
+        promoMovie: MOVIES[0],
+        genre: CURRENT_GENRE,
+        genres: GENRES,
+        movies: MOVIES,
+        hasMoreMovies: HAS_MORE_MOVIES,
+      },
+      user: {
+        id: -1,
+        name: undefined,
+        email: undefined,
+        avatar: undefined,
+        authError: undefined,
+        authStatus: AuthorizationStatus.NO_AUTH,
+      }
+    });
+
     const result = renderer
-      .create(<BrowserRouter>
-        <MyListPage
-          movies={MOVIES}
-          updateFavoriteMovies={HANDLE_EVENT}
+      .create(<Provider store={store}>
+        <App
+          status={LOADING_DATA_STATUS}
           onMount={HANDLE_EVENT}
         />
-      </BrowserRouter>, {
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }
       })
       .toJSON();
+
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, MOVIES[0]);
 
     expect(result).toMatchSnapshot();
   });

@@ -127,7 +127,7 @@ export default function withVideoPlayer(Component) {
     }
   }
 
-  function mapStateToProps(state: Record<string, any>) {
+  function mapStateToProps(state) {
     return {
       status: getDetailedMovieStatus(state),
       redirectTo: getDetailedMovieRedirectTo(state),
@@ -135,7 +135,7 @@ export default function withVideoPlayer(Component) {
     };
   }
 
-  function mapDispatchToProps(dispatch: Function) {
+  function mapDispatchToProps(dispatch) {
     return {
       onMount: (movieId: string) => {
         dispatch(Operations.init(movieId));

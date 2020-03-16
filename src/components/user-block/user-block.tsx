@@ -11,13 +11,16 @@ type TUserBlockProps = {
 };
 
 function UserBlock(props: TUserBlockProps) {
+
+  const {status, avatar, name} = props;
+
   return (
     <div className="user-block">
       {
         status === AuthorizationStatus.AUTH &&
         <Link to={AppPages.MY_LIST}>
           <div className="user-block__avatar">
-            <img src={props.avatar} alt={props.name} width="63" height="63" />
+            <img src={avatar} alt={name} width="63" height="63" />
           </div>
         </Link>
       }
@@ -29,7 +32,7 @@ function UserBlock(props: TUserBlockProps) {
   );
 }
 
-function mapStateToProps(state: Record<string, any>) {
+function mapStateToProps(state) {
   return {
     status: getUserAuthStatus(state),
     name: getUserName(state),
