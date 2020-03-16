@@ -34,7 +34,7 @@ class SignIn extends React.PureComponent<TSignInProps> {
     this._passwordRef.current.value = ``;
   }
 
-  render() {
+  public render() {
 
     const {email, password, authError} = this.props;
 
