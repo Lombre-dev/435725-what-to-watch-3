@@ -27,4 +27,4 @@ function MovieInfoOverview(props: TMovieInfoOverviewProps) {
   );
 }
 
-export default MovieInfoOverview;
+export default React.memo(MovieInfoOverview);

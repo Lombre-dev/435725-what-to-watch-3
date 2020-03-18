@@ -29,4 +29,4 @@ function SmallMovieCardList(props: TSmallMovieCardListProps) {
   );
 }
 
-export default SmallMovieCardList;
+export default React.memo(SmallMovieCardList);

@@ -24,4 +24,4 @@ function GenreFilterList(props: TGenreFilterListProps) {
   );
 }
 
-export default GenreFilterList;
+export default React.memo(GenreFilterList);

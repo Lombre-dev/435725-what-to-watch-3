@@ -12,4 +12,4 @@ function ShowMore(props: TShowMoreProps) {
   );
 }
 
-export default ShowMore;
+export default React.memo(ShowMore);

@@ -21,4 +21,4 @@ function LoadingDataBlock(props: TLoadingDataBlockProps) {
   );
 }
 
-export default LoadingDataBlock;
+export default React.memo(LoadingDataBlock);
