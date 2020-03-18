@@ -18,4 +18,4 @@ function MoreLikeThis(props: TMoreLikeThisProps) {
   );
 }
 
-export default MoreLikeThis;
+export default React.memo(MoreLikeThis);

@@ -51,4 +51,4 @@ function MovieInfoDetails(props: TMovieInfoDetailsProps) {
   );
 }
 
-export default MovieInfoDetails;
+export default React.memo(MovieInfoDetails);
