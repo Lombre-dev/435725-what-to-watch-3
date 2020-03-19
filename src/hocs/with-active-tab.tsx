@@ -1,28 +1,28 @@
 import * as React from 'react';
 import {TMovie} from '../components/types';
 
-type TWithActiveTabProps = {
+type TProps = {
   movie: TMovie;
 }
 
-type TWithActiveTabState = {
+type TState = {
   activeTab: number;
 }
 
 function withActiveTab(Component) {
 
-  class WithActiveTab extends React.PureComponent<TWithActiveTabProps, TWithActiveTabState> {
-    public constructor(props: TWithActiveTabProps) {
+  class WithActiveTab extends React.PureComponent<TProps, TState> {
+    public constructor(props: TProps) {
       super(props);
 
       this.state = {
         activeTab: 0,
       };
 
-      this._handleTabClick = this._handleTabClick.bind(this);
+      this.handleTabClick = this.handleTabClick.bind(this);
     }
 
-    private _handleTabClick({index}) {
+    private handleTabClick(index: number) {
       this.setState({
         activeTab: index,
       });
@@ -37,7 +37,7 @@ function withActiveTab(Component) {
         <Component
           movie={movie}
           activeTab={activeTab}
-          onTabClick={this._handleTabClick}
+          onTabClick={this.handleTabClick}
         />
       );
     }

@@ -2,11 +2,11 @@ import * as React from 'react';
 import {getActors, getRatingLevel, getRatingReviewsCount, getRatingScore} from '../../utils/movie-utils';
 import {TMovie} from '../types';
 
-type TMovieInfoOverviewProps = {
+type TProps = {
   movie: TMovie;
 };
 
-function MovieInfoOverview(props: TMovieInfoOverviewProps) {
+function MovieInfoOverview(props: TProps) {
   return (
     <>
       <div className="movie-rating">
@@ -16,7 +16,6 @@ function MovieInfoOverview(props: TMovieInfoOverviewProps) {
           <span className="movie-rating__count">{getRatingReviewsCount(props.movie.ratingReviewsCount)}</span>
         </p>
       </div>
-
       <div className="movie-card__text">
         <p>{props.movie.description}</p>
         <p>{props.movie.story}</p>

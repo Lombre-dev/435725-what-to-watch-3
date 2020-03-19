@@ -1,41 +1,47 @@
 import * as React from 'react';
 import {PlayerState} from '../../consts';
 
-type TVideoPlayerProps = {
+type TProps = {
   id: number;
   state: PlayerState;
   poster: string;
   width?: string;
   height?: string;
   src: string;
-  onDurationUpdate?: Function;
-  onTimeUpdate?: Function;
-  onEnd?: Function;
   isMuted?: boolean;
+  onDurationUpdate?: (value: number) => void;
+  onTimeUpdate?: (value: number) => void;
+  onEnd?: () => void;
 };
 
-class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
+class VideoPlayer extends React.PureComponent<TProps> {
 
   private _videoRef: React.RefObject<HTMLVideoElement>;
 
-  public constructor(props: TVideoPlayerProps) {
+  public constructor(props: TProps) {
     super(props);
 
     this._videoRef = React.createRef();
 
-    this._handleDurationUpdate = this._handleDurationUpdate.bind(this);
-    this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
-    this._handleEnd = this._handleEnd.bind(this);
+    this.handleDurationUpdate = this.handleDurationUpdate.bind(this);
+    this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
   }
 
   public componentDidMount() {
 
-    const {poster, src, state, isMuted} = this.props;
+    const {poster, src, state, isMuted, onEnd, onTimeUpdate, onDurationUpdate} = this.props;
     const video = this._videoRef.current;
 
-    video.ondurationchange = this._handleDurationUpdate;
-    video.ontimeupdate = this._handleTimeUpdate;
-    video.onended = this._handleEnd;
+    if (onDurationUpdate) {
+      video.ondurationchange = this.handleDurationUpdate;
+    }
+    if (onTimeUpdate) {
+      video.ontimeupdate = this.handleTimeUpdate;
+    }
+    if (onEnd) {
+      video.onended = this.handleEnd;
+    }
     video.preload = state === PlayerState.LOADING ? `metadata` : `none`;
     video.poster = poster;
     video.src = src;
@@ -88,33 +94,27 @@ class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
     }
   }
 
-  private _handleDurationUpdate() {
+  private handleDurationUpdate() {
 
     const {onDurationUpdate} = this.props;
     const video = this._videoRef.current;
 
-    if (onDurationUpdate) {
-      onDurationUpdate({duration: video.duration});
-    }
+    onDurationUpdate(video.duration);
   }
 
-  private _handleTimeUpdate() {
+  private handleTimeUpdate() {
 
     const {onTimeUpdate} = this.props;
     const video = this._videoRef.current;
 
-    if (onTimeUpdate) {
-      onTimeUpdate({time: video.currentTime});
-    }
+    onTimeUpdate(video.currentTime);
   }
 
-  private _handleEnd() {
+  private handleEnd() {
 
     const {onEnd} = this.props;
 
-    if (onEnd) {
-      onEnd();
-    }
+    onEnd();
   }
 
   public render() {

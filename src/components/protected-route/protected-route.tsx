@@ -4,14 +4,14 @@ import {Redirect, Route} from 'react-router-dom';
 import {AppPages} from '../../consts';
 import {getUserAuthRequired} from '../../redux/user/selectors';
 
-type TProtectedRouteProps = {
+type TProps = {
   exact: boolean;
   path: string;
-  render: Function;
   authRequired?: boolean;
+  render: () => React.ReactNode;
 };
 
-function ProtectedRoute(props: TProtectedRouteProps) {
+function ProtectedRoute(props: TProps) {
   return (
     <Route
       exact={props.exact}

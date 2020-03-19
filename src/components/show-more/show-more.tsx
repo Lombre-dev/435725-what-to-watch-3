@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-type TShowMoreProps = {
+type TProps = {
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-function ShowMore(props: TShowMoreProps) {
+function ShowMore(props: TProps) {
   return (
     <div className="catalog__more">
       <button className="catalog__button" type="button" onClick={props.onClick}>Show more</button>

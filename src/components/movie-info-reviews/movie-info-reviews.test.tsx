@@ -26,10 +26,7 @@ const MOVIE = {
     `Some Actor 2`,
   ],
 };
-const HANDLE_EVENT = () => {
-  // eslint-disable-next-line no-console
-  console.log(`handleTestEvent`);
-};
+const HANDLE_EVENT = () => {};
 
 describe(`<MovieInfoReviews />`, () => {
 

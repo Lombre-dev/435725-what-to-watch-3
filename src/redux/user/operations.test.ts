@@ -107,7 +107,7 @@ describe(`UserOperations`, () => {
       .onPost(`login`, {email, password})
       .reply(200, []);
 
-    Operations.login({email, password})(dispatch, GET_STATE, api)
+    Operations.login(email, password)(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       });

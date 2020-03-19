@@ -10,17 +10,16 @@ import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} fr
 
 export default function withVideoPlayer(Component) {
 
-  type TWithVideoPlayerProps = {
+  type TProps = {
     match: TMatchParamsWithId;
     movie?: TMovie;
     status: LoadingDataStatus;
     redirectTo?: string;
-
-    onMount?: Function;
-    onUnmount?: Function;
+    onMount: (movieId: number) => void;
+    onUnmount: () => void;
   }
 
-  type TWithVideoPlayerState = {
+  type TState = {
     state: PlayerState;
     time: number;
     duration: number;
@@ -28,8 +27,8 @@ export default function withVideoPlayer(Component) {
     isFullscreen: boolean;
   }
 
-  class WithVideoPlayer extends React.PureComponent<TWithVideoPlayerProps, TWithVideoPlayerState> {
-    public constructor(props: TWithVideoPlayerProps) {
+  class WithVideoPlayer extends React.PureComponent<TProps, TState> {
+    public constructor(props: TProps) {
       super(props);
 
       this.state = {
@@ -40,18 +39,18 @@ export default function withVideoPlayer(Component) {
         isFullscreen: false,
       };
 
-      this._handlePlay = this._handlePlay.bind(this);
-      this._handleFullscreen = this._handleFullscreen.bind(this);
-      this._handleDurationUpdate = this._handleDurationUpdate.bind(this);
-      this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
-      this._handleEnd = this._handleEnd.bind(this);
+      this.handlePlay = this.handlePlay.bind(this);
+      this.handleFullscreen = this.handleFullscreen.bind(this);
+      this.handleDurationUpdate = this.handleDurationUpdate.bind(this);
+      this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
+      this.handleEnd = this.handleEnd.bind(this);
     }
 
     public componentDidMount() {
 
       const {onMount, match} = this.props;
 
-      onMount(match.params.id);
+      onMount(parseInt(match.params.id, 10));
     }
 
     public componentWillUnmount() {
@@ -61,7 +60,7 @@ export default function withVideoPlayer(Component) {
       onUnmount();
     }
 
-    private _handlePlay() {
+    private handlePlay() {
       this.setState((prevState) => {
         return {
           state: prevState.state !== PlayerState.PLAYING ? PlayerState.PLAYING : PlayerState.PAUSED,
@@ -69,26 +68,26 @@ export default function withVideoPlayer(Component) {
       });
     }
 
-    private _handleDurationUpdate({duration}) {
+    private handleDurationUpdate({duration}) {
       this.setState({
         duration,
       });
     }
 
-    private _handleTimeUpdate({time}) {
+    private handleTimeUpdate({time}) {
       this.setState({
         time,
       });
     }
 
-    private _handleEnd() {
+    private handleEnd() {
       this.setState({
         state: PlayerState.ENDED,
         time: 0,
       });
     }
 
-    private _handleFullscreen() {
+    private handleFullscreen() {
       this.setState((prevState) => {
         return {
           isFullscreen: !prevState.isFullscreen,
@@ -117,11 +116,11 @@ export default function withVideoPlayer(Component) {
           movieDuration={duration}
           isFullscreen={isFullscreen}
           isMuted={isMute}
-          onPlay={this._handlePlay}
-          onTimeUpdate={this._handleTimeUpdate}
-          onDurationUpdate={this._handleDurationUpdate}
-          onEnd={this._handleEnd}
-          onFullscreen={this._handleFullscreen}
+          onPlay={this.handlePlay}
+          onTimeUpdate={this.handleTimeUpdate}
+          onDurationUpdate={this.handleDurationUpdate}
+          onEnd={this.handleEnd}
+          onFullscreen={this.handleFullscreen}
         />
       );
     }
@@ -137,7 +136,7 @@ export default function withVideoPlayer(Component) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      onMount: (movieId: string) => {
+      onMount: (movieId: number) => {
         dispatch(Operations.init(movieId));
       },
       onUnmount: () => {

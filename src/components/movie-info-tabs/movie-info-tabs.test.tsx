@@ -3,10 +3,7 @@ import * as renderer from 'react-test-renderer';
 import MovieInfoTabs from './movie-info-tabs';
 
 const CURRENT_TAB = 0;
-const HANDLE_EVENT = () => {
-  // eslint-disable-next-line no-console
-  console.log(`handleTestEvent`);
-};
+const HANDLE_EVENT = () => {};
 
 describe(`<MovieInfoTabs />`, () => {
 

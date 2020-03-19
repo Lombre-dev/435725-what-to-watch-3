@@ -8,21 +8,19 @@ import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
 
-type TWithSubmitMovieReviewProps = {
+type TProps = {
   match: TMatchParamsWithId;
   status: LoadingDataStatus;
   redirectTo?: string;
   movie?: TMovie;
   isEnabled?: boolean;
-  onSubmit?: Function;
-
-  onMount?: Function;
-  onUnmount?: Function;
-
   comment?: string;
+  onSubmit: (movieId: number, rating: number, comment: string) => void;
+  onMount: (movieId: number) => void;
+  onUnmount: () => void;
 }
 
-type TWithSubmitMovieReviewState = {
+type TState = {
   rating: number;
   comment: string;
 }
@@ -30,25 +28,25 @@ type TWithSubmitMovieReviewState = {
 
 function withSubmitMovieReview(Component) {
 
-  class WithSubmitMovieReview extends React.PureComponent<TWithSubmitMovieReviewProps, TWithSubmitMovieReviewState> {
-    public constructor(props: TWithSubmitMovieReviewProps) {
+  class WithSubmitMovieReview extends React.PureComponent<TProps, TState> {
+    public constructor(props: TProps) {
       super(props);
 
       this.state = {
-        rating: -1,
-        comment: this.props.comment || ``,
+        rating: null,
+        comment: props.comment || ``,
       };
 
-      this._handleRatingChange = this._handleRatingChange.bind(this);
-      this._handleCommentChange = this._handleCommentChange.bind(this);
-      this._handleSubmit = this._handleSubmit.bind(this);
+      this.handleRatingChange = this.handleRatingChange.bind(this);
+      this.handleCommentChange = this.handleCommentChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     public componentDidMount() {
 
       const {onMount, match} = this.props;
 
-      onMount(match.params.id);
+      onMount(parseInt(match.params.id, 10));
     }
 
     public componentWillUnmount() {
@@ -58,19 +56,19 @@ function withSubmitMovieReview(Component) {
       onUnmount();
     }
 
-    private _handleRatingChange(value: string) {
+    private handleRatingChange(value: number) {
       this.setState({
-        rating: parseInt(value, 10),
+        rating: value,
       });
     }
 
-    private _handleCommentChange(value: string) {
+    private handleCommentChange(value: string) {
       this.setState({
         comment: value,
       });
     }
 
-    private _handleSubmit() {
+    private handleSubmit() {
 
       const {rating, comment} = this.state;
       const {onSubmit, movie} = this.props;
@@ -87,7 +85,7 @@ function withSubmitMovieReview(Component) {
         return <Redirect to={redirectTo} />;
       }
 
-      if (status !== `ready`) {
+      if (status !== LoadingDataStatus.READY) {
         return <LoadingDataBlock status={status} />;
       }
 
@@ -96,16 +94,16 @@ function withSubmitMovieReview(Component) {
           movie={movie}
           ratingValue={rating}
           commentValue={comment}
-          onRatingChange={this._handleRatingChange}
-          onCommentChange={this._handleCommentChange}
-          isFieldsEnabled={status === `ready`}
+          onRatingChange={this.handleRatingChange}
+          onCommentChange={this.handleCommentChange}
+          isFieldsEnabled={status === LoadingDataStatus.READY}
           isSubmitEnabled={
-            status === `ready` &&
-            rating !== -1 &&
+            status === LoadingDataStatus.READY &&
+            rating &&
             comment.length >= REVIEW_COMMENT_MIN_LENGTH &&
             comment.length <= REVIEW_COMMENT_MAX_LENGTH
           }
-          onSubmit={this._handleSubmit}
+          onSubmit={this.handleSubmit}
         />
       );
     }
@@ -126,10 +124,10 @@ function withSubmitMovieReview(Component) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      onMount: (movieId: string) => {
+      onMount: (movieId: number) => {
         dispatch(Operations.init(movieId));
       },
-      onSubmit: (movieId: string, rating: number, comment: string) => {
+      onSubmit: (movieId: number, rating: number, comment: string) => {
         dispatch(Operations.addReview(movieId, rating, comment));
       },
       onUnmount: () => {

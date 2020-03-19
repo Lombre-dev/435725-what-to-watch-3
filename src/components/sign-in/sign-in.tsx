@@ -1,35 +1,35 @@
 import * as React from 'react';
 import {AuthorizationErrorCode, AuthorizationErrorMessage} from '../../consts';
 
-type TSignInProps = {
+type TProps = {
   email?: string;
   password?: string;
   authError?: AuthorizationErrorCode;
-  onSubmit: Function;
+  onSubmit: (email: string, password: string) => void;
 };
 
-class SignIn extends React.PureComponent<TSignInProps> {
+class SignIn extends React.PureComponent<TProps> {
 
   private _emailRef: React.RefObject<HTMLInputElement>;
   private _passwordRef: React.RefObject<HTMLInputElement>;
 
-  public constructor(props: TSignInProps) {
+  public constructor(props: TProps) {
     super(props);
 
     this._emailRef = React.createRef();
     this._passwordRef = React.createRef();
 
-    this._handleSubmit = this._handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  private _handleSubmit(e: React.SyntheticEvent) {
+  private handleSubmit(e: React.SyntheticEvent) {
 
     const {onSubmit} = this.props;
     const email = this._emailRef.current.value;
     const password = this._passwordRef.current.value;
 
     e.preventDefault();
-    onSubmit({email, password});
+    onSubmit(email, password);
 
     this._passwordRef.current.value = ``;
   }
@@ -40,7 +40,7 @@ class SignIn extends React.PureComponent<TSignInProps> {
 
     return (
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={this._handleSubmit}>
+        <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
           {
             authError && <div className="sign-in__message">
               <p>{AuthorizationErrorMessage[authError]}</p>

@@ -7,14 +7,14 @@ import {getRatingScore} from '../../utils/movie-utils';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import {TMovie, TReview} from '../types';
 
-type TMovieInfoReviewsProps = {
+type TProps = {
   status?: LoadingDataStatus;
   movie: TMovie;
   reviews?: TReview[];
-  getReviews?: Function;
+  getReviews: (movieId: number) => void;
 };
 
-class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
+class MovieInfoReviews extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 
@@ -61,7 +61,6 @@ class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
                       }</time>
                     </footer>
                   </blockquote>
-
                   <div className="review__rating">{getRatingScore(review.score)}</div>
                 </div>
               );
@@ -82,7 +81,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getReviews: (movieId: string) => {
+    getReviews: (movieId: number) => {
       dispatch(Operations.getReviews(movieId));
     },
   };

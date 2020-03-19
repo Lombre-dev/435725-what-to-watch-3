@@ -12,4 +12,4 @@ export const setDetailedMovieRelatedMovies: (movies: TMovie[]) => AnyAction = cr
 export const addDetailedMovieReview = createAction(`ADD_DETAILED_MOVIE_REVIEW`);
 export const setDetailedMovieReviews: (reviews: TReview[]) => AnyAction = createAction(`SET_DETAILED_MOVIE_REVIEWS`);
 
-export const setDetailedMovieRedirectTo: (link: string | undefined) => AnyAction = createAction(`SET_DETAILED_MOVIE_REDIRECT_TO`);
+export const setDetailedMovieRedirectTo: (link: string) => AnyAction = createAction(`SET_DETAILED_MOVIE_REDIRECT_TO`);

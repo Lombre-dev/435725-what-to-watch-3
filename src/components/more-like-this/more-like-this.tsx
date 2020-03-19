@@ -1,17 +1,17 @@
 import * as React from 'react';
 import {MORE_LIKE_THIS_MOVIES_LIMIT} from '../../consts';
-import SmallMovieCardList from '../small-movie-card-list';
+import SmallMovieCards from '../small-movie-cards/small-movie-cards';
 import {TMovie} from '../types';
 
-type TMoreLikeThisProps = {
+type TProps = {
   movies: TMovie[];
 };
 
-function MoreLikeThis(props: TMoreLikeThisProps) {
+function MoreLikeThis(props: TProps) {
   return (
     <section className="catalog catalog--like-this" >
       <h2 className="catalog__title">More like this</h2>
-      <SmallMovieCardList
+      <SmallMovieCards
         movies={props.movies.slice(0, MORE_LIKE_THIS_MOVIES_LIMIT)}
       />
     </section >

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import MovieInfo from './movie-info';
+import {MovieInfo} from './movie-info';
 
 const MOVIE = {
   id: 0,
@@ -28,10 +28,7 @@ const MOVIE = {
 };
 
 const ACTIVE_TAB = 0;
-const HANDLE_EVENT = () => {
-  // eslint-disable-next-line no-console
-  console.log(`handleTestEvent`);
-};
+const HANDLE_EVENT = () => {};
 
 describe(`<MovieDetailInfo />`, () => {
 

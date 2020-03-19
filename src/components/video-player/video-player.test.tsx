@@ -12,10 +12,7 @@ describe(`<VideoPlayer />`, () => {
 
   it(`render should be match markup`, () => {
 
-    jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(async () => {
-      // eslint-disable-next-line no-console
-      console.log(`handleTestEvent`);
-    });
+    jest.spyOn(HTMLMediaElement.prototype, `play`).mockImplementation(async () => {});
 
     const result = renderer
       .create(<VideoPlayer

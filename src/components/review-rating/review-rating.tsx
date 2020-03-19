@@ -1,26 +1,26 @@
 import * as React from 'react';
 import {REVIEW_RATING_STARS_LIMIT} from '../../consts';
 
-type TReviewRatingProps = {
+type TProps = {
   isEnabled: boolean;
   value?: number;
   limit?: number;
-  onValueChange?: Function;
+  onValueChange: (value: number) => void;
 };
 
-class ReviewRating extends React.PureComponent<TReviewRatingProps> {
-  public constructor(props: TReviewRatingProps) {
+class ReviewRating extends React.PureComponent<TProps> {
+  public constructor(props: TProps) {
     super(props);
 
-    this._handleChange = this._handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  private _handleChange(e: React.SyntheticEvent) {
+  private handleChange(e: React.SyntheticEvent) {
 
     const {onValueChange} = this.props;
     const {value} = e.target as HTMLInputElement;
 
-    onValueChange(value);
+    onValueChange(parseInt(value, 10));
   }
 
   public render() {
@@ -45,7 +45,7 @@ class ReviewRating extends React.PureComponent<TReviewRatingProps> {
                     type="radio"
                     name="rating"
                     value={itemValue}
-                    onChange={this._handleChange}
+                    onChange={this.handleChange}
                     defaultChecked={itemValue === value}
                     disabled={!isEnabled}
                   />

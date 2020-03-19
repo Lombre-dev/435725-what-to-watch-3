@@ -5,11 +5,10 @@ import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetail
 import {formatReviews} from './mappers';
 
 const Operations = {
-  init: (movieId: string) => (dispatch, getState, _api) => {
+  init: (movieId: number) => (dispatch, getState, _api) => {
 
-    const intMovieId = parseInt(movieId, 10);
     const allMovies = getAppMovies(getState());
-    const movie = allMovies.find((value) => value.id === intMovieId);
+    const movie = allMovies.find((value) => value.id === movieId);
 
     dispatch(setDetailedMovieLoadingStart());
 
@@ -22,7 +21,7 @@ const Operations = {
     }
   },
 
-  getReviews: (movieId: string) => (dispatch, getState, api) => {
+  getReviews: (movieId: number) => (dispatch, getState, api) => {
 
     dispatch(setDetailedMovieLoadingStart());
 
@@ -36,7 +35,7 @@ const Operations = {
       });
   },
 
-  addReview: (movieId: string, rating: number, comment: string) => (dispatch, getState, api) => {
+  addReview: (movieId: number, rating: number, comment: string) => (dispatch, getState, api) => {
 
     dispatch(setDetailedMovieLoadingStart());
 

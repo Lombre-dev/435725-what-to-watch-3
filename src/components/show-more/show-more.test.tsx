@@ -2,10 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import ShowMore from './show-more';
 
-const HANDLE_EVENT = () => {
-  // eslint-disable-next-line no-console
-  console.log(`handleTestEvent`);
-};
+const HANDLE_EVENT = () => {};
 
 describe(`<ShowMore />`, () => {
 

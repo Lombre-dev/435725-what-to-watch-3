@@ -72,7 +72,7 @@ const REVEIWS = [{
   text: `PropTypes.string.isRequired`,
   date: 456456456,
 }];
-const REDIRECT_TO = `${AppPages.MAIN}`;
+const REDIRECT_TO = AppPages.MAIN;
 
 const INITIAL_STATE = {
   status: undefined,
