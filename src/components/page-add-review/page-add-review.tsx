@@ -13,8 +13,8 @@ type TProps = {
   commentValue?: string;
   isFieldsEnabled?: boolean;
   isSubmitEnabled?: boolean;
-  onRatingChange?: (value: number) => void;
-  onCommentChange?: (value: string) => void;
+  onRatingChange: (value: number) => void;
+  onCommentChange: (value: string) => void;
   onSubmit: () => void;
 }
 

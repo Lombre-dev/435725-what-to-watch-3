@@ -5,7 +5,7 @@ type TProps = {
   isEnabled: boolean;
   value?: number;
   limit?: number;
-  onValueChange?: (value: number) => void;
+  onValueChange: (value: number) => void;
 };
 
 class ReviewRating extends React.PureComponent<TProps> {

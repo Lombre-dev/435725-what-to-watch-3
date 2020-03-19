@@ -14,7 +14,6 @@ import UserBlock from '../user-block/user-block';
 type TProps = {
   status?: LoadingDataStatus;
   promoMovie?: TMovie;
-
   onMount: () => void;
 };
 

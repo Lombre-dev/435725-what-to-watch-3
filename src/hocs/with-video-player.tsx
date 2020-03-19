@@ -15,7 +15,6 @@ export default function withVideoPlayer(Component) {
     movie?: TMovie;
     status: LoadingDataStatus;
     redirectTo?: string;
-
     onMount: (movieId: number) => void;
     onUnmount: () => void;
   }

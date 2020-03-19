@@ -86,7 +86,7 @@ const HANDLE_EVENT = () => {};
 
 const mockStore = configureStore([thunk]);
 
-describe(`<CatalogPage />`, () => {
+describe(`<PageCatalog />`, () => {
 
   it(`render should be match markup`, () => {
 

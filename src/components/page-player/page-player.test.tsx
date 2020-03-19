@@ -30,7 +30,7 @@ const MOVIE = {
 };
 const MOVIE_STATE = PlayerState.INITED;
 
-describe(`<PlayerPage />`, () => {
+describe(`<PagePlayer />`, () => {
 
   it(`render should be match markup`, () => {
 

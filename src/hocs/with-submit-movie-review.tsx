@@ -15,7 +15,6 @@ type TProps = {
   movie?: TMovie;
   isEnabled?: boolean;
   comment?: string;
-
   onSubmit: (movieId: number, rating: number, comment: string) => void;
   onMount: (movieId: number) => void;
   onUnmount: () => void;

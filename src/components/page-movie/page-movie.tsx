@@ -20,7 +20,6 @@ type TProps = {
   redirectTo?: string;
   movie?: TMovie;
   relatedMovies?: TMovie[];
-
   updateMovie: (movieId: number) => void;
   resetRedirect: () => void;
 };
