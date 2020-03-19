@@ -7,7 +7,7 @@ function formatUser(source: TUserData): TUser {
     email: source.email,
     name: source.name,
     avatar: `${ServerConfig.URL}${source.avatar_url.substring(4)}`,
-  }
+  };
 }
 
 export {formatUser};

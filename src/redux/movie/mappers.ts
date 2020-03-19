@@ -7,7 +7,7 @@ function formatReview(source: TReviewData): TReview {
     score: source.rating,
     text: source.comment,
     date: new Date(source.date).getTime(),
-  }
+  };
 }
 
 function formatReviews(source: TReviewData[]): TReview[] {

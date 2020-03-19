@@ -15,7 +15,7 @@ export enum AppPages {
   MY_LIST = `/mylist`,
   MOVIES = `/films`,
   PLAYER = `/player`,
-};
+}
 
 export const GENRES = [
   COMEDY_GENRE,
@@ -53,7 +53,7 @@ export enum PlayerState {
   PLAYING = `playing`,
   PAUSED = `paused`,
   ENDED = `ended`,
-};
+}
 
 export const ServerConfig = {
   URL: `https://htmlacademy-react-3.appspot.com/wtw`,
@@ -64,12 +64,12 @@ export enum ServerErrors {
   NOT_FOUND = 404,
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
-};
+}
 
 export enum AuthorizationErrorCode {
   INCORRECT_LOGIN = 1,
   AUTHORIZATION_FAIL = 2,
-};
+}
 
 export const AuthorizationErrorMessage = {
   [AuthorizationErrorCode.INCORRECT_LOGIN]: `Please enter a valid email address`,
@@ -79,7 +79,7 @@ export const AuthorizationErrorMessage = {
 export enum AuthorizationStatus {
   NO_AUTH = `unauthorized`,
   AUTH = `authorized`,
-};
+}
 
 export const REVIEW_RATING_STARS_LIMIT = 5;
 export const REVIEW_COMMENT_MIN_LENGTH = 50;

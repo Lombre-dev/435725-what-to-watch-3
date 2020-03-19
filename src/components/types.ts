@@ -50,7 +50,7 @@ export type TMovieData = {
   video_link: string;
   preview_video_link: string;
   description: string;
-  rating: number
+  rating: number;
   scores_count: number;
   director: string;
   starring: string[];
@@ -72,7 +72,7 @@ export type TUser = {
 }
 
 export type TUserData = {
-  id: number,
+  id: number;
   email: string;
   name: string;
   avatar_url: string;
@@ -81,5 +81,5 @@ export type TUserData = {
 export type TMatchParamsWithId = {
   params: {
     id: string;
-  }
+  };
 }

@@ -46,7 +46,7 @@ function withSubmitMovieReview(Component) {
 
       const {onMount, match} = this.props;
 
-      onMount(parseInt(match.params.id));
+      onMount(parseInt(match.params.id, 10));
     }
 
     public componentWillUnmount() {
