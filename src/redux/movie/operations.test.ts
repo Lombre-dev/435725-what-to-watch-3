@@ -78,7 +78,7 @@ describe(`MovieDetailsOperations`, () => {
     const api = createAPI();
     const dispatch = jest.fn(() => {});
 
-    Operations.init(`0`)(dispatch, () => {
+    Operations.init(0)(dispatch, () => {
       return {
         app: {
           movies: MOVIES,
@@ -98,7 +98,7 @@ describe(`MovieDetailsOperations`, () => {
       .onGet(`/comments/0`)
       .reply(200, []);
 
-    Operations.getReviews(`0`)(dispatch, GET_STATE, api)
+    Operations.getReviews(0)(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
       });
@@ -116,7 +116,7 @@ describe(`MovieDetailsOperations`, () => {
       .onPost(`/comments/0`, {rating, comment})
       .reply(200, []);
 
-    Operations.addReview(`0`, rating, comment)(dispatch, GET_STATE, api)
+    Operations.addReview(0, rating, comment)(dispatch, GET_STATE, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       });

@@ -1,24 +1,24 @@
 import * as React from 'react';
 import {PlayerState} from '../../consts';
 
-type Props = {
+type TProps = {
   id: number;
   state: PlayerState;
   poster: string;
   width?: string;
   height?: string;
   src: string;
-  onDurationUpdate?: Function;
-  onTimeUpdate?: Function;
-  onEnd?: Function;
   isMuted?: boolean;
+  onDurationUpdate?: (value: number) => void;
+  onTimeUpdate?: (value: number) => void;
+  onEnd?: () => void;
 };
 
-class VideoPlayer extends React.PureComponent<Props> {
+class VideoPlayer extends React.PureComponent<TProps> {
 
   private _videoRef: React.RefObject<HTMLVideoElement>;
 
-  public constructor(props: Props) {
+  public constructor(props: TProps) {
     super(props);
 
     this._videoRef = React.createRef();
@@ -30,12 +30,18 @@ class VideoPlayer extends React.PureComponent<Props> {
 
   public componentDidMount() {
 
-    const {poster, src, state, isMuted} = this.props;
+    const {poster, src, state, isMuted, onEnd, onTimeUpdate, onDurationUpdate} = this.props;
     const video = this._videoRef.current;
 
-    video.ondurationchange = this.handleDurationUpdate;
-    video.ontimeupdate = this.handleTimeUpdate;
-    video.onended = this.handleEnd;
+    if (onDurationUpdate) {
+      video.ondurationchange = this.handleDurationUpdate;
+    }
+    if (onTimeUpdate) {
+      video.ontimeupdate = this.handleTimeUpdate;
+    }
+    if (onEnd) {
+      video.onended = this.handleEnd;
+    }
     video.preload = state === PlayerState.LOADING ? `metadata` : `none`;
     video.poster = poster;
     video.src = src;
@@ -93,9 +99,7 @@ class VideoPlayer extends React.PureComponent<Props> {
     const {onDurationUpdate} = this.props;
     const video = this._videoRef.current;
 
-    if (onDurationUpdate) {
-      onDurationUpdate({duration: video.duration});
-    }
+    onDurationUpdate(video.duration);
   }
 
   private handleTimeUpdate() {
@@ -103,18 +107,14 @@ class VideoPlayer extends React.PureComponent<Props> {
     const {onTimeUpdate} = this.props;
     const video = this._videoRef.current;
 
-    if (onTimeUpdate) {
-      onTimeUpdate({time: video.currentTime});
-    }
+    onTimeUpdate(video.currentTime);
   }
 
   private handleEnd() {
 
     const {onEnd} = this.props;
 
-    if (onEnd) {
-      onEnd();
-    }
+    onEnd();
   }
 
   public render() {

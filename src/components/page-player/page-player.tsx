@@ -6,31 +6,31 @@ import {formatTime} from '../../utils/player-utils';
 import {TMovie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 
-type Props = {
+type TProps = {
   movie?: TMovie;
   movieState?: PlayerState;
   movieTime?: number;
   movieDuration?: number;
   isFullscreen?: boolean;
   isMuted?: boolean;
+  onTimeUpdate?: (value: number) => void;
+  onDurationUpdate?: (value: number) => void;
+  onEnd?: () => void;
   onPlay?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  onTimeUpdate?: Function;
-  onDurationUpdate?: Function;
-  onEnd?: Function;
   onFullscreen?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-class PagePlayer extends React.PureComponent<Props> {
+class PagePlayer extends React.PureComponent<TProps> {
 
   private _ref: React.RefObject<HTMLDivElement>;
 
-  public constructor(props: Props) {
+  public constructor(props: TProps) {
     super(props);
 
     this._ref = React.createRef();
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: TProps) {
 
     const {isFullscreen, onFullscreen} = this.props;
     const element = this._ref.current;

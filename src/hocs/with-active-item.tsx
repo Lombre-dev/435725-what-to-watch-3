@@ -1,26 +1,26 @@
 import * as React from 'react';
 import {TMovie} from '../components/types';
 
-type Props = {
+type TProps = {
   movies: TMovie[];
 }
 
-type State = {
+type TState = {
   activeItemId: number;
 }
 
 function withActiveItem(Component, activationDelay: number) {
 
-  class WithActiveItem extends React.PureComponent<Props, State> {
+  class WithActiveItem extends React.PureComponent<TProps, TState> {
 
     private _timeoutId: number;
 
-    public constructor(props: Props) {
+    public constructor(props: TProps) {
       super(props);
 
-      this._timeoutId = undefined;
+      this._timeoutId = null;
       this.state = {
-        activeItemId: -1,
+        activeItemId: null,
       };
 
       this.handleItemHover = this.handleItemHover.bind(this);
@@ -31,7 +31,7 @@ function withActiveItem(Component, activationDelay: number) {
       window.clearTimeout(this._timeoutId);
     }
 
-    private handleItemHover({id}) {
+    private handleItemHover(id: number) {
       window.clearTimeout(this._timeoutId);
       this._timeoutId = window.setTimeout(() => {
         this.setState({
@@ -43,7 +43,7 @@ function withActiveItem(Component, activationDelay: number) {
     private handleItemLeave() {
       window.clearTimeout(this._timeoutId);
       this.setState({
-        activeItemId: -1,
+        activeItemId: null,
       });
     }
 

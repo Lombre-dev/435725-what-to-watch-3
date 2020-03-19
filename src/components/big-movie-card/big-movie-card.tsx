@@ -5,13 +5,13 @@ import {AppPages} from '../../consts';
 import {Operations} from '../../redux/user/operations';
 import {TMovie} from '../types';
 
-type Props = {
+type TProps = {
   movie: TMovie;
-  updateFavoriteStatus: Function;
+  updateFavoriteStatus: (movieId: number, isFavorite: boolean) => void;
 };
 
-class BigMovieCard extends React.PureComponent<Props> {
-  public constructor(props: Props) {
+class BigMovieCard extends React.PureComponent<TProps> {
+  public constructor(props: TProps) {
     super(props);
 
     this.handleListClick = this.handleListClick.bind(this);
@@ -55,9 +55,9 @@ class BigMovieCard extends React.PureComponent<Props> {
   }
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
-    updateFavoriteStatus: (movieId: string, isFavorite: boolean) => {
+    updateFavoriteStatus: (movieId: number, isFavorite: boolean) => {
       dispatch(Operations.updateFavoriteMovie(movieId, isFavorite));
     },
   };

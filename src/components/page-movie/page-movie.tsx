@@ -14,18 +14,18 @@ import MovieInfo from '../movie-info/movie-info';
 import {TMatchParamsWithId, TMovie} from '../types';
 import UserBlock from '../user-block/user-block';
 
-type Props = {
+type TProps = {
   match: TMatchParamsWithId;
   status?: LoadingDataStatus;
   redirectTo?: string;
   movie?: TMovie;
   relatedMovies?: TMovie[];
 
-  updateMovie?: Function;
-  resetRedirect?: Function;
+  updateMovie: (movieId: number) => void;
+  resetRedirect: () => void;
 };
 
-class PageMovie extends React.PureComponent<Props> {
+class PageMovie extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 
@@ -34,7 +34,7 @@ class PageMovie extends React.PureComponent<Props> {
     updateMovie(match.params.id);
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: TProps) {
 
     const {updateMovie} = this.props;
 
@@ -99,7 +99,7 @@ class PageMovie extends React.PureComponent<Props> {
   }
 }
 
-function mapStateToProps(state: Record<string, object>) {
+function mapStateToProps(state) {
   return {
     status: getDetailedMovieStatus(state),
     redirectTo: getDetailedMovieRedirectTo(state),
@@ -108,9 +108,9 @@ function mapStateToProps(state: Record<string, object>) {
   };
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
-    updateMovie: (movieId: string) => {
+    updateMovie: (movieId: number) => {
       dispatch(Operations.init(movieId));
     },
     resetRedirect: () => {

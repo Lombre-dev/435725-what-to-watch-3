@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {MOVIE_INFO_TABS} from '../../consts';
 
-type Props = {
+type TProps = {
   currentTab: number;
-  onTabClick: Function;
+  onTabClick: (index: number) => void;
 };
 
-class MovieInfoTabs extends React.PureComponent<Props> {
-  public constructor(props: Props) {
+class MovieInfoTabs extends React.PureComponent<TProps> {
+  public constructor(props: TProps) {
     super(props);
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -19,7 +19,7 @@ class MovieInfoTabs extends React.PureComponent<Props> {
     const index = parseInt((e.currentTarget as HTMLElement).dataset.index, 10);
 
     e.preventDefault();
-    onTabClick({index});
+    onTabClick(index);
   }
 
   public render() {

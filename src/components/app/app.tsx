@@ -15,12 +15,12 @@ import PageSignIn from '../page-sign-in/page-sign-in';
 import PrivateRoute from '../private-route/private-route';
 import ProtectedRoute from '../protected-route/protected-route';
 
-type Props = {
-  status?: LoadingDataStatus;
-  onMount?: Function;
+type TProps = {
+  status: LoadingDataStatus;
+  onMount: () => void;
 };
 
-class App extends React.PureComponent<Props> {
+class App extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 
@@ -53,13 +53,13 @@ class App extends React.PureComponent<Props> {
   }
 }
 
-function mapStateToProps(state: object) {
+function mapStateToProps(state) {
   return {
     status: getAppStatus(state),
   };
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
     onMount: () => {
       dispatch(Operations.init());

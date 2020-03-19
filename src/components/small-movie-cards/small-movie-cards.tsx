@@ -4,25 +4,28 @@ import withActiveItem from '../../hocs/with-active-item';
 import SmallMovieCardItem from '../small-movie-card-item/small-movie-card-item';
 import {TMovie} from '../types';
 
-type Props = {
+type TProps = {
   movies: TMovie[];
   activeItemId: number;
-  onItemHover: Function;
-  onItemLeave: Function;
+  onItemHover: (index: number) => void;
+  onItemLeave: () => void;
 };
 
-function SmallMovieCards(props: Props) {
+function SmallMovieCards(props: TProps) {
+
+  const {movies, activeItemId, onItemHover, onItemLeave} = props;
+
   return (
     <div className="catalog__movies-list">
       {
-        props.movies.map((movie) => {
+        movies.map((movie) => {
           return (
             <SmallMovieCardItem
               key={movie.title}
               movie={movie}
-              isPreviewActive={props.activeItemId === movie.id}
-              onHover={props.onItemHover}
-              onLeave={props.onItemLeave}
+              isPreviewActive={activeItemId === movie.id}
+              onHover={onItemHover}
+              onLeave={onItemLeave}
             />
           );
         })

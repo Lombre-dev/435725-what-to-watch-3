@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
 import {PageMovie} from './page-movie';
 
-const MATCH = {params: {id: `0`}};
+const MATCH = {params: {id: 0}};
 const HANDLE_EVENT = () => {};
 const MOVIE = {
   id: 0,

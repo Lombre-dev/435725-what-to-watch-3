@@ -1,19 +1,19 @@
 import * as React from 'react';
 import {AuthorizationErrorCode, AuthorizationErrorMessage} from '../../consts';
 
-type Props = {
+type TProps = {
   email?: string;
   password?: string;
   authError?: AuthorizationErrorCode;
-  onSubmit: Function;
+  onSubmit: (email: string, password: string) => void;
 };
 
-class SignIn extends React.PureComponent<Props> {
+class SignIn extends React.PureComponent<TProps> {
 
   private _emailRef: React.RefObject<HTMLInputElement>;
   private _passwordRef: React.RefObject<HTMLInputElement>;
 
-  public constructor(props: Props) {
+  public constructor(props: TProps) {
     super(props);
 
     this._emailRef = React.createRef();
@@ -29,7 +29,7 @@ class SignIn extends React.PureComponent<Props> {
     const password = this._passwordRef.current.value;
 
     e.preventDefault();
-    onSubmit({email, password});
+    onSubmit(email, password);
 
     this._passwordRef.current.value = ``;
   }

@@ -2,11 +2,11 @@ import * as React from 'react';
 import {getDuration} from '../../utils/movie-utils';
 import {TMovie} from '../types';
 
-type Props = {
+type TProps = {
   movie: TMovie;
 };
 
-function MovieInfoDetails(props: Props) {
+function MovieInfoDetails(props: TProps) {
 
   const {actors} = props.movie;
 

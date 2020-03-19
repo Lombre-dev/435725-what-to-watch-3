@@ -1,12 +1,12 @@
 import * as React from 'react';
 import GenreFilterItem from '../genre-filter-item/genre-filter-item';
 
-type Props = {
+type TProps = {
   genres: string[];
   genre: string;
 };
 
-function GenreFilters(props: Props) {
+function GenreFilters(props: TProps) {
   return (
     <ul className="catalog__genres-list">
       {

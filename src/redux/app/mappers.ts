@@ -1,7 +1,8 @@
-import {TMovie} from '../../components/types';
+import {TMovie, TMovieData} from '../../components/types';
 
-function formatMovie(source: any): TMovie {
-  return Object.assign({}, source, {
+function formatMovie(source: TMovieData): TMovie {
+  return {
+    id: source.id,
     title: source.name,
     genres: [source.genre],
     year: source.released,
@@ -11,16 +12,18 @@ function formatMovie(source: any): TMovie {
     src: source.video_link,
     ratingScore: source.rating,
     ratingReviewsCount: source.scores_count,
-    story: source.description, // ?
-    actors: source.starring,
+    description: source.description,
+    story: source.description,
     duration: source.run_time,
+    director: source.director,
+    actors: source.starring,
     backgroundImage: source.background_image,
     backgroundColor: source.background_color,
     isFavorite: source.is_favorite,
-  });
+  };
 }
 
-function formatMovies(source: any[]): TMovie[] {
+function formatMovies(source: TMovieData[]): TMovie[] {
   return source.map((item) => formatMovie(item));
 }
 

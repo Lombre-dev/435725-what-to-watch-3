@@ -8,17 +8,16 @@ import ShowMore from '../show-more/show-more';
 import SmallMovieCards from '../small-movie-cards/small-movie-cards';
 import {TMovie} from '../types';
 
-type Props = {
+type TProps = {
   genre: string;
   genres: string[];
   movies: TMovie[];
   hasMoreMovies: boolean;
-  onShowMore?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-
-  onMount?: Function;
+  onShowMore: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onMount: () => void;
 };
 
-class Catalog extends React.PureComponent<Props> {
+class Catalog extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 

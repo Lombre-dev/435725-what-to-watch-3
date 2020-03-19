@@ -3,14 +3,14 @@ import {connect} from 'react-redux';
 import {setCatalogGenre} from '../../redux/catalog/actions';
 import {getGenreLabels} from '../../utils/movie-utils';
 
-type Props = {
+type TProps = {
   genre: string;
-  onSelect: Function;
+  onSelect: (genre: string) => void;
 };
 
-class GenreFilterItem extends React.PureComponent<Props> {
+class GenreFilterItem extends React.PureComponent<TProps> {
 
-  public constructor(props: Props) {
+  public constructor(props: TProps) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
@@ -39,7 +39,7 @@ class GenreFilterItem extends React.PureComponent<Props> {
   }
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch) {
   return {
     onSelect: (genre: string) => {
       dispatch(setCatalogGenre(genre));

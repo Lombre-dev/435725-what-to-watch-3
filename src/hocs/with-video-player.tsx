@@ -10,17 +10,17 @@ import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} fr
 
 export default function withVideoPlayer(Component) {
 
-  type Props = {
+  type TProps = {
     match: TMatchParamsWithId;
     movie?: TMovie;
     status: LoadingDataStatus;
     redirectTo?: string;
 
-    onMount?: Function;
-    onUnmount?: Function;
+    onMount: (movieId: number) => void;
+    onUnmount: () => void;
   }
 
-  type State = {
+  type TState = {
     state: PlayerState;
     time: number;
     duration: number;
@@ -28,8 +28,8 @@ export default function withVideoPlayer(Component) {
     isFullscreen: boolean;
   }
 
-  class WithVideoPlayer extends React.PureComponent<Props, State> {
-    public constructor(props: Props) {
+  class WithVideoPlayer extends React.PureComponent<TProps, TState> {
+    public constructor(props: TProps) {
       super(props);
 
       this.state = {
@@ -137,7 +137,7 @@ export default function withVideoPlayer(Component) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      onMount: (movieId: string) => {
+      onMount: (movieId: number) => {
         dispatch(Operations.init(movieId));
       },
       onUnmount: () => {

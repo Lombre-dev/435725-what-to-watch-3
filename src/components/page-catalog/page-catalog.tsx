@@ -11,14 +11,14 @@ import Logo from '../logo/logo';
 import {TMovie} from '../types';
 import UserBlock from '../user-block/user-block';
 
-type Props = {
+type TProps = {
   status?: LoadingDataStatus;
   promoMovie?: TMovie;
 
-  onMount?: Function;
+  onMount: () => void;
 };
 
-class PageCatalog extends React.PureComponent<Props> {
+class PageCatalog extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 

@@ -7,19 +7,19 @@ import ReviewRating from '../review-rating/review-rating';
 import {TMovie} from '../types';
 import UserBlock from '../user-block/user-block';
 
-type Props = {
+type TProps = {
   movie: TMovie;
   ratingValue?: number;
   commentValue?: string;
-  onRatingChange?: Function;
-  onCommentChange?: Function;
   isFieldsEnabled?: boolean;
   isSubmitEnabled?: boolean;
-  onSubmit?: Function;
+  onRatingChange?: (value: number) => void;
+  onCommentChange?: (value: string) => void;
+  onSubmit: () => void;
 }
 
-class PageAddReview extends React.PureComponent<Props> {
-  public constructor(props: Props) {
+class PageAddReview extends React.PureComponent<TProps> {
+  public constructor(props: TProps) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);

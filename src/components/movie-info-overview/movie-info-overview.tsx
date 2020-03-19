@@ -2,11 +2,11 @@ import * as React from 'react';
 import {getActors, getRatingLevel, getRatingReviewsCount, getRatingScore} from '../../utils/movie-utils';
 import {TMovie} from '../types';
 
-type Props = {
+type TProps = {
   movie: TMovie;
 };
 
-function MovieInfoOverview(props: Props) {
+function MovieInfoOverview(props: TProps) {
   return (
     <>
       <div className="movie-rating">

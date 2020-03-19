@@ -9,15 +9,14 @@ import Footer from '../footer/footer';
 import Logo from '../logo/logo';
 import SignIn from '../sign-in/sign-in';
 
-type Props = {
-  onSubmit?: Function;
+type TProps = {
   authStatus?: AuthorizationStatus;
   authError?: AuthorizationErrorCode;
-
-  onMount?: Function;
+  onSubmit: (email: string, password: string) => void;
+  onMount: () => void;
 };
 
-class PageSignIn extends React.PureComponent<Props> {
+class PageSignIn extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 
@@ -62,8 +61,8 @@ function mapDispatchToProps(dispatch) {
     onMount: () => {
       dispatch(setUserAuthRequired(false));
     },
-    onSubmit: ({email, password}) => {
-      dispatch(UserOperations.login({email, password}));
+    onSubmit: (email, password) => {
+      dispatch(UserOperations.login(email, password));
     }
   };
 }

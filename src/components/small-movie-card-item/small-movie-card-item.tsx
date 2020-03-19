@@ -4,15 +4,15 @@ import {AppPages, PlayerState} from '../../consts';
 import {TMovie} from '../types';
 import VideoPlayer from '../video-player/video-player';
 
-type Props = {
+type TProps = {
   movie: TMovie;
   isPreviewActive: boolean;
-  onHover: Function;
-  onLeave: Function;
+  onHover: (movieId: number) => void;
+  onLeave: () => void;
 };
 
-class SmallMovieCardItem extends React.PureComponent<Props> {
-  public constructor(props: Props) {
+class SmallMovieCardItem extends React.PureComponent<TProps> {
+  public constructor(props: TProps) {
     super(props);
 
     this.handleHover = this.handleHover.bind(this);
@@ -23,14 +23,14 @@ class SmallMovieCardItem extends React.PureComponent<Props> {
 
     const {movie, onHover} = this.props;
 
-    onHover({id: movie.id});
+    onHover(movie.id);
   }
 
   private handleLeave() {
 
-    const {movie, onLeave} = this.props;
+    const {onLeave} = this.props;
 
-    onLeave({id: movie.id});
+    onLeave();
   }
 
   public render() {

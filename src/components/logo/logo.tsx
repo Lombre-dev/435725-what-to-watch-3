@@ -2,11 +2,11 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {AppPages} from '../../consts';
 
-type Props = {
+type TProps = {
   isLight?: boolean;
 };
 
-function Logo(props: Props) {
+function Logo(props: TProps) {
   return (
     <div className="logo">
       <Link className={`logo__link${props.isLight ? ` logo__link--light` : ``}`} to={AppPages.MAIN}>

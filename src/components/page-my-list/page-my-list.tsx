@@ -8,12 +8,12 @@ import SmallMovieCardList from '../small-movie-cards/small-movie-cards';
 import {TMovie} from '../types';
 import {UserBlock} from '../user-block/user-block';
 
-type Props = {
+type TProps = {
   movies?: TMovie[];
-  onMount?: Function;
+  onMount: () => void;
 };
 
-class PageMyList extends React.PureComponent<Props> {
+class PageMyList extends React.PureComponent<TProps> {
 
   public componentDidMount() {
 

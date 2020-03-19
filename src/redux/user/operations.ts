@@ -28,7 +28,7 @@ const Operations = {
       });
   },
 
-  login: ({email, password}) => (dispatch, getState, api) => {
+  login: (email: string, password: string) => (dispatch, getState, api) => {
 
     dispatch(clearUserData());
 
@@ -55,7 +55,7 @@ const Operations = {
       });
   },
 
-  updateFavoriteMovie: (movieId, isFavorite) => (dispatch, getState, api) => {
+  updateFavoriteMovie: (movieId: number, isFavorite: boolean) => (dispatch, getState, api) => {
     return api.post(`/favorite/${movieId}/${isFavorite ? 1 : 0}`)
       .then(() => {
 

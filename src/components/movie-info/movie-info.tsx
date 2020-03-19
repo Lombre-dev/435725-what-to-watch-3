@@ -6,13 +6,13 @@ import MovieInfoReviews from '../movie-info-reviews/movie-info-reviews';
 import MovieInfoTabs from '../movie-info-tabs/movie-info-tabs';
 import {TMovie} from '../types';
 
-type Props = {
+type TProps = {
   movie: TMovie;
   activeTab: number;
-  onTabClick: Function;
+  onTabClick: (index: number) => void;
 };
 
-class MovieInfo extends React.PureComponent<Props> {
+class MovieInfo extends React.PureComponent<TProps> {
 
   private _renderState() {
 

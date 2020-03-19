@@ -8,21 +8,20 @@ import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
 
-type Props = {
+type TProps = {
   match: TMatchParamsWithId;
   status: LoadingDataStatus;
   redirectTo?: string;
   movie?: TMovie;
   isEnabled?: boolean;
-  onSubmit?: Function;
-
-  onMount?: Function;
-  onUnmount?: Function;
-
   comment?: string;
+
+  onSubmit: (movieId: number, rating: number, comment: string) => void;
+  onMount: (movieId: number) => void;
+  onUnmount: () => void;
 }
 
-type State = {
+type TState = {
   rating: number;
   comment: string;
 }
@@ -30,13 +29,13 @@ type State = {
 
 function withSubmitMovieReview(Component) {
 
-  class WithSubmitMovieReview extends React.PureComponent<Props, State> {
-    public constructor(props: Props) {
+  class WithSubmitMovieReview extends React.PureComponent<TProps, TState> {
+    public constructor(props: TProps) {
       super(props);
 
       this.state = {
-        rating: -1,
-        comment: this.props.comment || ``,
+        rating: null,
+        comment: props.comment || ``,
       };
 
       this.handleRatingChange = this.handleRatingChange.bind(this);
@@ -87,7 +86,7 @@ function withSubmitMovieReview(Component) {
         return <Redirect to={redirectTo} />;
       }
 
-      if (status !== `ready`) {
+      if (status !== LoadingDataStatus.READY) {
         return <LoadingDataBlock status={status} />;
       }
 
@@ -98,10 +97,10 @@ function withSubmitMovieReview(Component) {
           commentValue={comment}
           onRatingChange={this.handleRatingChange}
           onCommentChange={this.handleCommentChange}
-          isFieldsEnabled={status === `ready`}
+          isFieldsEnabled={status === LoadingDataStatus.READY}
           isSubmitEnabled={
-            status === `ready` &&
-            rating !== -1 &&
+            status === LoadingDataStatus.READY &&
+            rating &&
             comment.length >= REVIEW_COMMENT_MIN_LENGTH &&
             comment.length <= REVIEW_COMMENT_MAX_LENGTH
           }
@@ -126,10 +125,10 @@ function withSubmitMovieReview(Component) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      onMount: (movieId: string) => {
+      onMount: (movieId: number) => {
         dispatch(Operations.init(movieId));
       },
-      onSubmit: (movieId: string, rating: number, comment: string) => {
+      onSubmit: (movieId: number, rating: number, comment: string) => {
         dispatch(Operations.addReview(movieId, rating, comment));
       },
       onUnmount: () => {

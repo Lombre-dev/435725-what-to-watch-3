@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {REVIEW_RATING_STARS_LIMIT} from '../../consts';
 
-type Props = {
+type TProps = {
   isEnabled: boolean;
   value?: number;
   limit?: number;
-  onValueChange?: Function;
+  onValueChange?: (value: number) => void;
 };
 
-class ReviewRating extends React.PureComponent<Props> {
-  public constructor(props: Props) {
+class ReviewRating extends React.PureComponent<TProps> {
+  public constructor(props: TProps) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +20,7 @@ class ReviewRating extends React.PureComponent<Props> {
     const {onValueChange} = this.props;
     const {value} = e.target as HTMLInputElement;
 
-    onValueChange(value);
+    onValueChange(parseInt(value, 10));
   }
 
   public render() {
