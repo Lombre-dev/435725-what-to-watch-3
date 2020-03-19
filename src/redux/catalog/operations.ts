@@ -4,11 +4,11 @@ import {setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStar
 
 const Operations = {
 
-  init: () => (dispatch) => {
+  init: () => (dispatch, _getState, _api) => {
     dispatch(Operations.getPromoMovie());
   },
 
-  getCatalog: () => (dispatch, getState) => {
+  getCatalog: () => (dispatch, getState, _api) => {
     dispatch(setCatalogMovies(getAppMovies(getState())));
   },
 
