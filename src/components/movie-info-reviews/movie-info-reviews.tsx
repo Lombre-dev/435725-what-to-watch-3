@@ -7,14 +7,14 @@ import {getRatingScore} from '../../utils/movie-utils';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import {TMovie, TReview} from '../types';
 
-type TMovieInfoReviewsProps = {
+type Props = {
   status?: LoadingDataStatus;
   movie: TMovie;
   reviews?: TReview[];
   getReviews?: Function;
 };
 
-class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
+class MovieInfoReviews extends React.PureComponent<Props> {
 
   public componentDidMount() {
 
@@ -61,7 +61,6 @@ class MovieInfoReviews extends React.PureComponent<TMovieInfoReviewsProps> {
                       }</time>
                     </footer>
                   </blockquote>
-
                   <div className="review__rating">{getRatingScore(review.score)}</div>
                 </div>
               );

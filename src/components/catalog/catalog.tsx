@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {getCatalogMoreMovies} from '../../redux/catalog/actions';
 import {Operations} from '../../redux/catalog/operations';
 import {getCatalogGenre, getCatalogGenres, getCatalogHasMoreMovies, getCatalogMovies} from '../../redux/catalog/selectors';
-import GenreFilterList from '../genre-filter-list/genre-filter-list';
+import GenreFilters from '../genre-filters/genre-filters';
 import ShowMore from '../show-more/show-more';
-import SmallMovieCardList from '../small-movie-card-list';
+import SmallMovieCards from '../small-movie-cards/small-movie-cards';
 import {TMovie} from '../types';
 
-type TCatalogProps = {
+type Props = {
   genre: string;
   genres: string[];
   movies: TMovie[];
@@ -18,7 +18,7 @@ type TCatalogProps = {
   onMount?: Function;
 };
 
-class Catalog extends React.PureComponent<TCatalogProps> {
+class Catalog extends React.PureComponent<Props> {
 
   public componentDidMount() {
 
@@ -40,11 +40,11 @@ class Catalog extends React.PureComponent<TCatalogProps> {
     return (
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <GenreFilterList
+        <GenreFilters
           genre={genre}
           genres={genres}
         />
-        <SmallMovieCardList
+        <SmallMovieCards
           movies={movies}
         />
         {

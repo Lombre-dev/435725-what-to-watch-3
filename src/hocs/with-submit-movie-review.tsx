@@ -8,7 +8,7 @@ import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
 
-type TWithSubmitMovieReviewProps = {
+type Props = {
   match: TMatchParamsWithId;
   status: LoadingDataStatus;
   redirectTo?: string;
@@ -22,7 +22,7 @@ type TWithSubmitMovieReviewProps = {
   comment?: string;
 }
 
-type TWithSubmitMovieReviewState = {
+type State = {
   rating: number;
   comment: string;
 }
@@ -30,8 +30,8 @@ type TWithSubmitMovieReviewState = {
 
 function withSubmitMovieReview(Component) {
 
-  class WithSubmitMovieReview extends React.PureComponent<TWithSubmitMovieReviewProps, TWithSubmitMovieReviewState> {
-    public constructor(props: TWithSubmitMovieReviewProps) {
+  class WithSubmitMovieReview extends React.PureComponent<Props, State> {
+    public constructor(props: Props) {
       super(props);
 
       this.state = {
@@ -39,9 +39,9 @@ function withSubmitMovieReview(Component) {
         comment: this.props.comment || ``,
       };
 
-      this._handleRatingChange = this._handleRatingChange.bind(this);
-      this._handleCommentChange = this._handleCommentChange.bind(this);
-      this._handleSubmit = this._handleSubmit.bind(this);
+      this.handleRatingChange = this.handleRatingChange.bind(this);
+      this.handleCommentChange = this.handleCommentChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     public componentDidMount() {
@@ -58,19 +58,19 @@ function withSubmitMovieReview(Component) {
       onUnmount();
     }
 
-    private _handleRatingChange(value: string) {
+    private handleRatingChange(value: string) {
       this.setState({
         rating: parseInt(value, 10),
       });
     }
 
-    private _handleCommentChange(value: string) {
+    private handleCommentChange(value: string) {
       this.setState({
         comment: value,
       });
     }
 
-    private _handleSubmit() {
+    private handleSubmit() {
 
       const {rating, comment} = this.state;
       const {onSubmit, movie} = this.props;
@@ -96,8 +96,8 @@ function withSubmitMovieReview(Component) {
           movie={movie}
           ratingValue={rating}
           commentValue={comment}
-          onRatingChange={this._handleRatingChange}
-          onCommentChange={this._handleCommentChange}
+          onRatingChange={this.handleRatingChange}
+          onCommentChange={this.handleCommentChange}
           isFieldsEnabled={status === `ready`}
           isSubmitEnabled={
             status === `ready` &&
@@ -105,7 +105,7 @@ function withSubmitMovieReview(Component) {
             comment.length >= REVIEW_COMMENT_MIN_LENGTH &&
             comment.length <= REVIEW_COMMENT_MAX_LENGTH
           }
-          onSubmit={this._handleSubmit}
+          onSubmit={this.handleSubmit}
         />
       );
     }

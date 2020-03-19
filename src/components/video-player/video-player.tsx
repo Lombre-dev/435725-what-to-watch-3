@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {PlayerState} from '../../consts';
 
-type TVideoPlayerProps = {
+type Props = {
   id: number;
   state: PlayerState;
   poster: string;
@@ -14,18 +14,18 @@ type TVideoPlayerProps = {
   isMuted?: boolean;
 };
 
-class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
+class VideoPlayer extends React.PureComponent<Props> {
 
   private _videoRef: React.RefObject<HTMLVideoElement>;
 
-  public constructor(props: TVideoPlayerProps) {
+  public constructor(props: Props) {
     super(props);
 
     this._videoRef = React.createRef();
 
-    this._handleDurationUpdate = this._handleDurationUpdate.bind(this);
-    this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
-    this._handleEnd = this._handleEnd.bind(this);
+    this.handleDurationUpdate = this.handleDurationUpdate.bind(this);
+    this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
   }
 
   public componentDidMount() {
@@ -33,9 +33,9 @@ class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
     const {poster, src, state, isMuted} = this.props;
     const video = this._videoRef.current;
 
-    video.ondurationchange = this._handleDurationUpdate;
-    video.ontimeupdate = this._handleTimeUpdate;
-    video.onended = this._handleEnd;
+    video.ondurationchange = this.handleDurationUpdate;
+    video.ontimeupdate = this.handleTimeUpdate;
+    video.onended = this.handleEnd;
     video.preload = state === PlayerState.LOADING ? `metadata` : `none`;
     video.poster = poster;
     video.src = src;
@@ -88,7 +88,7 @@ class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
     }
   }
 
-  private _handleDurationUpdate() {
+  private handleDurationUpdate() {
 
     const {onDurationUpdate} = this.props;
     const video = this._videoRef.current;
@@ -98,7 +98,7 @@ class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
     }
   }
 
-  private _handleTimeUpdate() {
+  private handleTimeUpdate() {
 
     const {onTimeUpdate} = this.props;
     const video = this._videoRef.current;
@@ -108,7 +108,7 @@ class VideoPlayer extends React.PureComponent<TVideoPlayerProps> {
     }
   }
 
-  private _handleEnd() {
+  private handleEnd() {
 
     const {onEnd} = this.props;
 

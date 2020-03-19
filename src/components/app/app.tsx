@@ -4,23 +4,23 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {AppPages, LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/app/operations';
 import {getAppStatus} from '../../redux/app/selectors';
-import AddReviewPage from '../add-review-page';
-import CatalogPage from '../catalog-page/catalog-page';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
-import MoviePage from '../movie-page/movie-page';
-import MyListPage from '../my-list-page/my-list-page';
-import NotFoundPage from '../not-found-page/not-found-page';
-import PlayerPage from '../player-page';
+import PageAddReview from '../page-add-review/page-add-review';
+import PageCatalog from '../page-catalog/page-catalog';
+import MoviePage from '../page-movie/page-movie';
+import PageMyList from '../page-my-list/page-my-list';
+import PageNotFound from '../page-not-found/page-not-found';
+import PagePlayer from '../page-player/page-player';
+import PageSignIn from '../page-sign-in/page-sign-in';
 import PrivateRoute from '../private-route/private-route';
 import ProtectedRoute from '../protected-route/protected-route';
-import SignInPage from '../sign-in-page/sign-in-page';
 
-type TAppProps = {
+type Props = {
   status?: LoadingDataStatus;
   onMount?: Function;
 };
 
-class App extends React.PureComponent<TAppProps> {
+class App extends React.PureComponent<Props> {
 
   public componentDidMount() {
 
@@ -40,13 +40,13 @@ class App extends React.PureComponent<TAppProps> {
     return (
       <BrowserRouter>
         <Switch>
-          <ProtectedRoute exact path={AppPages.MAIN} render={() => <CatalogPage />} />
-          <Route exact path={AppPages.LOGIN} component={SignInPage} />
-          <PrivateRoute exact path={AppPages.MY_LIST} render={() => <MyListPage />} />
-          <PrivateRoute exact path={`${AppPages.MOVIES}/:id/review`} render={() => <AddReviewPage />} />
+          <ProtectedRoute exact path={AppPages.MAIN} render={() => <PageCatalog />} />
+          <Route exact path={AppPages.LOGIN} component={PageSignIn} />
+          <PrivateRoute exact path={AppPages.MY_LIST} render={() => <PageMyList />} />
+          <PrivateRoute exact path={`${AppPages.MOVIES}/:id/review`} render={() => <PageAddReview />} />
           <ProtectedRoute exact path={`${AppPages.MOVIES}/:id`} render={() => <MoviePage />} />
-          <Route exact path={`${AppPages.PLAYER}/:id`} component={PlayerPage} />
-          <Route component={NotFoundPage} />
+          <Route exact path={`${AppPages.PLAYER}/:id`} component={PagePlayer} />
+          <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter >
     );

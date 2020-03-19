@@ -84,10 +84,7 @@ const MOVIES = [
 ];
 const HAS_MORE_MOVIES = true;
 const LOADING_DATA_STATUS = LoadingDataStatus.READY;
-const HANDLE_EVENT = () => {
-  // eslint-disable-next-line no-console
-  console.log(`handleTestEvent`);
-};
+const HANDLE_EVENT = () => {};
 
 describe(`<App />`, () => {
 

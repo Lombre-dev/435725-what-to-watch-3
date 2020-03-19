@@ -1,19 +1,19 @@
 import * as React from 'react';
 import {MOVIE_INFO_TABS} from '../../consts';
 
-type TMovieInfoTabsProps = {
+type Props = {
   currentTab: number;
   onTabClick: Function;
 };
 
-class MovieInfoTabs extends React.PureComponent<TMovieInfoTabsProps> {
-  public constructor(props: TMovieInfoTabsProps) {
+class MovieInfoTabs extends React.PureComponent<Props> {
+  public constructor(props: Props) {
     super(props);
 
-    this._handleTabClick = this._handleTabClick.bind(this);
+    this.handleTabClick = this.handleTabClick.bind(this);
   }
 
-  private _handleTabClick(e: React.SyntheticEvent) {
+  private handleTabClick(e: React.SyntheticEvent) {
 
     const {onTabClick} = this.props;
     const index = parseInt((e.currentTarget as HTMLElement).dataset.index, 10);
@@ -39,7 +39,7 @@ class MovieInfoTabs extends React.PureComponent<TMovieInfoTabsProps> {
                     data-index={index}
                     href="#"
                     className="movie-nav__link"
-                    onClick={this._handleTabClick}
+                    onClick={this.handleTabClick}
                   >{tab}</a>
                 </li>
               );

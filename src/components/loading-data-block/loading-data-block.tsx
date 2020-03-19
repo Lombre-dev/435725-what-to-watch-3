@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {LoadingDataStatus} from '../../consts';
 
-type TLoadingDataBlockProps = {
+type Props = {
   status?: LoadingDataStatus;
 };
 
-function LoadingDataBlock(props: TLoadingDataBlockProps) {
+function LoadingDataBlock(props: Props) {
   return (
     <div style={
       {

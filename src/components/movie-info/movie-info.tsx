@@ -1,17 +1,18 @@
 import * as React from 'react';
+import withActiveTab from '../../hocs/with-active-tab';
 import MovieInfoDetails from '../movie-info-details/movie-info-details';
 import MovieInfoOverview from '../movie-info-overview/movie-info-overview';
 import MovieInfoReviews from '../movie-info-reviews/movie-info-reviews';
 import MovieInfoTabs from '../movie-info-tabs/movie-info-tabs';
 import {TMovie} from '../types';
 
-type TMovieInfoProps = {
+type Props = {
   movie: TMovie;
   activeTab: number;
   onTabClick: Function;
 };
 
-class MovieInfo extends React.PureComponent<TMovieInfoProps> {
+class MovieInfo extends React.PureComponent<Props> {
 
   private _renderState() {
 
@@ -65,4 +66,5 @@ class MovieInfo extends React.PureComponent<TMovieInfoProps> {
   }
 }
 
-export default MovieInfo;
+export {MovieInfo};
+export default withActiveTab(MovieInfo);

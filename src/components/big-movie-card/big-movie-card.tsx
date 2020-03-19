@@ -5,19 +5,19 @@ import {AppPages} from '../../consts';
 import {Operations} from '../../redux/user/operations';
 import {TMovie} from '../types';
 
-type TBigMovieCardProps = {
+type Props = {
   movie: TMovie;
   updateFavoriteStatus: Function;
 };
 
-class BigMovieCard extends React.PureComponent<TBigMovieCardProps> {
-  public constructor(props: TBigMovieCardProps) {
+class BigMovieCard extends React.PureComponent<Props> {
+  public constructor(props: Props) {
     super(props);
 
-    this._handleListClick = this._handleListClick.bind(this);
+    this.handleListClick = this.handleListClick.bind(this);
   }
 
-  private _handleListClick() {
+  private handleListClick() {
 
     const {updateFavoriteStatus, movie} = this.props;
 
@@ -35,7 +35,6 @@ class BigMovieCard extends React.PureComponent<TBigMovieCardProps> {
           <span className="movie-card__genre">{movie.genres.join(`, `)}</span>
           <span className="movie-card__year">{movie.year}</span>
         </p>
-
         <div className="movie-card__buttons">
           <Link className="btn btn--play movie-card__button" to={`${AppPages.PLAYER}/${movie.id}`}>
             <svg viewBox="0 0 19 19" width="19" height="19">
@@ -43,7 +42,7 @@ class BigMovieCard extends React.PureComponent<TBigMovieCardProps> {
             </svg>
             <span>Play</span>
           </Link>
-          <button className="btn btn--list movie-card__button" type="button" onClick={this._handleListClick}>
+          <button className="btn btn--list movie-card__button" type="button" onClick={this.handleListClick}>
             <svg viewBox="0 0 19 20" width="19" height="20">
               <use xlinkHref={movie.isFavorite ? `#in-list` : `#add`}></use>
             </svg>

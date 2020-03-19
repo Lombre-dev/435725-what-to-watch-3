@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom';
 import {AppPages, AuthorizationStatus} from '../../consts';
 import {getUserAuthStatus, getUserAvatar, getUserName} from '../../redux/user/selectors';
 
-type TUserBlockProps = {
+type Props = {
   status?: AuthorizationStatus;
   name?: string;
   avatar?: string;
 };
 
-function UserBlock(props: TUserBlockProps) {
+function UserBlock(props: Props) {
 
   const {status, avatar, name} = props;
 

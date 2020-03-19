@@ -2,11 +2,11 @@ import * as React from 'react';
 import {getDuration} from '../../utils/movie-utils';
 import {TMovie} from '../types';
 
-type TMovieInfoDetailsProps = {
+type Props = {
   movie: TMovie;
 };
 
-function MovieInfoDetails(props: TMovieInfoDetailsProps) {
+function MovieInfoDetails(props: Props) {
 
   const {actors} = props.movie;
 
@@ -32,7 +32,6 @@ function MovieInfoDetails(props: TMovieInfoDetailsProps) {
           </span>
         </p>
       </div>
-
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>

@@ -4,14 +4,14 @@ import {Redirect, Route} from 'react-router-dom';
 import {AppPages, AuthorizationStatus} from '../../consts';
 import {getUserAuthStatus} from '../../redux/user/selectors';
 
-type TPrivateRouteProps = {
+type Props = {
   exact: boolean;
   path: string;
   render: Function;
   authStatus?: AuthorizationStatus;
 };
 
-function PrivateRoute(props: TPrivateRouteProps) {
+function PrivateRoute(props: Props) {
   return (
     <Route
       exact={props.exact}
