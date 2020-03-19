@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CatalogPage /> render should be match markup 1`] = `
+exports[`<PageCatalog /> render should be match markup 1`] = `
 <div
   style={
     Object {
