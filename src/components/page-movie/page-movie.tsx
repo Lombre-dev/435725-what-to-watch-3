@@ -31,7 +31,7 @@ class PageMovie extends React.PureComponent<TProps> {
 
     const {updateMovie, match} = this.props;
 
-    updateMovie(match.params.id);
+    updateMovie(parseInt(match.params.id, 10));
   }
 
   public componentDidUpdate(prevProps: TProps) {
@@ -39,7 +39,7 @@ class PageMovie extends React.PureComponent<TProps> {
     const {updateMovie} = this.props;
 
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      updateMovie(this.props.match.params.id);
+      updateMovie(parseInt(this.props.match.params.id, 10));
     }
   }
 

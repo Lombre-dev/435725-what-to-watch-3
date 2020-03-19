@@ -51,7 +51,7 @@ export default function withVideoPlayer(Component) {
 
       const {onMount, match} = this.props;
 
-      onMount(match.params.id);
+      onMount(parseInt(match.params.id));
     }
 
     public componentWillUnmount() {

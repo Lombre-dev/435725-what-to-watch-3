@@ -80,6 +80,6 @@ export type TUserData = {
 
 export type TMatchParamsWithId = {
   params: {
-    id: number;
+    id: string;
   }
 }
