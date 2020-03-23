@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages, PlayerState} from '../../consts';
-import {TMovie} from '../types';
+import {TMovie, AppPages, PlayerState} from '../../types';
 import VideoPlayer from '../video-player/video-player';
 
 type TProps = {

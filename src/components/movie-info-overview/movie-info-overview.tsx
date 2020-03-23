@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {getActors, getRatingLevel, getRatingReviewsCount, getRatingScore} from '../../utils/movie-utils';
-import {TMovie} from '../types';
+import {TMovie} from '../../types';
 
 type TProps = {
   movie: TMovie;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import * as renderer from 'react-test-renderer';
-import {AuthorizationStatus} from '../../consts';
+import {AuthorizationStatus} from '../../types';
 import {UserBlock} from './user-block';
 
 const STATUS = AuthorizationStatus.AUTH;

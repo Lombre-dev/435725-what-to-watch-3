@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import * as renderer from 'react-test-renderer';
-import {LoadingDataStatus} from '../../consts';
+import {LoadingDataStatus} from '../../types';
 import LoadingDataBlock from './loading-data-block';
 
 const STATUS = LoadingDataStatus.LOADING;

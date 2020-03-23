@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {TMovie} from '../components/types';
+import {TMovie} from '../types';
 
 type TProps = {
   movie: TMovie;

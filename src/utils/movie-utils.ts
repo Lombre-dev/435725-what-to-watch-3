@@ -1,4 +1,4 @@
-import {TMovie} from '../components/types';
+import {TMovie} from '../types';
 import {GenreLabels} from '../consts';
 import {getPluralForm} from './get-plural-form';
 

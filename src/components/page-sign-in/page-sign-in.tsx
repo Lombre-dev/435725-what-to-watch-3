@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {AppPages, AuthorizationErrorCode, AuthorizationStatus} from '../../consts';
+import {AppPages, AuthorizationErrorCode, AuthorizationStatus} from '../../types';
 import {setUserAuthRequired} from '../../redux/user/actions';
 import {Operations as UserOperations} from '../../redux/user/operations';
 import {getUserAuthError, getUserAuthStatus} from '../../redux/user/selectors';

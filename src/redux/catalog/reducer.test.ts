@@ -1,8 +1,9 @@
 import {createStore} from 'redux';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, LoadingDataStatus} from '../../consts';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
 import {getGenresFromMovies} from '../../utils/movie-utils';
 import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {reducer} from './reducer';
+import {LoadingDataStatus} from '../../types';
 
 const ALL_MOVIES = [
   {

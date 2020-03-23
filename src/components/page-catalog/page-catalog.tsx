@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/catalog/operations';
 import {getCatalogPromoMovie, getCatalogStatus} from '../../redux/catalog/selectors';
 import BigMovieCard from '../big-movie-card/big-movie-card';
@@ -8,7 +7,7 @@ import Catalog from '../catalog/catalog';
 import Footer from '../footer/footer';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import Logo from '../logo/logo';
-import {TMovie} from '../types';
+import {TMovie, LoadingDataStatus} from '../../types';
 import UserBlock from '../user-block/user-block';
 
 type TProps = {

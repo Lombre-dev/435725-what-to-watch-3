@@ -6,7 +6,7 @@ import {getCatalogGenre, getCatalogGenres, getCatalogHasMoreMovies, getCatalogMo
 import GenreFilters from '../genre-filters/genre-filters';
 import ShowMore from '../show-more/show-more';
 import SmallMovieCards from '../small-movie-cards/small-movie-cards';
-import {TMovie} from '../types';
+import {TMovie} from '../../types';
 
 type TProps = {
   genre: string;

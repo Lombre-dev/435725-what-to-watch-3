@@ -1,4 +1,4 @@
-import {AuthorizationStatus} from '../../consts';
+import {AuthorizationStatus} from '../../types';
 
 export const initialState = {
   id: -1,

@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus} from '../../consts';
+import {AuthorizationStatus} from '../../types';
 import {PageSignIn} from './page-sign-in';
 
 const mockStore = configureStore([]);

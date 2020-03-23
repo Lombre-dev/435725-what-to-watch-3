@@ -1,4 +1,4 @@
-import {TUser, TUserData} from '../../components/types';
+import {TUser, TUserData} from '../../types';
 import {ServerConfig} from '../../consts';
 
 function formatUser(source: TUserData): TUser {

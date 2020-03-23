@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {AuthorizationStatus} from '../../consts';
+import {AuthorizationStatus} from '../../types';
 import {PageCatalog} from './page-catalog';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];

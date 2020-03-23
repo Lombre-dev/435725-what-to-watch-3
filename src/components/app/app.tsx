@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {AppPages, LoadingDataStatus} from '../../consts';
+import {AppPages, LoadingDataStatus} from '../../types';
 import {Operations} from '../../redux/app/operations';
 import {getAppStatus} from '../../redux/app/selectors';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';

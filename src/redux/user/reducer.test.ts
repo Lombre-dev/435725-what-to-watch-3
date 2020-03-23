@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {AuthorizationStatus} from '../../consts';
+import {AuthorizationStatus} from '../../types';
 import {clearUserData, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
 import {reducer} from './reducer';
 

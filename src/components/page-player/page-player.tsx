@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages, PlayerState} from '../../consts';
 import withVideoPlayer from '../../hocs/with-video-player';
 import {formatTime} from '../../utils/player-utils';
-import {TMovie} from '../types';
+import {TMovie, AppPages, PlayerState} from '../../types';
 import VideoPlayer from '../video-player/video-player';
 
 type TProps = {
@@ -102,7 +101,7 @@ class PagePlayer extends React.PureComponent<TProps> {
         <div className="player__controls">
           <div className="player__controls-row">
             <div className="player__time">
-              <progress className="player__progress" value={progress} max="100"></progress>
+              <progress className="player__progress" value={progress} max="100" />
               <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
             </div>
             <div className="player__time-value">{formatTime(movieDuration - movieTime)}</div>

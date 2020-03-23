@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {MORE_LIKE_THIS_MOVIES_LIMIT} from '../../consts';
 import SmallMovieCards from '../small-movie-cards/small-movie-cards';
-import {TMovie} from '../types';
+import {TMovie} from '../../types';
 
 type TProps = {
   movies: TMovie[];

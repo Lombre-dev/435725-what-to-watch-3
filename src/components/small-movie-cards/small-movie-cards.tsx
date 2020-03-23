@@ -2,7 +2,7 @@ import * as React from 'react';
 import {SMALL_MOVIE_CARD_PREVIEW_DELAY} from '../../consts';
 import withActiveItem from '../../hocs/with-active-item';
 import SmallMovieCardItem from '../small-movie-card-item/small-movie-card-item';
-import {TMovie} from '../types';
+import {TMovie} from '../../types';
 
 type TProps = {
   movies: TMovie[];

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages} from '../../consts';
+import {AppPages} from '../../types';
 
 type TProps = {
   isLight?: boolean;
