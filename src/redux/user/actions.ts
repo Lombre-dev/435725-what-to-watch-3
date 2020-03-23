@@ -1,6 +1,6 @@
 import {AnyAction} from 'redux';
 import {createAction} from 'redux-act';
-import {TMovie, TUser} from '../../components/types';
+import {TMovie, TUser} from '../../types';
 
 export const clearUserData = createAction(`CLEAR_USER_DATA`);
 export const setUserData: (user: TUser) => AnyAction = createAction(`SET_USER_DATA`);

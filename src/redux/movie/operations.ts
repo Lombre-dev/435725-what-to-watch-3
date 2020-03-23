@@ -1,4 +1,4 @@
-import {AppPages} from '../../consts';
+import {AppPages} from '../../types';
 import {getMoviesByGenre} from '../../utils/movie-utils';
 import {getAppMovies} from '../app/selectors';
 import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetailedMovieLoadingStart, setDetailedMovieRedirectTo, setDetailedMovieRelatedMovies, setDetailedMovieReviews, setDetailedMovieValue} from './actions';

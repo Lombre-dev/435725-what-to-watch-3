@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {PlayerState} from '../../consts';
+import {PlayerState} from '../../types';
 
 type TProps = {
   id: number;
@@ -122,7 +122,7 @@ class VideoPlayer extends React.PureComponent<TProps> {
     const {width, height} = this.props;
 
     return (
-      <video ref={this._videoRef} width={width} height={height}></video>
+      <video ref={this._videoRef} width={width} height={height} />
     );
   }
 

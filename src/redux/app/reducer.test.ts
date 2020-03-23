@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {LoadingDataStatus} from '../../consts';
+import {LoadingDataStatus} from '../../types';
 import {setAppLoadingError, setAppLoadingStart, setAppMovies} from './actions';
 import {reducer} from './reducer';
 

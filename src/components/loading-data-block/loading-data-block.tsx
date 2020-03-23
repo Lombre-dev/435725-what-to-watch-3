@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {LoadingDataStatus} from '../../consts';
+import {LoadingDataStatus} from '../../types';
 
 type TProps = {
   status: LoadingDataStatus;

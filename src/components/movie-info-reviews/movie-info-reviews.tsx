@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {LoadingDataStatus} from '../../consts';
 import {Operations} from '../../redux/movie/operations';
 import {getDetailedMovieReviews, getDetailedMovieStatus} from '../../redux/movie/selectors';
 import {getRatingScore} from '../../utils/movie-utils';
 import LoadingDataBlock from '../loading-data-block/loading-data-block';
-import {TMovie, TReview} from '../types';
+import {TMovie, TReview, LoadingDataStatus} from '../../types';
 
 type TProps = {
   status?: LoadingDataStatus;

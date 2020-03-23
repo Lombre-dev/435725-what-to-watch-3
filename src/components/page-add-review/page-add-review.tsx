@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPages, REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../../consts';
+import {REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../../consts';
 import withSubmitMovieReview from '../../hocs/with-submit-movie-review';
 import Logo from '../logo/logo';
 import ReviewRating from '../review-rating/review-rating';
-import {TMovie} from '../types';
+import {TMovie, AppPages} from '../../types';
 import UserBlock from '../user-block/user-block';
 
 type TProps = {
@@ -89,7 +89,7 @@ class PageAddReview extends React.PureComponent<TProps> {
                 onChange={this.handleCommentChange}
                 disabled={!isFieldsEnabled}
                 defaultValue={commentValue}
-              ></textarea>
+              />
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit" disabled={!isSubmitEnabled}>Post</button>
               </div>

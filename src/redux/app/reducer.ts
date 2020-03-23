@@ -1,6 +1,5 @@
 import {createReducer} from 'redux-act';
-import {TMovie} from '../../components/types';
-import {LoadingDataStatus} from '../../consts';
+import {TMovie, LoadingDataStatus} from '../../types';
 import {setAppLoadingError, setAppLoadingStart, setAppMovies} from './actions';
 import {initialState} from './initialState';
 

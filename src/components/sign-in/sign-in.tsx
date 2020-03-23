@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {AuthorizationErrorCode, AuthorizationErrorMessage} from '../../consts';
+import {AuthorizationErrorCode} from '../../types';
+import {AuthorizationErrorMessage} from '../../consts';
 
 type TProps = {
   email?: string;
@@ -57,7 +58,7 @@ class SignIn extends React.PureComponent<TProps> {
                 defaultValue={email}
                 ref={this._emailRef}
               />
-              <label className="sign-in__label visually-hidden" htmlFor="user-email"></label>
+              <label className="sign-in__label visually-hidden" htmlFor="user-email" />
             </div>
             <div className="sign-in__field">
               <input

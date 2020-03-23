@@ -1,4 +1,4 @@
-import {TMovie, TMovieData} from '../../components/types';
+import {TMovie, TMovieData} from '../../types';
 
 function formatMovie(source: TMovieData): TMovie {
   return {

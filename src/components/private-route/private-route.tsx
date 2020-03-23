@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Route} from 'react-router-dom';
-import {AppPages, AuthorizationStatus} from '../../consts';
+import {AppPages, AuthorizationStatus} from '../../types';
 import {getUserAuthStatus} from '../../redux/user/selectors';
 
 type TProps = {

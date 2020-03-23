@@ -1,6 +1,5 @@
 import {createReducer} from 'redux-act';
-import {TMovie, TReview} from '../../components/types';
-import {LoadingDataStatus} from '../../consts';
+import {TMovie, TReview, LoadingDataStatus} from '../../types';
 import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetailedMovieLoadingStart, setDetailedMovieRedirectTo, setDetailedMovieRelatedMovies, setDetailedMovieReviews, setDetailedMovieValue} from './actions';
 import {initialState} from './initialState';
 

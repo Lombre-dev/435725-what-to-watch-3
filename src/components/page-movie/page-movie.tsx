@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
-import {LoadingDataStatus} from '../../consts';
 import {setDetailedMovieRedirectTo} from '../../redux/movie/actions';
 import {Operations} from '../../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieRelatedMovies, getDetailedMovieStatus} from '../../redux/movie/selectors';
@@ -11,7 +10,7 @@ import LoadingDataBlock from '../loading-data-block/loading-data-block';
 import Logo from '../logo/logo';
 import MoreLikeThis from '../more-like-this/more-like-this';
 import MovieInfo from '../movie-info/movie-info';
-import {TMatchParamsWithId, TMovie} from '../types';
+import {TMatchParamsWithId, TMovie, LoadingDataStatus} from '../../types';
 import UserBlock from '../user-block/user-block';
 
 type TProps = {

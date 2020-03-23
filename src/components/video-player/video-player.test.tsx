@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {PlayerState} from '../../consts';
+import {PlayerState} from '../../types';
 import VideoPlayer from './video-player';
 
 const ID = 0;

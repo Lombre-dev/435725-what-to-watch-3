@@ -1,6 +1,6 @@
 import {AnyAction} from 'redux';
 import {createAction} from 'redux-act';
-import {TMovie, TReview} from '../../components/types';
+import {TMovie, TReview} from '../../types';
 
 export const setDetailedMovieLoadingStart = createAction(`SET_DETAILED_MOVIE_LOADING_START`);
 export const setDetailedMovieLoadingComplete = createAction(`SET_DETAILED_MOVIE_LOADING_COMPLETE`);

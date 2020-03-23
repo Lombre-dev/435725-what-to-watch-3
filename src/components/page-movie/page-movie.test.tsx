@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
+import {AuthorizationStatus, LoadingDataStatus} from '../../types';
 import {PageMovie} from './page-movie';
 
 const MATCH = {params: {id: `0`}};

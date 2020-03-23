@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {AppPages} from '../../consts';
 import {Operations} from '../../redux/user/operations';
-import {TMovie} from '../types';
+import {TMovie, AppPages} from '../../types';
 
 type TProps = {
   movie: TMovie;
@@ -38,13 +37,13 @@ class BigMovieCard extends React.PureComponent<TProps> {
         <div className="movie-card__buttons">
           <Link className="btn btn--play movie-card__button" to={`${AppPages.PLAYER}/${movie.id}`}>
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              <use xlinkHref="#play-s" />
             </svg>
             <span>Play</span>
           </Link>
           <button className="btn btn--list movie-card__button" type="button" onClick={this.handleListClick}>
             <svg viewBox="0 0 19 20" width="19" height="20">
-              <use xlinkHref={movie.isFavorite ? `#in-list` : `#add`}></use>
+              <use xlinkHref={movie.isFavorite ? `#in-list` : `#add`} />
             </svg>
             <span>My list</span>
           </button>

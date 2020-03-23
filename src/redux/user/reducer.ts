@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-act';
-import {TMovie, TUser} from '../../components/types';
+import {TMovie, TUser} from '../../types';
 import {clearUserData, setUserAuthRequired, setUserData, setUserFavoriteMovies} from './actions';
 import {initialState} from './initialState';
 

@@ -2,8 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
 import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
-import {TMatchParamsWithId, TMovie} from '../components/types';
-import {LoadingDataStatus, PlayerState} from '../consts';
+import {TMatchParamsWithId, TMovie, LoadingDataStatus, PlayerState} from '../types';
 import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
@@ -68,13 +67,13 @@ export default function withVideoPlayer(Component) {
       });
     }
 
-    private handleDurationUpdate({duration}) {
+    private handleDurationUpdate(duration: number) {
       this.setState({
         duration,
       });
     }
 
-    private handleTimeUpdate({time}) {
+    private handleTimeUpdate(time: number) {
       this.setState({
         time,
       });

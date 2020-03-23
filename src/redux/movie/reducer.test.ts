@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {AppPages, LoadingDataStatus} from '../../consts';
+import {AppPages, LoadingDataStatus} from '../../types';
 import {setDetailedMovieLoadingComplete, setDetailedMovieLoadingError, setDetailedMovieLoadingStart, setDetailedMovieRedirectTo, setDetailedMovieRelatedMovies, setDetailedMovieReviews, setDetailedMovieValue} from './actions';
 import {reducer} from './reducer';
 

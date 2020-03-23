@@ -5,7 +5,7 @@ import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {createAPI} from '../../api';
-import {AuthorizationStatus, LoadingDataStatus} from '../../consts';
+import {AuthorizationStatus, LoadingDataStatus} from '../../types';
 import {App} from './app';
 
 const GENRES = [`Drama`, `Comedy`, `Kids & Family`];

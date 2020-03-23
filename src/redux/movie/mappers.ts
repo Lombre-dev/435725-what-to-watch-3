@@ -1,4 +1,4 @@
-import {TReview, TReviewData} from '../../components/types';
+import {TReview, TReviewData} from '../../types';
 
 function formatReview(source: TReviewData): TReview {
   return {

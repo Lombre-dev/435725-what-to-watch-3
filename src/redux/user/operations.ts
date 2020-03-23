@@ -1,4 +1,4 @@
-import {AuthorizationErrorCode, AuthorizationStatus, ServerErrors} from '../../consts';
+import {AuthorizationErrorCode, AuthorizationStatus, ServerErrors} from '../../types';
 import {setAppMovies} from '../app/actions';
 import {formatMovies} from '../app/mappers';
 import {getAppMovies} from '../app/selectors';

@@ -1,6 +1,6 @@
 import {AnyAction} from 'redux';
 import {createAction} from 'redux-act';
-import {TMovie} from '../../components/types';
+import {TMovie} from '../../types';
 
 export const setCatalogLoadingStart = createAction(`SET_CATALOG_LOADING_START`);
 export const setCatalogLoadingComplete = createAction(`SET_CATALOG_LOADING_COMPLETE`);

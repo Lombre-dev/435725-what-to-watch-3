@@ -1,6 +1,6 @@
 import {AnyAction} from 'redux';
 import {createAction} from 'redux-act';
-import {TMovie} from '../../components/types';
+import {TMovie} from '../../types';
 
 export const setAppLoadingStart = createAction(`SET_APP_LOADING_START`);
 export const setAppMovies: (movies: TMovie[]) => AnyAction = createAction(`SET_APP_MOVIES`);

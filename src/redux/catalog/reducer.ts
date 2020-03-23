@@ -1,6 +1,6 @@
 import {createReducer} from 'redux-act';
-import {TMovie} from '../../components/types';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_CATALOG_LIMIT, LoadingDataStatus} from '../../consts';
+import {TMovie, LoadingDataStatus} from '../../types';
+import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_CATALOG_LIMIT} from '../../consts';
 import {getGenresFromMovies, getMoviesByGenre} from '../../utils/movie-utils';
 import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {initialState} from './initialState';
