@@ -1,12 +1,12 @@
 import {TUser, TUserData} from '../../types';
 import {ServerConfig} from '../../consts';
 
-function formatUser(source: TUserData): TUser {
+function formatUser(userData: TUserData): TUser {
   return {
-    id: source.id,
-    email: source.email,
-    name: source.name,
-    avatar: `${ServerConfig.URL}${source.avatar_url.substring(4)}`,
+    id: userData.id,
+    email: userData.email,
+    name: userData.name,
+    avatar: `${ServerConfig.URL}${userData.avatar_url.substring(4)}`,
   };
 }
 

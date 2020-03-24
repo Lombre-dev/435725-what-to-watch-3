@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
 import LoadingDataBlock from '../components/loading-data-block/loading-data-block';
 import {TMatchParamsWithId, TMovie, LoadingDataStatus} from '../types';
-import {REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../consts';
 import {setDetailedMovieRedirectTo} from '../redux/movie/actions';
 import {Operations} from '../redux/movie/operations';
 import {getDetailedMovie, getDetailedMovieRedirectTo, getDetailedMovieStatus} from '../redux/movie/selectors';
+import {ReviewFormConfig} from '../consts';
 
 type TProps = {
   match: TMatchParamsWithId;
@@ -100,8 +100,8 @@ function withSubmitMovieReview(Component) {
           isSubmitEnabled={
             status === LoadingDataStatus.READY &&
             rating &&
-            comment.length >= REVIEW_COMMENT_MIN_LENGTH &&
-            comment.length <= REVIEW_COMMENT_MAX_LENGTH
+            comment.length >= ReviewFormConfig.COMMENT_MIN_LENGTH &&
+            comment.length <= ReviewFormConfig.COMMENT_MAX_LENGTH
           }
           onSubmit={this.handleSubmit}
         />

@@ -11,6 +11,7 @@ const RATING_LEVELS = [
   `Awesome`,
 ];
 const ACTORS_LIMIT = 4;
+const MINUTES_PER_HOUR = 60;
 
 export function getRatingScore(score: number): string {
   return score.toFixed(1).replace(`.`, `,`);
@@ -37,24 +38,24 @@ export function getActors(actors: string[]): string {
 
 export function getDuration(minutes: number): string {
 
-  const hours = Math.floor(minutes / 60);
+  const hours = Math.floor(minutes / MINUTES_PER_HOUR);
 
-  return `${hours > 0 ? `${hours}h ` : ``}${minutes - hours * 60} m`;
+  return `${hours > 0 ? `${hours}h ` : ``}${minutes - hours * MINUTES_PER_HOUR} m`;
 }
 
-export function getMoviesByGenre(source: TMovie[], genre: string, exclude: TMovie[] = []): TMovie[] {
-  return source.filter((movie) => movie.genres.includes(genre) && !exclude.includes(movie));
+export function getMoviesByGenre(movies: TMovie[], genre: string, exclude: TMovie[] = []): TMovie[] {
+  return movies.filter((movie) => movie.genres.includes(genre) && !exclude.includes(movie));
 }
 
 export function getGenreLabels() {
   return Object.assign({}, GenreLabels);
 }
 
-export function getGenresFromMovies(source: TMovie[]): string[] {
+export function getGenresFromMovies(movies: TMovie[]): string[] {
 
   const genres: string[] = [];
 
-  source.forEach((movie) => {
+  movies.forEach((movie) => {
     movie.genres.forEach((genre) => {
       if (genres.includes(genre)) {
         return;
