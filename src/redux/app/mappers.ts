@@ -1,30 +1,30 @@
 import {TMovie, TMovieData} from '../../types';
 
-function formatMovie(source: TMovieData): TMovie {
+function formatMovie(movieData: TMovieData): TMovie {
   return {
-    id: source.id,
-    title: source.name,
-    genres: [source.genre],
-    year: source.released,
-    poster: source.poster_image,
-    frames: [source.preview_image],
-    preview: source.preview_video_link,
-    src: source.video_link,
-    ratingScore: source.rating,
-    ratingReviewsCount: source.scores_count,
-    description: source.description,
-    story: source.description,
-    duration: source.run_time,
-    director: source.director,
-    actors: source.starring,
-    backgroundImage: source.background_image,
-    backgroundColor: source.background_color,
-    isFavorite: source.is_favorite,
+    id: movieData.id,
+    title: movieData.name,
+    genres: [movieData.genre],
+    year: movieData.released,
+    poster: movieData.poster_image,
+    frames: [movieData.preview_image],
+    preview: movieData.preview_video_link,
+    src: movieData.video_link,
+    ratingScore: movieData.rating,
+    ratingReviewsCount: movieData.scores_count,
+    description: movieData.description,
+    story: movieData.description,
+    duration: movieData.run_time,
+    director: movieData.director,
+    actors: movieData.starring,
+    backgroundImage: movieData.background_image,
+    backgroundColor: movieData.background_color,
+    isFavorite: movieData.is_favorite,
   };
 }
 
-function formatMovies(source: TMovieData[]): TMovie[] {
-  return source.map((item) => formatMovie(item));
+function formatMovies(moviesData: TMovieData[]): TMovie[] {
+  return moviesData.map((item) => formatMovie(item));
 }
 
 export {formatMovie, formatMovies};

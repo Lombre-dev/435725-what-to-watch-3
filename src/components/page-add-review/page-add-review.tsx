@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {REVIEW_COMMENT_MAX_LENGTH, REVIEW_COMMENT_MIN_LENGTH} from '../../consts';
 import withSubmitMovieReview from '../../hocs/with-submit-movie-review';
 import Logo from '../logo/logo';
 import ReviewRating from '../review-rating/review-rating';
 import {TMovie, AppPages} from '../../types';
 import UserBlock from '../user-block/user-block';
+import {ReviewFormConfig} from '../../consts';
 
 type TProps = {
   movie: TMovie;
@@ -84,8 +84,8 @@ class PageAddReview extends React.PureComponent<TProps> {
                 name="review-text"
                 id="review-text"
                 placeholder="Review text"
-                minLength={REVIEW_COMMENT_MIN_LENGTH}
-                maxLength={REVIEW_COMMENT_MAX_LENGTH}
+                minLength={ReviewFormConfig.COMMENT_MIN_LENGTH}
+                maxLength={ReviewFormConfig.COMMENT_MAX_LENGTH}
                 onChange={this.handleCommentChange}
                 disabled={!isFieldsEnabled}
                 defaultValue={commentValue}

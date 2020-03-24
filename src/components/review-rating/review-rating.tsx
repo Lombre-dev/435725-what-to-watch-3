@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {REVIEW_RATING_STARS_LIMIT} from '../../consts';
+import {ReviewFormConfig} from '../../consts';
 
 type TProps = {
   isEnabled: boolean;
@@ -60,7 +60,7 @@ class ReviewRating extends React.PureComponent<TProps> {
   }
 
   public static defaultProps = {
-    limit: REVIEW_RATING_STARS_LIMIT,
+    limit: ReviewFormConfig.RATING_STARS_LIMIT,
   }
 }
 

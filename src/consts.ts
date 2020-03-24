@@ -35,8 +35,10 @@ export const AuthorizationErrorMessage = {
   [AuthorizationErrorCode.AUTHORIZATION_FAIL]: `We can’t recognize this email and password combination. Please try again.`,
 };
 
-export const REVIEW_RATING_STARS_LIMIT = 5;
-export const REVIEW_COMMENT_MIN_LENGTH = 50;
-export const REVIEW_COMMENT_MAX_LENGTH = 400;
+export const ReviewFormConfig = {
+  RATING_STARS_LIMIT: 5,
+  COMMENT_MIN_LENGTH: 50,
+  COMMENT_MAX_LENGTH: 400,
+};
 
 

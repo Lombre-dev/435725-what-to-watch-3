@@ -1,17 +1,17 @@
 import {TReview, TReviewData} from '../../types';
 
-function formatReview(source: TReviewData): TReview {
+function formatReview(reviewData: TReviewData): TReview {
   return {
-    id: source.id,
-    author: source.user.name,
-    score: source.rating,
-    text: source.comment,
-    date: new Date(source.date).getTime(),
+    id: reviewData.id,
+    author: reviewData.user.name,
+    score: reviewData.rating,
+    text: reviewData.comment,
+    date: new Date(reviewData.date).getTime(),
   };
 }
 
-function formatReviews(source: TReviewData[]): TReview[] {
-  return source.map((value) => formatReview(value));
+function formatReviews(reviewsData: TReviewData[]): TReview[] {
+  return reviewsData.map((value) => formatReview(value));
 }
 
 export {formatReviews};
