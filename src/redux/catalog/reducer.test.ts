@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
+import {CATALOG_MOVIES_PER_PAGE_LIMIT} from '../../consts';
 import {getGenresFromMovies} from '../../utils/movie-utils';
 import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {reducer} from './reducer';
@@ -68,8 +68,8 @@ const ALL_MOVIES = [
   },
 ];
 const PROMO_MOVIE = ALL_MOVIES[0];
-const GENRE = ALL_GENRE;
-const GENRES = [ALL_GENRE].concat(getGenresFromMovies(ALL_MOVIES));
+const GENRE = `All genres`;
+const GENRES = [`All genres`].concat(getGenresFromMovies(ALL_MOVIES));
 const MOVIES = ALL_MOVIES.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
 const HAS_MORE_MOVIES = ALL_MOVIES.length > CATALOG_MOVIES_PER_PAGE_LIMIT;
 

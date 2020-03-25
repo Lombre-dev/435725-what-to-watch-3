@@ -1,16 +1,18 @@
 import {AuthorizationErrorCode} from './types';
 
-export const ALL_GENRE = `All genres`;
-const COMEDY_GENRE = `Comedy`;
-const DRAMA_GENRE = `Drama`;
-const THRILLER_GENRE = `Thriller`;
+export const Genres = {
+  ALL: `All genres`,
+  COMEDY: `Comedy`,
+  DRAMA: `Drama`,
+  THRILLER: `Thriller`,
+};
 
 export const GENRES_CATALOG_LIMIT = 9;
 
 export const GenreLabels = {
-  [COMEDY_GENRE]: `Comedies`,
-  [DRAMA_GENRE]: `Dramas`,
-  [THRILLER_GENRE]: `Thrillers`,
+  [Genres.COMEDY]: `Comedies`,
+  [Genres.DRAMA]: `Dramas`,
+  [Genres.THRILLER]: `Thrillers`,
 };
 
 export const MORE_LIKE_THIS_MOVIES_LIMIT = 4;
