@@ -1,5 +1,4 @@
-
-import {ALL_GENRE} from '../../consts';
+import {Genres} from '../../consts';
 
 export const initialState = {
   status: undefined,
@@ -7,8 +6,8 @@ export const initialState = {
   allMovies: [],
 
   promoMovie: undefined,
-  genres: [ALL_GENRE],
-  genre: ALL_GENRE,
+  genres: [Genres.ALL],
+  genre: Genres.ALL,
   movies: [],
   hasMoreMovies: false,
 };

@@ -1,6 +1,6 @@
 import {createReducer} from 'redux-act';
 import {TMovie, LoadingDataStatus} from '../../types';
-import {ALL_GENRE, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_CATALOG_LIMIT} from '../../consts';
+import {Genres, CATALOG_MOVIES_PER_PAGE_LIMIT, GENRES_CATALOG_LIMIT} from '../../consts';
 import {getGenresFromMovies, getMoviesByGenre} from '../../utils/movie-utils';
 import {getCatalogMoreMovies, setCatalogGenre, setCatalogLoadingComplete, setCatalogLoadingError, setCatalogLoadingStart, setCatalogMovies, setCatalogPromoMovie} from './actions';
 import {initialState} from './initialState';
@@ -19,7 +19,7 @@ export const reducer = createReducer({
 function _setMovies(state, movies: TMovie[]) {
   return Object.assign({}, state, {
     allMovies: movies,
-    genres: [ALL_GENRE].concat(getGenresFromMovies(movies)).slice(0, GENRES_CATALOG_LIMIT),
+    genres: [Genres.ALL].concat(getGenresFromMovies(movies)).slice(0, GENRES_CATALOG_LIMIT),
     movies: movies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT),
     hasMoreMovies: movies.length > CATALOG_MOVIES_PER_PAGE_LIMIT,
   });
@@ -32,7 +32,7 @@ function _setPromoMovie(state, movie: TMovie) {
 function _setGenre(state, genre: string) {
 
   const {allMovies} = state;
-  const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
+  const genreMovies = genre === Genres.ALL ? allMovies : getMoviesByGenre(allMovies, genre);
   const pageMovies = genreMovies.slice(0, CATALOG_MOVIES_PER_PAGE_LIMIT);
   const update = {
     genre,
@@ -46,7 +46,7 @@ function _setGenre(state, genre: string) {
 function _getMoreMovies(state) {
 
   const {genre, movies, allMovies} = state;
-  const genreMovies = genre === ALL_GENRE ? allMovies : getMoviesByGenre(allMovies, genre);
+  const genreMovies = genre === Genres.ALL ? allMovies : getMoviesByGenre(allMovies, genre);
   const pageMovies = genreMovies.slice(0, movies.length + CATALOG_MOVIES_PER_PAGE_LIMIT);
   const update = {
     movies: pageMovies,
